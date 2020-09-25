@@ -30,6 +30,9 @@ module.exports = {
     "semi": "off",
     "dot-location": "off",
     "space-before-function-paren": "off",
-    "quotes": "off"
+    "quotes": "off",
+    "key-spacing": "off",
+    "one-var": "off",
+    "no-trailing-spaces": "off"
   }
 }
