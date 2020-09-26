@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from rest_framework import routers
-from backend.api.views import LikeViewSet, index
+# from .views import LikeViewSet, index
+from .views import LikeViewSet
 
 
 router = routers.DefaultRouter()

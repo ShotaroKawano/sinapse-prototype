@@ -3,7 +3,7 @@ from django.http.response import HttpResponse
 from rest_framework import viewsets
 import os
 from backend.api.models import Like
-from backend.api.serializer import LikeSerializer
+from .serializers import LikeSerializer
 
 
 # Create your views here.
