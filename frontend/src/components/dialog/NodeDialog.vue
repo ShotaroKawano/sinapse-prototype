@@ -8,7 +8,7 @@
                 <div class="thumbnail">
                   <img :src="nodeForm.thumbnail" alt="">
                 </div>
-                <input class="form-control" v-model="nodeForm.thumbnail"/>
+                <!-- <input class="form-control" v-model="nodeForm.thumbnail"/> -->
                 <label for="url">URL</label>
                 <input class="form-control" id="url" v-model="nodeForm.url"/>
                 <label for="title">Title</label>
@@ -19,7 +19,7 @@
             <div class="footer">
                 <button @click="handleClickCancelSaveNode">Cancel</button>
                 <button @click="handleClickSaveNode">Save</button>
-                <!-- <button @click="handleClickGetInfo">Get</button> -->
+                <button @click="handleClickGetInfo">Get</button>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
 <script>
   // import '../assets/modal.css';
   // Ajax通信ライブラリ
-  // import axios from 'axios';
+  import axios from 'axios';
 
   export default {
     props: {
@@ -50,40 +50,44 @@
       };
     },
     methods: {
-      // handleClickGetInfo() {
-      //   // Json取得のベースURL
-      //   const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      //   // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-      //   // return axios.get(this.nodeForm.url)
-      //   // console.log(document.getElementsByName('csrf-token')[0].content)
-      //   console.log(this.nodeForm.url);
-      //   return axios({
-      //     method: 'POST',
-      //     url: URL_BASE,
-      //     data: {
-      //       url: this.nodeForm.url,
-      //     },
-      //     headers: {
-      //       'Content-Type': 'application/json;charset=UTF-8',
-      //       'Access-Control-Allow-Origin': '*',
-      //       'Access-Control-Allow-Methods': 'POST PUT, DELETE, PATCH',
-      //       'xsrfHeaderName': 'X-CSRF-Token',
-      //       'withCredentials': true,
-      //       // 'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
-      //       // 'X-CSRF-TOKEN': getCookieValue('XSRF-TOKEN')
-      //       // 'X-CSRF-TOKEN': csrf_token()
-      //     }
-      //   // }).post(URL_BASE, {
-      //     // withCredentials: true,
-      //   }).then((res) => {
-      //     console.log(res.data[0]);
-      //     this.nodeForm.thumbnail = res.data[0][2];
-      //     this.nodeForm.name = res.data[0][0];
-      //     this.nodeForm.summary = res.data[0][1];
-      //     // Vue.set(this, name, res.data);
-      //     // this.$emit('GET_AJAX_COMPLETE');
-      //   });
-      // },
+      handleClickGetInfo() {
+        // Json取得のベースURL
+        // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
+        const URL_BASE = 'https://0770c230-bdf5-43e0-92a2-fd6d9711e4bf.mock.pstmn.io/card/scrape';
+        // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+        // return axios.get(this.nodeForm.url)
+        // console.log(document.getElementsByName('csrf-token')[0].content)
+        console.log(this.nodeForm.url);
+        return axios({
+          method: 'POST',
+          url: URL_BASE,
+          data: {
+            url: this.nodeForm.url,
+          },
+          headers: {
+            // 'Content-Type': 'application/json;charset=UTF-8',
+            // 'Access-Control-Allow-Origin': '*',
+            // 'Access-Control-Allow-Methods': 'POST PUT, DELETE, PATCH',
+            // 'xsrfHeaderName': 'X-CSRF-Token',
+            // 'withCredentials': true,
+            // 'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
+            // 'X-CSRF-TOKEN': getCookieValue('XSRF-TOKEN')
+            // 'X-CSRF-TOKEN': csrf_token()
+          }
+        // }).post(URL_BASE, {
+          // withCredentials: true,
+        }).then((res) => {
+          console.log('response' + res.data[0]);
+          console.log('koko');
+          this.nodeForm.thumbnail = res.data[0][2];
+          this.nodeForm.name = res.data[0][0];
+          this.nodeForm.summary = res.data[0][1];
+          // Vue.set(this, name, res.data);
+          // this.$emit('GET_AJAX_COMPLETE');
+        }).catch(function(error) {
+          console.log('ERROR!! occurred in Backend.')
+        });
+      },
       // save押下時に実行される
       handleClickSaveNode() {
         console.log('koko');

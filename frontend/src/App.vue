@@ -1,64 +1,64 @@
 <template>
-  <div class="container">
-    <h1 class="title">Sinapse</h1>
-    <!-- <h5 class="subtitle">
-      Flowchart & Flowchart designer component for Vue.js.
-    </h5> -->
-    <div id="toolbar">
-      <button
-        @click="
-          $refs.chart.add({
-            id: +new Date(),
-            x: 10,
-            y: 10,
-            thumbnail: 'https://placehold.jp/150x100.png',
-            url: '',
-            title: 'Title',
-            summary: 'Summary',
-          })
-        "
+  <div>
+    <Header></Header>
+    <BoardHeader></BoardHeader>
+    <div class="container">
+      <div id="toolbar">
+        <button
+          @click="
+            $refs.chart.add({
+              id: +new Date(),
+              x: 10,
+              y: 10,
+              thumbnail: 'https://placehold.jp/150x100.png',
+              url: '',
+              title: 'Title',
+              summary: 'Summary',
+            })
+          "
+        >
+          Add(Double-click canvas)
+        </button>
+        <button @click="$refs.chart.remove()">Delete(Del)</button>
+        <button @click="$refs.chart.editCurrent()">
+          Edit(Double-click node)
+        </button>
+        <button @click="$refs.chart.save()">Save</button>
+      </div>
+      <!-- <flowchart
+        :nodes="nodes"
+        :connections="connections"
+        @editnode="handleEditNode"
+        :readonly="false"
+        @dblclick="handleDblClick"
+        @editconnection="handleEditConnection"
+        @save="handleChartSave"
+        ref="chart"
+        :render="render"
       >
-        Add(Double-click canvas)
-      </button>
-      <button @click="$refs.chart.remove()">Delete(Del)</button>
-      <button @click="$refs.chart.editCurrent()">
-        Edit(Double-click node)
-      </button>
-      <button @click="$refs.chart.save()">Save</button>
+      </flowchart> -->
+      <flowchart
+        :nodes="nodes"
+        :connections="connections"
+        @editnode="handleEditNode"
+        :readonly="false"
+        @dblclick="handleDblClick"
+        @editconnection="handleEditConnection"
+        @save="handleChartSave"
+        ref="chart"
+      >
+      </flowchart>
+      <node-dialog
+        :visible.sync="nodeDialogVisible"
+        :node.sync="nodeForm.target"
+      ></node-dialog>
+      <connection-dialog
+        :visible.sync="connectionDialogVisible"
+        :connection.sync="connectionForm.target"
+        :operation="connectionForm.operation"
+      >
+      </connection-dialog>
     </div>
-    <!-- <flowchart
-      :nodes="nodes"
-      :connections="connections"
-      @editnode="handleEditNode"
-      :readonly="false"
-      @dblclick="handleDblClick"
-      @editconnection="handleEditConnection"
-      @save="handleChartSave"
-      ref="chart"
-      :render="render"
-    >
-    </flowchart> -->
-    <flowchart
-      :nodes="nodes"
-      :connections="connections"
-      @editnode="handleEditNode"
-      :readonly="false"
-      @dblclick="handleDblClick"
-      @editconnection="handleEditConnection"
-      @save="handleChartSave"
-      ref="chart"
-    >
-    </flowchart>
-    <node-dialog
-      :visible.sync="nodeDialogVisible"
-      :node.sync="nodeForm.target"
-    ></node-dialog>
-    <connection-dialog
-      :visible.sync="connectionDialogVisible"
-      :connection.sync="connectionForm.target"
-      :operation="connectionForm.operation"
-    >
-    </connection-dialog>
   </div>
 </template>
 
@@ -68,16 +68,23 @@ import NodeDialog from "./components/dialog/NodeDialog"
 import Flowchart from "./components/flowchart/Flowchart"
 // import * as d3 from "d3";
 // import { roundTo20 } from "../utils/math";
+// scriptタグでないと機能しないのか？
+import './assets/css/reset.css';
+import './assets/css/style.css';
+import Header from "./components/Header"
+import BoardHeader from "./components/BoardHeader"
 
 export default {
   components: {
     ConnectionDialog,
     NodeDialog,
     Flowchart,
+    Header,
+    BoardHeader
   },
   data: function () {
     return {
-nodes: [
+      nodes: [
         {
           id: 11,
           x: 500,
@@ -275,98 +282,103 @@ nodes: [
       this.connectionForm.target = connection;
       this.connectionDialogVisible = true;
     },
-    render: function (g, node, isSelected) {
-      node.width = node.width || 400;
-      node.height = node.height || 200;
+    // render: function (g, node, isSelected) {
+    //   node.width = node.width || 400;
+    //   node.height = node.height || 200;
 
-      g.append('foreignObject')
-        .attr("x", node.x)
-        .attr("y", node.y)
-        .style("width", node.width * 3 / 8 + "px")
-        .style("height", node.height / 2 + "px")
-        .append('xhtml:div')
-        .style("width", node.width * 3 / 8 + "px")
-        .style("height", node.height / 2 + "px")
-        .style("background-image", `url(${node.thumbnail})`)
-        .style("background-position", "center center")
-        .style("background-size", "cover")
-        .style("background-repeat", "no-repeat")
-        .style("border-radius", "6px 0 0 0")
-        .style("box-sizing", "border-box")
-        .style("border-top", "1px solid white")
-        .style("border-left", "1px solid white")
+    //   g.append('foreignObject')
+    //     .attr("x", node.x)
+    //     .attr("y", node.y)
+    //     .style("width", node.width * 3 / 8 + "px")
+    //     .style("height", node.height / 2 + "px")
+    //     .append('xhtml:div')
+    //     .style("width", node.width * 3 / 8 + "px")
+    //     .style("height", node.height / 2 + "px")
+    //     .style("background-image", `url(${node.thumbnail})`)
+    //     .style("background-position", "center center")
+    //     .style("background-size", "cover")
+    //     .style("background-repeat", "no-repeat")
+    //     .style("border-radius", "6px 0 0 0")
+    //     .style("box-sizing", "border-box")
+    //     .style("border-top", "1px solid white")
+    //     .style("border-left", "1px solid white")
 
-      g.append('foreignObject')
-        .attr("x", node.x + node.width * 3 / 8)
-        .attr("y", node.y)
-        .attr("class", "title")
-        .style("width", node.width * 5 / 8 + "px")
-        .style("height", node.height / 2 + "px")
-        .append('xhtml:div')
-        .style("width", node.width * 5 / 8 + "px")
-        .style("height", node.height / 2 + "px")
-        .style("background-color", "#3F3F3F")
-        .style("border-radius", "0 6px 0 0")
-        .style("box-sizing", "border-box")
-        .style("border-top", "1px solid white")
-        .style("border-right", "1px solid white")
+    //   g.append('foreignObject')
+    //     .attr("x", node.x + node.width * 3 / 8)
+    //     .attr("y", node.y)
+    //     .attr("class", "title")
+    //     .style("width", node.width * 5 / 8 + "px")
+    //     .style("height", node.height / 2 + "px")
+    //     .append('xhtml:div')
+    //     .style("width", node.width * 5 / 8 + "px")
+    //     .style("height", node.height / 2 + "px")
+    //     .style("background-color", "#3F3F3F")
+    //     .style("border-radius", "0 6px 0 0")
+    //     .style("box-sizing", "border-box")
+    //     .style("border-top", "1px solid white")
+    //     .style("border-right", "1px solid white")
 
-      g.append('foreignObject')
-        .attr("x", node.x + node.width * 3 / 8)
-        .attr("y", node.y)
-        .attr("class", "unselectable")
-        .style("width", node.width * 5 / 8 + "px")
-        .style("height", node.height / 2 + "px")
-        .style("display", "table")
-        .append('xhtml:p')
-        .style("display", "table-cell")
-        .style("vertical-align", "middle")
-        .style("width", node.width * 5 / 8 + "px")
-        .style("height", node.height / 2 + "px")
-        .style("box-sizing", "border-box")
-        .style("padding", "4px 8px 4px 8px")
-        .style("color", "white")
-        .style("font-weight", "bold")
-        .style("margin", 0)
-        .style("overflow-wrap", "break-word")
-        .text(() => node.name)
+    //   g.append('foreignObject')
+    //     .attr("x", node.x + node.width * 3 / 8)
+    //     .attr("y", node.y)
+    //     .attr("class", "unselectable")
+    //     .style("width", node.width * 5 / 8 + "px")
+    //     .style("height", node.height / 2 + "px")
+    //     .style("display", "table")
+    //     .append('xhtml:p')
+    //     .style("display", "table-cell")
+    //     .style("vertical-align", "middle")
+    //     .style("width", node.width * 5 / 8 + "px")
+    //     .style("height", node.height / 2 + "px")
+    //     .style("box-sizing", "border-box")
+    //     .style("padding", "4px 8px 4px 8px")
+    //     .style("color", "white")
+    //     .style("font-weight", "bold")
+    //     .style("margin", 0)
+    //     .style("overflow-wrap", "break-word")
+    //     .text(() => node.name)
 
-      g.append('foreignObject')
-        .attr("x", node.x)
-        .attr("y", node.y + node.height / 2)
-        .style("width", node.width + "px")
-        .style("height", node.height / 2 + "px")
-        .append('xhtml:div')
-        .style("width", node.width + "px")
-        .style("height", node.height / 2 + "px")
-        .style("background-color", "#707070")
-        .style("box-sizing", "border-box")
-        .style("border-radius", "0 0 6px 6px")
-        .style("border-bottom", "1px solid white")
-        .style("border-right", "1px solid white")
-        .style("border-left", "1px solid white")
+    //   g.append('foreignObject')
+    //     .attr("x", node.x)
+    //     .attr("y", node.y + node.height / 2)
+    //     .style("width", node.width + "px")
+    //     .style("height", node.height / 2 + "px")
+    //     .append('xhtml:div')
+    //     .style("width", node.width + "px")
+    //     .style("height", node.height / 2 + "px")
+    //     .style("background-color", "#707070")
+    //     .style("box-sizing", "border-box")
+    //     .style("border-radius", "0 0 6px 6px")
+    //     .style("border-bottom", "1px solid white")
+    //     .style("border-right", "1px solid white")
+    //     .style("border-left", "1px solid white")
 
-      g.append('foreignObject')
-        .attr("x", node.x)
-        .attr("y", node.y + node.height / 2)
-        .attr("class", "unselectable")
-        .style("width", node.width + "px")
-        .style("height", node.height / 2 + "px")
-        .append('xhtml:p')
-        .style("width", node.width + "px")
-        .style("height", node.height / 2 + "px")
-        .style("box-sizing", "border-box")
-        .style("padding", "4px 8px 4px 8px")
-        .style("color", "white")
-        .style("margin", 0)
-        .style("overflow-wrap", "break-word")
-        .text(() => node.summary)
-    },
+    //   g.append('foreignObject')
+    //     .attr("x", node.x)
+    //     .attr("y", node.y + node.height / 2)
+    //     .attr("class", "unselectable")
+    //     .style("width", node.width + "px")
+    //     .style("height", node.height / 2 + "px")
+    //     .append('xhtml:p')
+    //     .style("width", node.width + "px")
+    //     .style("height", node.height / 2 + "px")
+    //     .style("box-sizing", "border-box")
+    //     .style("padding", "4px 8px 4px 8px")
+    //     .style("color", "white")
+    //     .style("margin", 0)
+    //     .style("overflow-wrap", "break-word")
+    //     .text(() => node.summary)
+    // },
   }
 }
+
 </script>
 
 <style scoped>
+/* 以下の書き方だとstyle.cssが上手くimportできない */
+/* @import "./assets/css/reset.css"; */
+/* @import "./assets/css/style.css"; */
+
 #toolbar {
   margin-bottom: 10px;
 }
@@ -387,7 +399,8 @@ nodes: [
 
 .container {
   /* width: 800px; */
-  width: 96%;
+  /* width: 96%; */
+  width: 100%;
   margin: auto;
   height: 80vh;
 }
