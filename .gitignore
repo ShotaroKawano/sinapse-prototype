@@ -1,4 +1,7 @@
 
+*.pyc
+
+
 venv/
 
 frontend/src/assets/images/
