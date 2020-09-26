@@ -5,6 +5,7 @@ function render(g, node, isSelected) {
   node.width = node.width || 400;
   node.height = node.height || 200;
 
+  // thumbnail
   g.append('foreignObject')
     .attr("x", node.x)
     .attr("y", node.y)
@@ -22,6 +23,7 @@ function render(g, node, isSelected) {
     .style("border-top", "1px solid white")
     .style("border-left", "1px solid white")
 
+  // title background
   g.append('foreignObject')
     .attr("x", node.x + node.width * 3 / 8)
     .attr("y", node.y)
@@ -38,6 +40,7 @@ function render(g, node, isSelected) {
     .style("border-top", "1px solid #707070")
     .style("border-right", "1px solid #707070")
 
+  // title text
   g.append('foreignObject')
     .attr("x", node.x + node.width * 3 / 8)
     .attr("y", node.y)
@@ -58,6 +61,7 @@ function render(g, node, isSelected) {
     .style("overflow-wrap", "break-word")
     .text(() => node.title)
 
+  // summary background
   g.append('foreignObject')
     .attr("x", node.x)
     .attr("y", node.y + node.height / 2)
@@ -74,6 +78,7 @@ function render(g, node, isSelected) {
     .style("border-right", "1px solid #707070")
     .style("border-left", "1px solid #707070")
 
+  // summary text
   g.append('foreignObject')
     .attr("x", node.x)
     .attr("y", node.y + node.height / 2)

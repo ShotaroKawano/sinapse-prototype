@@ -53,7 +53,7 @@
       handleClickGetInfo() {
         // Json取得のベースURL
         // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-        const URL_BASE = 'https://0770c230-bdf5-43e0-92a2-fd6d9711e4bf.mock.pstmn.io/card/scrape';
+        const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/card/scrape';
         // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         // return axios.get(this.nodeForm.url)
         // console.log(document.getElementsByName('csrf-token')[0].content)
@@ -64,7 +64,7 @@
           data: {
             url: this.nodeForm.url,
           },
-          headers: {
+          // headers: {
             // 'Content-Type': 'application/json;charset=UTF-8',
             // 'Access-Control-Allow-Origin': '*',
             // 'Access-Control-Allow-Methods': 'POST PUT, DELETE, PATCH',
@@ -73,19 +73,20 @@
             // 'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
             // 'X-CSRF-TOKEN': getCookieValue('XSRF-TOKEN')
             // 'X-CSRF-TOKEN': csrf_token()
-          }
+          // }
         // }).post(URL_BASE, {
           // withCredentials: true,
         }).then((res) => {
-          console.log('response' + res.data[0]);
-          console.log('koko');
-          this.nodeForm.thumbnail = res.data[0][2];
-          this.nodeForm.name = res.data[0][0];
-          this.nodeForm.summary = res.data[0][1];
+          console.dir(res.data);
+          console.log(res.data.card_title);
+          this.nodeForm.thumbnail = res.data.card_thumbnail;
+          this.nodeForm.title = res.data.card_title;
+          this.nodeForm.summary = res.data.card_summary;
           // Vue.set(this, name, res.data);
           // this.$emit('GET_AJAX_COMPLETE');
-        }).catch(function(error) {
+        }).catch((err) => {
           console.log('ERROR!! occurred in Backend.')
+          console.log(err)
         });
       },
       // save押下時に実行される
