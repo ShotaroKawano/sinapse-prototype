@@ -318,4 +318,8 @@ export default {
   .form-control2 {
     /* appearance: none; */
   }
+
+  .section {
+    margin-top: 70px;
+  }
 </style>
