@@ -40,8 +40,8 @@ export default {
     nodes: {
       type: Array,
       default: () => [
-        { id: 1, x: 140, y: 270, name: "Start", thumbnail: "start" },
-        { id: 2, x: 540, y: 270, name: "End", thumbnail: "end" },
+        { id: 1, x: 140, y: 270, title: "Start", thumbnail: "start" },
+        { id: 2, x: 540, y: 270, title: "End", thumbnail: "end" },
       ],
     },
     connections: {
@@ -381,7 +381,8 @@ export default {
     arrowTo(x1, y1, x2, y2, startPosition, endPosition, color, connName) {
       let g = this.append("g");
       g.append('text')
-        .attr("fill", "#7CF8FD")
+        // .attr("fill", "#7CF8FD")
+        .attr("fill", "#E1E6EB")
         .attr("x", x2 + 10)
         .attr("y", y2 - 40)
         .style("width", 10 + "px")

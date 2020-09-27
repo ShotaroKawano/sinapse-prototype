@@ -7,7 +7,8 @@ function lineTo(g, x1, y1, x2, y2, lineWidth, strokeStyle, dash) {
   let lineGenerator = d3.line().x(d => d[0]).y(d => d[1]);
   let path = g.append('path').
       // attr('stroke', strokeStyle).
-      attr('stroke', '#7CF8FD').
+      // attr('stroke', '#7CF8FD').
+    attr('stroke', '#E1E6EB').
       // attr('stroke', 'red').
       attr('stroke-width', 3).
       // attr('fill', 'none').
@@ -632,7 +633,8 @@ function arrowTo(g, x1, y1, x2, y2, lineWidth, strokeStyle) {
       append('path').
       attr('d', 'M2,2 L10,6 L2,10 L6,6 L2,2').
       // attr('fill', strokeStyle);
-      attr('fill', '#7CF8FD');
+      // attr('fill', '#7CF8FD');
+      attr('fill', '#E1E6EB');
       // attr('fill', 'red');
   path.attr('marker-end', 'url(#' + id + ')');
   return path;
