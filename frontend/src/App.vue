@@ -10,10 +10,10 @@
               id: +new Date(),
               x: 10,
               y: 10,
-              thumbnail: 'https://placehold.jp/150x100.png',
               url: '',
               title: 'Title',
               summary: 'Summary',
+              thumbnail: 'https://placehold.jp/150x100.png',
             })
           "
         >
@@ -263,7 +263,7 @@ export default {
         y: 10,
         thumbnail: 'https://placehold.jp/150x100.png',
         url: '',
-        name: 'Title',
+        title: 'Title',
         summary: 'Summary',
       });
     },

@@ -17,6 +17,7 @@
                 <input class="form-control" id="summary" v-model="nodeForm.summary"/>
             </div>
             <div class="footer">
+                <button @click="deleteNode">Delete</button>
                 <button @click="handleClickCancelSaveNode">Cancel</button>
                 <button @click="handleClickSaveNode">Save</button>
                 <button @click="handleClickGetInfo">Get</button>
@@ -50,13 +51,27 @@
       };
     },
     methods: {
+      deleteNode() {
+        // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
+        const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/card/delete';
+        return axios({
+          method: 'DELETE',
+          url: URL_BASE,
+          data: {
+            "card_id": 45,
+          },
+        }).then((res) => {
+          console.dir(res.status);
+          // console.log(res.data.board_id);
+        }).catch((err) => {
+          console.log('ERROR!! occurred in Backend.')
+          console.log(err)
+        });
+      },
+
       handleClickGetInfo() {
-        // Json取得のベースURL
         // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
         const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/card/scrape';
-        // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        // return axios.get(this.nodeForm.url)
-        // console.log(document.getElementsByName('csrf-token')[0].content)
         console.log(this.nodeForm.url);
         return axios({
           method: 'POST',
@@ -64,26 +79,12 @@
           data: {
             url: this.nodeForm.url,
           },
-          // headers: {
-            // 'Content-Type': 'application/json;charset=UTF-8',
-            // 'Access-Control-Allow-Origin': '*',
-            // 'Access-Control-Allow-Methods': 'POST PUT, DELETE, PATCH',
-            // 'xsrfHeaderName': 'X-CSRF-Token',
-            // 'withCredentials': true,
-            // 'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
-            // 'X-CSRF-TOKEN': getCookieValue('XSRF-TOKEN')
-            // 'X-CSRF-TOKEN': csrf_token()
-          // }
-        // }).post(URL_BASE, {
-          // withCredentials: true,
         }).then((res) => {
           console.dir(res.data);
           console.log(res.data.card_title);
           this.nodeForm.thumbnail = res.data.card_thumbnail;
           this.nodeForm.title = res.data.card_title;
           this.nodeForm.summary = res.data.card_summary;
-          // Vue.set(this, name, res.data);
-          // this.$emit('GET_AJAX_COMPLETE');
         }).catch((err) => {
           console.log('ERROR!! occurred in Backend.')
           console.log(err)
@@ -91,13 +92,32 @@
       },
       // save押下時に実行される
       handleClickSaveNode() {
+        const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/card/update';
+        axios({
+          method: 'POST',
+          url: URL_BASE,
+          data: {
+            "card_id": 23,
+            "card_url": "https://www.econetworks.jp/translationtips/2019/12/cri/",
+            "card_title": "気候変動の影響、日本が世界一に",
+            "card_summary": "日本は世界で最も温暖化による人命危機が及びやすい国である。",
+            "card_thumbnail": "https://www.germanwatch.org/sites/germanwatch.org/files/2019-12/climate_risk_index_2020_world_map_ranking_2018.jpg",
+          }
+        }).then((res) => {
+          console.dir(res.data);
+          console.log(res.data.card_id);
+        }).catch((err) => {
+          console.log('ERROR!! occurred in Backend.')
+          console.log(err)
+        });
+
         console.log('koko');
         this.$emit('update:node', Object.assign(this.node, {
           url: this.nodeForm.url,
           title: this.nodeForm.title,
           thumbnail: this.nodeForm.thumbnail,
           summary: this.nodeForm.summary,
-        }));
+      }));
         // console.log(this.nodeForm.url);
         this.$emit('update:visible', false);
       },

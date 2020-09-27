@@ -382,7 +382,7 @@ p.indexCreatdate {
   transform: rotate(-45deg);
 }
 .s_01 .accordion_one .accordion_inner {
-  display: none;
+  /* display: none; */
   padding: 5px;
   box-sizing: border-box;
 }

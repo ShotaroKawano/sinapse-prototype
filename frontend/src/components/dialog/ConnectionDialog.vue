@@ -17,6 +17,7 @@
                 </select>
             </div>
             <div class="footer">
+                <button @click="deleteConnection()">Delete</button>
                 <button @click="handleClickCancelSaveConnection">Cancel</button>
                 <button @click="handleClickSaveConnection">Ok</button>
             </div>
@@ -25,6 +26,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
   export default {
     props: {
       visible: {
@@ -51,6 +54,26 @@
     },
     methods: {
       async handleClickSaveConnection() {
+        const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/arrow/update';
+        axios({
+          method: 'POST',
+          url: URL_BASE,
+          data: {
+            "arrow_id": 5,
+            "from_id": 35,
+            "to_id": 36,
+            "label": "CO2の異常な濃度上昇",
+            "board_id": 123,
+            "arrow_type_id": 1,
+          }
+        }).then((res) => {
+          console.dir(res.data);
+          console.log(res.data.arrow_id);
+        }).catch((err) => {
+          console.log('ERROR!! occurred in Backend.')
+          console.log(err)
+        });
+
         this.$emit('update:visible', false);
         this.$emit('update:connection', Object.assign(this.connection, {
           name: this.connectionForm.name,
@@ -58,6 +81,25 @@
           expression: this.connectionForm.expression,
         }));
       },
+
+      deleteConnection() {
+        // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
+        const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/delete';
+        return axios({
+          method: 'DELETE',
+          url: URL_BASE,
+          data: {
+            "arrow_id": 45,
+          },
+        }).then((res) => {
+          console.dir(res.status);
+          // console.log(res.data.board_id);
+        }).catch((err) => {
+          console.log('ERROR!! occurred in Backend.')
+          console.log(err)
+        });
+    },
+
       async handleClickCancelSaveConnection() {
         this.$emit('update:visible', false);
       },
