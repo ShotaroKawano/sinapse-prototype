@@ -5,3 +5,8 @@
 venv/
 
 frontend/src/assets/images/
+
+.DS_Store
+
+
+source/
