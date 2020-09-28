@@ -4,20 +4,12 @@
     <div class="accordion_one">
       <!-- ▼▼▼ accordion_header ▼▼▼ -->
       <div class="accordion_header open" style="display: flex" ref="accordion_header">
-        <div
-          class=""
-          style="
-            overflow-wrap: break-word;
-            height: 84px;
-            width: 684px;
-            font-size: 36px;
-            line-height: 38px;
-            margin: 10px 0px 5px 0px;
-          "
+        <!-- read only のときはv-ifで表示を変えたりしないと -->
+        <textarea
+          class="form_common form_title"
+          v-model="title"
         >
-          {{ title }}
-          <textarea class="form-control2" id="url" v-model="title"></textarea>
-        </div>
+        </textarea>
         <div class="">
           <div
             id="btn"
@@ -37,18 +29,10 @@
             <div class="">
               <div class="" style="width: 684px">
                 <div style="display: flex">
-                  <div
-                    class=""
-                    style="
-                      height: 160px;
-                      font-size: 20px;
-                      line-height: 30px;
-                      width: 500px;
-                      color: #525e6a;
-                    "
-                  >
-                    {{ description }}
-                  </div>
+                  <textarea
+                    class="form_common form_description"
+                    v-model="description">
+                  </textarea>
                   <div
                     class="board_thumbnail"
                     style=""
@@ -60,16 +44,29 @@
                 </div>
                 <div
                   style="
-                    display: flex;
                     width: 684px;
                     color: #b4bdc6;
-                    margin-top: 20px;
                   "
                   class=""
                 >
-                  <div v-for="tag in tag_list" :key="tag.id">#{{ tag.value }}</div>
+                <input
+                  v-if="isEditting"
+                  class="form_common form_tagList"
+                  v-model="tagList"
+                  @focusout="isEditting = !isEditting"
+                  ref="form_tags"
+                  id="form_tags"
+                >
+                <div
+                  v-if="!isEditting"
+                  class="form_tagList"
+                  style="display: flex;"
+                  @click="hadleClickTags()"
+                >
+                  <div v-for="tag in convertTaglistToTags" :key="tag">#{{ tag }}</div>
                   <!-- <div class="">#地球温暖化、</div> -->
                   <!-- <div class="">#自然電力</div> -->
+                </div>
                 </div>
               </div>
 
@@ -119,16 +116,16 @@
                             alt="いいねボタン"
                             style="padding-left: 5px; margin: 5px 0px 5px 0px"
                           />
-                          <div class="" style="color: #b4bdc6">{{ likes }}</div>
+                          <div class="" style="color: #b4bdc6; font-size: 16px;">{{ likes }}</div>
                         </div>
-                        <div id="btn" class="" style="margin: 0px 14px">
+                        <div id="btn" class="" style="margin: 0px 14px;">
                           <img
                             class="icon_indexBoards"
                             src="@/assets/images/icons/icons_comment.png"
                             alt="コメントボタン"
                             style="padding-left: 5px; margin: 5px 0px 5px 0px"
                           />
-                          <div class="" style="color: #b4bdc6">{{ comments }}</div>
+                          <div class="" style="color: #b4bdc6; font-size: 16px;">{{ comments }}</div>
                         </div>
                         <div id="btn" class="" style="margin: 0px 14px">
                           <img
@@ -137,7 +134,7 @@
                             alt="シェアボタン"
                             style="padding-left: 5px; margin: 5px 0px 5px 0px"
                           />
-                          <div class="" style="color: #b4bdc6">{{ shares }}</div>
+                          <div class="" style="color: #b4bdc6; font-size: 16px;">{{ shares }}</div>
                         </div>
                       </div>
                     </div>
@@ -196,19 +193,21 @@ export default {
       title: '気候変動の影響による日本の危険性と今できること',
       description: '『世界気候リスク指数2020』によると、気候変動によりもっとも人命に危機が及ぶ可能性が高い国が日本とされています。本記事では温暖化のメカニズムと、私たちが今できるもっとも手軽で効果的な対策を紹介しています。',
       thumbnail: '../assets/images/treediagram.png',
-      tag_list: [
-        { id: 1, value: '気候変動' },
-        { id: 2, value: '地球温暖化' },
-        { id: 3, value: '自然電力' },
-      ],
-      // tag_list: ['気候変動', '地球温暖化', '自然電力'],
+      tagList: '気候変動,地球温暖化,自然電力',
+      tags: ['気候変動', '地球温暖化', '自然電力'],
+      // tags: [
+      //   { id: 1, value: '気候変動' },
+      //   { id: 2, value: '地球温暖化' },
+      //   { id: 3, value: '自然電力' },
+      // ],
       urlTail: '',
       isPublished: true,
       createdAt: '2020/09/20',
       updatedAt: '',
       likes: '162',
       comments: '14',
-      shares: '56'
+      shares: '56',
+      isEditting: false
     }
   },
   methods: {
@@ -226,7 +225,7 @@ export default {
           "board_url_tail": "123456789abcdefg",
           "isPublished": true,
           "user_id": 31,
-          "tag_list": [ "気候変動", "地球温暖化", "自然電力" ]
+          "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
         },
       }).then((res) => {
         console.dir(res.data);
@@ -252,6 +251,23 @@ export default {
         console.log('ERROR!! occurred in Backend.')
         console.log(err)
       });
+    },
+    // convertTagsToTaglist: function() {
+    //   this.tagList =
+    // }
+    hadleClickTags() {
+      this.isEditting = !this.isEditting
+      // なぜ存在するのに取得できない？ライフサイクルの問題？
+      // const el = document.getElementById('form_tags')
+      // console.log(el)
+      // console.log(this.$refs.form_tags)
+      // this.$refs.form_tags.focus()
+      // el.focus()
+    }
+  },
+  computed: {
+    convertTaglistToTags: function() {
+      return this.tagList.split(',')
     }
   }
   // mounted: function () {
@@ -315,11 +331,41 @@ export default {
     margin-left: 20px;
   }
 
-  .form-control2 {
-    /* appearance: none; */
+  .form_common {
+    /* appearance: none; が効かない*/
+    border: none;
+    resize: none;
+    /* outline: none; */
+    overflow-wrap: break-word;
+  }
+
+  .form_description {
+    color: #525e6a;
+    height: 160px;
+    width: 500px;
+    font-size: 20px;
+    line-height: 30px;
+    margin: 10px 0px 5px 0px;
+  }
+
+  .form_title {
+    color: #525e6a;
+    height: 84px;
+    width: 684px;
+    font-size: 36px;
+    line-height: 38px;
+    margin: 10px 0px 5px 0px;
+  }
+
+  .form_tagList {
+    color: #525e6a;
+    width: 70%;
+    font-size: 16px;
+
   }
 
   .section {
     margin-top: 70px;
+    font-size: 30px;
   }
 </style>
