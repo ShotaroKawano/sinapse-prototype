@@ -66,7 +66,7 @@ class Board_Tag(models.Model):
     tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
  
 
-class Arrows(models.Model):
+class Arrow(models.Model):
     # from_board = models.ForeignKey("Board", related_name='from+', on_delete=models.CASCADE)
     # to_board = models.ForeignKey("Board",  related_name='to+', on_delete=models.CASCADE)
     from_card_id = models.IntegerField('フロムカード')
@@ -78,7 +78,7 @@ class Arrows(models.Model):
     update_at = models.DateTimeField('更新日時', auto_now=True)
 
 
-class Arrow_types(models.Model):
+class Arrow_type(models.Model):
     type = models.CharField(max_length=255)
 
 
