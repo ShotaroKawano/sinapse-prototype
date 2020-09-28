@@ -1,64 +1,8 @@
 <template>
   <div>
     <Header></Header>
-    <BoardHeader></BoardHeader>
-    <div class="container">
-      <div id="toolbar">
-        <button
-          @click="
-            $refs.chart.add({
-              id: +new Date(),
-              x: 10,
-              y: 10,
-              url: '',
-              title: 'Title',
-              summary: 'Summary',
-              thumbnail: 'https://placehold.jp/150x100.png',
-            })
-          "
-        >
-          Add(Double-click canvas)
-        </button>
-        <button @click="$refs.chart.remove()">Delete(Del)</button>
-        <button @click="$refs.chart.editCurrent()">
-          Edit(Double-click node)
-        </button>
-        <button @click="$refs.chart.save()">Save</button>
-      </div>
-      <!-- <flowchart
-        :nodes="nodes"
-        :connections="connections"
-        @editnode="handleEditNode"
-        :readonly="false"
-        @dblclick="handleDblClick"
-        @editconnection="handleEditConnection"
-        @save="handleChartSave"
-        ref="chart"
-        :render="render"
-      >
-      </flowchart> -->
-      <flowchart
-        :nodes="nodes"
-        :connections="connections"
-        @editnode="handleEditNode"
-        :readonly="false"
-        @dblclick="handleDblClick"
-        @editconnection="handleEditConnection"
-        @save="handleChartSave"
-        ref="chart"
-      >
-      </flowchart>
-      <node-dialog
-        :visible.sync="nodeDialogVisible"
-        :node.sync="nodeForm.target"
-      ></node-dialog>
-      <connection-dialog
-        :visible.sync="connectionDialogVisible"
-        :connection.sync="connectionForm.target"
-        :operation="connectionForm.operation"
-      >
-      </connection-dialog>
-    </div>
+    <router-view></router-view>
+    <!-- <BoardHeader></BoardHeader> -->
   </div>
 </template>
 
