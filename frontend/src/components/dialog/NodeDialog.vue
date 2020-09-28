@@ -17,7 +17,7 @@
                 <input class="form-control" id="summary" v-model="nodeForm.summary"/>
             </div>
             <div class="footer">
-                <button @click="deleteNode">Delete</button>
+                <button @click="deleteNode">Delete  </button>
                 <button @click="handleClickCancelSaveNode">Cancel</button>
                 <button @click="handleClickSaveNode">Save</button>
                 <button @click="handleClickGetInfo">Get</button>

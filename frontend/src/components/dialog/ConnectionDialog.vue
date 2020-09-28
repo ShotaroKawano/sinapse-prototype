@@ -84,7 +84,7 @@ import axios from 'axios';
 
       deleteConnection() {
         // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-        const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/delete';
+        const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/arrow/delete';
         return axios({
           method: 'DELETE',
           url: URL_BASE,
