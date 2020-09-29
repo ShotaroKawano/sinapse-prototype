@@ -13,14 +13,15 @@
         class="input_search"
         placeholder="🔍キーワード、#ハッシュタグを入力..."
         type="search"
+        id="q"
         v-model="search"
         @keypress.enter="onKeypressEnter"
       />
     </div>
 
-    <div v-for="post in posts" :key="post.id">
+    <!-- <div v-for="post in posts" :key="post.id">
       <p>{{ post.title }}</p>
-    </div>
+    </div> -->
     <div id="btn">
       <img
         class="btn_headerUser"
@@ -42,9 +43,14 @@ export default {
   name: "Header",
   methods: {
     onKeypressEnter: function() {
-      console.log("returnKeyが押されました");
+      console.log("returnKeyが押され下記URLを送信しました");
+      // ↓↓↓検索ワード=qを取得
+      var str = document.getElementById("q").value;
+      console.log(str);
       const URL_BASE =
-        "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=気候変動";
+        "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
+        str;
+      console.log(URL_BASE);
       return axios({
         method: "GET",
         url: URL_BASE
