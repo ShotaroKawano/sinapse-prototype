@@ -1,33 +1,86 @@
 <template>
-      <!-- ▼▼▼▼▼ header ▼▼▼▼▼ -->
-    <div id="header" class="box_header">
-      <a id="btn" class="name_service" href="login.html">Sinapse</a>
-      <input
+  <!-- ▼▼▼▼▼ header ▼▼▼▼▼ -->
+  <div id="header" class="box_header" style="position: absolute">
+    <a id="btn" class="name_service" href="login.html">Sinapse</a>
+    <!-- <input
         type="search"
         class="input_search"
         placeholder="🔍キーワード、#ハッシュタグを入力..."
+      /> -->
+
+    <div>
+      <input
+        class="input_search"
+        placeholder="🔍キーワード、#ハッシュタグを入力..."
+        type="search"
+        id="q"
+        v-model="search"
+        @keypress.enter="onKeypressEnter"
       />
-      <div style="width: 200px;">
-        <div id="btn">
-          <img
-            class="btn_headerUser"
-            src="@/assets/images/userimages/user00.jpg"
-            alt="プロフィール画像"
-          />
-        </div>
-        <a href="" class="btn_create">✏︎ 投稿</a>
-        <!-- <div class="btn_create">
-          <p>✏︎ 投稿</p>
-        </div> -->
-      </div>
     </div>
-    <!-- ▲▲▲▲▲ header ▲▲▲▲▲ -->
+
+    <!-- <div v-for="post in posts" :key="post.id">
+      <p>{{ post.title }}</p>
+    </div> -->
+    <div id="btn">
+      <img
+        class="btn_headerUser"
+        src="@/assets/images/userimages/user00.jpg"
+        alt="プロフィール画像"
+      />
+    </div>
+    <div class="btn_create">
+      <p>✏︎ 投稿</p>
+    </div>
+  </div>
+  <!-- ▲▲▲▲▲ header ▲▲▲▲▲ -->
 </template>
 
 <script>
+import axios from "axios";
+import Vue from "vue";
+// import App from './App'
+
 export default {
-  name: 'Header'
-}
+  name: "Header",
+  methods: {
+    onKeypressEnter: function() {
+      // ↓↓↓検索ワード=qを取得
+      var str = document.getElementById("q").value;
+      console.log("returnKey押下：検索ワードは{ " + str + " }です");
+      const URL_BASE =
+        "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
+        str;
+      console.log("生成されたURL：" + URL_BASE);
+      return axios({
+        method: "GET",
+        url: URL_BASE
+      })
+        .then(res => {
+          console.dir(res.data);
+          console.log(res.data.board_id);
+        })
+        .catch(err => {
+          console.log("ERROR!! occurred in Backend.");
+          console.log(err);
+        });
+    }
+  }
+};
+const app = new Vue({
+  el: "#app",
+  data: {
+    comedians: {}
+  },
+  mounted() {
+    var self = this;
+    var url = "/ajax/comedian";
+    axios.get(url).then(function(response) {
+      self.comedians = response.data;
+    });
+  }
+});
+app.$mount("#app");
 </script>
 
 <style scoped>
@@ -43,6 +96,7 @@ export default {
 /* ▲▲▲▲▲ 叩き台 ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ 表示位置 ▼▼▼▼▼ */
+/* 必要 */
 #header {
   position: fixed; /* ヘッダーの固定 */
   top: 0px; /* 位置(上0px) */
@@ -67,48 +121,12 @@ export default {
 /* ▲▲▲▲▲ 表示位置 ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ ボタン ▼▼▼▼▼ */
-#btn {
-  display: inline-block;
-}
-
+/* 必要 */
 #btn:hover {
   opacity: 0.8; /* 透明度を上げることで、画像の色を薄く見せる。*/
   cursor: pointer; /* リンクをホバーしたときのカーソルにする。*/
 }
-
-.btn_login {
-  width: 100px;
-  height: 20px;
-  margin: 50px 150px 15px 150px;
-  display: inline-block;
-  border-radius: 5px; /* 角丸       */
-  font-size: 12pt; /* 文字サイズ */
-  text-align: center; /* 文字位置   */
-  cursor: pointer; /* カーソル   */
-  padding: 10px; /* 余白       */
-  background: #525e6a; /* 背景色     */
-  color: #ffffff; /* 文字色     */
-  line-height: 1em; /* 1行の高さ  */
-  border: 2px solid #525e6a; /* 枠の指定 */
-  text-decoration: none; /* テキストアンダーライン */
-}
-.btn_login:hover {
-  color: #525e6a; /* 背景色     */
-  background: #ffffff; /* 文字色     */
-}
-
-.btn_sns {
-  width: 400px;
-  height: 20px;
-  border-radius: 5px; /* 角丸       */
-  font-size: 10pt; /* 文字サイズ */
-  text-align: center; /* 文字位置   */
-  cursor: pointer; /* カーソル   */
-  padding: 10px 0px; /* 余白       */
-  color: #ffffff; /* 文字色     */
-  border: none; /* 枠の指定 */
-}
-
+/* 必要 */
 .btn_create {
   width: 80px;
   height: 20px;
@@ -119,16 +137,18 @@ export default {
   cursor: pointer; /* カーソル   */
   padding: 8px; /* 余白       */
   margin: 10px;
-  background: #525e6a; /* 背景色     */
+  background: #5486b9; /* 背景色     */
   color: #ffffff; /* 文字色     */
   line-height: 1em; /* 1行の高さ  */
-  border: 2px solid #525e6a; /* 枠の指定 */
+  border: 2px solid #5486b9; /* 枠の指定 */
   text-decoration: none; /* テキストアンダーライン */
 }
 .btn_create:hover {
-  color: #525e6a; /* 背景色     */
+  color: #5486b9; /* 背景色     */
   background: #ffffff; /* 文字色     */
 }
+
+/* 必要 */
 .btn_headerUser {
   width: 50px;
   height: 50px;
@@ -136,63 +156,11 @@ export default {
   border-radius: 25px;
   background: #ffffff;
 }
-.btn_boardsUser {
-  width: 44px;
-  height: 44px;
-  border-radius: 25px;
-}
 /* ▲▲▲▲▲ ボタン ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ テキスト関係 ▼▼▼▼▼ */
-h2.indexTitle {
-  font-size: 24px;
-  line-height: 32px;
-  padding-bottom: 4px;
-  color: #525e6a;
-  font-weight: bold;
-}
-p.indexSubheading {
-  font-size: 14px;
-  line-height: 20px;
-  padding-bottom: 14px;
-  color: #87929d;
-}
-p.indexHashtag {
-  font-size: 16px;
-  color: #b4bdc6;
-}
-p.indexHashtag {
-  font-size: 16px;
-  color: #b4bdc6;
-}
-p.indexUsername {
-  font-size: 18px;
-  color: #87929d;
-}
-p.indexHashtag {
-  font-size: 16px;
-  color: #b4bdc6;
-}
-p.indexCreatdate {
-  font-size: 14px;
-  color: #b4bdc6;
-}
-.login_passInfo {
-  font-size: 14px;
-  color: #b4bdc6;
-}
-.login_signupInfo {
-  font-size: 14px;
-  color: #b4bdc6;
-  font-weight: bold;
-}
-.input_login {
-  width: 400px;
-  height: 40px;
-  border-radius: 5px; /* 角丸       */
-  font-size: 10pt; /* 文字サイズ */
-  border: solid 1px #87929d; /* 枠の指定 */
-}
+
+/* 必要 */
 .input_search {
   width: 400px;
   height: 40px;
@@ -203,6 +171,7 @@ p.indexCreatdate {
   margin: 10px;
 }
 
+/* 必要 */
 .name_service {
   font-size: 40px;
   color: #525e6a;
@@ -217,6 +186,7 @@ p.indexCreatdate {
 /* ▲▲▲▲▲ テキスト関係 ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ ボックス ▼▼▼▼▼ */
+/* 必要 */
 .box_header {
   position: fixed; /* ヘッダーの固定 */
   z-index: 10;
@@ -228,93 +198,7 @@ p.indexCreatdate {
   height: 60px;
   background-color: #e1e6eb;
 }
-.box_hashtag {
-  width: 90px;
-  margin: 7px;
-  padding: 10px 20px;
-  text-align: center; /* 文字位置   */
-  border-radius: 5px; /* 角丸       */
-  color: #ffffff;
-  background: #87929d; /* 枠の指定 */
-}
-/* .box_indexBoards {
-  width: 700px;
-  background: #ffffff;
-  display: flex;
-  margin: 10px;
-  border-radius: 10px;
-}
-.box_indexBoards:hover {
-  box-shadow: 0px 0px 6px #5486b9;
-} */
-.box_boardsUser {
-  width: 200px;
-  height: 54px;
-  margin: 10px;
-  border-radius: 27px;
-  display: flex;
-  background: #87929d;
-}
-
-.box_boardsUsercontents {
-  margin: 10px;
-  text-align: center;
-  color: #e1e6eb;
-  font-size: 14px;
-}
-
-.box_boards1set {
-  width: 745px;
-  height: 290px;
-  background: #ffffff;
-  display: flex;
-  border-radius: 10px;
-  margin: 20px auto;
-}
-.box_boards1set:hover {
-  box-shadow: 0px 0px 10px #5486b980;
-}
-.box_indexSns {
-  margin: 10px;
-  height: 370px;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-}
-.box_indexSns2 {
-  margin: 16px 30px 0px 0px;
-  height: 50px;
-  display: flex;
-  justify-content: space-around;
-}
-.box_indexSnscontents {
-  margin: 10px;
-  text-align: center;
-  color: #b4bdc6;
-}
 /* ▲▲▲▲▲ ボックス ▲▲▲▲▲ */
-
-/* ▼▼▼▼▼ サムネイル ▼▼▼▼▼ */
-.thumbnail_indexBoards {
-  width: 150px;
-  height: 150px;
-  margin: 30px 30px 0px 0px;
-  border-radius: 10px;
-  border: solid 1px #e1e6eb; /* 枠の指定 */
-
-  background-size: cover;
-}
-
-.thumbnail_indexBoards2 {
-  width: 200px;
-  height: 350px;
-  margin: 10px;
-  border-radius: 10px;
-  border: solid 1px #e1e6eb; /* 枠の指定 */
-
-  background-size: cover;
-}
-/* ▲▲▲▲▲ サムネイル ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ アイコン ▼▼▼▼▼ */
 .icon_indexBoards {

@@ -1,6 +1,6 @@
 <template>
   <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
-  <div class="center_lar" style="position: absolute">
+  <div class="center_lar" style="position: absolute; margin-top: 60px">
     <!-- ▼▼▼ board1set ▼▼▼ -->
     <router-link to="/board" v-for="board in boards" :key="board.id" class="box_boards1set">
       <!-- <div class="box_indexBoards"> -->
