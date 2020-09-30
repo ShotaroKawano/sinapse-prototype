@@ -168,9 +168,11 @@ export default {
 /* 必要 */
 .box_header {
   position: fixed; /* ヘッダーの固定 */
+  z-index: 10;
   top: 0px; /* 位置(上0px) */
   left: 0px; /* 位置(右0px) */
   display: flex;
+  justify-content: space-between;
   width: 100%;
   height: 60px;
   background-color: #e1e6eb;
