@@ -1,21 +1,24 @@
 <template>
       <!-- ▼▼▼▼▼ header ▼▼▼▼▼ -->
-    <div id="header" class="box_header" style="position: absolute">
+    <div id="header" class="box_header">
       <a id="btn" class="name_service" href="login.html">Sinapse</a>
       <input
         type="search"
         class="input_search"
         placeholder="🔍キーワード、#ハッシュタグを入力..."
       />
-      <div id="btn">
-        <img
-          class="btn_headerUser"
-          src="@/assets/images/userimages/user00.jpg"
-          alt="プロフィール画像"
-        />
-      </div>
-      <div class="btn_create">
-        <p>✏︎ 投稿</p>
+      <div style="width: 200px;">
+        <div id="btn">
+          <img
+            class="btn_headerUser"
+            src="@/assets/images/userimages/user00.jpg"
+            alt="プロフィール画像"
+          />
+        </div>
+        <a href="" class="btn_create">✏︎ 投稿</a>
+        <!-- <div class="btn_create">
+          <p>✏︎ 投稿</p>
+        </div> -->
       </div>
     </div>
     <!-- ▲▲▲▲▲ header ▲▲▲▲▲ -->
@@ -64,6 +67,10 @@ export default {
 /* ▲▲▲▲▲ 表示位置 ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ ボタン ▼▼▼▼▼ */
+#btn {
+  display: inline-block;
+}
+
 #btn:hover {
   opacity: 0.8; /* 透明度を上げることで、画像の色を薄く見せる。*/
   cursor: pointer; /* リンクをホバーしたときのカーソルにする。*/
@@ -212,9 +219,11 @@ p.indexCreatdate {
 /* ▼▼▼▼▼ ボックス ▼▼▼▼▼ */
 .box_header {
   position: fixed; /* ヘッダーの固定 */
+  z-index: 10;
   top: 0px; /* 位置(上0px) */
   left: 0px; /* 位置(右0px) */
   display: flex;
+  justify-content: space-between;
   width: 100%;
   height: 60px;
   background-color: #e1e6eb;
