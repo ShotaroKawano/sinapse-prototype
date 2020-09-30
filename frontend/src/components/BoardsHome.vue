@@ -2,20 +2,20 @@
   <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
   <div class="center_lar" style="position: absolute">
     <!-- ▼▼▼ board1set ▼▼▼ -->
-    <div class="box_boards1set">
+    <router-link to="/board" v-for="board in boards" :key="board.id" class="box_boards1set">
       <!-- <div class="box_indexBoards"> -->
       <!-- ▼▼ 概要 ▼▼ -->
       <div style="margin: 20px 20px 30px 30px; width: 505px">
         <!-- ▼ タイトル ▼ -->
         <div style="margin: 10px">
           <h2 class="indexTitle">
-            {{ board_title }}
+            {{ board.board_title }}
           </h2>
         </div>
         <!-- ▼ 見出し ▼ -->
         <div style="margin: 10px">
           <p class="indexSubheading">
-            {{ board_desription }}
+            {{ board.board_desription }}
           </p>
         </div>
         <!-- ▼ ハッシュタグ ▼ -->
@@ -25,7 +25,7 @@
               <p id="btn" class="indexHashtag">{{ tag.name }}</p>
             </li>
           </ul> -->
-          <div id="btn" v-for="tag in tag_list" :key="tag.id">
+          <div id="btn" v-for="tag in board.tag_list" :key="tag.id">
             <p class="indexHashtag">#{{ tag.value }}</p>
           </div>
         </div>
@@ -41,10 +41,10 @@
           </div>
           <div style="padding-left: 12px">
             <div style="padding-top: 4px">
-              <p class="indexUsername">{{ user_name }}</p>
+              <p class="indexUsername">{{ board.user_name }}</p>
             </div>
             <div style="padding-top: 6px">
-              <p class="indexCreatdate">{{ updated_at }}</p>
+              <p class="indexCreatdate">{{ board.updated_at }}</p>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
               src="@/assets/images/icons/icons_like.png"
               alt="いいねボタン"
             />
-            <div>{{ comments }}</div>
+            <div>{{ board.comments }}</div>
           </div>
           <div id="btn" class="box_indexSnscontents">
             <img
@@ -68,11 +68,11 @@
               src="@/assets/images/icons/icons_comment.png"
               alt="コメントボタン"
             />
-            <div>{{ likes }}</div>
+            <div>{{ board.likes }}</div>
           </div>
         </div>
       </div>
-    </div>
+    </router-link>
   </div>
   <!-- ▲▲▲ boards1set ▲▲▲ -->
   <!-- ▲▲▲▲▲ 新boards ▲▲▲▲▲ -->
@@ -86,25 +86,74 @@ export default {
 
   data: function () {
     return {
-      board_title: "気候変動の影響による日本の危険性と今できること",
-      board_desription:
-        "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
-      board_thunbnail: "aa",
-      // tags: [
-      //   { name: "#気候変動" },
-      //   { name: "#地球温暖化" },
-      //   { name: "#自然電力" }
-      // ],
-      tag_list: [
-        { id: 1, value: "気候変動" },
-        { id: 2, value: "地球温暖化" },
-        { id: 3, value: "自然電力" },
-      ],
-      user_icon: "user00",
-      user_name: "川野 翔太郎",
-      updated_at: "2020/09/20",
-      comments: 123,
-      likes: 456,
+      boards: [
+        {
+          board_id: 1,
+          board_title: "気候変動の影響による日本の危険性と今できること",
+          board_desription:
+            "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
+          board_thunbnail: "aa",
+          // tags: [
+          //   { name: "#気候変動" },
+          //   { name: "#地球温暖化" },
+          //   { name: "#自然電力" }
+          // ],
+          tag_list: [
+            { id: 1, value: "気候変動" },
+            { id: 2, value: "地球温暖化" },
+            { id: 3, value: "自然電力" },
+          ],
+          user_icon: "user00",
+          user_name: "川野 翔太郎",
+          updated_at: "2020/09/20",
+          comments: 123,
+          likes: 456,
+        },
+        {
+          board_id: 2,
+          board_title: "気候変動の影響による日本の危険性と今できること",
+          board_desription:
+            "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
+          board_thunbnail: "aa",
+          // tags: [
+          //   { name: "#気候変動" },
+          //   { name: "#地球温暖化" },
+          //   { name: "#自然電力" }
+          // ],
+          tag_list: [
+            { id: 1, value: "気候変動" },
+            { id: 2, value: "地球温暖化" },
+            { id: 3, value: "自然電力" },
+          ],
+          user_icon: "user00",
+          user_name: "川野 翔太郎",
+          updated_at: "2020/09/20",
+          comments: 123,
+          likes: 456,
+        },
+        {
+          board_id: 3,
+          board_title: "気候変動の影響による日本の危険性と今できること",
+          board_desription:
+            "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
+          board_thunbnail: "aa",
+          // tags: [
+          //   { name: "#気候変動" },
+          //   { name: "#地球温暖化" },
+          //   { name: "#自然電力" }
+          // ],
+          tag_list: [
+            { id: 1, value: "気候変動" },
+            { id: 2, value: "地球温暖化" },
+            { id: 3, value: "自然電力" },
+          ],
+          user_icon: "user00",
+          user_name: "川野 翔太郎",
+          updated_at: "2020/09/20",
+          comments: 123,
+          likes: 456,
+        }
+      ]
     };
   },
   computed: {
@@ -218,6 +267,7 @@ p.indexCreatdate {
   display: flex;
   border-radius: 10px;
   margin: 20px auto;
+  text-decoration: none;
 }
 .box_boards1set:hover {
   /* 必要 */
