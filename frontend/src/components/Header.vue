@@ -38,19 +38,20 @@
 
 <script>
 import axios from "axios";
+import Vue from "vue";
+// import App from './App'
 
 export default {
   name: "Header",
   methods: {
     onKeypressEnter: function() {
-      console.log("returnKeyが押され下記URLを送信しました");
       // ↓↓↓検索ワード=qを取得
       var str = document.getElementById("q").value;
-      console.log(str);
+      console.log("returnKey押下：検索ワードは{ " + str + " }です");
       const URL_BASE =
         "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
         str;
-      console.log(URL_BASE);
+      console.log("生成されたURL：" + URL_BASE);
       return axios({
         method: "GET",
         url: URL_BASE
@@ -66,6 +67,20 @@ export default {
     }
   }
 };
+const app = new Vue({
+  el: "#app",
+  data: {
+    comedians: {}
+  },
+  mounted() {
+    var self = this;
+    var url = "/ajax/comedian";
+    axios.get(url).then(function(response) {
+      self.comedians = response.data;
+    });
+  }
+});
+app.$mount("#app");
 </script>
 
 <style scoped>
