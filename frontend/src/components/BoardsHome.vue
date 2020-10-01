@@ -2,7 +2,12 @@
   <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
   <div class="center_lar" style="position: absolute; margin-top: 60px">
     <!-- ▼▼▼ board1set ▼▼▼ -->
-    <router-link to="/board" v-for="board in boards" :key="board.id" class="box_boards1set">
+    <router-link
+      to="/board"
+      v-for="board in boards"
+      :key="board.id"
+      class="box_boards1set"
+    >
       <!-- <div class="box_indexBoards"> -->
       <!-- ▼▼ 概要 ▼▼ -->
       <div style="margin: 20px 20px 30px 30px; width: 505px">
@@ -79,12 +84,32 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   name: "BoardsHome",
-
-  data: function () {
+  methods: {
+    onKeypressEnter: function(str) {
+      const URL_BASE =
+        "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
+        "気候変動";
+      console.log("生成されたURL：" + URL_BASE);
+      return axios({
+        method: "GET",
+        url: URL_BASE
+      })
+        .then(res => {
+          console.dir(res.data);
+          console.log(res.data.board_list);
+          this.boards = res.data.board_list;
+        })
+        .catch(err => {
+          console.log("ERROR!! occurred in Backend.");
+          console.log(err);
+        });
+    }
+  },
+  data: function() {
     return {
       boards: [
         {
@@ -101,13 +126,13 @@ export default {
           tag_list: [
             { id: 1, value: "気候変動" },
             { id: 2, value: "地球温暖化" },
-            { id: 3, value: "自然電力" },
+            { id: 3, value: "自然電力" }
           ],
           user_icon: "user00",
           user_name: "川野 翔太郎",
           updated_at: "2020/09/20",
           comments: 123,
-          likes: 456,
+          likes: 456
         },
         {
           board_id: 2,
@@ -123,13 +148,13 @@ export default {
           tag_list: [
             { id: 1, value: "気候変動" },
             { id: 2, value: "地球温暖化" },
-            { id: 3, value: "自然電力" },
+            { id: 3, value: "自然電力" }
           ],
           user_icon: "user00",
           user_name: "川野 翔太郎",
           updated_at: "2020/09/20",
           comments: 123,
-          likes: 456,
+          likes: 456
         },
         {
           board_id: 3,
@@ -145,13 +170,13 @@ export default {
           tag_list: [
             { id: 1, value: "気候変動" },
             { id: 2, value: "地球温暖化" },
-            { id: 3, value: "自然電力" },
+            { id: 3, value: "自然電力" }
           ],
           user_icon: "user00",
           user_name: "川野 翔太郎",
           updated_at: "2020/09/20",
           comments: 123,
-          likes: 456,
+          likes: 456
         }
       ]
     };
@@ -159,8 +184,8 @@ export default {
   computed: {
     limitCount() {
       return this.tags.slice(0, 3);
-    },
-  },
+    }
+  }
 };
 </script>
 

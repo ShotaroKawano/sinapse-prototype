@@ -18,27 +18,32 @@
         @keypress.enter="onKeypressEnter"
       />
     </div>
+    <!-- <div id="app">
+      {{ info }}
+    </div> -->
 
     <!-- <div v-for="post in posts" :key="post.id">
       <p>{{ post.title }}</p>
     </div> -->
-    <div id="btn">
-      <img
-        class="btn_headerUser"
-        src="@/assets/images/userimages/user00.jpg"
-        alt="プロフィール画像"
-      />
-    </div>
-    <div class="btn_create">
-      <p>✏︎ 投稿</p>
+    <div style="display: flex; margin-right: 1%;">
+      <div id="btn">
+        <img
+          class="btn_headerUser"
+          src="@/assets/images/userimages/user00.jpg"
+          alt="プロフィール画像"
+        />
+      </div>
+      <div class="btn_create">
+        <p>✏︎ 投稿</p>
+      </div>
     </div>
   </div>
   <!-- ▲▲▲▲▲ header ▲▲▲▲▲ -->
 </template>
 
 <script>
-import axios from "axios";
-import Vue from "vue";
+// import axios from "axios";
+// import Vue from "vue";
 // import App from './App'
 
 export default {
@@ -48,39 +53,49 @@ export default {
       // ↓↓↓検索ワード=qを取得
       var str = document.getElementById("q").value;
       console.log("returnKey押下：検索ワードは{ " + str + " }です");
-      const URL_BASE =
-        "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
-        str;
-      console.log("生成されたURL：" + URL_BASE);
-      return axios({
-        method: "GET",
-        url: URL_BASE
-      })
-        .then(res => {
-          console.dir(res.data);
-          console.log(res.data.board_id);
-        })
-        .catch(err => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+      // const URL_BASE =
+      //   "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
+      //   str;
+      // console.log("生成されたURL：" + URL_BASE);
+      // return axios({
+      //   method: "GET",
+      //   url: URL_BASE
+      // })
+      //   .then(res => {
+      //     console.dir(res.data);
+      //     console.log(res.data.board_id);
+      //     var self = this;
+      //     self.board_id = res.data.board_id;
+      //     self.board_title = res.data.board_title;
+      //     self.board_description = res.data.board_description;
+      //     self.board_thumbnail = res.data.board_thumbnail;
+      //     self.tag_list = res.data.tag_list;
+      //     self.user_name = res.data.user_name;
+      //     self.icon = res.data.icon;
+      //   })
+      //   .catch(err => {
+      //     console.log("ERROR!! occurred in Backend.");
+      //     console.log(err);
+      //   });
     }
   }
 };
-const app = new Vue({
-  el: "#app",
-  data: {
-    comedians: {}
-  },
-  mounted() {
-    var self = this;
-    var url = "/ajax/comedian";
-    axios.get(url).then(function(response) {
-      self.comedians = response.data;
-    });
-  }
-});
-app.$mount("#app");
+// const app = new Vue({
+//   el: "#app",
+//   data() {
+//     return {
+//       info: null
+//     };
+//   },
+//   mounted() {
+//     axios
+//       .get(
+//         "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=気候変動"
+//       )
+//       .then(response => (this.info = response));
+//   }
+// });
+// app.$mount("#app");
 </script>
 
 <style scoped>
@@ -162,7 +177,7 @@ app.$mount("#app");
 
 /* 必要 */
 .input_search {
-  width: 400px;
+  width: 500px;
   height: 40px;
   border-radius: 20px; /* 角丸       */
   font-size: 10pt; /* 文字サイズ */
