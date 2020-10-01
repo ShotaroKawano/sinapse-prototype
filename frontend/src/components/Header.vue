@@ -47,9 +47,15 @@ export default {
     onKeypressEnter: function() {
       // ↓↓↓検索ワード=qを取得
       var str = document.getElementById("q").value;
-      console.log("returnKey押下：検索ワードは{ " + str + " }です");
-      // ↓↓↓enterキーを押すことでページ遷移
-      location.href = "http://localhost:8080/search?q=" + str;
+
+      if (str === null || str === "") {
+        // 何もしない
+        console.log("nullです");
+      } else {
+        console.log("returnKey押下：検索ワードは{ " + str + " }です");
+        // ページ遷移する
+        location.href = "http://localhost:8080/search?q=" + str;
+      }
     }
   }
 };
