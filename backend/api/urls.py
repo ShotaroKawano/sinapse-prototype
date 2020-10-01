@@ -1,49 +1,50 @@
-from django.conf.urls import include, url
-from rest_framework import routers
-# from .views import LikeViewSet, index
-from .views import LikeViewSet
-from .views import CommentViewSet
-from .views import BoardViewSet
-from .views import Board_TagViewSet
-from .views import TagViewSet
-from .views import CardViewSet
-from .views import ArrowViewSet
-from .views import Arrow_TypeViewSet
+# from django.conf.urls import include, url
+# from rest_framework import routers
+from django.urls import path, include
+from .views import BoardView
+from .views import LikeView
+from .views import CommentView
+from .views import Board_TagView
+from .views import TagView
+from .views import CardView
+from .views import ArrowView
+from .views import Arrow_typeView
+# from django.views.generic import TemplateView
 
 
-router = routers.DefaultRouter()
-router.register(r'like', LikeViewSet)
-router.register(r'comment', CommentViewSet)
-router.register(r'board', BoardViewSet)
-router.register(r'board_tag', Board_TagViewSet)
-router.register(r'Tag', TagViewSet)
-router.register(r'card', CardViewSet)
+# router = routers.DefaultRouter()
+# router.register(r'like', LikeViewSet)
+# router.register(r'comment', CommentViewSet)
+# router.register(r'board', BoardViewSet)
+# router.register(r'board_tag', Board_TagViewSet)
+# router.register(r'Tag', TagViewSet)
+# router.register(r'card', CardViewSet)
 
 
 urlpatterns = [
     # qiita/api/stock/
 ########################################
-    url(r'like/', include(router.urls)),
-    url(r'like/', LikeViewSet),
+    # url(r'like/', include(router.urls)),
+    path('like/', LikeView.as_view()),
 ########################################
-    url(r'comment/', include(router.urls)),
-    url(r'like/', CommentViewSet),
+#     url(r'comment/', include(router.urls)),
+    path('comment/', CommentView.as_view()),
+# ########################################
+    # url(r'board/', include(router.urls)),
+    path('board/', BoardView.as_view()),
 ########################################
-    url(r'board/', include(router.urls)),
-    url(r'board/', BoardViewSet),
+    # url(r'board_tag/', include(router.urls)),
+    path('board_tag/', Board_TagView.as_view()),
 ########################################
-    url(r'board_tag/', include(router.urls)),
-    url(r'board_tag/', Board_TagViewSet),
-########################################
-    url(r'tag/', include(router.urls)),
-    url(r'tag/', TagViewSet),
-########################################
-    url(r'card/', include(router.urls)),
-    url(r'card/', CardViewSet),   
-########################################
-    url(r'arrow/', include(router.urls)),
-    url(r'arrow/', ArrowViewSet),   
-########################################
-    url(r'arrow_type/', include(router.urls)),
-    url(r'arrow_type/', Arrow_TypeViewSet),   
+    # url(r'tag/', include(router.urls)),
+    path('tag/',TagView.as_view()),
+#########################################
+    # path(r'card/', include(router.urls)),
+    path('card/', CardView.as_view()),   
+# ########################################
+#     url(r'arrow/', include(router.urls)),
+    path('arrow/', ArrowView.as_view()),   
+# ########################################
+#     url(r'arrow_kind/', include(router.urls)),
+    path('arrow_type/', Arrow_typeView.as_view()),   
 ]
