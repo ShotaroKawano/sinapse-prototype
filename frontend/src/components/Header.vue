@@ -2,11 +2,6 @@
   <!-- ▼▼▼▼▼ header ▼▼▼▼▼ -->
   <div id="header" class="box_header" style="position: absolute">
     <a id="btn" class="name_service" href="login.html">Sinapse</a>
-    <!-- <input
-        type="search"
-        class="input_search"
-        placeholder="🔍キーワード、#ハッシュタグを入力..."
-      /> -->
 
     <div>
       <input
@@ -53,49 +48,11 @@ export default {
       // ↓↓↓検索ワード=qを取得
       var str = document.getElementById("q").value;
       console.log("returnKey押下：検索ワードは{ " + str + " }です");
-      // const URL_BASE =
-      //   "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
-      //   str;
-      // console.log("生成されたURL：" + URL_BASE);
-      // return axios({
-      //   method: "GET",
-      //   url: URL_BASE
-      // })
-      //   .then(res => {
-      //     console.dir(res.data);
-      //     console.log(res.data.board_id);
-      //     var self = this;
-      //     self.board_id = res.data.board_id;
-      //     self.board_title = res.data.board_title;
-      //     self.board_description = res.data.board_description;
-      //     self.board_thumbnail = res.data.board_thumbnail;
-      //     self.tag_list = res.data.tag_list;
-      //     self.user_name = res.data.user_name;
-      //     self.icon = res.data.icon;
-      //   })
-      //   .catch(err => {
-      //     console.log("ERROR!! occurred in Backend.");
-      //     console.log(err);
-      //   });
+      // ↓↓↓enterキーを押すことでページ遷移
+      location.href = "http://localhost:8080/search?q=" + str;
     }
   }
 };
-// const app = new Vue({
-//   el: "#app",
-//   data() {
-//     return {
-//       info: null
-//     };
-//   },
-//   mounted() {
-//     axios
-//       .get(
-//         "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=気候変動"
-//       )
-//       .then(response => (this.info = response));
-//   }
-// });
-// app.$mount("#app");
 </script>
 
 <style scoped>
