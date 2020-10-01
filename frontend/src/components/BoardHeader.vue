@@ -52,7 +52,7 @@
                 <input
                   v-if="isEditting"
                   class="form_common form_tagList"
-                  v-model="tagList"
+                  v-model="convertTagsToTaglist"
                   @focusout="isEditting = !isEditting"
                   ref="form_tags"
                   id="form_tags"
@@ -63,7 +63,7 @@
                   style="display: flex;"
                   @click="hadleClickTags()"
                 >
-                  <div v-for="tag in convertTaglistToTags" :key="tag">#{{ tag }}</div>
+                  <div v-for="tag in tags" :key="tag">#{{ tag }}</div>
                   <!-- <div class="">#地球温暖化、</div> -->
                   <!-- <div class="">#自然電力</div> -->
                 </div>
@@ -190,11 +190,11 @@ export default {
   data: function () {
     return {
       isVisible: true,
-      title: '気候変動の影響による日本の危険性と今できること',
-      description: '『世界気候リスク指数2020』によると、気候変動によりもっとも人命に危機が及ぶ可能性が高い国が日本とされています。本記事では温暖化のメカニズムと、私たちが今できるもっとも手軽で効果的な対策を紹介しています。',
+      title: null,
+      description: null,
       thumbnail: '../assets/images/treediagram.png',
-      tagList: '気候変動,地球温暖化,自然電力',
-      tags: ['気候変動', '地球温暖化', '自然電力'],
+      tagList: this.convertTagsToTaglist,
+      tags: null,
       // tags: [
       //   { id: 1, value: '気候変動' },
       //   { id: 2, value: '地球温暖化' },
@@ -219,13 +219,14 @@ export default {
         url: URL_BASE,
         data: {
           "board_id": 45,
-          "board_title": "気候変動の影響による日本の危険性と今できること",
-          "board_description": "『世界気候リスク指数2020』によると、気候変動によりもっとも人命に危機が及ぶ可能性が高い国が日本とされています。本記事では温暖化のメカニズムと、私たちが今できるもっとも手軽で効果的な対策を紹介しています。",
-          "board_thumbnail": "http://daily-ondanka.es-inc.jp/basic/img/i_bsc_data_09_1.gif",
-          "board_url_tail": "123456789abcdefg",
-          "isPublished": true,
+          "board_title": this.title,
+          "board_description": this.description,
+          "board_thumbnail": this.thumbnail,
+          "board_url_tail": this.url_tail,
+          "isPublished": this.isPublished,
           "user_id": 31,
-          "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
+          // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
+          "tagList": this.convertTaglistToTags
         },
       }).then((res) => {
         console.dir(res.data);
@@ -263,13 +264,39 @@ export default {
       // console.log(this.$refs.form_tags)
       // this.$refs.form_tags.focus()
       // el.focus()
-    }
-  },
-  computed: {
+    },
     convertTaglistToTags: function() {
       return this.tagList.split(',')
     }
-  }
+  },
+  computed: {
+    // convertTaglistToTags: function() {
+    //   return this.tagList.split(',')
+    // }
+    convertTagsToTaglist: function() {
+      return this.tags.join(' #')
+    }
+  },
+  mounted: function() {
+    const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board?board_id=1';
+    return axios({
+      method: 'GET',
+      url: URL_BASE,
+    }).then((res) => {
+      // console.dir(res.data);
+      console.dir(res);
+      // this.board_id = res.data.board_info.board_id
+      // console.log((typeof res.data));
+      console.log(res.data.board_info);
+      console.log(res.data.board_info.board_title);
+      this.title = res.data.board_info.board_title
+      this.description = res.data.board_info.board_description
+      this.tags = res.data.board_info.tag_list
+    }).catch((err) => {
+      console.log('ERROR!! occurred in Backend.')
+      console.log(err)
+    });
+  },
   // mounted: function () {
   //       $('.s_01 .accordion_one .accordion_header').click(function () {
   //       // クリックされた.accordion_oneの中の.accordion_headerに隣接する.accordion_innerが開いたり閉じたりする。
