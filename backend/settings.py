@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'backend.api',
-    'django_filters', 
+    'django_filters',
 ]
 
 REST_FRAMEWORK = {
@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sinapseprototype',
         'USER': 'root',
-        'PASSWORD': 'pass',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

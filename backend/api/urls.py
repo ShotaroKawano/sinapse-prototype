@@ -1,7 +1,7 @@
 # from django.conf.urls import include, url
 # from rest_framework import routers
 from django.urls import path, include
-from .views import BoardView
+from .views import BoardView,BoardDetailView
 from .views import LikeView
 from .views import CommentView
 from .views import Board_TagView
@@ -32,6 +32,7 @@ urlpatterns = [
 # ########################################
     # url(r'board/', include(router.urls)),
     path('board/', BoardView.as_view()),
+    path('board/<int:pk>', BoardDetailView.as_view()),
 ########################################
     # url(r'board_tag/', include(router.urls)),
     path('board_tag/', Board_TagView.as_view()),
@@ -40,11 +41,11 @@ urlpatterns = [
     path('tag/',TagView.as_view()),
 #########################################
     # path(r'card/', include(router.urls)),
-    path('card/', CardView.as_view()),   
+    path('card/', CardView.as_view()),
 # ########################################
 #     url(r'arrow/', include(router.urls)),
-    path('arrow/', ArrowView.as_view()),   
+    path('arrow/', ArrowView.as_view()),
 # ########################################
 #     url(r'arrow_kind/', include(router.urls)),
-    path('arrow_type/', Arrow_typeView.as_view()),   
+    path('arrow_type/', Arrow_typeView.as_view()),
 ]

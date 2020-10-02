@@ -278,7 +278,7 @@ export default {
     }
   },
   mounted: function() {
-    const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board?board_id=1';
+    const URL_BASE = 'http://127.0.0.1:8000/api/board/2';
     return axios({
       method: 'GET',
       url: URL_BASE,
@@ -288,10 +288,10 @@ export default {
       // this.board_id = res.data.board_info.board_id
       // console.log((typeof res.data));
       console.log(res.data.board_info);
-      console.log(res.data.board_info.board_title);
-      this.title = res.data.board_info.board_title
-      this.description = res.data.board_info.board_description
-      this.tags = res.data.board_info.tag_list
+      console.log(res.data.title);
+      this.title = res.data.title
+      this.description = res.data.description
+      this.tags = res.data.tag_list
     }).catch((err) => {
       console.log('ERROR!! occurred in Backend.')
       console.log(err)

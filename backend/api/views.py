@@ -32,7 +32,7 @@ class LikeView(generics.ListCreateAPIView):
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
     # APIのフィルタで使えるフィールドを指定
-    # filter_class = LikeFilter 
+    # filter_class = LikeFilter
     # filter_fields = ('id','user_id','board_id')
 
 class CommentView(generics.ListCreateAPIView):
@@ -42,6 +42,10 @@ class CommentView(generics.ListCreateAPIView):
 
 
 # generics.ListCreateAPIView
+class BoardDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Board.objects.all()
+    serializer_class = BoardSerializer
+
 
 class BoardView(generics.ListCreateAPIView):
     queryset = Board.objects.all()
@@ -68,7 +72,7 @@ class TagView(generics.ListCreateAPIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     # APIのフィルタで使えるフィールドを指定
-   
+
 
 class CardView(generics.ListCreateAPIView):
     queryset = Card.objects.all()
@@ -76,7 +80,7 @@ class CardView(generics.ListCreateAPIView):
     # APIのフィルタで使えるフィールドを指定
     # filter_fields = ('id','url','title','summary','thumbnail','positionX','PositionY','created_at','updated_at')
 
-    
+
 class ArrowView(generics.ListCreateAPIView):
     queryset = Arrow.objects.all()
     serializer_class = ArrowSerializer
