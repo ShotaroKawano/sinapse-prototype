@@ -1,6 +1,6 @@
 <template>
   <!-- ▼▼▼▼▼ header ▼▼▼▼▼ -->
-  <div id="header" class="box_header" style="position: absolute">
+  <div id="header" class="box_header">
     <a id="btn" class="name_service" href="login.html">Sinapse</a>
 
     <div>
@@ -19,7 +19,7 @@
     <!-- <div v-for="post in posts" :key="post.id">
       <p>{{ post.title }}</p>
     </div> -->
-    <div style="display: flex; margin-right: 1%;">
+    <div class="headerRightboxPosition">
       <div id="btn">
         <img
           class="btn_headerUser"
@@ -74,12 +74,12 @@ export default {
 /* ▲▲▲▲▲ 叩き台 ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ 表示位置 ▼▼▼▼▼ */
-/* 必要 */
-#header {
-  position: fixed; /* ヘッダーの固定 */
-  top: 0px; /* 位置(上0px) */
-  left: 0px; /* 位置(右0px) */
-}
+/* ヘッダーの固定 */
+/* #header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+} */
 .center_objecto {
   position: absolute; /* body全体を指定 */
   top: 50%; /* 親要素の半分下にずらす */
@@ -95,6 +95,10 @@ export default {
   position: absolute; /* body全体を指定 */
   left: 50%; /* 親要素の半分右にずらす */
   transform: translateX(-50%); /* 要素自体の半分左にずらす */
+}
+.headerRightboxPosition {
+  display: flex;
+  margin-right: 1%;
 }
 /* ▲▲▲▲▲ 表示位置 ▲▲▲▲▲ */
 
@@ -166,7 +170,7 @@ export default {
 /* ▼▼▼▼▼ ボックス ▼▼▼▼▼ */
 /* 必要 */
 .box_header {
-  position: fixed; /* ヘッダーの固定 */
+  position: absolute; /* ヘッダーの固定 */
   z-index: 10;
   top: 0px; /* 位置(上0px) */
   left: 0px; /* 位置(右0px) */
