@@ -1,6 +1,6 @@
 <template>
   <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
-  <div class="center_lar" style="position: absolute; margin-top: 60px">
+  <div class="center_lar boardsWrapper">
     <div>
       <h1>q = {{ this.$route.query.q }}</h1>
     </div>
@@ -11,23 +11,22 @@
       :key="board.id"
       class="box_boards1set"
     >
-      <!-- <div class="box_indexBoards"> -->
       <!-- ▼▼ 概要 ▼▼ -->
-      <div style="margin: 20px 20px 30px 30px; width: 505px">
+      <div class="box_indexBoards">
         <!-- ▼ タイトル ▼ -->
-        <div style="margin: 10px">
+        <div>
           <h2 class="indexTitle">
             {{ board.board_title }}
           </h2>
         </div>
         <!-- ▼ 見出し ▼ -->
-        <div style="margin: 10px">
+        <div>
           <p class="indexSubheading">
             {{ board.board_desription }}
           </p>
         </div>
         <!-- ▼ ハッシュタグ ▼ -->
-        <div id="tags" style="display: flex; flex-wrap: wrap; margin: 10px">
+        <div id="tags" class="box_indexHashtag">
           <!-- <ul v-for="tag of limitCount" :key="tag.name">
             <li>
               <p id="btn" class="indexHashtag">{{ tag.name }}</p>
@@ -39,7 +38,7 @@
         </div>
 
         <!-- ▼▼ プロフボタン ▼▼ -->
-        <div style="display: flex">
+        <div class="box_UserAndCreatdate">
           <div id="btn">
             <img
               class="btn_boardsUser"
@@ -47,11 +46,11 @@
               alt="プロフィール画像"
             />
           </div>
-          <div style="padding-left: 12px">
-            <div style="padding-top: 4px">
+          <div class="box_NameAndCreatdate">
+            <div>
               <p class="indexUsername">{{ board.user_name }}</p>
             </div>
-            <div style="padding-top: 6px">
+            <div>
               <p class="indexCreatdate">{{ board.updated_at }}</p>
             </div>
           </div>
@@ -228,6 +227,10 @@ export default {
   transform: translateX(-50%); /* 要素自体の半分左にずらす */
   margin-top: 60px;
 }
+.boardsWrapper {
+  position: absolute;
+  margin-top: 60px;
+}
 /* ▲▲▲▲▲ 表示位置 ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ ボタン ▼▼▼▼▼ */
@@ -251,6 +254,7 @@ export default {
 /* ▼▼▼▼▼ テキスト関係 ▼▼▼▼▼ */
 h2.indexTitle {
   /* 必要 */
+  margin: 10px;
   font-size: 24px;
   line-height: 32px;
   padding-bottom: 4px;
@@ -259,6 +263,7 @@ h2.indexTitle {
 }
 p.indexSubheading {
   /* 必要 */
+  margin: 10px;
   font-size: 14px;
   line-height: 20px;
   padding-bottom: 14px;
@@ -269,23 +274,15 @@ p.indexHashtag {
   font-size: 16px;
   color: #b4bdc6;
 }
-p.indexHashtag {
-  /* 必要 */
-  font-size: 16px;
-  color: #b4bdc6;
-}
 p.indexUsername {
   /* 必要 */
+  padding-top: 4px;
   font-size: 18px;
   color: #87929d;
 }
-p.indexHashtag {
-  /* 必要 */
-  font-size: 16px;
-  color: #b4bdc6;
-}
 p.indexCreatdate {
   /* 必要 */
+  padding-top: 6px;
   font-size: 14px;
   color: #b4bdc6;
 }
@@ -318,6 +315,22 @@ p.indexCreatdate {
   margin: 10px;
   text-align: center;
   color: #b4bdc6;
+}
+.box_indexBoards {
+  margin: 20px 20px 30px 30px;
+  width: 505px;
+}
+.box_indexHashtag {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.box_UserAndCreatdate {
+  display: flex;
+  margin-left: 10px;
+}
+.box_NameAndCreatdate {
+  padding-left: 12px;
 }
 /* ▲▲▲▲▲ ボックス ▲▲▲▲▲ */
 
