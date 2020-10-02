@@ -9,7 +9,6 @@
         placeholder="🔍キーワード、#ハッシュタグを入力..."
         type="search"
         id="q"
-        v-model="search"
         @keypress.enter="onKeypressEnter"
       />
     </div>
@@ -46,15 +45,16 @@ export default {
   methods: {
     onKeypressEnter: function() {
       // ↓↓↓検索ワード=qを取得
-      var str = document.getElementById("q").value;
+      var q = document.getElementById("q").value;
 
-      if (str === null || str === "") {
+      if (q === null || q === "") {
         // 何もしない
-        console.log("nullです");
+        console.log("returnKey押下：検索ワードがnullです");
       } else {
-        console.log("returnKey押下：検索ワードは{ " + str + " }です");
+        // console.log("returnKey押下：検索ワードは{ " + q + " }です");
+
         // ページ遷移する
-        location.href = "http://localhost:8080/search?q=" + str;
+        location.href = "http://localhost:8080/search?q=" + q;
       }
     }
   }

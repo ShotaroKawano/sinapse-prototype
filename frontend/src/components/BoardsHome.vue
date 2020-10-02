@@ -1,6 +1,9 @@
 <template>
   <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
   <div class="center_lar" style="position: absolute; margin-top: 60px">
+    <div>
+      <h1>q = {{ this.$route.query.q }}</h1>
+    </div>
     <!-- ▼▼▼ board1set ▼▼▼ -->
     <router-link
       to="/board"
@@ -88,8 +91,13 @@ import axios from "axios";
 
 export default {
   name: "BoardsHome",
+  // watch: {
+  //   $route() {
+  //     console.log("ページ遷移");
+  //   }
+  // },
   methods: {
-    onKeypressEnter: function(str) {
+    window: (onload = function(str) {
       const URL_BASE =
         "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
         "気候変動";
@@ -107,7 +115,7 @@ export default {
           console.log("ERROR!! occurred in Backend.");
           console.log(err);
         });
-    }
+    })
   },
   data: function() {
     return {
