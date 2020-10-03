@@ -57,7 +57,7 @@ class Comment(models.Model):
     update_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.board + ' commented by ' + self.user + ' ' + self.content
+        return self.board.title + ' commented by ' + self.user.username + ' ' + self.content
 
 
 
