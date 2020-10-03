@@ -87,26 +87,7 @@
   color: #5486b9; /* 背景色     */
   background: #ffffff; /* 文字色     */
 }
-.btn_edit {
-  width: 50px;
-  height: 28px;
-  margin: 117px 0px 0px 97px;
-  display: inline-block;
-  border-radius: 5px; /* 角丸       */
-  font-size: 14px; /* 文字サイズ */
-  text-align: center; /* 文字位置   */
-  cursor: pointer; /* カーソル   */
-  color: #ffffff; /* 文字色     */
-  background: #525e6a; /* 背景色     */
-  line-height: 28px; /* 1行の高さ  */
-  text-decoration: none; /* テキストアンダーライン */
-  opacity: 0.6;
-}
-.btn_edit:hover {
-  color: #ffffff; /* 文字色     */
-  background: #525e6a; /* 背景色     */
-  opacity: 1;
-}
+
 .btn_headerUser {
   width: 50px;
   height: 50px;
@@ -290,10 +271,10 @@ p.indexCreatdate {
 /* ▲▲▲▲▲ サムネイル ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ アイコン ▼▼▼▼▼ */
-.icon_indexBoards {
+/* .icon_indexBoards {
   width: 20px;
   height: 20px;
-}
+} */
 .icon_boardsUser {
   width: 18px;
   height: 18px;
@@ -356,7 +337,7 @@ p.indexCreatdate {
 .s_01 .accordion_one .accordion_header .i_box .one_i:before,
 .s_01 .accordion_one .accordion_header .i_box .one_i:after {
   display: flex;
-  content: '';
+  content: "";
   background-color: #fff;
   border-radius: 10px;
   width: 18px;

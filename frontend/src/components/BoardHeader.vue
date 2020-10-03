@@ -1,22 +1,13 @@
 <template>
   <!-- ▼▼▼▼▼ board_title ▼▼▼▼▼ -->
-  <div class="section s_01" style="width: 100%; z-index: 0">
+  <div class="section s_01">
     <div class="accordion_one">
       <!-- ▼▼▼ accordion_header ▼▼▼ -->
-      <div class="accordion_header open" style="display: flex" ref="accordion_header">
+      <div class="accordion_header open displayFlex" ref="accordion_header">
         <!-- read only のときはv-ifで表示を変えたりしないと -->
-        <textarea
-          class="form_common form_title"
-          v-model="title"
-        >
-        </textarea>
-        <div class="">
-          <div
-            id="btn"
-            class="menu"
-            style="width: 70px; margin-top: 50px; color: #b4bdc6"
-            @click="isVisible = !isVisible"
-          >
+        <textarea class="form_common form_title" v-model="title"> </textarea>
+        <div>
+          <div id="btn" class="menu" @click="isVisible = !isVisible">
             ▼
           </div>
         </div>
@@ -24,57 +15,48 @@
       <transition name="toggle">
         <!-- ▼▼▼ accordion_inner ▼▼▼ -->
         <div v-if="isVisible" class="accordion_inner" ref="accordion_inner">
-        <!-- <div class="accordion_inner" ref="accordion_inner"> -->
-          <div class="" style="display: flex">
+          <!-- <div class="accordion_inner" ref="accordion_inner"> -->
+          <div class="displayFlex">
             <div class="">
-              <div class="" style="width: 684px">
-                <div style="display: flex">
+              <div class="box_accordion1">
+                <div class="displayFlex">
                   <textarea
                     class="form_common form_description"
-                    v-model="description">
-                  </textarea>
-                  <div
-                    class="board_thumbnail"
-                    style=""
+                    v-model="description"
                   >
+                  </textarea>
+                  <div class="board_thumbnail">
                     <div id="" class="btn_edit">
                       <p>Edit</p>
                     </div>
                   </div>
                 </div>
-                <div
-                  style="
-                    width: 684px;
-                    color: #b4bdc6;
-                  "
-                  class=""
-                >
-                <input
-                  v-if="isEditting"
-                  class="form_common form_tagList"
-                  v-model="convertTagsToTaglist"
-                  @focusout="isEditting = !isEditting"
-                  ref="form_tags"
-                  id="form_tags"
-                >
-                <div
-                  v-if="!isEditting"
-                  class="form_tagList"
-                  style="display: flex;"
-                  @click="hadleClickTags()"
-                >
-                  <div v-for="tag in tags" :key="tag">#{{ tag }}</div>
-                  <!-- <div class="">#地球温暖化、</div> -->
-                  <!-- <div class="">#自然電力</div> -->
-                </div>
+                <div class="text_edit">
+                  <input
+                    v-if="isEditting"
+                    class="form_common form_tagList"
+                    v-model="convertTagsToTaglist"
+                    @focusout="isEditting = !isEditting"
+                    ref="form_tags"
+                    id="form_tags"
+                  />
+                  <div
+                    v-if="!isEditting"
+                    class="form_tagList displayFlex"
+                    @click="hadleClickTags()"
+                  >
+                    <div v-for="tag in tags" :key="tag">#{{ tag }}</div>
+                    <!-- <div class="">#地球温暖化、</div> -->
+                    <!-- <div class="">#自然電力</div> -->
+                  </div>
                 </div>
               </div>
 
-              <div class="" style="display: flex; width: 684px">
+              <div class="box_user1">
                 <div class="">
-                  <div style="display: flex; margin: 10px">
+                  <div class="box_user2">
                     <div class="">
-                      <div style="display: flex">
+                      <div class="displayFlex">
                         <div id="btn">
                           <img
                             class="btn_boardsUser"
@@ -82,25 +64,11 @@
                             alt="プロフィール画像"
                           />
                         </div>
-                        <div>
-                          <div
-                            class=""
-                            style="
-                              color: #87929d;
-                              font-size: 20px;
-                              margin: 3px 0px 0px 10px;
-                            "
-                          >
+                        <div class="box_NameAndCreatdate">
+                          <div class="indexUsername">
                             内藤迅
                           </div>
-                          <div
-                            class=""
-                            style="
-                              color: #b4bdc6;
-                              font-size: 14px;
-                              margin: 5px 0px 0px 10px;
-                            "
-                          >
+                          <div class="indexCreatdate">
                             {{ createdAt }}
                           </div>
                         </div>
@@ -108,33 +76,36 @@
                     </div>
 
                     <div style="display: flex">
-                      <div class="" style="display: flex; margin-left: 360px">
-                        <div id="btn" class="" style="margin: 0px 14px">
+                      <div class="box_user3">
+                        <div id="btn" class="box_indexSns3">
                           <img
                             class="icon_indexBoards"
                             src="@/assets/images/icons/icons_like.png"
                             alt="いいねボタン"
-                            style="padding-left: 5px; margin: 5px 0px 5px 0px"
                           />
-                          <div class="" style="color: #b4bdc6; font-size: 16px;">{{ likes }}</div>
+                          <div class="text_indexSns">
+                            {{ likes }}
+                          </div>
                         </div>
-                        <div id="btn" class="" style="margin: 0px 14px;">
+                        <div id="btn" class="box_indexSns3">
                           <img
                             class="icon_indexBoards"
                             src="@/assets/images/icons/icons_comment.png"
                             alt="コメントボタン"
-                            style="padding-left: 5px; margin: 5px 0px 5px 0px"
                           />
-                          <div class="" style="color: #b4bdc6; font-size: 16px;">{{ comments }}</div>
+                          <div class="text_indexSns">
+                            {{ comments }}
+                          </div>
                         </div>
-                        <div id="btn" class="" style="margin: 0px 14px">
+                        <div id="btn" class="box_indexSns3">
                           <img
                             class="icon_indexBoards"
                             src="@/assets/images/icons/icons_share.png"
                             alt="シェアボタン"
-                            style="padding-left: 5px; margin: 5px 0px 5px 0px"
                           />
-                          <div class="" style="color: #b4bdc6; font-size: 16px;">{{ shares }}</div>
+                          <div class="text_indexSns">
+                            {{ shares }}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -142,36 +113,16 @@
                 </div>
               </div>
             </div>
-            <div style="display: flex; margin: 220px 0px 0px 50px" class="">
-              <div
-                id="btn"
-                class=""
-                style="
-                  width: 50px;
-                  height: 28px;
-                  border-radius: 5px;
-                  text-align: center;
-                  border: 1px solid #525e6a;
-                  background-color: #ffffff;
-                  line-height: 28px;
-                "
-              >
-                <p @click="deleteBoard()" style="font-size: 14px; color: #525e6a">Delete</p>
+            <div class="box_deleteAndsaveButton">
+              <div id="btn" class="btn_delete">
+                <p @click="deleteBoard()" class="text_delete">
+                  Delete
+                </p>
               </div>
-              <div
-                id="btn"
-                class=""
-                style="
-                  width: 50px;
-                  height: 28px;
-                  border-radius: 5px;
-                  text-align: center;
-                  background-color: #5486b9;
-                  line-height: 28px;
-                  margin-left: 10px;
-                "
-              >
-                <p @click="updateBoard()" style="font-size: 14px; color: #ffffff">Save</p>
+              <div id="btn" class="btn_save">
+                <p @click="updateBoard()" class="text_save">
+                  Save
+                </p>
               </div>
             </div>
           </div>
@@ -183,16 +134,16 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-  name: 'BoardHeader',
-  data: function () {
+  name: "BoardHeader",
+  data: function() {
     return {
       isVisible: true,
       title: null,
       description: null,
-      thumbnail: '../assets/images/treediagram.png',
+      thumbnail: "../assets/images/treediagram.png",
       tagList: this.convertTagsToTaglist,
       tags: null,
       // tags: [
@@ -200,64 +151,70 @@ export default {
       //   { id: 2, value: '地球温暖化' },
       //   { id: 3, value: '自然電力' },
       // ],
-      urlTail: '',
+      urlTail: "",
       isPublished: true,
-      createdAt: '2020/09/20',
-      updatedAt: '',
-      likes: '162',
-      comments: '14',
-      shares: '56',
+      createdAt: "2020/09/20",
+      updatedAt: "",
+      likes: "162",
+      comments: "14",
+      shares: "56",
       isEditting: false
-    }
+    };
   },
   methods: {
     updateBoard() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/update';
+      const URL_BASE =
+        "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/update";
       return axios({
-        method: 'POST',
+        method: "POST",
         url: URL_BASE,
         data: {
-          "board_id": 45,
-          "board_title": this.title,
-          "board_description": this.description,
-          "board_thumbnail": this.thumbnail,
-          "board_url_tail": this.url_tail,
-          "isPublished": this.isPublished,
-          "user_id": 31,
+          board_id: 45,
+          board_title: this.title,
+          board_description: this.description,
+          board_thumbnail: this.thumbnail,
+          board_url_tail: this.url_tail,
+          isPublished: this.isPublished,
+          user_id: 31,
           // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
-          "tagList": this.convertTaglistToTags
-        },
-      }).then((res) => {
-        console.dir(res.data);
-        console.log(res.data.board_id);
-      }).catch((err) => {
-        console.log('ERROR!! occurred in Backend.')
-        console.log(err)
-      });
+          tagList: this.convertTaglistToTags
+        }
+      })
+        .then(res => {
+          console.dir(res.data);
+          console.log(res.data.board_id);
+        })
+        .catch(err => {
+          console.log("ERROR!! occurred in Backend.");
+          console.log(err);
+        });
     },
     deleteBoard() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE = 'https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/delete';
+      const URL_BASE =
+        "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/delete";
       return axios({
-        method: 'DELETE',
+        method: "DELETE",
         url: URL_BASE,
         data: {
-          "board_id": 45,
-        },
-      }).then((res) => {
-        console.dir(res.data);
-        // console.log(res.data.board_id);
-      }).catch((err) => {
-        console.log('ERROR!! occurred in Backend.')
-        console.log(err)
-      });
+          board_id: 45
+        }
+      })
+        .then(res => {
+          console.dir(res.data);
+          // console.log(res.data.board_id);
+        })
+        .catch(err => {
+          console.log("ERROR!! occurred in Backend.");
+          console.log(err);
+        });
     },
     // convertTagsToTaglist: function() {
     //   this.tagList =
     // }
     hadleClickTags() {
-      this.isEditting = !this.isEditting
+      this.isEditting = !this.isEditting;
       // なぜ存在するのに取得できない？ライフサイクルの問題？
       // const el = document.getElementById('form_tags')
       // console.log(el)
@@ -266,7 +223,7 @@ export default {
       // el.focus()
     },
     convertTaglistToTags: function() {
-      return this.tagList.split(',')
+      return this.tagList.split(",");
     }
   },
   computed: {
@@ -274,29 +231,31 @@ export default {
     //   return this.tagList.split(',')
     // }
     convertTagsToTaglist: function() {
-      return this.tags.join(' #')
+      return this.tags.join(" #");
     }
   },
   mounted: function() {
-    const URL_BASE = 'http://127.0.0.1:8000/api/board/2';
+    const URL_BASE = "http://127.0.0.1:8000/api/board/2";
     return axios({
-      method: 'GET',
-      url: URL_BASE,
-    }).then((res) => {
-      // console.dir(res.data);
-      console.dir(res);
-      // this.board_id = res.data.board_info.board_id
-      // console.log((typeof res.data));
-      console.log(res.data.board_info);
-      console.log(res.data.title);
-      this.title = res.data.title
-      this.description = res.data.description
-      this.tags = res.data.tag_list
-    }).catch((err) => {
-      console.log('ERROR!! occurred in Backend.')
-      console.log(err)
-    });
-  },
+      method: "GET",
+      url: URL_BASE
+    })
+      .then(res => {
+        // console.dir(res.data);
+        console.dir(res);
+        // this.board_id = res.data.board_info.board_id
+        // console.log((typeof res.data));
+        console.log(res.data.board_info);
+        console.log(res.data.title);
+        this.title = res.data.title;
+        this.description = res.data.description;
+        this.tags = res.data.tag_list;
+      })
+      .catch(err => {
+        console.log("ERROR!! occurred in Backend.");
+        console.log(err);
+      });
+  }
   // mounted: function () {
   //       $('.s_01 .accordion_one .accordion_header').click(function () {
   //       // クリックされた.accordion_oneの中の.accordion_headerに隣接する.accordion_innerが開いたり閉じたりする。
@@ -304,14 +263,14 @@ export default {
   //       $(this).toggleClass('open')
   //       console.log($(this));
   //     })
-    // toggleBoarHeader () {
-      // console.log(this);
-      // this.$ref.accordion_inner
-    //   $(this).next('.accordion_inner').slideToggle()
-    //   $(this).toggleClass('open')
-    // }
+  // toggleBoarHeader () {
+  // console.log(this);
+  // this.$ref.accordion_inner
+  //   $(this).next('.accordion_inner').slideToggle()
+  //   $(this).toggleClass('open')
   // }
-}
+  // }
+};
 </script>
 
 <style scoped>
@@ -328,10 +287,8 @@ export default {
   /* display: block; */
 }
 .toggle-leave {
-
 }
 .toggle-leave-active {
-
 }
 .toggle-leave-to {
   /* animation: slide-in 0.5s reverse; */
@@ -348,51 +305,163 @@ export default {
   }
 } */
 
-  .board_thumbnail {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    border: solid 1px #e1e6eb;
-    background-image: url('../assets/images/treediagram.png');
-    background-size: cover;
-    margin-left: 20px;
-  }
+.board_thumbnail {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  border: solid 1px #e1e6eb;
+  background-image: url("../assets/images/treediagram.png");
+  background-size: cover;
+  margin-left: 20px;
+}
 
-  .form_common {
-    /* appearance: none; が効かない*/
-    border: none;
-    resize: none;
-    /* outline: none; */
-    overflow-wrap: break-word;
-  }
+.form_common {
+  /* appearance: none; が効かない*/
+  border: none;
+  resize: none;
+  /* outline: none; */
+  overflow-wrap: break-word;
+}
 
-  .form_description {
-    color: #525e6a;
-    height: 160px;
-    width: 500px;
-    font-size: 20px;
-    line-height: 30px;
-    margin: 10px 0px 5px 0px;
-  }
+.form_description {
+  color: #525e6a;
+  height: 160px;
+  width: 500px;
+  font-size: 20px;
+  line-height: 30px;
+  margin: 10px 0px 5px 0px;
+}
 
-  .form_title {
-    color: #525e6a;
-    height: 84px;
-    width: 684px;
-    font-size: 36px;
-    line-height: 38px;
-    margin: 10px 0px 5px 0px;
-  }
+.form_title {
+  color: #525e6a;
+  height: 84px;
+  width: 684px;
+  font-size: 36px;
+  line-height: 38px;
+  margin: 10px 0px 5px 0px;
+}
 
-  .form_tagList {
-    color: #525e6a;
-    width: 70%;
-    font-size: 16px;
+.form_tagList {
+  color: #525e6a;
+  width: 70%;
+  font-size: 16px;
+}
 
-  }
+.section {
+  width: 100%;
+  margin-top: 70px;
+  font-size: 30px;
+}
 
-  .section {
-    margin-top: 70px;
-    font-size: 30px;
-  }
+.menu {
+  width: 70px;
+  margin-top: 50px;
+  color: #b4bdc6;
+}
+.displayFlex {
+  display: flex;
+}
+
+.box_accordion1 {
+  width: 684px;
+}
+.box_user1 {
+  display: flex;
+  width: 684px;
+}
+.box_user2 {
+  display: flex;
+  margin: 10px;
+}
+.box_user3 {
+  display: flex;
+  margin-left: 360px;
+}
+
+.box_indexSns3 {
+  margin: 0px 14px;
+}
+.text_indexSns {
+  color: #b4bdc6;
+  font-size: 16px;
+}
+
+.btn_edit {
+  width: 50px;
+  height: 28px;
+  margin: 117px 0px 0px 97px;
+  display: inline-block;
+  border-radius: 5px; /* 角丸       */
+  font-size: 14px; /* 文字サイズ */
+  text-align: center; /* 文字位置   */
+  cursor: pointer; /* カーソル   */
+  color: #ffffff; /* 文字色     */
+  background: #525e6a; /* 背景色     */
+  line-height: 28px; /* 1行の高さ  */
+  text-decoration: none; /* テキストアンダーライン */
+  opacity: 0.6;
+}
+.btn_edit:hover {
+  color: #ffffff; /* 文字色     */
+  background: #525e6a; /* 背景色     */
+  opacity: 1;
+}
+.text_edit {
+  width: 684px;
+  color: #b4bdc6;
+}
+
+.box_deleteAndsaveButton {
+  display: flex;
+  margin: 220px 0px 0px 50px;
+}
+.btn_delete {
+  width: 50px;
+  height: 28px;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid #525e6a;
+  background-color: #ffffff;
+  line-height: 28px;
+}
+.text_delete {
+  font-size: 14px;
+  color: #525e6a;
+}
+.btn_save {
+  width: 50px;
+  height: 28px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #5486b9;
+  line-height: 28px;
+  margin-left: 10px;
+}
+.text_save {
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.box_NameAndCreatdate {
+  padding-left: 12px;
+}
+.indexUsername {
+  /* 必要 */
+  padding-top: 4px;
+  font-size: 18px;
+  color: #87929d;
+}
+.indexCreatdate {
+  /* 必要 */
+  padding-top: 6px;
+  font-size: 14px;
+  color: #b4bdc6;
+}
+
+.icon_indexBoards {
+  width: 20px;
+  height: 20px;
+  padding-left: 5px;
+  margin: 5px 0px 5px 0px;
+}
 </style>
