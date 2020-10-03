@@ -38,7 +38,7 @@ class BoardViewSets(ModelViewSet):
         queryset = Board.objects.all()
         title = self.request.query_params.get("title", None)
         if title is not None:
-#部分一致検索ロジック
+            #部分一致検索ロジック
             queryset = queryset.filter(title__icontains=title)
         return queryset
 

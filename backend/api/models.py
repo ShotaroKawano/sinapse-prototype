@@ -31,7 +31,7 @@ class Card(models.Model):
     position_y = models.IntegerField()
     board = models.ForeignKey(Board, related_name='board_cards', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     arrows = models.ManyToManyField('self', through='Arrow', related_name='arrows')
 
     def __str__(self):
@@ -88,7 +88,9 @@ class Arrow_type(models.Model):
 
 class Arrow(models.Model):
     from_card = models.ForeignKey(Card, related_name='board_from_cards', on_delete=models.CASCADE)
+    from_position = models.CharField(max_length=255)
     to_card = models.ForeignKey(Card, related_name='board_to_cards', on_delete=models.CASCADE)
+    to_position = models.CharField(max_length=255)
     label = models.CharField(max_length=255)
     arrow_type_id = models.ForeignKey(Arrow_type, on_delete=models.CASCADE)
     board = models.ForeignKey(Board, related_name='board_arrows', on_delete=models.CASCADE)
