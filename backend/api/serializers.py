@@ -1,9 +1,9 @@
 from rest_framework import serializers
-# from django_filters import rest_framework as filters 
+# from django_filters import rest_framework as filters
 from .models import Like
 from .models import Comment
 from .models import Board
-from .models import Board_Tag
+from .models import Board_Tags
 from .models import Tag
 from .models import Card
 from .models import Arrow
@@ -16,7 +16,9 @@ from .models import Arrow_type
 class LikeSerializer(serializers.ModelSerializer):
      class Meta:
           model = Like
-          fields = ('id','user_id','board_id','created_at')
+          # fields = ('id','user_id','board_id','created_at')
+          fields = '__all__'
+
 
 
 # class LikeFilter(filters.FilterSet):
@@ -33,38 +35,45 @@ class LikeSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
      class Meta:
           model = Comment
-          fields = ('id','user_id','board_id','content','created_at','update_at')
+          # fields = ('id','user_id','board_id','content','created_at','update_at')
+          # fields = ('id','user','board','content','created_at','update_at')
+          fields = '__all__'
 
 class BoardSerializer(serializers.ModelSerializer):
      # user_id = UserSerializer()
 
     class Meta:
         model = Board
-        fields = ('id','title','description','thumbnail','url_tail','isPublished','created_at','updated_at')
+     #    fields = ('id','title','description','thumbnail','url_tail','isPublished','created_at','updated_at')
+        fields = '__all__'
 
-class Board_TagSerializer(serializers.ModelSerializer):
+class Board_TagsSerializer(serializers.ModelSerializer):
      class Meta:
-          model = Board_Tag
-          fields = ('id', 'board_id', 'tag_id')
+          model = Board_Tags
+          # fields = ('id', 'board', 'tag')
+          fields = '__all__'
 
 class TagSerializer(serializers.ModelSerializer):
      class Meta:
           model = Tag
-          fields = ('id','name')
+          # fields = ('id','name')
+          fields = '__all__'
 
 class CardSerializer(serializers.ModelSerializer):
      class Meta:
           model = Card
-          fields = ('id','url','title','summary','thumbnail','positionX','positionY','created_at','updated_at')
+          # fields = ('id','url','title','summary','thumbnail','positionX','positionY','created_at','updated_at')
+          fields = '__all__'
+
 
 class ArrowSerializer(serializers.ModelSerializer):
      class Meta:
           model = Arrow
-          fields = ('id','from_card_id','to_card_id','label','arrow_kind_id','board_id','created_at','updated_at')
+          # fields = ('id','from_card','to_card','label','arrow_type_id','board_id','created_at','updated_at')
+          fields = '__all__'
 
 class Arrow_typeSerializer(serializers.ModelSerializer):
      class Meta:
           model = Arrow_type
-          fields = ('id','type')
-
-
+          # fields = ('id','type')
+          fields = '__all__'

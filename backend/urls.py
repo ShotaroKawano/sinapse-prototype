@@ -16,4 +16,3 @@ urlpatterns = [
     # url('api/', include(ROUTER.urls)),
     path('api/', include(api_url)),
 ]
-

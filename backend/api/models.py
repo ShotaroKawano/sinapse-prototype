@@ -2,28 +2,20 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# usersはdjangoのデフォルト機能を利用
 
 class Board(models.Model):
-    title = models.CharField('タイトル', max_length=255,null=True)
-    description = models.CharField('ディスクリプション', max_length=500,null=True)
-    thumbnail = models.CharField('サムネイル', max_length=255, null=True)
-    url_tail = models.CharField('テイル', max_length=255,null=True)
-    isPublished = models.BooleanField(default=True,null=True) 
-    user = models.ForeignKey(User, related_name='boards', on_delete=models.CASCADE, null=True)
-    created_at = models.DateTimeField(auto_now_add=True,null=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True)
-
-
-
-
-    # user =  models.ForeignKey(User, related_name=‘boards’, on_delete=models.CASCADE)
-    # user = models.ManyToManyField(
-    #     User,
-    #     through="Like",
-    # )
-    # created_at = models.DateTimeField('作成日時', auto_now_add=True)
-    # update_at = models.DateTimeField('更新日時', auto_now=True)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    thumbnail = models.CharField(max_length=255)
+    url_tail = models.CharField(max_length=255)
+    is_published = models.BooleanField(default=True)
+    user = models.ForeignKey(User, related_name='user_boards', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    # 多対多のrelated_nameはこちらにつけるべきなのかもしれない
+    likes = models.ManyToManyField(User, through='Like', related_name='likes')
+    comments = models.ManyToManyField(User, through='Comment', related_name='comments')
+    tags = models.ManyToManyField('Tag', through='Board_Tags', related_name='tags')
 
     def __str__(self):
         return self.title
@@ -31,58 +23,77 @@ class Board(models.Model):
 
 
 class Card(models.Model):
-    URL = models.CharField('URL', max_length=255,null=True)
-    title = models.CharField('タイトル', max_length=255,null=True)
-    summary = models.CharField('サマリー', max_length=500,null=True)
-    thumbnail = models.CharField('サムネイル', max_length=255,null=True)
-    positionX = models.IntegerField('x座標',null=True)
-    positionY = models.IntegerField('y座標',null=True)
-    board = models.ForeignKey(Board,on_delete=models.CASCADE,null=True)
-    created_at = models.DateTimeField('作成日時', auto_now_add=True,null=True)
-    update_at = models.DateTimeField('更新日時', auto_now=True,null=True)
+    url = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    summary = models.TextField()
+    thumbnail = models.CharField(max_length=255)
+    position_x = models.IntegerField()
+    position_y = models.IntegerField()
+    board = models.ForeignKey(Board, related_name='board_cards', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+    arrows = models.ManyToManyField('self', through='Arrow', related_name='arrows')
 
-    # def __str__(self):
-    #     return self.title
+    def __str__(self):
+        return self.title + ' ' + self.url
 
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    board = models.ForeignKey(Board, on_delete=models.CASCADE)
-    created_at = models.DateTimeField('作成日時', auto_now_add=True)
-  
+    user = models.ForeignKey(User, related_name='user_likes', on_delete=models.CASCADE)
+    board = models.ForeignKey(Board, related_name='board_likes', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.board.title + ' liked by ' + self.user.username
+        # return self.board
+
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    board = models.ForeignKey(Board, on_delete=models.CASCADE)
-    content = models.CharField(max_length=255)
-    created_at = models.DateTimeField('作成日時', auto_now_add=True)
-    update_at = models.DateTimeField('更新日時', auto_now=True)
+    user = models.ForeignKey(User, related_name='user_comments', on_delete=models.CASCADE)
+    board = models.ForeignKey(Board, related_name='board_comments', on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.board + ' commented by ' + self.user + ' ' + self.content
+
 
 
 class Tag(models.Model):
-    name = models.CharField('タグ', max_length=255, null=True)
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
 
 
-class Board_Tag(models.Model):
+class Board_Tags(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
- 
 
-class Arrow(models.Model):
-    from_card_id = models.IntegerField('フロムカード')
-    to_card_id = models.IntegerField('トゥーカード')
-    label = models.CharField('ラベル',max_length=255)
-    arrow_type_id = models.IntegerField('アロータイプ')
-    board = models.ForeignKey(Board, on_delete=models.CASCADE)
-    created_at = models.DateTimeField('作成日時', auto_now_add=True)
-    updated_at = models.DateTimeField('更新日時', auto_now=True)
+    def __str__(self):
+        return self.board.title + ' tagged with ' + self.tag.name
+
 
 
 class Arrow_type(models.Model):
-    type = models.CharField('アロータイプ',max_length=255)
+    type = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.type
 
 
 
+class Arrow(models.Model):
+    from_card = models.ForeignKey(Card, related_name='board_from_cards', on_delete=models.CASCADE)
+    to_card = models.ForeignKey(Card, related_name='board_to_cards', on_delete=models.CASCADE)
+    label = models.CharField(max_length=255)
+    arrow_type_id = models.ForeignKey(Arrow_type, on_delete=models.CASCADE)
+    board = models.ForeignKey(Board, related_name='board_arrows', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.label + ' ' + self.from_card_id

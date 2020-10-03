@@ -13,8 +13,8 @@ from .models import Comment
 from .serializers import CommentSerializer
 from .models import Board
 from .serializers import BoardSerializer
-from .models import Board_Tag
-from .serializers import Board_TagSerializer
+from .models import Board_Tags
+from .serializers import Board_TagsSerializer
 from .models import Tag
 from .serializers import TagSerializer
 from .models import Card
@@ -62,8 +62,8 @@ class BoardView(generics.ListCreateAPIView):
 
 
 class Board_TagView(generics.ListCreateAPIView):
-    queryset = Board_Tag.objects.all()
-    serializer_class = Board_TagSerializer
+    queryset = Board_Tags.objects.all()
+    serializer_class = Board_TagsSerializer
 
 # APIのフィルタで使えるフィールドを指定
 #     filter_fields = ('id')
@@ -76,7 +76,7 @@ class TagView(generics.ListCreateAPIView):
 
 class CardView(generics.ListCreateAPIView):
     queryset = Card.objects.all()
-    serializer_class = CommentSerializer
+    serializer_class = CardSerializer
     # APIのフィルタで使えるフィールドを指定
     # filter_fields = ('id','url','title','summary','thumbnail','positionX','PositionY','created_at','updated_at')
 
