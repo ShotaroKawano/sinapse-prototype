@@ -92,10 +92,10 @@ class Arrow(models.Model):
     to_card = models.ForeignKey(Card, related_name='board_to_cards', on_delete=models.CASCADE)
     to_position = models.CharField(max_length=255)
     label = models.CharField(max_length=255)
-    arrow_type_id = models.ForeignKey(Arrow_type, on_delete=models.CASCADE)
+    arrow_type = models.ForeignKey(Arrow_type, on_delete=models.CASCADE)
     board = models.ForeignKey(Board, related_name='board_arrows', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.label + ' ' + self.from_card_id
+        return self.label

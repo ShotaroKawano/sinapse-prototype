@@ -22,7 +22,7 @@ from .serializers import CardSerializer
 from .models import Arrow
 from .serializers import ArrowSerializer
 from .models import Arrow_type
-from .serializers import Arrow_typeSerializer
+from .serializers import ArrowTypeSerializer
 
 from rest_framework.viewsets import ModelViewSet
 
@@ -92,7 +92,7 @@ class BoardTagsViewSets(ModelViewSet):
 
 class ArrowTypeViewSets(ModelViewSet):
     queryset = Arrow.objects.all()
-    serializer_class = Arrow_typeSerializer
+    serializer_class = ArrowTypeSerializer
     # APIのフィルタで使えるフィールドを指定
     # filter_fields = ('id','type')
 

@@ -10,22 +10,27 @@ from .models import Arrow
 from .models import Arrow_type
 
 
+
 #今後dbに合わせて加工必要
 class CardSerializer(serializers.ModelSerializer):
+     # boards = BoardSerializer(many=True, read_only=True)
+
      class Meta:
           model = Card
-          # fields = ('id','url','title','summary','thumbnail','positionX','positionY','created_at','updated_at')
+          # fields = ('id','url','title','summary','thumbnail','position_x','position_y','created_at','updated_at','boards')
           fields = '__all__'
 
 
 
 class BoardSerializer(serializers.ModelSerializer):
      # user_id = UserSerializer()
-     cards = serializers.IntegerField(read_only=True)
+     cards = CardSerializer(many=True, read_only=True)
+     # cards = 'neko'
 
      class Meta:
           model = Board
-          # fields = ('id','title','description','thumbnail','url_tail','is_published','cards','created_at','updated_at')
+          # fields = ('id','title','description','thumbnail','url_tail','is_published','created_at','updated_at','cards')
+          # fields = ('id','cards')
           fields = '__all__'
 
 
@@ -74,16 +79,19 @@ class Board_TagsSerializer(serializers.ModelSerializer):
 
 
 
-class Arrow_typeSerializer(serializers.ModelSerializer):
+class ArrowTypeSerializer(serializers.ModelSerializer):
+
      class Meta:
           model = Arrow_type
-          # fields = ('id','type')
+          # fields = ('id','arrows')
           fields = '__all__'
 
 
 
 class ArrowSerializer(serializers.ModelSerializer):
+     arrow_types = ArrowTypeSerializer(many=True, read_only=True)
+
      class Meta:
           model = Arrow
-          # fields = ('id','from_card','to_card','label','arrow_type_id','board_id','created_at','updated_at')
+          # fields = ('id','from_card','to_card','label','arrow_type_id','board_id','created_at','updated_at','arrow_types')
           fields = '__all__'
