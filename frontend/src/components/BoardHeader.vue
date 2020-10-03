@@ -75,7 +75,7 @@
                       </div>
                     </div>
 
-                    <div style="display: flex">
+                    <div class="displayFlex">
                       <div class="box_user3">
                         <div id="btn" class="box_indexSns3">
                           <img
