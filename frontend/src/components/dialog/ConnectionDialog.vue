@@ -1,27 +1,43 @@
 <template>
   <div>
-    <div class="modal" v-if="visible">
+    <div class="modal_arrow" v-if="visible">
       <div class="body">
-        <label for="name">Name</label>
-        <input id="name" class="form-control" v-model="connectionForm.name" />
-        <label for="type">Type</label>
-        <select id="type" class="form-control" v-model="connectionForm.type">
-          <option
-            :key="'connection-type-' + item.id"
-            v-for="item in [
-              { name: 'Pass', id: 'pass' },
-              { name: 'Reject', id: 'reject' }
-            ]"
-            :value="item.id"
+        <div class="form-allControl">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            class="form-control form-arrowNameControl"
+            v-model="connectionForm.name"
+          />
+        </div>
+        <div class="form-arrowControl">
+          <label for="type">Type</label>
+          <select
+            id="type"
+            class="form-control form-arrowTypeControl"
+            v-model="connectionForm.type"
           >
-            {{ item.name }}
-          </option>
-        </select>
+            <option
+              :key="'connection-type-' + item.id"
+              v-for="item in [
+                { name: 'Pass', id: 'pass' },
+                { name: 'Reject', id: 'reject' }
+              ]"
+              :value="item.id"
+            >
+              {{ item.name }}
+            </option>
+          </select>
+        </div>
       </div>
       <div class="footer">
-        <button @click="deleteConnection()">Delete</button>
         <button @click="handleClickCancelSaveConnection">Cancel</button>
-        <button @click="handleClickSaveConnection">Ok</button>
+        <button id="btn" class="btn_delete" @click="deleteConnection()">
+          <p class="text_delete">Delete</p>
+        </button>
+        <button id="btn" class="btn_save" @click="handleClickSaveConnection">
+          <p class="text_save">Save</p>
+        </button>
       </div>
     </div>
   </div>
