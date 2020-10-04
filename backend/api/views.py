@@ -13,8 +13,8 @@ from .models import Comment
 from .serializers import CommentSerializer
 from .models import Board
 from .serializers import BoardSerializer
-from .models import Board_Tags
-from .serializers import Board_TagsSerializer
+from .models import Board_Tag
+from .serializers import BoardTagSerializer
 from .models import Tag
 from .serializers import TagSerializer
 from .models import Card
@@ -84,8 +84,8 @@ class TagViewSets(ModelViewSet):
 
 
 class BoardTagsViewSets(ModelViewSet):
-    queryset = Board_Tags.objects.all()
-    serializer_class = Board_TagsSerializer
+    queryset = Board_Tag.objects.all()
+    serializer_class = BoardTagSerializer
 
 # APIのフィルタで使えるフィールドを指定
 #     filter_fields = ('id')

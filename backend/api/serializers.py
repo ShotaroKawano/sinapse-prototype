@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import Like
 from .models import Comment
 from .models import Board
-from .models import Board_Tags
+from .models import Board_Tag
 from .models import Tag
 from .models import Card
 from .models import Arrow
@@ -17,7 +17,7 @@ from django.contrib.auth.models import User
 class UserSerializer(serializers.ModelSerializer):
      class Meta:
           model = User
-          fields = ('username', 'password')
+          fields = ('username',)
 
 
 
@@ -40,28 +40,7 @@ class CommentSerializer(serializers.ModelSerializer):
           # fields = ('id','user','board','content','created_at','updated_at')
           # fields = ('id','username')
           fields = '__all__'
-
-
-
-class BoardSerializer(serializers.ModelSerializer):
-     # user_id = UserSerializer(read_only=True)
-     board_cards = CardSerializer(many=True, read_only=True)
-     # board_cards = serializers.StringRelatedField()
-     board_comments = CommentSerializer(many=True, read_only=True)
-     # cards = 'neko'
-     user = UserSerializer()
-
-     class Meta:
-          model = Board
-          # fields = ('id','title','description','thumbnail','url_tail','is_published','created_at','updated_at','cards')
-          # fields = ['id', 'comments1']
-          # exclude = ['comments']
-          fields = '__all__'
           # depth = 2
-
-     # def get_cards():
-     #      return CardSerializer(many=True, read_only=True)
-
 
 
 class LikeSerializer(serializers.ModelSerializer):
@@ -69,20 +48,6 @@ class LikeSerializer(serializers.ModelSerializer):
           model = Like
           # fields = ('id','user_id','board_id','created_at')
           fields = '__all__'
-
-
-
-# class LikeFilter(filters.FilterSet):
-# # フィルタの定義
-# created = filters.DateTimeFilter(lookup_expr='gt')
-# class Meta:
-#      model = Like
-#      # フィルタを列挙する。
-#      # デフォルトの検索方法でいいなら、モデルフィールド名のフィルタを直接定義できる。
-#      fields = ['created_at']
-
-
-
 
 
 
@@ -94,11 +59,50 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 
-class Board_TagsSerializer(serializers.ModelSerializer):
+class BoardTagSerializer(serializers.ModelSerializer):
+     # tag_boards = TagSerializer(many=True, read_only=True)
+     tag = TagSerializer()
+
      class Meta:
-          model = Board_Tags
-          # fields = ('id', 'board', 'tag')
-          fields = '__all__'
+          model = Board_Tag
+          fields = ('tag',)
+          # fields = '__all__'
+
+
+
+class BoardSerializer(serializers.ModelSerializer):
+     # user_id = UserSerializer(read_only=True)
+     like_count = serializers.SerializerMethodField()
+     comment_count = serializers.SerializerMethodField()
+     user = UserSerializer(read_only=True)
+     board_tags = BoardTagSerializer(many=True, read_only=True)
+     board_cards = CardSerializer(many=True, read_only=True)
+     board_comments = CommentSerializer(many=True, read_only=True)
+     # board_cards = serializers.StringRelatedField()
+     # cards = 'neko'
+
+     class Meta:
+          model = Board
+          fields = ('id', 'title', 'description', 'thumbnail', 'url_tail', 'is_published', 'created_at', 'updated_at', 'like_count', 'comment_count', 'user', 'board_tags', 'board_cards', 'board_comments')
+          # fields = '__all__'
+          # depth = 2
+
+     def get_like_count(self, instance):
+          return instance.board_likes.count()
+
+     def get_comment_count(self, instance):
+          return instance.board_comments.count()
+
+
+
+# class LikeFilter(filters.FilterSet):
+# # フィルタの定義
+# created = filters.DateTimeFilter(lookup_expr='gt')
+# class Meta:
+#      model = Like
+#      # フィルタを列挙する。
+#      # デフォルトの検索方法でいいなら、モデルフィールド名のフィルタを直接定義できる。
+#      fields = ['created_at']
 
 
 

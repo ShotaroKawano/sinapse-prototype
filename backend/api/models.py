@@ -3,6 +3,14 @@ from django.contrib.auth.models import User
 
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+
 class Board(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -15,7 +23,8 @@ class Board(models.Model):
     # 多対多のrelated_nameはこちらにつけるべきなのかもしれない
     # likes = models.ManyToManyField(User, through='Like', related_name='likes')
     # comments1 = models.ManyToManyField(User, through='Comment', related_name='comments2')
-    # tags = models.ManyToManyField('Tag', through='Board_Tags', related_name='tags')
+    # tags = models.ManyToManyField(Tag, through='Board_Tag', related_name='tags')
+    # ManyToManyをBoardではない方のテーブルにつければいいのでは？
 
     def __str__(self):
         return self.title
@@ -61,17 +70,9 @@ class Comment(models.Model):
 
 
 
-class Tag(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-
-
-class Board_Tags(models.Model):
-    board = models.ForeignKey(Board, on_delete=models.CASCADE)
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+class Board_Tag(models.Model):
+    board = models.ForeignKey(Board, related_name='board_tags', on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, related_name='tag_boards',  on_delete=models.CASCADE)
 
     def __str__(self):
         return self.board.title + ' tagged with ' + self.tag.name
@@ -87,12 +88,12 @@ class Arrow_type(models.Model):
 
 
 class Arrow(models.Model):
-    from_card = models.ForeignKey(Card, related_name='board_from_cards', on_delete=models.CASCADE)
+    from_card = models.ForeignKey('Card', related_name='board_from_cards', on_delete=models.CASCADE)
     from_position = models.CharField(max_length=255)
-    to_card = models.ForeignKey(Card, related_name='board_to_cards', on_delete=models.CASCADE)
+    to_card = models.ForeignKey('Card', related_name='board_to_cards', on_delete=models.CASCADE)
     to_position = models.CharField(max_length=255)
     label = models.CharField(max_length=255)
-    arrow_type = models.ForeignKey(Arrow_type, on_delete=models.CASCADE)
+    arrow_type = models.ForeignKey('Arrow_type', on_delete=models.CASCADE)
     board = models.ForeignKey(Board, related_name='board_arrows', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
