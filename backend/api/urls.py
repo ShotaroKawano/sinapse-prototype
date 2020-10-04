@@ -24,7 +24,8 @@ router.register(r'arrow_types', ArrowTypeViewSets)
 
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    # path('boards/', BoardViewSets.as_view())
     # qiita/api/stock/
 ########################################
     # url(r'like/', include(router.urls)),

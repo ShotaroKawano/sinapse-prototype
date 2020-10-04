@@ -14,7 +14,7 @@ class Board(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # 多対多のrelated_nameはこちらにつけるべきなのかもしれない
     likes = models.ManyToManyField(User, through='Like', related_name='likes')
-    comments = models.ManyToManyField(User, through='Comment', related_name='comments')
+    comments1 = models.ManyToManyField(User, through='Comment', related_name='comments2')
     tags = models.ManyToManyField('Tag', through='Board_Tags', related_name='tags')
 
     def __str__(self):
@@ -54,7 +54,7 @@ class Comment(models.Model):
     board = models.ForeignKey(Board, related_name='board_comments', on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.board.title + ' commented by ' + self.user.username + ' ' + self.content

@@ -9,29 +9,54 @@ from .models import Card
 from .models import Arrow
 from .models import Arrow_type
 
+from django.contrib.auth.models import User
+
 
 
 #今後dbに合わせて加工必要
+class UserSerializer(serializers.ModelSerializer):
+     class Meta:
+          model = User
+          fields = ('username', 'password')
+
+
+
 class CardSerializer(serializers.ModelSerializer):
      # boards = BoardSerializer(many=True, read_only=True)
 
      class Meta:
           model = Card
           # fields = ('id','url','title','summary','thumbnail','position_x','position_y','created_at','updated_at','boards')
-          fields = '__all__'
+          fields = ('id','url','title','summary','thumbnail','created_at','updated_at')
+          # fields = '__all__'
+
+class CommentSerializer(serializers.ModelSerializer):
+     class Meta:
+          model = Comment
+          # fields = ('id','user_id','board_id','content','created_at','update_at')
+          # fields = ('id','user','board','content','created_at','updated_at')
+          fields = ('id','username')
+          # fields = '__all__'
 
 
 
 class BoardSerializer(serializers.ModelSerializer):
      # user_id = UserSerializer()
-     cards = CardSerializer(many=True, read_only=True)
+     board_cards = CardSerializer(many=True, read_only=True)
+     # board_cards = serializers.StringRelatedField()
+     # comments3 = CommentSerializer(many=True, read_only=True)
      # cards = 'neko'
 
      class Meta:
           model = Board
           # fields = ('id','title','description','thumbnail','url_tail','is_published','created_at','updated_at','cards')
-          # fields = ('id','cards')
+          # fields = ['id', 'comments1']
+          # exclude = ['comments']
           fields = '__all__'
+          # depth = 2
+
+     # def get_cards():
+     #      return CardSerializer(many=True, read_only=True)
 
 
 
@@ -54,12 +79,6 @@ class LikeSerializer(serializers.ModelSerializer):
 
 
 
-class CommentSerializer(serializers.ModelSerializer):
-     class Meta:
-          model = Comment
-          # fields = ('id','user_id','board_id','content','created_at','update_at')
-          # fields = ('id','user','board','content','created_at','update_at')
-          fields = '__all__'
 
 
 

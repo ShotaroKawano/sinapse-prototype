@@ -25,11 +25,13 @@ from .models import Arrow_type
 from .serializers import ArrowTypeSerializer
 
 from rest_framework.viewsets import ModelViewSet
+# from rest_framework import generics
 
 
 
 # Create your views here.
 class BoardViewSets(ModelViewSet):
+# class BoardViewSets(generics.ListCreateAPIView):
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
     # APIのフィルタで使えるフィールドを指定
