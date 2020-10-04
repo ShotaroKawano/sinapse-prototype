@@ -1,20 +1,13 @@
 <template>
   <div>
     <div class="modal" v-if="visible">
-      <!-- <div class="header">
-        <span>Edit</span>
-      </div> -->
       <div class="thumbnail">
-        <img
-          :src="nodeForm.thumbnail"
-          alt=""
-          style="width: 100%; border-radius: 10px 10px 0px 0px;"
-        />
+        <img :src="nodeForm.thumbnail" alt="" class="box_thumbnail" />
       </div>
       <div class="body">
         <!-- <input class="form-control" v-model="nodeForm.thumbnail"/> -->
         <label for="url">URL</label>
-        <div style="display: flex;">
+        <div class="box_urlEdit">
           <input class="form-urlControl" id="url" v-model="nodeForm.url" />
           <button id="btn" class="btn_get" @click="handleClickGetInfo">
             <p class="text_get">Get</p>

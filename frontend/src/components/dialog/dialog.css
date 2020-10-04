@@ -25,9 +25,18 @@
 }
 
 .thumbnail > img {
-  width: 300px;
-  height: 200px;
+  max-width: 500px;
+  max-height: 200px;
   object-fit: cover;
+}
+
+.box_thumbnail {
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.box_urlEdit {
+  display: flex;
 }
 
 #btn:hover {
