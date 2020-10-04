@@ -8,7 +8,21 @@
         <textarea class="form_common form_title" v-model="title"> </textarea>
         <div>
           <div id="btn" class="menu" @click="isVisible = !isVisible">
-            ▼
+            <!-- ▼ -->
+            <span v-if="isVisible">
+              <img
+                class="icon_headerUpDown"
+                src="@/assets/images/icons/icons_headerup.png"
+                alt="▼"
+              />
+            </span>
+            <span v-else>
+              <img
+                class="icon_headerUpDown"
+                src="@/assets/images/icons/icons_headerdown.png"
+                alt="▲"
+              />
+            </span>
           </div>
         </div>
       </div>
@@ -463,5 +477,8 @@ export default {
   height: 20px;
   padding-left: 5px;
   margin: 5px 0px 5px 0px;
+}
+.icon_headerUpDown {
+  width: 30px;
 }
 </style>
