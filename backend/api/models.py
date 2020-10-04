@@ -13,9 +13,9 @@ class Board(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # 多対多のrelated_nameはこちらにつけるべきなのかもしれない
-    likes = models.ManyToManyField(User, through='Like', related_name='likes')
-    comments1 = models.ManyToManyField(User, through='Comment', related_name='comments2')
-    tags = models.ManyToManyField('Tag', through='Board_Tags', related_name='tags')
+    # likes = models.ManyToManyField(User, through='Like', related_name='likes')
+    # comments1 = models.ManyToManyField(User, through='Comment', related_name='comments2')
+    # tags = models.ManyToManyField('Tag', through='Board_Tags', related_name='tags')
 
     def __str__(self):
         return self.title
@@ -32,7 +32,7 @@ class Card(models.Model):
     board = models.ForeignKey(Board, related_name='board_cards', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    arrows = models.ManyToManyField('self', through='Arrow', related_name='arrows')
+    # arrows = models.ManyToManyField('self', through='Arrow', related_name='arrows')
 
     def __str__(self):
         return self.title + ' ' + self.url

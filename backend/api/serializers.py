@@ -31,21 +31,25 @@ class CardSerializer(serializers.ModelSerializer):
           # fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
+     # user_comments = UserSerializer(read_only=True)
+     user = UserSerializer(read_only=True)
+
      class Meta:
           model = Comment
           # fields = ('id','user_id','board_id','content','created_at','update_at')
           # fields = ('id','user','board','content','created_at','updated_at')
-          fields = ('id','username')
-          # fields = '__all__'
+          # fields = ('id','username')
+          fields = '__all__'
 
 
 
 class BoardSerializer(serializers.ModelSerializer):
-     # user_id = UserSerializer()
+     # user_id = UserSerializer(read_only=True)
      board_cards = CardSerializer(many=True, read_only=True)
      # board_cards = serializers.StringRelatedField()
-     # comments3 = CommentSerializer(many=True, read_only=True)
+     board_comments = CommentSerializer(many=True, read_only=True)
      # cards = 'neko'
+     user = UserSerializer()
 
      class Meta:
           model = Board
