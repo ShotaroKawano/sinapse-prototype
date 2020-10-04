@@ -1,71 +1,153 @@
 .modal {
-    /* border: 1px solid #7CF8FD; */
-    border: 1px solid white;
-    box-shadow: 0px 0px 10px #5486B9;
-    background-color: white;
-    /* background-color: #353535; */
-    border-color: #707070;
-    position: absolute;
-    top: 14vh;
-    right: 3%;
-    z-index: 10;
-    /* right: 0; */
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-    height: 70vh;
-    border-radius: 6px;
-    color: white;
+  /* border: 1px solid #7CF8FD; */
+  /* border: 5px solid white; */
+  box-shadow: 0px 0px 10px #5486b9;
+  background-color: white;
+  /* background-color: #353535; */
+  border-color: #5486b9;
+  position: absolute;
+  top: 14vh;
+  right: 3%;
+  z-index: 10;
+  /* right: 0; */
+  margin-left: auto;
+  margin-right: auto;
+  width: 22%;
+  /* height: 70vh; */
+  border-radius: 10px;
+  color: white;
 }
 
 .thumbnail {
-    width: 100%;
-    height: 200px;
-    text-align: center;
+  width: 100%;
+  max-height: 230px;
+  text-align: center;
 }
 
 .thumbnail > img {
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
 }
 
-.form-control {
-    display: block;
-    width: 100%;
-    height: 30px;
-    margin-bottom: 10px;
-    /* background-color: #707070; */
-    background-color: white;
-    color: #525E6A;
-    /* appearance: none; */
-    border: 1px solid #707070;
-    border-radius: 10px;
+#btn:hover {
+  /* 必要 */
+  opacity: 0.8; /* 透明度を上げることで、画像の色を薄く見せる。*/
+  cursor: pointer; /* リンクをホバーしたときのカーソルにする。*/
+}
+
+.form-allControl {
+  padding-right: 8px;
+}
+.form-urlControl {
+  display: block;
+  width: 100%;
+  height: 26px;
+  padding: 0px 4px 0px 4px;
+  /* max-height: 200px; */
+  margin-bottom: 10px;
+  /* background-color: #707070; */
+  background-color: white;
+  color: #525e6a;
+  /* appearance: none; */
+  border: 0.5px solid #b4bdc6;
+  border-radius: 5px;
+  resize: vertical;
+  text-overflow: ellipsis;
+}
+.form-titleControl {
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 8px 4px 0px 4px;
+  margin-bottom: 10px;
+  background-color: white;
+  color: #525e6a;
+  /* appearance: none; */
+  border: 0.5px solid #b4bdc6;
+  border-radius: 5px;
+  resize: none;
+  font-size: 14px;
+  font-weight: 550;
+}
+.form-summaryControl {
+  display: block;
+  width: 100%;
+  padding: 8px 4px 8px 4px;
+  /* max-height: 200px; */
+  margin-bottom: 10px;
+  /* background-color: #707070; */
+  background-color: white;
+  color: #525e6a;
+  /* appearance: none; */
+  border: 0.5px solid #b4bdc6;
+  border-radius: 5px;
+  resize: vertical;
 }
 
 label {
-    color: #525E6A;
+  color: #525e6a;
 }
 
 .footer {
-    padding: 10px;
-    text-align: right;
+  padding: 10px;
+  text-align: right;
 }
 
 .footer > button {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .body {
-    padding: 10px;
+  padding: 10px 10px 0px 10px;
 }
 
 .header {
-    padding: 10px;
-    border-bottom: 1px solid #d3d3d3;
+  padding: 10px;
+  border-bottom: 1px solid #d3d3d3;
 }
-
 
 /* .imgaaa {
     border-radius: 4px 0 0 0;
 } */
+
+.btn_get {
+  width: 50px;
+  height: 27px;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid #525e6a;
+  background-color: #525e6a;
+  line-height: 22px;
+  margin-left: 6px;
+}
+.text_get {
+  font-size: 14px;
+  color: #ffffff;
+}
+.btn_delete {
+  width: 50px;
+  height: 28px;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid #525e6a;
+  background-color: #ffffff;
+  line-height: 22px;
+}
+.text_delete {
+  font-size: 14px;
+  color: #525e6a;
+}
+.btn_save {
+  width: 50px;
+  height: 28px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #5486b9;
+  line-height: 22px;
+  margin-left: 10px;
+}
+.text_save {
+  font-size: 14px;
+  color: #ffffff;
+}
