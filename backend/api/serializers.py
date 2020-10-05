@@ -17,7 +17,7 @@ from .models import User
 class UserSerializer(serializers.ModelSerializer):
      class Meta:
           model = User
-          fields = ('username',)
+          fields = ('id', 'username',)
 
 
 
@@ -74,6 +74,7 @@ class BoardTagSerializer(serializers.ModelSerializer):
 
 class BoardSerializer(serializers.ModelSerializer):
      # user_id = UserSerializer(read_only=True)
+     user_id = serializers.IntegerField(write_only=True)
      like_count = serializers.SerializerMethodField()
      comment_count = serializers.SerializerMethodField()
      user = UserSerializer(read_only=True)
@@ -85,7 +86,7 @@ class BoardSerializer(serializers.ModelSerializer):
 
      class Meta:
           model = Board
-          fields = ('id', 'title', 'description', 'thumbnail', 'url_tail', 'is_published', 'created_at', 'updated_at', 'like_count', 'comment_count', 'user', 'board_tags', 'board_cards', 'board_comments')
+          fields = ('id', 'title', 'description', 'thumbnail', 'url_tail', 'is_published', 'created_at', 'updated_at', 'like_count', 'comment_count', 'user', 'board_tags', 'board_cards', 'board_comments','user_id')
           # fields = '__all__'
           # depth = 2
 
@@ -94,6 +95,16 @@ class BoardSerializer(serializers.ModelSerializer):
 
      def get_comment_count(self, instance):
           return instance.board_comments.count()
+
+     def create(self, validated_data):
+          # user = validated_data.pop('user')
+          # board = Board.objects.create(**validated_data)
+          print('/////////////////////')
+          print(validated_data)
+          print('/////////////////////')
+          board = Board.objects.create(**validated_data)
+          # board.save()
+          return board
 
 
 

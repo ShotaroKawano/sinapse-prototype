@@ -98,18 +98,18 @@ export default {
   // },
   methods: {
     search: function () {
-      console.log('koko');
+      // console.log('koko');
       const URL_BASE =
         "http://127.0.0.1:8000/api/boards?title=" +
         "気候変動";
-      console.log("生成されたURL：" + URL_BASE);
+      // console.log("生成されたURL：" + URL_BASE);
       return axios({
         method: "GET",
         url: URL_BASE
       })
         .then(res => {
-          console.dir(res.data);
-          console.log(res.data.board_list);
+          // console.dir(res.data);
+          // console.log(res.data.board_list);
           this.boards = res.data.board_list;
         })
         .catch(err => {
@@ -211,9 +211,9 @@ export default {
   },
   watch: {
     $route() {
-      console.log('route');
-      console.log(this.$route);
-      console.log(this.$route.query.q);
+      // console.log('route');
+      // console.log(this.$route);
+      // console.log(this.$route.query.q);
       let URL_BASE
       if (this.$route.path === '/search') {
         URL_BASE = "http://127.0.0.1:8000/api/boards?title=" + this.$route.query.q;
@@ -225,7 +225,7 @@ export default {
         url: URL_BASE
       })
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.boards = res.data;
       })
       .catch(err => {
@@ -235,13 +235,13 @@ export default {
     }
   },
   created: function() {
-    console.log('route');
-    console.log(this.$route);
-    console.log(this.$route.query.q);
+    // console.log('route');
+    // console.log(this.$route);
+    // console.log(this.$route.query.q);
     const URL_BASE = "http://127.0.0.1:8000/api/boards";
     axios({
       method: "GET",
-      url: URL_BASE
+      url: URL_BASE,
     })
       .then(res => {
         console.log(res.data);

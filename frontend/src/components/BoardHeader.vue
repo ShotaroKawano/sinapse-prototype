@@ -155,9 +155,13 @@ export default {
   data: function() {
     return {
       isVisible: true,
+
       title: null,
       description: null,
       thumbnail: "../assets/images/treediagram.png",
+      url_tail: "12345",
+      is_published: true,
+
       tagList: this.convertTagsToTaglist,
       boardTags: null,
       // tags: [
@@ -165,8 +169,6 @@ export default {
       //   { id: 2, value: '地球温暖化' },
       //   { id: 3, value: '自然電力' },
       // ],
-      urlTail: "",
-      isPublished: true,
       createdAt: "2020/09/20",
       updatedAt: "",
       likes: "162",
@@ -177,27 +179,28 @@ export default {
   },
   methods: {
     updateBoard() {
-      const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
+      // console.log(this.title);
+      const URL_BASE = 'http://127.0.0.1:8000/api/boards/' + this.$route.params.id + '/';
       // const URL_BASE =
       //   "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/update";
-      return axios({
-        method: "POST",
-        url: URL_BASE,
-        data: {
-          board_id: 45,
-          board_title: this.title,
-          board_description: this.description,
-          board_thumbnail: this.thumbnail,
-          board_url_tail: this.url_tail,
-          isPublished: this.isPublished,
-          user_id: 31,
-          // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
-          tagList: this.convertTaglistToTags
+      axios(
+        {
+          method: "PUT",
+          url: URL_BASE,
+          // withCredentials: true,
+          data: {
+            title: this.title,
+            description: this.description,
+            thumbnail: this.thumbnail,
+            url_tail: this.url_tail,
+            is_published: this.is_published,
+            user_id: 1
+            // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
+            // tagList: this.convertTaglistToTags
         }
       })
         .then(res => {
-          console.dir(res.data);
-          console.log(res.data.board_id);
+          // console.dir(res.data);
         })
         .catch(err => {
           console.log("ERROR!! occurred in Backend.");
@@ -206,17 +209,14 @@ export default {
     },
     deleteBoard() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE =
-        "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/delete";
+      const URL_BASE = "http://127.0.0.1:8000/api/boards/" + this.$route.params.id;
       return axios({
         method: "DELETE",
         url: URL_BASE,
-        data: {
-          board_id: 45
-        }
       })
         .then(res => {
-          console.dir(res.data);
+          // console.dir(res.data);
+          this.$router.push('/')
           // console.log(res.data.board_id);
         })
         .catch(err => {
@@ -248,10 +248,10 @@ export default {
   },
   computed: {
     convertBoardTagsToTagList: function() {
-      console.log('kokodesu');
+      // console.log('kokodesu');
       var tagList = ''
       this.boardTags.forEach((tagWrapper, index) => {
-        console.log(tagWrapper)
+        // console.log(tagWrapper)
         if (index === 0) {
           tagList += tagWrapper.tag.name
         } else {
@@ -266,16 +266,16 @@ export default {
   },
   created: function() {
     const URL_BASE = "http://127.0.0.1:8000/api/boards/" + this.$route.params.id;
-    return axios({
+    axios({
       method: "GET",
       url: URL_BASE
     })
       .then(res => {
         // console.dir(res.data);
-        console.dir(res);
+        // console.dir(res);
         // this.board_id = res.data.board_info.board_id
         // console.log((typeof res.data));
-        console.log(res.data);
+        // console.log(res.data);
         this.title = res.data.title;
         this.description = res.data.description;
         this.boardTags = res.data.board_tags;

@@ -1,7 +1,8 @@
 <template>
   <!-- ▼▼▼▼▼ header ▼▼▼▼▼ -->
   <div id="header" class="box_header">
-    <a id="btn" class="name_service" href="/">Sinapse</a>
+    <router-link to="/" id="btn" class="name_service">Sinapse</router-link>
+    <!-- <a id="btn" class="name_service" href="/">Sinapse</a> -->
 
     <div>
       <input
@@ -27,7 +28,10 @@
           alt="プロフィール画像"
         />
       </div>
-      <div class="btn_create">
+      <div
+        class="btn_create"
+        @click="createBoard()"
+      >
         <p>✏︎ 投稿</p>
       </div>
     </div>
@@ -39,6 +43,7 @@
 // import axios from "axios";
 // import Vue from "vue";
 // import App from './App'
+import axios from "axios";
 
 export default {
   name: "Header",
@@ -49,7 +54,7 @@ export default {
 
       if (q === null || q === "") {
         // 何もしない
-        console.log("returnKey押下：検索ワードがnullです");
+        // console.log("returnKey押下：検索ワードがnullです");
       } else {
         // console.log("returnKey押下：検索ワードは{ " + q + " }です");
 
@@ -57,6 +62,36 @@ export default {
         this.$router.push('/search?q=' + q)
         // location.href = "http://localhost:8080/search?q=" + q;
       }
+    },
+    createBoard: function() {
+      const URL_BASE = "http://127.0.0.1:8000/api/boards/"
+      // const URL_BASE = "http://127.0.0.1:8000/admin/api/board/add/"
+      axios(
+        {
+          method: "POST",
+          url: URL_BASE,
+          // withCredentials: true,
+          data: {
+            title: 'タイトル',
+            description: 'ディスクリプション',
+            thumbnail: '12345',
+            url_tail: '12345',
+            is_published: true,
+            user_id: 1
+            // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
+            // tagList: this.convertTaglistToTags
+          }
+        })
+        .then(res => {
+          console.log('koko');
+          console.dir(res.data);
+          this.$router.push("/boards/" + res.data.id)
+        })
+        .catch(err => {
+          console.log("ERROR!! occurred in Backend.");
+          console.log(err);
+        }
+      );
     }
   }
 };
