@@ -49,7 +49,7 @@
                   <input
                     v-if="isEditting"
                     class="form_common form_tagList"
-                    v-model="convertTagsToTaglist"
+                    v-model="convertBoardTagsToTagList"
                     @focusout="isEditting = !isEditting"
                     ref="form_tags"
                     id="form_tags"
@@ -59,7 +59,7 @@
                     class="form_tagList displayFlex"
                     @click="hadleClickTags()"
                   >
-                    <div v-for="tag in tags" :key="tag">#{{ tag }}</div>
+                  <div v-for="tagWrapper in boardTags" :key="tagWrapper.tag.id">#{{ tagWrapper.tag.name }}</div>
                     <!-- <div class="">#地球温暖化、</div> -->
                     <!-- <div class="">#自然電力</div> -->
                   </div>
@@ -159,7 +159,7 @@ export default {
       description: null,
       thumbnail: "../assets/images/treediagram.png",
       tagList: this.convertTagsToTaglist,
-      tags: null,
+      boardTags: null,
       // tags: [
       //   { id: 1, value: '気候変動' },
       //   { id: 2, value: '地球温暖化' },
@@ -177,9 +177,9 @@ export default {
   },
   methods: {
     updateBoard() {
-      // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE =
-        "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/update";
+      const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
+      // const URL_BASE =
+      //   "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/update";
       return axios({
         method: "POST",
         url: URL_BASE,
@@ -236,20 +236,36 @@ export default {
       // this.$refs.form_tags.focus()
       // el.focus()
     },
-    convertTaglistToTags: function() {
-      return this.tagList.split(",");
-    }
+    // convertBoardTagsToTagList: function() {
+    //   console.log('kokodesu');
+    //   var tagList = ''
+    //   boardTags.forEach(tagWrapper => {
+    //     console.log(tagWrapper);
+    //     tagList += ', ' + tagWrapper.name
+    //   });
+    //   return tagList
+    // }
   },
   computed: {
-    // convertTaglistToTags: function() {
-    //   return this.tagList.split(',')
-    // }
-    convertTagsToTaglist: function() {
-      return this.tags.join(" #");
+    convertBoardTagsToTagList: function() {
+      console.log('kokodesu');
+      var tagList = ''
+      this.boardTags.forEach((tagWrapper, index) => {
+        console.log(tagWrapper)
+        if (index === 0) {
+          tagList += tagWrapper.tag.name
+        } else {
+          tagList += ',' + tagWrapper.tag.name
+        }
+      });
+      return tagList
     }
+    // convertTagsToTaglist: function() {
+    //   return this.tags.join(" #");
+    // }
   },
-  mounted: function() {
-    const URL_BASE = "http://127.0.0.1:8000/api/board/2";
+  created: function() {
+    const URL_BASE = "http://127.0.0.1:8000/api/boards/1";
     return axios({
       method: "GET",
       url: URL_BASE
@@ -259,11 +275,10 @@ export default {
         console.dir(res);
         // this.board_id = res.data.board_info.board_id
         // console.log((typeof res.data));
-        console.log(res.data.board_info);
-        console.log(res.data.title);
+        console.log(res.data);
         this.title = res.data.title;
         this.description = res.data.description;
-        this.tags = res.data.tag_list;
+        this.boardTags = res.data.board_tags;
       })
       .catch(err => {
         console.log("ERROR!! occurred in Backend.");
@@ -288,36 +303,6 @@ export default {
 </script>
 
 <style scoped>
-.toggle-enter {
-  /* display: none; */
-}
-.toggle-enter-active {
-  /* animation: display 1s; */
-  /* transition: all 0.5s; */
-  /* overflow: hidden; */
-}
-.toggle-enter-to {
-  /* animation: slide-in 0.5s; */
-  /* display: block; */
-}
-.toggle-leave {
-}
-.toggle-leave-active {
-}
-.toggle-leave-to {
-  /* animation: slide-in 0.5s reverse; */
-  /* height: 0; */
-  /* transition: all 0.5s; */
-}
-
-/* @keyframes slide-in {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(100px);
-  }
-} */
 
 .board_thumbnail {
   width: 150px;

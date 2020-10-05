@@ -33,6 +33,7 @@ module.exports = {
     quotes: "off",
     "key-spacing": "off",
     "one-var": "off",
-    "no-trailing-spaces": "off"
+    "no-trailing-spaces": "off",
+    'no-dupe-keys': 'off'
   }
 }

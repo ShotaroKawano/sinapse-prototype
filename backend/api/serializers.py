@@ -9,8 +9,8 @@ from .models import Card
 from .models import Arrow
 from .models import Arrow_type
 
-from django.contrib.auth.models import User
-
+# from django.contrib.auth.models import User
+from .models import User
 
 
 #今後dbに合わせて加工必要
@@ -61,12 +61,14 @@ class TagSerializer(serializers.ModelSerializer):
 
 class BoardTagSerializer(serializers.ModelSerializer):
      # tag_boards = TagSerializer(many=True, read_only=True)
-     tag = TagSerializer()
+     # tag = TagSerializer()
+     # tag = serializers.DictField(source='tag')
 
      class Meta:
           model = Board_Tag
           fields = ('tag',)
           # fields = '__all__'
+          depth = 2
 
 
 
