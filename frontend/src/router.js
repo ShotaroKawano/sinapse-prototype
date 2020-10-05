@@ -9,7 +9,7 @@ export default new Router({
   mode: "history",
   routes: [
     { path: "/", component: BoardsHome },
-    { path: "/board", component: Board },
+    { path: "/boards/:id", component: Board },
     { path: "/search", component: BoardsHome }
   ]
 });

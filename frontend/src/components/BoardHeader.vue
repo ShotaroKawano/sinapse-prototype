@@ -265,7 +265,7 @@ export default {
     // }
   },
   created: function() {
-    const URL_BASE = "http://127.0.0.1:8000/api/boards/1";
+    const URL_BASE = "http://127.0.0.1:8000/api/boards/" + this.$route.params.id;
     return axios({
       method: "GET",
       url: URL_BASE

@@ -1,7 +1,7 @@
 <template>
   <!-- ▼▼▼▼▼ header ▼▼▼▼▼ -->
   <div id="header" class="box_header">
-    <a id="btn" class="name_service" href="login.html">Sinapse</a>
+    <a id="btn" class="name_service" href="/">Sinapse</a>
 
     <div>
       <input
@@ -54,7 +54,8 @@ export default {
         // console.log("returnKey押下：検索ワードは{ " + q + " }です");
 
         // ページ遷移する
-        location.href = "http://localhost:8080/search?q=" + q;
+        this.$router.push('/search?q=' + q)
+        // location.href = "http://localhost:8080/search?q=" + q;
       }
     }
   }

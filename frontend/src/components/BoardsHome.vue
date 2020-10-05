@@ -1,14 +1,14 @@
 <template>
   <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
   <div class="center_lar boardsWrapper">
-    <div>
+    <!-- <div>
       <h1>q = {{ this.$route.query.q }}</h1>
-    </div>
+    </div> -->
     <!-- ▼▼▼ board1set ▼▼▼ -->
     <router-link
-      to="/board"
       v-for="board in boards"
       :key="board.id"
+      v-bind:to="`boards/${board.id}`"
       class="box_boards1set"
     >
 
@@ -97,26 +97,26 @@ export default {
   //   }
   // },
   methods: {
-    // window: (onload = function(str) {
-    //   console.log('koko');
-    //   const URL_BASE =
-    //     "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
-    //     "気候変動";
-    //   console.log("生成されたURL：" + URL_BASE);
-    //   return axios({
-    //     method: "GET",
-    //     url: URL_BASE
-    //   })
-    //     .then(res => {
-    //       console.dir(res.data);
-    //       console.log(res.data.board_list);
-    //       this.boards = res.data.board_list;
-    //     })
-    //     .catch(err => {
-    //       console.log("ERROR!! occurred in Backend.");
-    //       console.log(err);
-    //     });
-    // })
+    search: function () {
+      console.log('koko');
+      const URL_BASE =
+        "http://127.0.0.1:8000/api/boards?title=" +
+        "気候変動";
+      console.log("生成されたURL：" + URL_BASE);
+      return axios({
+        method: "GET",
+        url: URL_BASE
+      })
+        .then(res => {
+          console.dir(res.data);
+          console.log(res.data.board_list);
+          this.boards = res.data.board_list;
+        })
+        .catch(err => {
+          console.log("ERROR!! occurred in Backend.");
+          console.log(err);
+        });
+    }
   },
   data: function() {
     return {
@@ -209,9 +209,37 @@ export default {
       return this.tags.slice(0, 3);
     }
   },
-  method: function() {
+  watch: {
+    $route() {
+      console.log('route');
+      console.log(this.$route);
+      console.log(this.$route.query.q);
+      let URL_BASE
+      if (this.$route.path === '/search') {
+        URL_BASE = "http://127.0.0.1:8000/api/boards?title=" + this.$route.query.q;
+      } else {
+        URL_BASE = "http://127.0.0.1:8000/api/boards";
+      }
+      axios({
+        method: "GET",
+        url: URL_BASE
+      })
+      .then(res => {
+        console.log(res.data);
+        this.boards = res.data;
+      })
+      .catch(err => {
+        console.log("ERROR!! occurred in Backend.");
+        console.log(err);
+      });
+    }
+  },
+  created: function() {
+    console.log('route');
+    console.log(this.$route);
+    console.log(this.$route.query.q);
     const URL_BASE = "http://127.0.0.1:8000/api/boards";
-    return axios({
+    axios({
       method: "GET",
       url: URL_BASE
     })
