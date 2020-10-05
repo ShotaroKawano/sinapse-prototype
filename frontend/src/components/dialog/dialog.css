@@ -6,8 +6,8 @@
   /* background-color: #353535; */
   border-color: #5486b9;
   position: absolute;
-  top: 14vh;
-  right: 3%;
+  top: 230px;
+  right: 2%;
   z-index: 10;
   /* right: 0; */
   margin-left: auto;
@@ -21,13 +21,13 @@
 .modal_arrow {
   /* border: 1px solid #7CF8FD; */
   /* border: 5px solid white; */
-  box-shadow: 0px 20px 20px #5486b990;
+  box-shadow: 0px 0px 10px #5486b990;
   background-color: white;
   /* background-color: #353535; */
   border-color: #5486b9;
   position: absolute;
-  top: 14vh;
-  right: 3%;
+  top: 240px;
+  right: 2%;
   z-index: 10;
   /* right: 0; */
   margin-left: auto;
