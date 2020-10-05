@@ -97,6 +97,7 @@ export default {
   // },
   methods: {
     window: (onload = function(str) {
+      console.log('koko');
       const URL_BASE =
         "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
         "気候変動";
