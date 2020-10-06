@@ -85,15 +85,13 @@ export default {
   },
   methods: {
     deleteNode() {
+      // TODO: 画面上のカードもdelete
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
       const URL_BASE =
-        "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/card/delete";
+        "http://127.0.0.1:8000/api/cards/" + this.node.id + '/';
       return axios({
         method: "DELETE",
         url: URL_BASE,
-        data: {
-          card_id: 45
-        }
       })
         .then(res => {
           console.dir(res.status);
@@ -131,31 +129,44 @@ export default {
     },
     // save押下時に実行される
     handleClickSaveNode() {
+      // console.log(this.nodeForm.url)
+      // console.log(this.nodeForm.title)
+      // console.log(this.nodeForm.summary)
+      // console.log(this.nodeForm.thumbnail)
+      // console.log(parseInt(this.node.x))
+      // console.log(parseInt(this.node.y))
+      // console.log(parseInt(this.$route.params.id))
       const URL_BASE =
-        "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/card/update";
+        "http://127.0.0.1:8000/api/cards/" + this.node.id + '/';
       axios({
-        method: "POST",
+        method: "PUT",
         url: URL_BASE,
         data: {
-          card_id: 23,
-          card_url: "https://www.econetworks.jp/translationtips/2019/12/cri/",
-          card_title: "気候変動の影響、日本が世界一に",
-          card_summary:
-            "日本は世界で最も温暖化による人命危機が及びやすい国である。",
-          card_thumbnail:
-            "https://www.germanwatch.org/sites/germanwatch.org/files/2019-12/climate_risk_index_2020_world_map_ranking_2018.jpg"
+          // url: this.nodeForm.url,
+          // title: this.nodeForm.title,
+          // summary: this.nodeForm.summary,
+          // thumbnail: this.nodeForm.thumbnail,
+          // position_x: 1,
+          // position_y: 1,
+          // board: 2
+          url: this.nodeForm.url,
+          title: this.nodeForm.title,
+          summary: this.nodeForm.summary,
+          thumbnail: this.nodeForm.thumbnail,
+          position_x: parseInt(this.node.x),
+          position_y: parseInt(this.node.y),
+          // board_idはread_onlyにして送信しないようにしたい
+          board: parseInt(this.$route.params.id)
         }
       })
         .then(res => {
-          console.dir(res.data);
-          console.log(res.data.card_id);
+          console.log(res.data);
         })
         .catch(err => {
           console.log("ERROR!! occurred in Backend.");
           console.log(err);
         });
 
-      console.log("koko");
       this.$emit(
         "update:node",
         Object.assign(this.node, {

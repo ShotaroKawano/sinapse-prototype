@@ -3,7 +3,10 @@
     <BoardHeader></BoardHeader>
     <div class="container">
       <div id="toolbar">
-        <button
+        <button @click="handleDblClick">
+          Add(Double-click canvas)
+        </button>
+        <!-- <button
           @click="
             $refs.chart.add({
               id: +new Date(),
@@ -17,7 +20,7 @@
           "
         >
           Add(Double-click canvas)
-        </button>
+        </button> -->
         <button @click="$refs.chart.remove()">Delete(Del)</button>
         <button @click="$refs.chart.editCurrent()">
           Edit(Double-click node)
@@ -84,6 +87,7 @@ export default {
   },
   data: function () {
     return {
+      // APIとキーを合わせれば代入が楽なのに
       nodes: [
         {
           id: 11,
@@ -259,12 +263,36 @@ export default {
       this.$refs.chart.add({
         // id: +new Date(),
         id: (new Date()).getTime(),
-        x: 10,
-        y: 10,
+        x: position.x,
+        y: position.y,
         thumbnail: 'https://placehold.jp/150x100.png',
         url: '',
         title: 'Title',
         summary: 'Summary',
+      });
+            const URL_BASE =
+        "http://127.0.0.1:8000/api/cards/";
+      axios({
+        method: "POST",
+        url: URL_BASE,
+        data: {
+          url: 'nanika',
+          title: 'Title',
+          summary: 'Summary',
+          thumbnail: 'https://placehold.jp/150x100.png',
+          position_x: parseInt(position.x),
+          position_y: parseInt(position.y),
+          // board_idはread_onlyにして送信しないようにしたい
+          board: parseInt(this.$route.params.id)
+        }
+      })
+      .then(res => {
+        console.log('成功');
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log("ERROR!! occurred in Backend.");
+        console.log(err);
       });
     },
     async handleChartSave(nodes, connections) {
@@ -438,6 +466,7 @@ export default {
   /* width: 800px; */
   /* width: 96%; */
   width: 100%;
+  background-color: #F1F2F2;
   margin: auto;
   height: 80vh;
 }

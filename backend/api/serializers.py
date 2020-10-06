@@ -43,6 +43,7 @@ class ArrowSerializer(serializers.ModelSerializer):
 class CardSerializer(serializers.ModelSerializer):
      # boards = BoardSerializer(many=True, read_only=True)
      # board_from_cards = ArrowSerializer(many=True, read_only=True)
+     # board = serializers.IntegerField(read_only=True)
 
      class Meta:
           model = Card
