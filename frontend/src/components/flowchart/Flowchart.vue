@@ -641,6 +641,22 @@ export default {
     removeConnection(conn) {
       let index = this.internalConnections.indexOf(conn);
       this.internalConnections.splice(index, 1);
+      // // 削除API
+      // // TODO: 画面上のアローもdelete
+      // // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
+      // const URL_BASE = "http://127.0.0.1:8000/api/arrows/" + conn.id + '/';
+      // return axios({
+      //   method: "DELETE",
+      //   url: URL_BASE,
+      // })
+      // .then(res => {
+      //   console.dir(res.status);
+      //   // console.log(res.data.board_id);
+      // })
+      // .catch(err => {
+      //   console.log("ERROR!! occurred in Backend.");
+      //   console.log(err);
+      // })
     },
     moveCurrentNode(x, y) {
       if (this.currentNodes.length > 0 && !this.readonly) {
