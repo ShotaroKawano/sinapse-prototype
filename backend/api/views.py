@@ -112,3 +112,10 @@ class ArrowViewSets(ModelViewSet):
     serializer_class = ArrowSerializer
     # APIのフィルタで使えるフィールドを指定
     # filter_fields = ('id','from_card_id','to_card_id','label','arrow_type_id','created_at','updated_at')
+    def get_queryset(self):
+        queryset = Arrow.objects.all()
+        board_id = self.request.query_params.get("board_id", None)
+        if board_id is not None:
+            #部分一致検索ロジック
+            queryset = queryset.filter(board_id=board_id)
+        return queryset

@@ -33,6 +33,7 @@ import {
   pointRectangleIntersection,
 } from "../../utils/math";
 import { line2, lineTo } from "../../utils/svg";
+import axios from "axios";
 
 export default {
   name: "flowchart",
@@ -158,6 +159,43 @@ export default {
               name: "Pass",
             };
             this.internalConnections.push(conn);
+            console.log('こちら');
+            // arrow追加処理
+            const URL_BASE = "http://127.0.0.1:8000/api/arrows/";
+            console.log('kokomadekiteru');
+            axios({
+              method: "POST",
+              url: URL_BASE,
+              data: {
+                  from_card: parseInt(this.connectingInfo.source.id),
+                  from_position: this.connectingInfo.sourcePosition,
+                  to_card: parseInt(this.hoveredConnector.node.id),
+                  to_position: this.hoveredConnector.position,
+                  arrow_type: 1,
+                  // arrow_type: {
+                  //   id: 1,
+                  //   type: "片方向矢印"
+                  // },
+                  label: "Pass",
+                  board_id: parseInt(this.$route.params.id)
+              }
+            })
+            .then(res => {
+              console.log('connector 成功');
+              console.log(res.data);
+              // this.$refs.chart.add({
+              //   // id: +new Date(),
+              //   // id: (new Date()).getTime(),
+              //   id: res.data.id,
+              //   x: position.x,
+              //   y: position.y,
+              //   thumbnail: 'https://placehold.jp/150x100.png',
+              //   url: 'dummyurl',
+              //   title: 'Title',
+              //   summary: 'Summary',
+              // });
+            })
+            // ここまで
           }
         }
         // 初期化
@@ -571,6 +609,7 @@ export default {
                   name: "Pass",
                 };
                 that.internalConnections.push(conn);
+                console.log('実はこちら');
               }
               that.connectingInfo.source = null;
               that.connectingInfo.sourcePosition = null;
@@ -641,22 +680,22 @@ export default {
     removeConnection(conn) {
       let index = this.internalConnections.indexOf(conn);
       this.internalConnections.splice(index, 1);
-      // // 削除API
-      // // TODO: 画面上のアローもdelete
-      // // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      // const URL_BASE = "http://127.0.0.1:8000/api/arrows/" + conn.id + '/';
-      // return axios({
-      //   method: "DELETE",
-      //   url: URL_BASE,
-      // })
-      // .then(res => {
-      //   console.dir(res.status);
-      //   // console.log(res.data.board_id);
-      // })
-      // .catch(err => {
-      //   console.log("ERROR!! occurred in Backend.");
-      //   console.log(err);
-      // })
+      // 削除API
+      // TODO: 画面上のアローもdelete
+      // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
+      const URL_BASE = "http://127.0.0.1:8000/api/arrows/" + conn.id + '/';
+      return axios({
+        method: "DELETE",
+        url: URL_BASE,
+      })
+      .then(res => {
+        console.dir(res.status);
+        // console.log(res.data.board_id);
+      })
+      .catch(err => {
+        console.log("ERROR!! occurred in Backend.");
+        console.log(err);
+      })
     },
     moveCurrentNode(x, y) {
       if (this.currentNodes.length > 0 && !this.readonly) {

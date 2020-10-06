@@ -73,20 +73,33 @@ export default {
   methods: {
     async handleClickSaveConnection() {
       const URL_BASE =
-        "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/arrow/update";
+        "http://127.0.0.1:8000/api/arrows/" + this.connection.id + "/";
+      console.log(parseInt(this.connection.source.id));
+      console.log(this.connection.source.position);
+      console.log(parseInt(this.connection.destination.id));
+      console.log(this.connection.destination.position);
+      console.log(1);
+      console.log(this.connectionForm.name);
+      console.log(parseInt(this.$route.params.id));
       axios({
-        method: "POST",
+        method: "PUT",
         url: URL_BASE,
         data: {
-          arrow_id: 5,
-          from_id: 35,
-          to_id: 36,
-          label: "CO2の異常な濃度上昇",
-          board_id: 123,
-          arrow_type_id: 1
+          from_card: parseInt(this.connection.source.id),
+          from_position: this.connection.source.position,
+          to_card: parseInt(this.connection.destination.id),
+          to_position: this.connection.destination.position,
+          arrow_type: 1,
+          // arrow_type: {
+          //   id: 1,
+          //   type: "片方向矢印"
+          // },
+          label: this.connectionForm.name,
+          board_id: parseInt(this.$route.params.id)
         }
       })
         .then(res => {
+          console.log('PUT成功');
           console.dir(res.data);
           console.log(res.data.arrow_id);
         })

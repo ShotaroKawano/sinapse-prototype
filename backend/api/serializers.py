@@ -31,12 +31,26 @@ class ArrowTypeSerializer(serializers.ModelSerializer):
 
 
 class ArrowSerializer(serializers.ModelSerializer):
-     arrow_types = ArrowTypeSerializer(read_only=True)
+     # arrow_type = ArrowTypeSerializer()
+     board_id = serializers.IntegerField()
 
      class Meta:
           model = Arrow
-          # fields = ('id','from_card','to_card','label','arrow_type_id','board_id','created_at','updated_at','arrow_types')
-          fields = '__all__'
+          fields = ('id','from_card','from_position','to_card','to_position','label','arrow_type','board_id','created_at','updated_at')
+          # fields = '__all__'
+
+     def create(self, validated_data):
+          # user = validated_data.pop('user')
+          # board = Board.objects.create(**validated_data)
+          # arrow_type_instance = validated_data.pop('arrow_type')
+          print('/////////////////////')
+          print(validated_data)
+          # print(arrow_type_instance)
+          print('/////////////////////')
+          # arrow = Arrow.objects.create(arrow_type=arrow_type_instance, **validated_data)
+          arrow = Arrow.objects.create(**validated_data)
+          # board.save()
+          return arrow
 
 
 
