@@ -21,14 +21,34 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 
+class ArrowTypeSerializer(serializers.ModelSerializer):
+
+     class Meta:
+          model = Arrow_type
+          # fields = ('id','arrows')
+          fields = '__all__'
+
+
+
+class ArrowSerializer(serializers.ModelSerializer):
+     arrow_types = ArrowTypeSerializer(read_only=True)
+
+     class Meta:
+          model = Arrow
+          # fields = ('id','from_card','to_card','label','arrow_type_id','board_id','created_at','updated_at','arrow_types')
+          fields = '__all__'
+
+
+
 class CardSerializer(serializers.ModelSerializer):
      # boards = BoardSerializer(many=True, read_only=True)
+     # board_from_cards = ArrowSerializer(many=True, read_only=True)
 
      class Meta:
           model = Card
           # fields = ('id','url','title','summary','thumbnail','position_x','position_y','created_at','updated_at','boards')
-          fields = ('id','url','title','summary','thumbnail','created_at','updated_at')
-          # fields = '__all__'
+          # fields = ('id','url','title','summary','thumbnail','board_arrows','created_at','updated_at')
+          fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
      # user_comments = UserSerializer(read_only=True)
@@ -116,22 +136,3 @@ class BoardSerializer(serializers.ModelSerializer):
 #      # フィルタを列挙する。
 #      # デフォルトの検索方法でいいなら、モデルフィールド名のフィルタを直接定義できる。
 #      fields = ['created_at']
-
-
-
-class ArrowTypeSerializer(serializers.ModelSerializer):
-
-     class Meta:
-          model = Arrow_type
-          # fields = ('id','arrows')
-          fields = '__all__'
-
-
-
-class ArrowSerializer(serializers.ModelSerializer):
-     arrow_types = ArrowTypeSerializer(many=True, read_only=True)
-
-     class Meta:
-          model = Arrow
-          # fields = ('id','from_card','to_card','label','arrow_type_id','board_id','created_at','updated_at','arrow_types')
-          fields = '__all__'

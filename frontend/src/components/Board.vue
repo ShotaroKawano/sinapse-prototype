@@ -72,6 +72,7 @@ import Flowchart from "./flowchart/Flowchart"
 import '@/assets/css/reset.css';
 import '@/assets/css/style.css';
 import BoardHeader from './BoardHeader'
+import axios from "axios";
 
 export default {
   name: 'Board',
@@ -368,6 +369,43 @@ export default {
     //     .style("overflow-wrap", "break-word")
     //     .text(() => node.summary)
     // },
+  },
+  created: function() {
+    const URL_BASE = "http://127.0.0.1:8000/api/cards/?board_id=" + this.$route.params.id;
+    axios({
+      method: "GET",
+      url: URL_BASE
+    })
+    .then(res => {
+      console.log('koko1');
+      console.log(res.data);
+      // this.nodes = [];
+      for (let i in res.data) {
+        console.log(i)
+        this.$refs.chart.add(
+          {
+            id: res.data[i]['id'],
+            x: res.data[i]['position_x'],
+            y: res.data[i]['position_y'],
+            thumbnail: res.data[i]['thumbnail'],
+            url: res.data[i]['url'],
+            title: res.data[i]['title'],
+            summary: res.data[i]['summary'],
+        // id: (new Date()).getTime(),
+        // x: 10,
+        // y: 10,
+        // thumbnail: 'https://placehold.jp/150x100.png',
+        // url: '',
+        // title: 'Title',
+        // summary: 'Summary',
+          }
+        )
+      }
+    })
+    .catch(err => {
+      console.log("ERROR!! occurred in Backend.");
+      console.log(err);
+    });
   }
 }
 
