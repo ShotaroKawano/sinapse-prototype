@@ -1,28 +1,29 @@
 <template>
   <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
   <div class="center_lar boardsWrapper">
-    <div>
+    <!-- <div>
       <h1>q = {{ this.$route.query.q }}</h1>
-    </div>
+    </div> -->
     <!-- ▼▼▼ board1set ▼▼▼ -->
     <router-link
-      to="/board"
       v-for="board in boards"
       :key="board.id"
+      v-bind:to="`boards/${board.id}`"
       class="box_boards1set"
     >
+
       <!-- ▼▼ 概要 ▼▼ -->
       <div class="box_indexBoards">
         <!-- ▼ タイトル ▼ -->
         <div>
           <h2 class="indexTitle">
-            {{ board.board_title }}
+            {{ board.title }}
           </h2>
         </div>
         <!-- ▼ 見出し ▼ -->
         <div>
           <p class="indexSubheading">
-            {{ board.board_desription }}
+            {{ board.description }}
           </p>
         </div>
         <!-- ▼ ハッシュタグ ▼ -->
@@ -32,8 +33,8 @@
               <p id="btn" class="indexHashtag">{{ tag.name }}</p>
             </li>
           </ul> -->
-          <div id="btn" v-for="tag in board.tag_list" :key="tag.id">
-            <p class="indexHashtag">#{{ tag.value }}</p>
+          <div id="btn" v-for="tagWrapper in board.board_tags" :key="tagWrapper.tag.id">
+            <p class="indexHashtag">#{{ tagWrapper.tag.name }}</p>
           </div>
         </div>
 
@@ -48,7 +49,7 @@
           </div>
           <div class="box_NameAndCreatdate">
             <div>
-              <p class="indexUsername">{{ board.user_name }}</p>
+              <p class="indexUsername">{{ board.user.username }}</p>
             </div>
             <div>
               <p class="indexCreatdate">{{ board.updated_at }}</p>
@@ -96,78 +97,88 @@ export default {
   //   }
   // },
   methods: {
-    window: (onload = function(str) {
-      console.log('koko');
+    search: function () {
+      // console.log('koko');
       const URL_BASE =
-        "https://e1bca722-eae2-4b02-bb29-f560fd850314.mock.pstmn.io/search?q=" +
+        "http://127.0.0.1:8000/api/boards?title=" +
         "気候変動";
-      console.log("生成されたURL：" + URL_BASE);
+      // console.log("生成されたURL：" + URL_BASE);
       return axios({
         method: "GET",
         url: URL_BASE
       })
         .then(res => {
-          console.dir(res.data);
-          console.log(res.data.board_list);
+          // console.dir(res.data);
+          // console.log(res.data.board_list);
           this.boards = res.data.board_list;
         })
         .catch(err => {
           console.log("ERROR!! occurred in Backend.");
           console.log(err);
         });
-    })
+    }
   },
   data: function() {
     return {
       boards: [
         {
-          board_id: 1,
-          board_title: "気候変動の影響による日本の危険性と今できること",
-          board_desription:
+          id: 1,
+          title: "気候変動の影響による日本の危険性と今できること",
+          description:
             "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
-          board_thunbnail: "aa",
+          thunbnail: "aa",
           // tags: [
           //   { name: "#気候変動" },
           //   { name: "#地球温暖化" },
           //   { name: "#自然電力" }
           // ],
-          tag_list: [
-            { id: 1, value: "気候変動" },
-            { id: 2, value: "地球温暖化" },
-            { id: 3, value: "自然電力" }
+          board_tags: [
+            {
+              tag: { id: 1, name: "気候変動" },
+              tag: { id: 2, name: "地球温暖化" },
+              tag: { id: 3, name: "自然電力" },
+            }
+            // { id: 2, name: "地球温暖化" },
+            // { id: 3, name: "自然電力" }
           ],
-          user_icon: "user00",
-          user_name: "川野 翔太郎",
+          user: {
+            user_name: "川野 翔太郎",
+            user_icon: "user00",
+          },
           updated_at: "2020/09/20",
-          comments: 123,
-          likes: 456
+          comment_count: 123,
+          like_count: 456
         },
         {
-          board_id: 2,
-          board_title: "気候変動の影響による日本の危険性と今できること",
-          board_desription:
+          id: 2,
+          title: "気候変動の影響による日本の危険性と今できること",
+          description:
             "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
-          board_thunbnail: "aa",
+          thunbnail: "aa",
           // tags: [
           //   { name: "#気候変動" },
           //   { name: "#地球温暖化" },
           //   { name: "#自然電力" }
           // ],
-          tag_list: [
-            { id: 1, value: "気候変動" },
-            { id: 2, value: "地球温暖化" },
-            { id: 3, value: "自然電力" }
+          board_tags: [
+            {
+              tag: { id: 1, name: "気候変動" },
+              tag: { id: 2, name: "地球温暖化" },
+              tag: { id: 3, name: "自然電力" },
+            }
           ],
-          user_icon: "user00",
-          user_name: "川野 翔太郎",
+          user: {
+            user_name: "川野 翔太郎",
+            user_icon: "user00",
+          },
           updated_at: "2020/09/20",
-          comments: 123,
-          likes: 456
+          comment_count: 123,
+          like_count: 456
         },
         {
-          board_id: 3,
-          board_title: "気候変動の影響による日本の危険性と今できること",
-          board_desription:
+          id: 3,
+          title: "気候変動の影響による日本の危険性と今できること",
+          description:
             "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
           board_thunbnail: "aa",
           // tags: [
@@ -176,15 +187,19 @@ export default {
           //   { name: "#自然電力" }
           // ],
           tag_list: [
-            { id: 1, value: "気候変動" },
-            { id: 2, value: "地球温暖化" },
-            { id: 3, value: "自然電力" }
+            {
+              tag: { id: 1, name: "気候変動" },
+              tag: { id: 2, name: "地球温暖化" },
+              tag: { id: 3, name: "自然電力" },
+            }
           ],
-          user_icon: "user00",
-          user_name: "川野 翔太郎",
+          user: {
+            user_name: "川野 翔太郎",
+            user_icon: "user00",
+          },
           updated_at: "2020/09/20",
-          comments: 123,
-          likes: 456
+          comment_count: 123,
+          like_count: 456
         }
       ]
     };
@@ -193,6 +208,49 @@ export default {
     limitCount() {
       return this.tags.slice(0, 3);
     }
+  },
+  watch: {
+    $route() {
+      // console.log('route');
+      // console.log(this.$route);
+      // console.log(this.$route.query.q);
+      let URL_BASE
+      if (this.$route.path === '/search') {
+        URL_BASE = "http://127.0.0.1:8000/api/boards?title=" + this.$route.query.q;
+      } else {
+        URL_BASE = "http://127.0.0.1:8000/api/boards";
+      }
+      axios({
+        method: "GET",
+        url: URL_BASE
+      })
+      .then(res => {
+        // console.log(res.data);
+        this.boards = res.data;
+      })
+      .catch(err => {
+        console.log("ERROR!! occurred in Backend.");
+        console.log(err);
+      });
+    }
+  },
+  created: function() {
+    // console.log('route');
+    // console.log(this.$route);
+    // console.log(this.$route.query.q);
+    const URL_BASE = "http://127.0.0.1:8000/api/boards";
+    axios({
+      method: "GET",
+      url: URL_BASE,
+    })
+      .then(res => {
+        console.log(res.data);
+        this.boards = res.data;
+      })
+      .catch(err => {
+        console.log("ERROR!! occurred in Backend.");
+        console.log(err);
+      });
   }
 };
 </script>

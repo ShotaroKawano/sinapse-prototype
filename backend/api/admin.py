@@ -7,6 +7,9 @@ from .models import Tag
 from .models import Board_Tag
 from .models import Arrow
 from .models import Arrow_type
+
+from django.contrib.auth.admin import UserAdmin
+from .models import User
 # import pymysql
 # Register your models here.
 
@@ -20,3 +23,5 @@ admin.site.register(Tag)
 admin.site.register(Board_Tag)
 admin.site.register(Arrow)
 admin.site.register(Arrow_type)
+
+admin.site.register(User, UserAdmin)
