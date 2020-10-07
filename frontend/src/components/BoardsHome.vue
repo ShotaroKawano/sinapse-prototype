@@ -359,7 +359,7 @@ p.indexCreatdate {
   background: #ffffff;
   display: flex;
   border-radius: 10px;
-  margin: 20px auto;
+  margin: 30px auto 10px auto;
   text-decoration: none;
 }
 .box_boards1set:hover {
