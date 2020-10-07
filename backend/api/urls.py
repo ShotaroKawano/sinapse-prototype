@@ -11,6 +11,9 @@ from .views import ArrowViewSets
 from .views import ArrowTypeViewSets
 # from django.views.generic import TemplateView
 
+# スクレイピング関連
+from .views import getInfo
+
 
 router = routers.DefaultRouter()
 router.register(r'likes', LikeViewSets)
@@ -23,8 +26,11 @@ router.register(r'arrows', ArrowViewSets)
 router.register(r'arrow_types', ArrowTypeViewSets)
 
 
+
 urlpatterns = [
     path('', include(router.urls)),
+
+    path('scrape/', getInfo, name='url'),
     # path('boards/', BoardViewSets.as_view())
     # qiita/api/stock/
 ########################################

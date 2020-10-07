@@ -95,6 +95,8 @@ export default {
       .then(res => {
         console.dir(res.status);
         // console.log(res.data.board_id);
+        this.$emit('myremove', this.node)
+        console.log('発火');
       })
       .catch(err => {
         console.log("ERROR!! occurred in Backend.");
@@ -105,7 +107,7 @@ export default {
     handleClickGetInfo() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
       const URL_BASE =
-        "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/card/scrape";
+        "http://127.0.0.1:8000/api/scrape/";
       console.log(this.nodeForm.url);
       return axios({
         method: "POST",
@@ -116,10 +118,9 @@ export default {
       })
         .then(res => {
           console.dir(res.data);
-          console.log(res.data.card_title);
-          this.nodeForm.thumbnail = res.data.card_thumbnail;
-          this.nodeForm.title = res.data.card_title;
-          this.nodeForm.summary = res.data.card_summary;
+          this.nodeForm.thumbnail = res.data.soup_img;
+          this.nodeForm.title = res.data.soup_title;
+          this.nodeForm.summary = res.data.soup_desc;
         })
         .catch(err => {
           console.log("ERROR!! occurred in Backend.");

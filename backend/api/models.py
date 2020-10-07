@@ -38,10 +38,10 @@ class Board(models.Model):
 
 
 class Card(models.Model):
-    url = models.CharField(max_length=255)
+    url = models.CharField(max_length=2083)
     title = models.CharField(max_length=255)
     summary = models.TextField()
-    thumbnail = models.CharField(max_length=255)
+    thumbnail = models.CharField(max_length=2083)
     position_x = models.IntegerField()
     position_y = models.IntegerField()
     board = models.ForeignKey(Board, related_name='board_cards', on_delete=models.CASCADE)
