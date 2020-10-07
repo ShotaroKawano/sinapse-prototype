@@ -4,9 +4,7 @@
     <div class="container">
       <div id="toolbar">
         <!-- positionを渡さないaddだったのか -->
-        <button @click="handleDblClick">
-          Add(Double-click canvas)
-        </button>
+        <button @click="handleDblClick">Add(Double-click canvas)</button>
         <!-- <button
           @click="
             $refs.chart.add({
@@ -62,29 +60,28 @@
       >
       </connection-dialog>
     </div>
-
   </div>
 </template>
 
 <script>
 import ConnectionDialog from "./dialog/ConnectionDialog";
-import NodeDialog from "./dialog/NodeDialog"
-import Flowchart from "./flowchart/Flowchart"
+import NodeDialog from "./dialog/NodeDialog";
+import Flowchart from "./flowchart/Flowchart";
 // import * as d3 from "d3";
 // import { roundTo20 } from "../utils/math";
 // scriptタグでないと機能しないのか？
-import '@/assets/css/reset.css';
-import '@/assets/css/style.css';
-import BoardHeader from './BoardHeader'
+import "@/assets/css/reset.css";
+import "@/assets/css/style.css";
+import BoardHeader from "./BoardHeader";
 import axios from "axios";
 
 export default {
-  name: 'Board',
+  name: "Board",
   components: {
     ConnectionDialog,
     NodeDialog,
     Flowchart,
-    BoardHeader
+    BoardHeader,
   },
   data: function () {
     return {
@@ -260,41 +257,40 @@ export default {
   },
   methods: {
     handleDblClick(position) {
-      const URL_BASE =
-        "http://127.0.0.1:8000/api/cards/";
+      const URL_BASE = "http://127.0.0.1:8000/api/cards/";
       axios({
         method: "POST",
         url: URL_BASE,
         data: {
-          url: 'nanika',
-          title: 'Title',
-          summary: 'Summary',
-          thumbnail: 'https://placehold.jp/150x100.png',
+          url: "nanika",
+          title: "Title",
+          summary: "Summary",
+          thumbnail: "https://placehold.jp/150x100.png",
           position_x: parseInt(position.x),
           position_y: parseInt(position.y),
           // board_idはread_onlyにして送信しないようにしたい
-          board: parseInt(this.$route.params.id)
-        }
+          board: parseInt(this.$route.params.id),
+        },
       })
-      .then(res => {
-        console.log('成功');
-        console.log(res.data);
-        this.$refs.chart.add({
-          // id: +new Date(),
-          // id: (new Date()).getTime(),
-          id: res.data.id,
-          x: position.x,
-          y: position.y,
-          thumbnail: 'https://placehold.jp/150x100.png',
-          url: 'dummyurl',
-          title: 'Title',
-          summary: 'Summary',
+        .then((res) => {
+          console.log("成功");
+          console.log(res.data);
+          this.$refs.chart.add({
+            // id: +new Date(),
+            // id: (new Date()).getTime(),
+            id: res.data.id,
+            x: position.x,
+            y: position.y,
+            thumbnail: "https://placehold.jp/150x100.png",
+            url: "dummyurl",
+            title: "Title",
+            summary: "Summary",
+          });
+        })
+        .catch((err) => {
+          console.log("ERROR!! occurred in Backend.");
+          console.log(err);
         });
-      })
-      .catch(err => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
     },
     async handleChartSave(nodes, connections) {
       // axios.post(url, {nodes, connection}).then(resp => {
@@ -399,82 +395,89 @@ export default {
     //     .text(() => node.summary)
     // },
   },
-  created: function() {
-    const URL_BASE = "http://127.0.0.1:8000/api/cards/?board_id=" + this.$route.params.id;
+  created: function () {
+    const URL_BASE =
+      "http://127.0.0.1:8000/api/cards/?board_id=" + this.$route.params.id;
     axios({
       method: "GET",
-      url: URL_BASE
+      url: URL_BASE,
     })
-    .then(res => {
-      console.log('koko1');
-      console.log(res.data);
-      // this.nodes = [];
-      let nodes2 = []
-      for (let i in res.data) {
-        console.log(i)
-        nodes2.push({
-          id: res.data[i]['id'],
-          x: res.data[i]['position_x'],
-          y: res.data[i]['position_y'],
-          thumbnail: res.data[i]['thumbnail'],
-          url: res.data[i]['url'],
-          title: res.data[i]['title'],
-          summary: res.data[i]['summary'],
-        })
-        this.nodes = nodes2
-        // this.$refs.chart.add(
-        //   {
-        //     id: res.data[i]['id'],
-        //     x: res.data[i]['position_x'],
-        //     y: res.data[i]['position_y'],
-        //     thumbnail: res.data[i]['thumbnail'],
-        //     url: res.data[i]['url'],
-        //     title: res.data[i]['title'],
-        //     summary: res.data[i]['summary'],
-        //   }
-        // )
-      }
-    })
-    .catch(err => {
-      console.log("ERROR!! occurred in Backend.");
-      console.log(err);
-    });
-    const URL_BASE2 = "http://127.0.0.1:8000/api/arrows/?board_id=" + this.$route.params.id;
+      .then((res) => {
+        console.log("koko1");
+        console.log(res.data);
+        // this.nodes = [];
+        let nodes2 = [];
+        for (let i in res.data) {
+          console.log(i);
+          nodes2.push({
+            id: res.data[i]["id"],
+            x: res.data[i]["position_x"],
+            y: res.data[i]["position_y"],
+            thumbnail: res.data[i]["thumbnail"],
+            url: res.data[i]["url"],
+            title: res.data[i]["title"],
+            summary: res.data[i]["summary"],
+          });
+          this.nodes = nodes2;
+          // this.$refs.chart.add(
+          //   {
+          //     id: res.data[i]['id'],
+          //     x: res.data[i]['position_x'],
+          //     y: res.data[i]['position_y'],
+          //     thumbnail: res.data[i]['thumbnail'],
+          //     url: res.data[i]['url'],
+          //     title: res.data[i]['title'],
+          //     summary: res.data[i]['summary'],
+          //   }
+          // )
+        }
+      })
+      .catch((err) => {
+        console.log("ERROR!! occurred in Backend.");
+        console.log(err);
+      });
+    const URL_BASE2 =
+      "http://127.0.0.1:8000/api/arrows/?board_id=" + this.$route.params.id;
     axios({
       method: "GET",
-      url: URL_BASE2
+      url: URL_BASE2,
     })
-    .then(res => {
-      console.log('koko_arrow');
-      console.log(res.data);
-      // this.nodes = [];
-      let connections2 = []
-      for (let i in res.data) {
-        console.log(i)
-        connections2.push({
-          source: { id: res.data[i]['from_card'], position: res.data[i]['from_position'] },
-          destination: { id: res.data[i]['to_card'], position: res.data[i]['to_position'] },
-          id: res.data[i]['id'],
-          type: res.data[i]['arrow_type']['type'],
-          name: res.data[i]['label'],
-          // {
-          //   source: { id: 11, position: "left" },
-          //   destination: { id: 21, position: "top" },
-          //   id: 1,
-          //   type: "pass",
-          //   name: "CO2の異常な濃度上昇",
-          // },
-        })
-        this.connections = connections2
-      }
-    })
-    .catch(err => {
-      console.log("ERROR!! occurred in Backend.");
-      console.log(err);
-    });
-  }
-}
-
+      .then((res) => {
+        console.log("koko_arrow");
+        console.log(res.data);
+        // this.nodes = [];
+        let connections2 = [];
+        for (let i in res.data) {
+          console.log(i);
+          connections2.push({
+            source: {
+              id: res.data[i]["from_card"],
+              position: res.data[i]["from_position"],
+            },
+            destination: {
+              id: res.data[i]["to_card"],
+              position: res.data[i]["to_position"],
+            },
+            id: res.data[i]["id"],
+            type: res.data[i]["arrow_type"]["type"],
+            name: res.data[i]["label"],
+            // {
+            //   source: { id: 11, position: "left" },
+            //   destination: { id: 21, position: "top" },
+            //   id: 1,
+            //   type: "pass",
+            //   name: "CO2の異常な濃度上昇",
+            // },
+          });
+          this.connections = connections2;
+        }
+      })
+      .catch((err) => {
+        console.log("ERROR!! occurred in Backend.");
+        console.log(err);
+      });
+  },
+};
 </script>
 
 <style scoped>
@@ -504,7 +507,7 @@ export default {
   /* width: 800px; */
   /* width: 96%; */
   width: 100%;
-  background-color: #F1F2F2;
+  background-color: #f0f0f0;
   margin: auto;
   height: 80vh;
 }
