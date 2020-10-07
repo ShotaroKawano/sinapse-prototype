@@ -10,7 +10,7 @@ function lineTo(g, x1, y1, x2, y2, lineWidth, strokeStyle, dash) {
       // attr('stroke', '#7CF8FD').
     attr('stroke', '#E1E6EB').
       // attr('stroke', 'red').
-      attr('stroke-width', 3).
+      attr('stroke-width', 4).
       // attr('fill', 'none').
     // attr('fill', '#D1FDFF').
       attr('d', lineGenerator([sta, end]));

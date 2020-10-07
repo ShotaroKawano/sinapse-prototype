@@ -27,12 +27,21 @@ from .serializers import ArrowTypeSerializer
 from rest_framework.viewsets import ModelViewSet
 # from rest_framework import generics
 
+# スクレイピングfunction関連
+from django.views.decorators.csrf import csrf_exempt
+from urllib.request import Request, urlopen
+import urllib.request
+from bs4 import BeautifulSoup
+import json
+from django.http import HttpResponse
 
 
 # Create your views here.
 class BoardViewSets(ModelViewSet):
 # class BoardViewSets(generics.ListCreateAPIView):
-    queryset = Board.objects.all()
+    # queryset = Board.objects.all()
+    # なんで降順にならないの
+    queryset = Board.objects.all().order_by('-id')
     serializer_class = BoardSerializer
     # APIのフィルタで使えるフィールドを指定
 
@@ -119,3 +128,39 @@ class ArrowViewSets(ModelViewSet):
             #部分一致検索ロジック
             queryset = queryset.filter(board_id=board_id)
         return queryset
+
+
+
+@csrf_exempt
+def getInfo(request):
+    json_str = request.body
+    print(json_str)
+    json_data = json.loads(json_str)
+    print(json_data)
+    url = json_data['url']
+    print(url)
+    # list = []
+    dict ={}
+
+    req = Request(url, headers={'User-Agent': 'XYZ/3.0'})
+
+    html = urlopen(req, timeout=10).read()
+    soup = BeautifulSoup(html, "html.parser")
+
+    head_info = soup.find('head')
+    meta_img = head_info.find('meta', {'property' : 'og:image'})
+    soup_img = meta_img['content']
+    meta_description = head_info.find('meta', {'property' : 'og:description'})
+    soup_desc = meta_description['content']
+    soup_title = head_info.find('title').getText()
+
+    # list.append([soup_title, soup_desc, soup_img])
+    dict.update({'soup_title': soup_title})
+    dict.update({'soup_desc': soup_desc})
+    dict.update({'soup_img': soup_img})
+
+    # context = {'list':list}
+    context = {'dict':dict}
+
+    # return HttpResponse(json.dumps(list))
+    return HttpResponse(json.dumps(dict))

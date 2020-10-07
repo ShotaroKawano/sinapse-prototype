@@ -4,9 +4,9 @@
     <div class="container">
       <div id="toolbar">
         <!-- positionを渡さないaddだったのか -->
-        <button @click="handleDblClick">
+        <!-- <button @click="handleDblClick">
           Add(Double-click canvas)
-        </button>
+        </button> -->
         <!-- <button
           @click="
             $refs.chart.add({
@@ -22,11 +22,11 @@
         >
           Add(Double-click canvas)
         </button> -->
-        <button @click="$refs.chart.remove()">Delete(Del)</button>
+        <!-- <button @click="$refs.chart.remove()">Delete(Del)</button>
         <button @click="$refs.chart.editCurrent()">
           Edit(Double-click node)
         </button>
-        <button @click="$refs.chart.save()">Save</button>
+        <button @click="$refs.chart.save()">Save</button> -->
       </div>
       <!-- <flowchart
         :nodes="nodes"
@@ -54,6 +54,7 @@
       <node-dialog
         :visible.sync="nodeDialogVisible"
         :node.sync="nodeForm.target"
+        @myremove="$refs.chart.removeNode($event)"
       ></node-dialog>
       <connection-dialog
         :visible.sync="connectionDialogVisible"
@@ -504,7 +505,7 @@ export default {
   /* width: 800px; */
   /* width: 96%; */
   width: 100%;
-  background-color: #F1F2F2;
+  /* background-color: #F1F2F2; */
   margin: auto;
   height: 80vh;
 }

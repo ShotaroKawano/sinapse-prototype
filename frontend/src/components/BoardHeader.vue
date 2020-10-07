@@ -39,11 +39,12 @@
                     v-model="description"
                   >
                   </textarea>
-                  <div class="board_thumbnail">
+                  <!-- TODO: thumnailも編集できるようにする -->
+                  <!-- <div class="board_thumbnail">
                     <div id="" class="btn_edit">
                       <p>Edit</p>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="text_edit">
                   <input
@@ -154,7 +155,7 @@ export default {
   name: "BoardHeader",
   data: function() {
     return {
-      isVisible: true,
+      isVisible: false,
 
       title: null,
       description: null,
