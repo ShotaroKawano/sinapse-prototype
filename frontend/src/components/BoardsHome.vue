@@ -326,7 +326,8 @@ h2.indexTitle {
 }
 p.indexSubheading {
   /* 必要 */
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
+  min-height: 74px;
   font-size: 14px;
   line-height: 20px;
   padding-bottom: 14px;
@@ -364,7 +365,7 @@ p.indexCreatdate {
 }
 .box_boards1set:hover {
   /* 必要 */
-  box-shadow: 0px 0px 10px #5486b980;
+  box-shadow: 0px 0px 10px #5486b990;
 }
 .box_indexSns2 {
   /* 必要 */

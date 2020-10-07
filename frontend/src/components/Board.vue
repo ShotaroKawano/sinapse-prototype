@@ -510,6 +510,7 @@ export default {
   /* width: 800px; */
   /* width: 96%; */
   width: 100%;
+  min-height: 900px;
   background-color: #f0f0f0;
   margin: auto;
   height: 80vh;
