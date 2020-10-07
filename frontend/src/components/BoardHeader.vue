@@ -60,7 +60,12 @@
                     class="form_tagList displayFlex"
                     @click="hadleClickTags()"
                   >
-                  <div v-for="tagWrapper in boardTags" :key="tagWrapper.tag.id">#{{ tagWrapper.tag.name }}</div>
+                    <div
+                      v-for="tagWrapper in boardTags"
+                      :key="tagWrapper.tag.id"
+                    >
+                      #{{ tagWrapper.tag.name }}
+                    </div>
                     <!-- <div class="">#地球温暖化、</div> -->
                     <!-- <div class="">#自然電力</div> -->
                   </div>
@@ -70,7 +75,7 @@
               <div class="box_user1">
                 <div class="">
                   <div class="box_user2">
-                    <div class="">
+                    <div class="box_user3">
                       <div class="displayFlex">
                         <div id="btn">
                           <img
@@ -80,9 +85,7 @@
                           />
                         </div>
                         <div class="box_NameAndCreatdate">
-                          <div class="indexUsername">
-                            内藤迅
-                          </div>
+                          <div class="indexUsername">内藤迅</div>
                           <div class="indexCreatdate">
                             {{ createdAt }}
                           </div>
@@ -91,7 +94,7 @@
                     </div>
 
                     <div class="displayFlex">
-                      <div class="box_user3">
+                      <div class="box_user4">
                         <div id="btn" class="box_indexSns3">
                           <img
                             class="icon_indexBoards"
@@ -130,14 +133,10 @@
             </div>
             <div class="box_deleteAndsaveButton">
               <div id="btn" class="btn_delete">
-                <p @click="deleteBoard()" class="text_delete">
-                  Delete
-                </p>
+                <p @click="deleteBoard()" class="text_delete">Delete</p>
               </div>
               <div id="btn" class="btn_save">
-                <p @click="updateBoard()" class="text_save">
-                  Save
-                </p>
+                <p @click="updateBoard()" class="text_save">Save</p>
               </div>
             </div>
           </div>
@@ -153,7 +152,7 @@ import axios from "axios";
 
 export default {
   name: "BoardHeader",
-  data: function() {
+  data: function () {
     return {
       isVisible: false,
 
@@ -175,52 +174,53 @@ export default {
       likes: "162",
       comments: "14",
       shares: "56",
-      isEditting: false
+      isEditting: false,
     };
   },
   methods: {
     updateBoard() {
       // console.log(this.title);
-      const URL_BASE = 'http://127.0.0.1:8000/api/boards/' + this.$route.params.id + '/';
+      const URL_BASE =
+        "http://127.0.0.1:8000/api/boards/" + this.$route.params.id + "/";
       // const URL_BASE =
       //   "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/update";
-      axios(
-        {
-          method: "PUT",
-          url: URL_BASE,
-          // withCredentials: true,
-          data: {
-            title: this.title,
-            description: this.description,
-            thumbnail: this.thumbnail,
-            url_tail: this.url_tail,
-            is_published: this.is_published,
-            user_id: 1
-            // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
-            // tagList: this.convertTaglistToTags
-        }
+      axios({
+        method: "PUT",
+        url: URL_BASE,
+        // withCredentials: true,
+        data: {
+          title: this.title,
+          description: this.description,
+          thumbnail: this.thumbnail,
+          url_tail: this.url_tail,
+          is_published: this.is_published,
+          user_id: 1,
+          // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
+          // tagList: this.convertTaglistToTags
+        },
       })
-        .then(res => {
+        .then((res) => {
           // console.dir(res.data);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("ERROR!! occurred in Backend.");
           console.log(err);
         });
     },
     deleteBoard() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE = "http://127.0.0.1:8000/api/boards/" + this.$route.params.id;
+      const URL_BASE =
+        "http://127.0.0.1:8000/api/boards/" + this.$route.params.id;
       return axios({
         method: "DELETE",
         url: URL_BASE,
       })
-        .then(res => {
+        .then((res) => {
           // console.dir(res.data);
-          this.$router.push('/')
+          this.$router.push("/");
           // console.log(res.data.board_id);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("ERROR!! occurred in Backend.");
           console.log(err);
         });
@@ -248,30 +248,31 @@ export default {
     // }
   },
   computed: {
-    convertBoardTagsToTagList: function() {
+    convertBoardTagsToTagList: function () {
       // console.log('kokodesu');
-      var tagList = ''
+      var tagList = "";
       this.boardTags.forEach((tagWrapper, index) => {
         // console.log(tagWrapper)
         if (index === 0) {
-          tagList += tagWrapper.tag.name
+          tagList += tagWrapper.tag.name;
         } else {
-          tagList += ',' + tagWrapper.tag.name
+          tagList += "," + tagWrapper.tag.name;
         }
       });
-      return tagList
-    }
+      return tagList;
+    },
     // convertTagsToTaglist: function() {
     //   return this.tags.join(" #");
     // }
   },
-  created: function() {
-    const URL_BASE = "http://127.0.0.1:8000/api/boards/" + this.$route.params.id;
+  created: function () {
+    const URL_BASE =
+      "http://127.0.0.1:8000/api/boards/" + this.$route.params.id;
     axios({
       method: "GET",
-      url: URL_BASE
+      url: URL_BASE,
     })
-      .then(res => {
+      .then((res) => {
         // console.dir(res.data);
         // console.dir(res);
         // this.board_id = res.data.board_info.board_id
@@ -281,11 +282,11 @@ export default {
         this.description = res.data.description;
         this.boardTags = res.data.board_tags;
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("ERROR!! occurred in Backend.");
         console.log(err);
       });
-  }
+  },
   // mounted: function () {
   //       $('.s_01 .accordion_one .accordion_header').click(function () {
   //       // クリックされた.accordion_oneの中の.accordion_headerに隣接する.accordion_innerが開いたり閉じたりする。
@@ -304,7 +305,6 @@ export default {
 </script>
 
 <style scoped>
-
 .board_thumbnail {
   width: 150px;
   height: 150px;
@@ -374,8 +374,11 @@ export default {
   margin: 10px;
 }
 .box_user3 {
+  margin-top: 10px;
+}
+.box_user4 {
   display: flex;
-  margin-left: 360px;
+  margin-left: 364px;
 }
 
 .box_indexSns3 {
@@ -413,7 +416,7 @@ export default {
 
 .box_deleteAndsaveButton {
   display: flex;
-  margin: 220px 0px 0px 50px;
+  margin: 214px 0px 0px 50px;
 }
 .btn_delete {
   width: 50px;

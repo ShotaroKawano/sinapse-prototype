@@ -28,10 +28,7 @@
           alt="プロフィール画像"
         />
       </div>
-      <div
-        class="btn_create"
-        @click="createBoard()"
-      >
+      <div class="btn_create" @click="createBoard()">
         <p>✏︎ 投稿</p>
       </div>
     </div>
@@ -48,7 +45,7 @@ import axios from "axios";
 export default {
   name: "Header",
   methods: {
-    onKeypressEnter: function() {
+    onKeypressEnter: function () {
       // ↓↓↓検索ワード=qを取得
       var q = document.getElementById("q").value;
 
@@ -59,41 +56,39 @@ export default {
         // console.log("returnKey押下：検索ワードは{ " + q + " }です");
 
         // ページ遷移する
-        this.$router.push('/search?q=' + q)
+        this.$router.push("/search?q=" + q);
         // location.href = "http://localhost:8080/search?q=" + q;
       }
     },
-    createBoard: function() {
-      const URL_BASE = "http://127.0.0.1:8000/api/boards/"
+    createBoard: function () {
+      const URL_BASE = "http://127.0.0.1:8000/api/boards/";
       // const URL_BASE = "http://127.0.0.1:8000/admin/api/board/add/"
-      axios(
-        {
-          method: "POST",
-          url: URL_BASE,
-          // withCredentials: true,
-          data: {
-            title: 'タイトル',
-            description: 'ディスクリプション',
-            thumbnail: '12345',
-            url_tail: '12345',
-            is_published: true,
-            user_id: 1
-            // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
-            // tagList: this.convertTaglistToTags
-          }
-        })
-        .then(res => {
-          console.log('koko');
+      axios({
+        method: "POST",
+        url: URL_BASE,
+        // withCredentials: true,
+        data: {
+          title: "タイトル",
+          description: "ディスクリプション",
+          thumbnail: "12345",
+          url_tail: "12345",
+          is_published: true,
+          user_id: 1,
+          // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
+          // tagList: this.convertTaglistToTags
+        },
+      })
+        .then((res) => {
+          console.log("koko");
           console.dir(res.data);
-          this.$router.push("/boards/" + res.data.id)
+          this.$router.push("/boards/" + res.data.id);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("ERROR!! occurred in Backend.");
           console.log(err);
-        }
-      );
-    }
-  }
+        });
+    },
+  },
 };
 </script>
 
@@ -184,7 +179,8 @@ export default {
   height: 40px;
   border-radius: 20px; /* 角丸       */
   font-size: 10pt; /* 文字サイズ */
-  border: none; /* 枠の指定 */
+  /* border: none; */
+  border: solid 1px #b4bdc6;
   padding: 10px;
   margin: 10px;
 }
@@ -192,8 +188,9 @@ export default {
 /* 必要 */
 .name_service {
   font-size: 40px;
-  color: #525e6a;
-  padding: 10px;
+  /* color: #525e6a; */
+  color: #5486b9;
+  text-shadow: 0px 0px 10px #5486b990;
   text-decoration: none; /* テキストアンダーライン */
 }
 .name_user {
@@ -214,7 +211,8 @@ export default {
   justify-content: space-between;
   width: 100%;
   height: 60px;
-  background-color: #e1e6eb;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 6px #f0f0f0;
 }
 /* ▲▲▲▲▲ ボックス ▲▲▲▲▲ */
 

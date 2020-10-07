@@ -11,7 +11,6 @@
       v-bind:to="`boards/${board.id}`"
       class="box_boards1set"
     >
-
       <!-- ▼▼ 概要 ▼▼ -->
       <div class="box_indexBoards">
         <!-- ▼ タイトル ▼ -->
@@ -33,7 +32,11 @@
               <p id="btn" class="indexHashtag">{{ tag.name }}</p>
             </li>
           </ul> -->
-          <div id="btn" v-for="tagWrapper in board.board_tags" :key="tagWrapper.tag.id">
+          <div
+            id="btn"
+            v-for="tagWrapper in board.board_tags"
+            :key="tagWrapper.tag.id"
+          >
             <p class="indexHashtag">#{{ tagWrapper.tag.name }}</p>
           </div>
         </div>
@@ -99,26 +102,24 @@ export default {
   methods: {
     search: function () {
       // console.log('koko');
-      const URL_BASE =
-        "http://127.0.0.1:8000/api/boards?title=" +
-        "気候変動";
+      const URL_BASE = "http://127.0.0.1:8000/api/boards?title=" + "気候変動";
       // console.log("生成されたURL：" + URL_BASE);
       return axios({
         method: "GET",
-        url: URL_BASE
+        url: URL_BASE,
       })
-        .then(res => {
+        .then((res) => {
           // console.dir(res.data);
           // console.log(res.data.board_list);
           this.boards = res.data.board_list;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("ERROR!! occurred in Backend.");
           console.log(err);
         });
-    }
+    },
   },
-  data: function() {
+  data: function () {
     return {
       boards: [
         {
@@ -137,7 +138,7 @@ export default {
               tag: { id: 1, name: "気候変動" },
               tag: { id: 2, name: "地球温暖化" },
               tag: { id: 3, name: "自然電力" },
-            }
+            },
             // { id: 2, name: "地球温暖化" },
             // { id: 3, name: "自然電力" }
           ],
@@ -147,7 +148,7 @@ export default {
           },
           updated_at: "2020/09/20",
           comment_count: 123,
-          like_count: 456
+          like_count: 456,
         },
         {
           id: 2,
@@ -165,7 +166,7 @@ export default {
               tag: { id: 1, name: "気候変動" },
               tag: { id: 2, name: "地球温暖化" },
               tag: { id: 3, name: "自然電力" },
-            }
+            },
           ],
           user: {
             user_name: "川野 翔太郎",
@@ -173,7 +174,7 @@ export default {
           },
           updated_at: "2020/09/20",
           comment_count: 123,
-          like_count: 456
+          like_count: 456,
         },
         {
           id: 3,
@@ -191,7 +192,7 @@ export default {
               tag: { id: 1, name: "気候変動" },
               tag: { id: 2, name: "地球温暖化" },
               tag: { id: 3, name: "自然電力" },
-            }
+            },
           ],
           user: {
             user_name: "川野 翔太郎",
@@ -199,42 +200,43 @@ export default {
           },
           updated_at: "2020/09/20",
           comment_count: 123,
-          like_count: 456
-        }
-      ]
+          like_count: 456,
+        },
+      ],
     };
   },
   computed: {
     limitCount() {
       return this.tags.slice(0, 3);
-    }
+    },
   },
   watch: {
     $route() {
       // console.log('route');
       // console.log(this.$route);
       // console.log(this.$route.query.q);
-      let URL_BASE
-      if (this.$route.path === '/search') {
-        URL_BASE = "http://127.0.0.1:8000/api/boards?title=" + this.$route.query.q;
+      let URL_BASE;
+      if (this.$route.path === "/search") {
+        URL_BASE =
+          "http://127.0.0.1:8000/api/boards?title=" + this.$route.query.q;
       } else {
         URL_BASE = "http://127.0.0.1:8000/api/boards";
       }
       axios({
         method: "GET",
-        url: URL_BASE
+        url: URL_BASE,
       })
-      .then(res => {
-        // console.log(res.data);
-        this.boards = res.data;
-      })
-      .catch(err => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
-    }
+        .then((res) => {
+          // console.log(res.data);
+          this.boards = res.data;
+        })
+        .catch((err) => {
+          console.log("ERROR!! occurred in Backend.");
+          console.log(err);
+        });
+    },
   },
-  created: function() {
+  created: function () {
     // console.log('route');
     // console.log(this.$route);
     // console.log(this.$route.query.q);
@@ -243,15 +245,15 @@ export default {
       method: "GET",
       url: URL_BASE,
     })
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
         this.boards = res.data;
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("ERROR!! occurred in Backend.");
         console.log(err);
       });
-  }
+  },
 };
 </script>
 
@@ -288,7 +290,9 @@ export default {
 }
 .boardsWrapper {
   position: absolute;
-  margin-top: 60px;
+  margin-top: 50px;
+  background-color: #f0f0f0;
+  width: 100%;
 }
 /* ▲▲▲▲▲ 表示位置 ▲▲▲▲▲ */
 
