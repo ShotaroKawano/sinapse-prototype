@@ -180,7 +180,7 @@ export default {
   border-radius: 20px; /* 角丸       */
   font-size: 10pt; /* 文字サイズ */
   /* border: none; */
-  border: solid 1px #87929d;
+  border: solid 1px #b4bdc6;
   padding: 10px;
   margin: 10px;
 }
@@ -212,6 +212,7 @@ export default {
   width: 100%;
   height: 60px;
   background-color: #ffffff;
+  box-shadow: 0px 1px 6px #f0f0f0;
 }
 /* ▲▲▲▲▲ ボックス ▲▲▲▲▲ */
 
