@@ -10,7 +10,7 @@
     @mousemove="handleChartMouseMove"
     @mouseup="handleChartMouseUp"
     @dblclick="handleChartDblClick($event)"
-    @mousewheel="handleChartMouseWheel"
+    @wheel="handleChartMouseWheel"
     @mousedown="handleChartMouseDown($event)"
   >
     <span id="position" class="unselectable">
@@ -127,8 +127,10 @@ export default {
       this.$emit("editconnection", connection);
     },
     handleChartMouseWheel(event) {
+      // console.log('wheel')
+      // 副作用があるか継続的に見ていこう
       event.stopPropagation();
-      event.preventDefault();
+      // event.preventDefault();
       if (event.ctrlKey) {
         let svg = document.getElementById("svg");
         let zoom = parseFloat(svg.style.zoom || 1);
@@ -416,7 +418,7 @@ export default {
       let g = this.append("g");
       g.append('text')
         // .attr("fill", "#7CF8FD")
-        .attr("fill", "#E1E6EB")
+        .attr("fill", "#5486b9")
         .attr("x", x2 + 10)
         .attr("y", y2 - 40)
         .style("width", 10 + "px")

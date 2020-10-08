@@ -2,7 +2,7 @@
   <div>
     <BoardHeader></BoardHeader>
     <div class="container">
-      <div id="toolbar">
+      <!-- <div id="toolbar"> -->
         <!-- positionを渡さないaddだったのか -->
         <!-- <button @click="handleDblClick">
           Add(Double-click canvas)
@@ -27,7 +27,7 @@
           Edit(Double-click node)
         </button>
         <button @click="$refs.chart.save()">Save</button> -->
-      </div>
+      <!-- </div> -->
       <!-- <flowchart
         :nodes="nodes"
         :connections="connections"
@@ -40,17 +40,19 @@
         :render="render"
       >
       </flowchart> -->
-      <flowchart
-        :nodes="nodes"
-        :connections="connections"
-        @editnode="handleEditNode"
-        :readonly="false"
-        @dblclick="handleDblClick"
-        @editconnection="handleEditConnection"
-        @save="handleChartSave"
-        ref="chart"
-      >
-      </flowchart>
+      <div class="inner">
+        <flowchart
+          :nodes="nodes"
+          :connections="connections"
+          @editnode="handleEditNode"
+          :readonly="false"
+          @dblclick="handleDblClick"
+          @editconnection="handleEditConnection"
+          @save="handleChartSave"
+          ref="chart"
+        >
+        </flowchart>
+      </div>
       <node-dialog
         :visible.sync="nodeDialogVisible"
         :node.sync="nodeForm.target"
@@ -488,9 +490,9 @@ export default {
 /* @import "./assets/css/reset.css"; */
 /* @import "./assets/css/style.css"; */
 
-#toolbar {
+/* #toolbar {
   margin-bottom: 10px;
-}
+} */
 
 .title {
   margin-top: 10px;
@@ -510,9 +512,20 @@ export default {
   /* width: 800px; */
   /* width: 96%; */
   width: 100%;
-  min-height: 900px;
+  /* min-height: 900px; */
   background-color: #f0f0f0;
   margin: auto;
-  height: 80vh;
+  min-height: 80vh;
+  overflow: auto;
 }
+
+.inner {
+  width: 200%;
+  height: 160vh;
+  /* display: inline-block; */
+  /* min-width: 100%; */
+  /* min-height: 80vh; */
+  box-sizing: border-box;
+}
+
 </style>
