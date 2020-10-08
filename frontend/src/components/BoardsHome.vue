@@ -326,10 +326,10 @@ h2.indexTitle {
 }
 p.indexSubheading {
   /* 必要 */
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
+  min-height: 68px;
   font-size: 14px;
   line-height: 20px;
-  padding-bottom: 14px;
   color: #87929d;
 }
 p.indexHashtag {
@@ -359,12 +359,12 @@ p.indexCreatdate {
   background: #ffffff;
   display: flex;
   border-radius: 10px;
-  margin: 20px auto;
+  margin: 30px auto 10px auto;
   text-decoration: none;
 }
 .box_boards1set:hover {
   /* 必要 */
-  box-shadow: 0px 0px 10px #5486b980;
+  box-shadow: 0px 0px 10px #5486b990;
 }
 .box_indexSns2 {
   /* 必要 */
@@ -386,11 +386,11 @@ p.indexCreatdate {
 .box_indexHashtag {
   display: flex;
   flex-wrap: wrap;
-  margin: 10px;
+  margin: 10px 10px 16px 10px;
 }
 .box_UserAndCreatdate {
   display: flex;
-  margin-left: 10px;
+  margin: 0px 0px 0px 10px;
 }
 .box_NameAndCreatdate {
   padding-left: 12px;
