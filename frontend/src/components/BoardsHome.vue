@@ -126,7 +126,7 @@ export default {
           id: 1,
           title: "気候変動の影響による日本の危険性と今できること",
           description:
-            "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
+            "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。",
           thunbnail: "aa",
           // tags: [
           //   { name: "#気候変動" },
@@ -327,10 +327,14 @@ h2.indexTitle {
 p.indexSubheading {
   /* 必要 */
   margin: 10px 10px 0px 10px;
-  min-height: 68px;
+  height: 80px;
   font-size: 14px;
   line-height: 20px;
   color: #87929d;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 p.indexHashtag {
   /* 必要 */
@@ -386,7 +390,8 @@ p.indexCreatdate {
 .box_indexHashtag {
   display: flex;
   flex-wrap: wrap;
-  margin: 10px 10px 16px 10px;
+  height: 16px;
+  margin: 14px 10px 12px 10px;
 }
 .box_UserAndCreatdate {
   display: flex;
