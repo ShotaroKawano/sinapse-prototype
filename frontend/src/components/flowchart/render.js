@@ -23,6 +23,7 @@ function render(g, node, isSelected) {
     .style("box-sizing", "border-box")
     .style("border-top", "1px solid #707070")
     .style("border-left", "1px solid #707070")
+    .style("border-bottom", "1px solid #707070")
     // .style("border-bottom", "1px solid #707070")
 
   // title text
