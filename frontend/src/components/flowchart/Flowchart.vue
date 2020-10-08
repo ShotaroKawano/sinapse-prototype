@@ -187,6 +187,10 @@ export default {
               this.internalConnections.push(conn);
               // then句の外にあったコード ↑
             })
+            .catch((err) => {
+              console.log("ERROR!! occurred in Backend.");
+              console.log(err);
+            });
             // ここまで
           }
         }
@@ -601,54 +605,61 @@ export default {
                 //   name: "Pass",
                 // };
                 // that.internalConnections.push(conn);
-                console.log('こちら2');
-            // arrow追加処理 なぜ２箇所ある？
-            const URL_BASE = "http://127.0.0.1:8000/api/arrows/";
-            console.log('kokomadekiteru');
-            axios({
-              method: "POST",
-              url: URL_BASE,
-              data: {
-                  from_card: parseInt(that.connectingInfo.source.id),
-                  from_position: that.connectingInfo.sourcePosition,
-                  to_card: parseInt(node.id),
-                  to_position: position,
-                  arrow_type: 1,
-                  // arrow_type: {
-                  //   id: 1,
-                  //   type: "片方向矢印"
-                  // },
-                  label: "Pass",
-                  board_id: parseInt(that.$route.params.id)
+                // arrow追加処理 なぜ２箇所ある？
+                const URL_BASE = "http://127.0.0.1:8000/api/arrows/";
+                console.log('1:' + node.id);
+                axios({
+                  method: "POST",
+                  url: URL_BASE,
+                  data: {
+                      from_card: parseInt(that.connectingInfo.source.id),
+                      from_position: that.connectingInfo.sourcePosition,
+                      to_card: parseInt(node.id),
+                      to_position: position,
+                      arrow_type: 1,
+                      // arrow_type: {
+                      //   id: 1,
+                      //   type: "片方向矢印"
+                      // },
+                      label: "Pass",
+                      board_id: parseInt(that.$route.params.id)
+                  }
+                })
+                .then(res => {
+                  console.log('connector 成功');
+                  console.log(res.data);
+                  // then句の外にあったコード ↓
+                  // Node can't connect to itself
+                  // let tempId = +new Date();
+                  console.log('2:' + node.id);
+                  let conn = {
+                    source: {
+                      id: that.connectingInfo.source.id,
+                      position: that.connectingInfo.sourcePosition,
+                    },
+                    destination: {
+                      id: node.id,
+                      position: position,
+                    },
+                    // id: tempId,
+                    id: res.data.id,
+                    type: "pass",
+                    name: "Pass",
+                  };
+                  that.internalConnections.push(conn);
+                  that.connectingInfo.source = null;
+                  that.connectingInfo.sourcePosition = null;
+                  // then句の外にあったコード ↑
+                })
+                .catch((err) => {
+                  console.log("ERROR!! occurred in Backend.");
+                  console.log(err);
+                  that.connectingInfo.source = null;
+                  that.connectingInfo.sourcePosition = null;
+                  // then句の外にあったコード ↑
+                });
+                // ここまで
               }
-            })
-            .then(res => {
-              console.log('connector 成功');
-              console.log(res.data);
-              // then句の外にあったコード ↓
-              // Node can't connect to itself
-              // let tempId = +new Date();
-              let conn = {
-                source: {
-                  id: that.connectingInfo.source.id,
-                  position: that.connectingInfo.sourcePosition,
-                },
-                destination: {
-                  id: that.node.id,
-                  position: position,
-                },
-                // id: tempId,
-                id: res.data.id,
-                type: "pass",
-                name: "Pass",
-              };
-              that.internalConnections.push(conn);
-              // then句の外にあったコード ↑
-            })
-            // ここまで
-              }
-              that.connectingInfo.source = null;
-              that.connectingInfo.sourcePosition = null;
             }
           })
           .on("mouseover", function () {

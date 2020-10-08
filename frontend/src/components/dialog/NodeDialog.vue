@@ -97,6 +97,7 @@ export default {
         // console.log(res.data.board_id);
         this.$emit('myremove', this.node)
         console.log('発火');
+        this.$emit("update:visible", false);
       })
       .catch(err => {
         console.log("ERROR!! occurred in Backend.");
