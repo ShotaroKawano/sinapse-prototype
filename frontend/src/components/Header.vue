@@ -2,6 +2,18 @@
   <!-- ▼▼▼▼▼ header ▼▼▼▼▼ -->
   <div id="header" class="box_header">
     <router-link to="/" id="btn" class="name_service">Sinapse</router-link>
+    <!-- <router-link to="/"
+      ><img
+        src="@/assets/images/logos/logos_Sinapse.png"
+        alt="Sinapselogo"
+        style="
+          margin-left: 1%;
+          height: 50px;
+          position: absolute; /* body全体を指定 */
+          left: 50%; /* 親要素の半分右にずらす */
+          transform: translateY(-120%) translateX(-50%); /* 要素自体の半分左にずらす */
+        "
+    /></router-link> -->
     <!-- <a id="btn" class="name_service" href="/">Sinapse</a> -->
 
     <div class="box_inputsearch">
@@ -185,7 +197,7 @@ export default {
   font-size: 10pt; /* 文字サイズ */
   /* border: none; */
   /* padding: 10px; */
-  margin: 0px 10px 0px 4px;
+  margin: 0px 0px 0px 4px;
   border: none;
   border-radius: 20px; /* 角丸       */
 }
@@ -223,12 +235,17 @@ export default {
   opacity: 1; /* 透明度を上げることで、画像の色を薄く見せる。*/
 }
 .box_inputsearch {
-  width: 500px;
+  width: 36%;
   height: 36px;
   border-radius: 20px; /* 角丸       */
   border: solid 1px #b4bdc6;
   margin-top: 6px;
   display: flex;
+}
+.box_inputsearch:hover {
+  box-shadow: 0px 0px 3px #5486b9;
+  border: solid 1px #5486b990;
+  transition-duration: 0.5s;
 }
 /* ▲▲▲▲▲ ボックス ▲▲▲▲▲ */
 
