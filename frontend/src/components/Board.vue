@@ -3,11 +3,11 @@
     <BoardHeader></BoardHeader>
     <div class="container">
       <!-- <div id="toolbar"> -->
-        <!-- positionを渡さないaddだったのか -->
-        <!-- <button @click="handleDblClick">
+      <!-- positionを渡さないaddだったのか -->
+      <!-- <button @click="handleDblClick">
           Add(Double-click canvas)
         </button> -->
-        <!-- <button
+      <!-- <button
           @click="
             $refs.chart.add({
               id: +new Date(),
@@ -22,7 +22,7 @@
         >
           Add(Double-click canvas)
         </button> -->
-        <!-- <button @click="$refs.chart.remove()">Delete(Del)</button>
+      <!-- <button @click="$refs.chart.remove()">Delete(Del)</button>
         <button @click="$refs.chart.editCurrent()">
           Edit(Double-click node)
         </button>
@@ -92,167 +92,167 @@ export default {
     return {
       // APIとキーを合わせれば代入が楽なのに
       nodes: [
-        // {
-        //   id: 11,
-        //   x: 500,
-        //   y: 50,
-        //   url: "https://www.econetworks.jp/translationtips/2019/12/cri/",
-        //   title: "気候変動の影響、日本が世界一に",
-        //   summary: "日本は世界で最も温暖化による人命危機が及びやすい国である。",
-        //   thumbnail:
-        //     "https://www.germanwatch.org/sites/germanwatch.org/files/2019-12/climate_risk_index_2020_world_map_ranking_2018.jpg",
-        // },
-        // {
-        //   id: 21,
-        //   x: 200,
-        //   y: 320,
-        //   url:
-        //     "https://www.ecolosia.jp/2019/10/08/%E7%AC%AC43%E5%9B%9E%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%A1%E3%83%BC%E3%83%88-%E3%83%AA%E3%82%A2%E3%83%AA%E3%83%86%E3%82%A3-%E3%83%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%82%B7%E3%83%83%E3%83%97-%E3%82%B3%E3%83%9F%E3%83%A5%E4%BA%8C%E3%83%86%E3%82%A3-%E3%83%88%E3%83%AC%E3%83%BC%E4%BA%8C%E3%83%B3%E3%82%B0/",
-        //   title:
-        //     "第43回クライメート・リアリティ・リーダーシップ・コミュ二ティ・トレー二ング",
-        //   summary:
-        //     "プレゼン画像に注目。この数十年の間に異常なまでにCO2濃度が増加。",
-        //   thumbnail:
-        //     "https://image.jimcdn.com/app/cms/image/transf/dimension=1920x400:format=jpg/path/s49d62a7e9b605c1c/image/ic5df63fe831d41ec/version/1570517714/image.jpg",
-        // },
-        // {
-        //   id: 22,
-        //   x: 800,
-        //   y: 320,
-        //   url: "https://youtu.be/s87C3jBMC6w",
-        //   title: "海面上昇72ｍ!? 私たちが数千年の人類の運命を決める",
-        //   summary:
-        //     "【2倍速再生推奨】動画でわかりやすく海面上昇のヤバさが解説されている。",
-        //   thumbnail:
-        //     "https://i.ytimg.com/vi/s87C3jBMC6w/maxresdefault.jpg",
-        // },
-        // {
-        //   id: 31,
-        //   x: 200,
-        //   y: 590,
-        //   url: "https://youtu.be/WvX18sbbOwE",
-        //   title: "３分でわかる「地球温暖化のメカニズム」",
-        //   summary: "3分で端的に地球温暖化のメカニズムを理解できる",
-        //   thumbnail: "https://i.ytimg.com/vi/WvX18sbbOwE/hqdefault.jpg",
-        // },
-        // {
-        //   id: 32,
-        //   x: 800,
-        //   y: 590,
-        //   url: "https://www.newsweekjapan.jp/stories/world/2020/07/4-119.php",
-        //   title:
-        //     "海洋メタンの4分の１が存在する南極から、メタンの活発な放出が確認された",
-        //   summary:
-        //     "温暖化したら極地の氷山が解ける。氷山が解けると中のメタンガスが大気に盛れる。",
-        //   thumbnail:
-        //     "https://www.newsweekjapan.jp/stories/assets_c/2020/07/50113628681_bdebc21612_c-thumb-720xauto-208187.jpg",
-        // },
-        // {
-        //   id: 41,
-        //   x: 500,
-        //   y: 860,
-        //   url: "http://daily-ondanka.es-inc.jp/basic/data_09.html",
-        //   title: "日本の家庭からの二酸化炭素（CO2）排出量",
-        //   summary:
-        //     "普段自分たちがどのようにCO2を排出しているかを知ろう。その40％が電力発電からである。",
-        //   thumbnail:
-        //     "http://daily-ondanka.es-inc.jp/basic/img/i_bsc_data_09_1.gif",
-        // },
-        // {
-        //   id: 51,
-        //   x: 50,
-        //   y: 1130,
-        //   url: "https://hachidori-denryoku.jp/",
-        //   title: "ハチドリ電力",
-        //   summary: "電気代の1％は社会活動に携わる組織や個人へ",
-        //   thumbnail:
-        //     "https://hachidori-denryoku.jp/wp-content/uploads/2020/08/share_ogp_new.png",
-        // },
-        // {
-        //   id: 52,
-        //   x: 550,
-        //   y: 1130,
-        //   url: "https://a-eru.co.jp/denki/",
-        //   title: "aeru電気",
-        //   summary: "電気代の1％は日本の伝統工芸に携わる職人さんへ",
-        //   thumbnail: "https://a-eru.co.jp/denki/img/0616_1.png",
-        // },
-        // {
-        //   id: 53,
-        //   x: 1050,
-        //   y: 1130,
-        //   url:
-        //     "https://shizendenryoku.jp/?from=gadwse&gclid=Cj0KCQjws536BRDTARIsANeUZ5_NhfYu1Lq8OxSjA_1lXqdBEji_K7Qxqx3f_ZQVp5XT7N9hozArcXwaAgIqEALw_wcB",
-        //   title: "自然電力のでんき",
-        //   summary: "ハチドリ電力もaeru電気も供給源は自然電力",
-        //   thumbnail:
-        //     "https://venturetimes.jp/cms/wp-content/uploads/2019/10/8fc2e32322d6fbffacbecb3ac271ea1c.png",
-        // },
+        {
+          id: 11,
+          x: 500,
+          y: 50,
+          url: "https://www.econetworks.jp/translationtips/2019/12/cri/",
+          title: "気候変動の影響、日本が世界一に",
+          summary:
+            "日本は世界で最も温暖化による人命危機が及びやすい国である。日本は世界で最も温暖化による人命危機が及びやすい国である。日本は世界で最も温暖化による人命危機が及びやすい国である。日本は世界で最も温暖化による人命危機が及びやすい国である。日本は世界で最も温暖化による人命危機が及びやすい国である。",
+          thumbnail:
+            "https://www.germanwatch.org/sites/germanwatch.org/files/2019-12/climate_risk_index_2020_world_map_ranking_2018.jpg",
+        },
+        {
+          id: 21,
+          x: 200,
+          y: 320,
+          url:
+            "https://www.ecolosia.jp/2019/10/08/%E7%AC%AC43%E5%9B%9E%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%A1%E3%83%BC%E3%83%88-%E3%83%AA%E3%82%A2%E3%83%AA%E3%83%86%E3%82%A3-%E3%83%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%82%B7%E3%83%83%E3%83%97-%E3%82%B3%E3%83%9F%E3%83%A5%E4%BA%8C%E3%83%86%E3%82%A3-%E3%83%88%E3%83%AC%E3%83%BC%E4%BA%8C%E3%83%B3%E3%82%B0/",
+          title:
+            "第43回クライメート・リアリティ・リーダーシップ・コミュ二ティ・トレー二ング",
+          summary:
+            "プレゼン画像に注目。この数十年の間に異常なまでにCO2濃度が増加。",
+          thumbnail:
+            "https://image.jimcdn.com/app/cms/image/transf/dimension=1920x400:format=jpg/path/s49d62a7e9b605c1c/image/ic5df63fe831d41ec/version/1570517714/image.jpg",
+        },
+        {
+          id: 22,
+          x: 800,
+          y: 320,
+          url: "https://youtu.be/s87C3jBMC6w",
+          title: "海面上昇72ｍ!? 私たちが数千年の人類の運命を決める",
+          summary:
+            "【2倍速再生推奨】動画でわかりやすく海面上昇のヤバさが解説されている。",
+          thumbnail: "https://i.ytimg.com/vi/s87C3jBMC6w/maxresdefault.jpg",
+        },
+        {
+          id: 31,
+          x: 200,
+          y: 590,
+          url: "https://youtu.be/WvX18sbbOwE",
+          title: "３分でわかる「地球温暖化のメカニズム」",
+          summary: "3分で端的に地球温暖化のメカニズムを理解できる",
+          thumbnail: "https://i.ytimg.com/vi/WvX18sbbOwE/hqdefault.jpg",
+        },
+        {
+          id: 32,
+          x: 800,
+          y: 590,
+          url: "https://www.newsweekjapan.jp/stories/world/2020/07/4-119.php",
+          title:
+            "海洋メタンの4分の１が存在する南極から、メタンの活発な放出が確認された",
+          summary:
+            "温暖化したら極地の氷山が解ける。氷山が解けると中のメタンガスが大気に盛れる。",
+          thumbnail:
+            "https://www.newsweekjapan.jp/stories/assets_c/2020/07/50113628681_bdebc21612_c-thumb-720xauto-208187.jpg",
+        },
+        {
+          id: 41,
+          x: 500,
+          y: 860,
+          url: "http://daily-ondanka.es-inc.jp/basic/data_09.html",
+          title: "日本の家庭からの二酸化炭素（CO2）排出量",
+          summary:
+            "普段自分たちがどのようにCO2を排出しているかを知ろう。その40％が電力発電からである。",
+          thumbnail:
+            "http://daily-ondanka.es-inc.jp/basic/img/i_bsc_data_09_1.gif",
+        },
+        {
+          id: 51,
+          x: 50,
+          y: 1130,
+          url: "https://hachidori-denryoku.jp/",
+          title: "ハチドリ電力",
+          summary: "電気代の1％は社会活動に携わる組織や個人へ",
+          thumbnail:
+            "https://hachidori-denryoku.jp/wp-content/uploads/2020/08/share_ogp_new.png",
+        },
+        {
+          id: 52,
+          x: 550,
+          y: 1130,
+          url: "https://a-eru.co.jp/denki/",
+          title: "aeru電気",
+          summary: "電気代の1％は日本の伝統工芸に携わる職人さんへ",
+          thumbnail: "https://a-eru.co.jp/denki/img/0616_1.png",
+        },
+        {
+          id: 53,
+          x: 1050,
+          y: 1130,
+          url:
+            "https://shizendenryoku.jp/?from=gadwse&gclid=Cj0KCQjws536BRDTARIsANeUZ5_NhfYu1Lq8OxSjA_1lXqdBEji_K7Qxqx3f_ZQVp5XT7N9hozArcXwaAgIqEALw_wcB",
+          title: "自然電力のでんき",
+          summary: "ハチドリ電力もaeru電気も供給源は自然電力",
+          thumbnail:
+            "https://venturetimes.jp/cms/wp-content/uploads/2019/10/8fc2e32322d6fbffacbecb3ac271ea1c.png",
+        },
       ],
       connections: [
-        // {
-        //   source: { id: 11, position: "left" },
-        //   destination: { id: 21, position: "top" },
-        //   id: 1,
-        //   type: "pass",
-        //   name: "CO2の異常な濃度上昇",
-        // },
-        // {
-        //   source: { id: 11, position: "right" },
-        //   destination: { id: 22, position: "top" },
-        //   id: 2,
-        //   type: "pass",
-        //   name: "海面上昇について",
-        // },
-        // {
-        //   source: { id: 21, position: "bottom" },
-        //   destination: { id: 31, position: "top" },
-        //   id: 3,
-        //   type: "pass",
-        //   name: "CO2と温暖化の関係",
-        // },
-        // {
-        //   source: { id: 22, position: "bottom" },
-        //   destination: { id: 32, position: "top" },
-        //   id: 4,
-        //   type: "pass",
-        //   name: "温暖化と海面上昇の連鎖",
-        // },
-        // {
-        //   source: { id: 31, position: "bottom" },
-        //   destination: { id: 41, position: "top" },
-        //   id: 5,
-        //   type: "pass",
-        //   name: "まずは電力を切り替えよう",
-        // },
-        // {
-        //   source: { id: 32, position: "bottom" },
-        //   destination: { id: 41, position: "top" },
-        //   id: 6,
-        //   type: "pass",
-        //   name: "",
-        // },
-        // {
-        //   source: { id: 41, position: "left" },
-        //   destination: { id: 51, position: "top" },
-        //   id: 7,
-        //   type: "pass",
-        //   name: "電気で非営利組織を応援",
-        // },
-        // {
-        //   source: { id: 41, position: "bottom" },
-        //   destination: { id: 52, position: "top" },
-        //   id: 8,
-        //   type: "pass",
-        //   name: "電気で日本文化を応援",
-        // },
-        // {
-        //   source: { id: 41, position: "right" },
-        //   destination: { id: 53, position: "top" },
-        //   id: 9,
-        //   type: "pass",
-        //   name: "左2つ大元はこの会社",
-        // },
+        {
+          source: { id: 11, position: "left" },
+          destination: { id: 21, position: "top" },
+          id: 1,
+          type: "pass",
+          name: "CO2の異常な濃度上昇",
+        },
+        {
+          source: { id: 11, position: "right" },
+          destination: { id: 22, position: "top" },
+          id: 2,
+          type: "pass",
+          name: "海面上昇について",
+        },
+        {
+          source: { id: 21, position: "bottom" },
+          destination: { id: 31, position: "top" },
+          id: 3,
+          type: "pass",
+          name: "CO2と温暖化の関係",
+        },
+        {
+          source: { id: 22, position: "bottom" },
+          destination: { id: 32, position: "top" },
+          id: 4,
+          type: "pass",
+          name: "温暖化と海面上昇の連鎖",
+        },
+        {
+          source: { id: 31, position: "bottom" },
+          destination: { id: 41, position: "top" },
+          id: 5,
+          type: "pass",
+          name: "まずは電力を切り替えよう",
+        },
+        {
+          source: { id: 32, position: "bottom" },
+          destination: { id: 41, position: "top" },
+          id: 6,
+          type: "pass",
+          name: "",
+        },
+        {
+          source: { id: 41, position: "left" },
+          destination: { id: 51, position: "top" },
+          id: 7,
+          type: "pass",
+          name: "電気で非営利組織を応援",
+        },
+        {
+          source: { id: 41, position: "bottom" },
+          destination: { id: 52, position: "top" },
+          id: 8,
+          type: "pass",
+          name: "電気で日本文化を応援",
+        },
+        {
+          source: { id: 41, position: "right" },
+          destination: { id: 53, position: "top" },
+          id: 9,
+          type: "pass",
+          name: "左2つ大元はこの会社",
+        },
       ],
       nodeForm: { target: null },
       connectionForm: { target: null, operation: null },
@@ -527,5 +527,4 @@ export default {
   /* min-height: 80vh; */
   box-sizing: border-box;
 }
-
 </style>

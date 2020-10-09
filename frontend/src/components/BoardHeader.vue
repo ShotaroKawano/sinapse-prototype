@@ -470,4 +470,121 @@ export default {
 .icon_headerUpDown {
   width: 30px;
 }
+
+.btn_boardsUser {
+  width: 44px;
+  height: 44px;
+  border-radius: 25px;
+}
+
+/*====================================================================
+.s_01 .accordion_one
+====================================================================*/
+.s_01 .accordion_one {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.s_01 .accordion_one .accordion_header {
+  color: #525e6a;
+  /* font-size: 26px; */
+  /* font-weight: bold; */
+  /* padding: 20px 11%; */
+  text-align: center;
+  position: relative;
+  z-index: +1;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+.s_01 .accordion_one .accordion_header:hover {
+  opacity: 0.8;
+}
+.s_01 .accordion_one .accordion_header .i_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #fff;
+  margin-top: -20px;
+  box-sizing: border-box;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transform-origin: center center;
+  transition-duration: 0.2s;
+}
+.s_01 .accordion_one .accordion_header .i_box .one_i {
+  display: block;
+  width: 18px;
+  height: 18px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transform-origin: center center;
+  transition-duration: 0.2s;
+  position: relative;
+}
+.s_01 .accordion_one .accordion_header.open .i_box {
+  -webkit-transform: rotate(-360deg);
+  transform: rotate(-360deg);
+}
+.s_01 .accordion_one .accordion_header .i_box .one_i:before,
+.s_01 .accordion_one .accordion_header .i_box .one_i:after {
+  display: flex;
+  content: "";
+  background-color: #fff;
+  border-radius: 10px;
+  width: 18px;
+  height: 4px;
+  position: absolute;
+  top: 7px;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  transform-origin: center center;
+}
+.s_01 .accordion_one .accordion_header .i_box .one_i:before {
+  width: 4px;
+  height: 18px;
+  top: 0;
+  left: 7px;
+}
+.s_01 .accordion_one .accordion_header.open .i_box .one_i:before {
+  content: none;
+}
+.s_01 .accordion_one .accordion_header.open .i_box .one_i:after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.s_01 .accordion_one .accordion_inner {
+  /* display: none; */
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.s_01 .accordion_one .accordion_inner .box_one {
+  height: 300px;
+}
+.s_01 .accordion_one .accordion_inner p.txt_a_ac {
+  margin: 0;
+}
+@media screen and (max-width: 760px) {
+  .s_01 .accordion_one .accordion_header {
+    font-size: 18px;
+  }
+  .s_01 .accordion_one .accordion_header .i_box {
+    width: 30px;
+    height: 30px;
+    margin-top: -5px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .s_01 .accordion_one .accordion_header {
+    font-size: 16px;
+    text-align: left;
+    padding: 5px 10px 5px 5px;
+  }
+}
 </style>

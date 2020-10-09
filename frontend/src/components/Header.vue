@@ -187,16 +187,12 @@ export default {
 
 /* 必要 */
 .name_service {
+  padding: 10px;
   font-size: 40px;
   /* color: #525e6a; */
   color: #5486b9;
   text-shadow: 0px 0px 10px #5486b990;
   text-decoration: none; /* テキストアンダーライン */
-}
-.name_user {
-  padding: 20px 4px;
-  font-size: 16px;
-  color: #ffffff;
 }
 /* ▲▲▲▲▲ テキスト関係 ▲▲▲▲▲ */
 

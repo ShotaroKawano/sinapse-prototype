@@ -410,18 +410,7 @@ p.indexCreatdate {
   margin: 30px 30px 0px 0px;
   border-radius: 10px;
   border: solid 1px #e1e6eb; /* 枠の指定 */
-
-  background-size: cover;
-}
-
-.thumbnail_indexBoards2 {
-  /* 必要 */
-  width: 200px;
-  height: 350px;
-  margin: 10px;
-  border-radius: 10px;
-  border: solid 1px #e1e6eb; /* 枠の指定 */
-
+  background-image: url(../assets/images/treediagram.png);
   background-size: cover;
 }
 /* ▲▲▲▲▲ サムネイル ▲▲▲▲▲ */

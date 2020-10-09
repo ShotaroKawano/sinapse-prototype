@@ -1,91 +1,76 @@
 /* ▼▼▼▼▼ 叩き台 ▼▼▼▼▼ */
-.pfBox {
+/* .pfBox {
   background-color: #35353503;
 }
 .pfBox2 {
   background: #35353503;
   padding: 5px;
   margin: 5px;
-}
+} */
 /* ▲▲▲▲▲ 叩き台 ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ 表示位置 ▼▼▼▼▼ */
-.center_objecto {
-  position: absolute; /* body全体を指定 */
-  top: 50%; /* 親要素の半分下にずらす */
-  left: 50%; /* 親要素の半分右にずらす */
-  transform: translateY(-50%) translateX(-50%); /* 要素自体の半分、上と左にずらす */
-}
-.center_ual {
-  position: absolute; /* body全体を指定 */
-  top: 50%; /* 親要素の半分下にずらす */
-  transform: translateY(-50%); /* 要素自体の半分上にずらす */
-}
-.center_lar {
-  position: absolute; /* body全体を指定 */
-  left: 50%; /* 親要素の半分右にずらす */
-  transform: translateX(-50%); /* 要素自体の半分左にずらす */
-}
+
 /* ▲▲▲▲▲ 表示位置 ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ ボタン ▼▼▼▼▼ */
-#btn:hover {
-  opacity: 0.8; /* 透明度を上げることで、画像の色を薄く見せる。*/
-  cursor: pointer; /* リンクをホバーしたときのカーソルにする。*/
-}
+/* #btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+} */
 
-.btn_login {
+/* .btn_login {
   width: 100px;
   height: 20px;
   margin: 50px 150px 15px 150px;
   display: inline-block;
-  border-radius: 5px; /* 角丸       */
-  font-size: 12pt; /* 文字サイズ */
-  text-align: center; /* 文字位置   */
-  cursor: pointer; /* カーソル   */
-  padding: 10px; /* 余白       */
-  background: #525e6a; /* 背景色     */
-  color: #ffffff; /* 文字色     */
-  line-height: 1em; /* 1行の高さ  */
-  border: 2px solid #525e6a; /* 枠の指定 */
-  text-decoration: none; /* テキストアンダーライン */
+  border-radius: 5px;
+  font-size: 12pt;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  background: #525e6a;
+  color: #ffffff;
+  line-height: 1em;
+  border: 2px solid #525e6a;
+  text-decoration: none;
 }
 .btn_login:hover {
-  color: #525e6a; /* 背景色     */
-  background: #ffffff; /* 文字色     */
-}
+  color: #525e6a;
+  background: #ffffff;
+} */
 
-.btn_sns {
+/* .btn_sns {
   width: 400px;
   height: 20px;
-  border-radius: 5px; /* 角丸       */
-  font-size: 10pt; /* 文字サイズ */
-  text-align: center; /* 文字位置   */
-  cursor: pointer; /* カーソル   */
-  padding: 10px 0px; /* 余白       */
-  color: #ffffff; /* 文字色     */
-  border: none; /* 枠の指定 */
-}
-
+  border-radius: 5px;
+  font-size: 10pt;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px 0px;
+  color: #ffffff;
+  border: none;
+} */
+/* 
 .btn_create {
   width: 80px;
   height: 20px;
   display: inline-block;
-  border-radius: 10px; /* 角丸       */
-  font-size: 18px; /* 文字サイズ */
-  text-align: center; /* 文字位置   */
-  cursor: pointer; /* カーソル   */
-  padding: 8px; /* 余白       */
+  border-radius: 10px;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  padding: 8px;
   margin: 10px;
-  background: #5486b9; /* 背景色     */
-  color: #ffffff; /* 文字色     */
-  line-height: 1em; /* 1行の高さ  */
-  border: 2px solid #5486b9; /* 枠の指定 */
-  text-decoration: none; /* テキストアンダーライン */
+  background: #5486b9; 
+  color: #ffffff;
+  line-height: 1em;
+  border: 2px solid #5486b9;
+  text-decoration: none;
 }
 .btn_create:hover {
-  color: #5486b9; /* 背景色     */
-  background: #ffffff; /* 文字色     */
+  color: #5486b9;
+  background: #ffffff;
 }
 
 .btn_headerUser {
@@ -94,16 +79,16 @@
   margin: 5px;
   border-radius: 25px;
   background: #ffffff;
-}
-.btn_boardsUser {
+} */
+/* .btn_boardsUser {
   width: 44px;
   height: 44px;
   border-radius: 25px;
-}
+} */
 /* ▲▲▲▲▲ ボタン ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ テキスト関係 ▼▼▼▼▼ */
-h2.indexTitle {
+/* h2.indexTitle {
   font-size: 24px;
   line-height: 32px;
   padding-bottom: 4px;
@@ -143,49 +128,49 @@ p.indexCreatdate {
 .input_login {
   width: 400px;
   height: 40px;
-  border-radius: 5px; /* 角丸       */
-  font-size: 10pt; /* 文字サイズ */
-  border: solid 1px #87929d; /* 枠の指定 */
-}
-.input_search {
+  border-radius: 5px;
+  font-size: 10pt;
+  border: solid 1px #87929d;
+} */
+/* .input_search {
   width: 400px;
   height: 40px;
-  border-radius: 20px; /* 角丸       */
-  font-size: 10pt; /* 文字サイズ */
-  border: none; /* 枠の指定 */
+  border-radius: 20px;
+  font-size: 10pt;
+  border: none;
   padding: 10px;
   margin: 10px;
-}
+} */
 
-.name_service {
+/* .name_service {
   font-size: 40px;
   color: #525e6a;
   padding: 10px;
-  text-decoration: none; /* テキストアンダーライン */
-}
-.name_user {
+  text-decoration: none;
+} */
+/* .name_user {
   padding: 20px 4px;
   font-size: 16px;
   color: #ffffff;
-}
+} */
 /* ▲▲▲▲▲ テキスト関係 ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ ボックス ▼▼▼▼▼ */
-.box_header {
+/* .box_header {
   display: flex;
   width: 100%;
   height: 60px;
   background-color: #e1e6eb;
-}
-.box_hashtag {
+} */
+/* .box_hashtag {
   width: 90px;
   margin: 7px;
   padding: 10px 20px;
-  text-align: center; /* 文字位置   */
-  border-radius: 5px; /* 角丸       */
+  text-align: center; 
+  border-radius: 5px;
   color: #ffffff;
-  background: #87929d; /* 枠の指定 */
-}
+  background: #87929d; 
+} */
 /* .box_indexBoards {
   width: 700px;
   background: #ffffff;
@@ -196,7 +181,7 @@ p.indexCreatdate {
 .box_indexBoards:hover {
   box-shadow: 0px 0px 6px #5486b9;
 } */
-.box_boardsUser {
+/* .box_boardsUser {
   width: 200px;
   height: 54px;
   margin: 10px;
@@ -210,20 +195,20 @@ p.indexCreatdate {
   text-align: center;
   color: #e1e6eb;
   font-size: 14px;
-}
+} */
 
-.box_boards1set {
+/* .box_boards1set {
   width: 745px;
   height: 290px;
   background: #ffffff;
   display: flex;
   border-radius: 10px;
   margin: 20px auto;
-}
-.box_boards1set:hover {
+} */
+/* .box_boards1set:hover {
   box-shadow: 0px 0px 10px #5486b980;
-}
-.box_indexSns {
+} */
+/* .box_indexSns {
   margin: 10px;
   height: 370px;
   display: flex;
@@ -235,21 +220,21 @@ p.indexCreatdate {
   height: 50px;
   display: flex;
   justify-content: space-around;
-}
-.box_indexSnscontents {
+} */
+/* .box_indexSnscontents {
   margin: 10px;
   text-align: center;
   color: #b4bdc6;
-}
+} */
 /* ▲▲▲▲▲ ボックス ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ サムネイル ▼▼▼▼▼ */
-.thumbnail_indexBoards {
+/* .thumbnail_indexBoards {
   width: 150px;
   height: 150px;
   margin: 30px 30px 0px 0px;
   border-radius: 10px;
-  border: solid 1px #e1e6eb; /* 枠の指定 */
+  border: solid 1px #e1e6eb;
   background-image: url(../images/treediagram.png);
   background-size: cover;
 }
@@ -259,10 +244,10 @@ p.indexCreatdate {
   height: 350px;
   margin: 10px;
   border-radius: 10px;
-  border: solid 1px #e1e6eb; /* 枠の指定 */
+  border: solid 1px #e1e6eb;
   background-image: url(../images/treediagram.png);
   background-size: cover;
-}
+} */
 /* ▲▲▲▲▲ サムネイル ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ アイコン ▼▼▼▼▼ */
@@ -270,119 +255,8 @@ p.indexCreatdate {
   width: 20px;
   height: 20px;
 } */
-.icon_boardsUser {
+/* .icon_boardsUser {
   width: 18px;
   height: 18px;
-}
+} */
 /* ▲▲▲▲▲ アイコン ▲▲▲▲▲ */
-
-/*====================================================================
-.s_01 .accordion_one
-====================================================================*/
-.s_01 .accordion_one {
-  max-width: 800px;
-  margin: 0 auto;
-}
-.s_01 .accordion_one .accordion_header {
-  color: #525e6a;
-  /* font-size: 26px; */
-  /* font-weight: bold; */
-  /* padding: 20px 11%; */
-  text-align: center;
-  position: relative;
-  z-index: +1;
-  cursor: pointer;
-  transition-duration: 0.2s;
-}
-
-.s_01 .accordion_one .accordion_header:hover {
-  opacity: 0.8;
-}
-.s_01 .accordion_one .accordion_header .i_box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 50%;
-  right: 5%;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #fff;
-  margin-top: -20px;
-  box-sizing: border-box;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-  transform-origin: center center;
-  transition-duration: 0.2s;
-}
-.s_01 .accordion_one .accordion_header .i_box .one_i {
-  display: block;
-  width: 18px;
-  height: 18px;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-  transform-origin: center center;
-  transition-duration: 0.2s;
-  position: relative;
-}
-.s_01 .accordion_one .accordion_header.open .i_box {
-  -webkit-transform: rotate(-360deg);
-  transform: rotate(-360deg);
-}
-.s_01 .accordion_one .accordion_header .i_box .one_i:before,
-.s_01 .accordion_one .accordion_header .i_box .one_i:after {
-  display: flex;
-  content: "";
-  background-color: #fff;
-  border-radius: 10px;
-  width: 18px;
-  height: 4px;
-  position: absolute;
-  top: 7px;
-  left: 0;
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
-  transform-origin: center center;
-}
-.s_01 .accordion_one .accordion_header .i_box .one_i:before {
-  width: 4px;
-  height: 18px;
-  top: 0;
-  left: 7px;
-}
-.s_01 .accordion_one .accordion_header.open .i_box .one_i:before {
-  content: none;
-}
-.s_01 .accordion_one .accordion_header.open .i_box .one_i:after {
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-.s_01 .accordion_one .accordion_inner {
-  /* display: none; */
-  padding: 5px;
-  box-sizing: border-box;
-}
-
-.s_01 .accordion_one .accordion_inner .box_one {
-  height: 300px;
-}
-.s_01 .accordion_one .accordion_inner p.txt_a_ac {
-  margin: 0;
-}
-@media screen and (max-width: 760px) {
-  .s_01 .accordion_one .accordion_header {
-    font-size: 18px;
-  }
-  .s_01 .accordion_one .accordion_header .i_box {
-    width: 30px;
-    height: 30px;
-    margin-top: -5px;
-  }
-}
-@media screen and (max-width: 767px) {
-  .s_01 .accordion_one .accordion_header {
-    font-size: 16px;
-    text-align: left;
-    padding: 5px 10px 5px 5px;
-  }
-}
