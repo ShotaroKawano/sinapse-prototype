@@ -7,15 +7,15 @@ function render(g, node, isSelected) {
   node.width = node.width || 400;
   node.height = node.height || 200;
 
-  // title background
-  g.append('foreignObject')
+  // ▼▼title background▼▼
+  g.append("foreignObject")
     .attr("x", node.x)
     .attr("y", node.y)
     .attr("class", "title")
-    .style("width", node.width * 5 / 8 + "px")
+    .style("width", (node.width * 5) / 8 + "px")
     .style("height", node.height / 2 + "px")
-    .append('xhtml:div')
-    .style("width", node.width * 5 / 8 + "px")
+    .append("xhtml:div")
+    .style("width", (node.width * 5) / 8 + "px")
     .style("height", node.height / 2 + "px")
     // .style("background-color", "#3F3F3F")
     .style("background-color", "#FFFFFF")
@@ -26,18 +26,18 @@ function render(g, node, isSelected) {
     .style("border-bottom", "1px solid #707070")
     // .style("border-bottom", "1px solid #707070")
 
-  // title text
-  // g.append('foreignObject')
+    // ▼▼title text▼▼
+    // g.append('foreignObject')
     // .attr("x", node.x)
     // .attr("y", node.y)
     // .attr("class", "unselectable")
     // .style("width", node.width * 5 / 8 + "px")
     // .style("height", node.height / 2 + "px")
     // .style("display", "table")
-    .append('xhtml:p')
+    .append("xhtml:p")
     .style("display", "table-cell")
     .style("vertical-align", "middle")
-    .style("width", node.width * 5 / 8 + "px")
+    .style("width", (node.width * 5) / 8 + "px")
     .style("height", node.height / 2 + "px")
     .style("box-sizing", "border-box")
     .style("padding", "4px 8px 4px 8px")
@@ -45,17 +45,24 @@ function render(g, node, isSelected) {
     .style("font-weight", "bold")
     .style("font-size", "20px")
     .style("margin", 0)
-    .style("overflow-wrap", "break-word")
-    .text(() => node.title)
+    // .style("overflow-wrap", "break-word")
+    // ▼▼▼▼以下、じん追記▼▼▼▼
+    .style("display", "-webkit-box")
+    .style("overflow", "hidden")
+    .style("-webkit-line-clamp", "3")
+    .style("-webkit-box-orient", "vertical")
+    .style("line-height", "30px")
+    // ▲▲▲▲以上（3行以降・・・になる）▲▲▲▲
+    .text(() => node.title);
 
-  // thumbnail
-  g.append('foreignObject')
-    .attr("x", node.x + node.width * 5 / 8)
+  // ▼▼thumbnail▼▼
+  g.append("foreignObject")
+    .attr("x", node.x + (node.width * 5) / 8)
     .attr("y", node.y)
-    .style("width", node.width * 3 / 8 + "px")
+    .style("width", (node.width * 3) / 8 + "px")
     .style("height", node.height / 2 + "px")
-    .append('xhtml:div')
-    .style("width", node.width * 3 / 8 + "px")
+    .append("xhtml:div")
+    .style("width", (node.width * 3) / 8 + "px")
     .style("height", node.height / 2 + "px")
     .style("background-image", `url(${node.thumbnail})`)
     .style("background-position", "center center")
@@ -63,16 +70,17 @@ function render(g, node, isSelected) {
     .style("background-repeat", "no-repeat")
     .style("border-radius", "0 8px 0 0")
     .style("box-sizing", "border-box")
-    .style("border-top", "1px solid white")
-    .style("border-left", "1px solid white")
+    // .style("border-top", "1px solid white")
+    // .style("border-left", "1px solid white")
+    .style("border", "1px solid #707070");
 
-  // summary background
-  g.append('foreignObject')
+  // ▼▼summary background▼▼
+  g.append("foreignObject")
     .attr("x", node.x)
     .attr("y", node.y + node.height / 2)
     .style("width", node.width + "px")
     .style("height", node.height / 2 + "px")
-    .append('xhtml:div')
+    .append("xhtml:div")
     .style("width", node.width + "px")
     .style("height", node.height / 2 + "px")
     // .style("background-color", "#707070")
@@ -83,14 +91,14 @@ function render(g, node, isSelected) {
     .style("border-right", "1px solid #707070")
     .style("border-left", "1px solid #707070")
 
-  // summary text
-  // g.append('foreignObject')
-  //   .attr("x", node.x)
-  //   .attr("y", node.y + node.height / 2)
-  //   .attr("class", "unselectable")
-  //   .style("width", node.width + "px")
-  //   .style("height", node.height / 2 + "px")
-    .append('xhtml:p')
+    // ▼▼summary text▼▼
+    // g.append('foreignObject')
+    //   .attr("x", node.x)
+    //   .attr("y", node.y + node.height / 2)
+    //   .attr("class", "unselectable")
+    //   .style("width", node.width + "px")
+    //   .style("height", node.height / 2 + "px")
+    .append("xhtml:p")
     .style("width", node.width + "px")
     .style("height", node.height / 2 + "px")
     .style("box-sizing", "border-box")
@@ -98,8 +106,15 @@ function render(g, node, isSelected) {
     .style("color", "#525E6A")
     .style("font-size", "16px")
     .style("margin", 0)
-    .style("overflow-wrap", "break-word")
-    .text(() => node.summary)
+    // .style("overflow-wrap", "break-word")
+    // ▼▼▼▼以下、じん追記▼▼▼▼
+    .style("display", "-webkit-box")
+    .style("overflow", "hidden")
+    .style("-webkit-line-clamp", "4")
+    .style("-webkit-box-orient", "vertical")
+    .style("line-height", "22px")
+    // ▲▲▲▲以上（4行以降・・・になる）▲▲▲▲
+    .text(() => node.summary);
 
   // ここから元々あったrender
   // node.width = node.width || 120;

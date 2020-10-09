@@ -76,7 +76,6 @@ import Flowchart from "./flowchart/Flowchart";
 // import { roundTo20 } from "../utils/math";
 // scriptタグでないと機能しないのか？
 import "@/assets/css/reset.css";
-import "@/assets/css/style.css";
 import BoardHeader from "./BoardHeader";
 import axios from "axios";
 
@@ -486,9 +485,7 @@ export default {
 </script>
 
 <style scoped>
-/* 以下の書き方だとstyle.cssが上手くimportできない */
-/* @import "./assets/css/reset.css"; */
-/* @import "./assets/css/style.css"; */
+/*  board内に表示されるnodeのCSSは(render.jsにある)  */
 
 /* #toolbar {
   margin-bottom: 10px;
@@ -515,13 +512,13 @@ export default {
   /* min-height: 900px; */
   background-color: #f0f0f0;
   margin: auto;
-  min-height: 80vh;
+  min-height: 90vh;
   overflow: auto;
 }
 
 .inner {
   width: 200%;
-  height: 160vh;
+  height: 180vh;
   /* display: inline-block; */
   /* min-width: 100%; */
   /* min-height: 80vh; */
