@@ -130,6 +130,12 @@ table {
 }
 
 /* ボタンや入力欄を選択したときに枠が発色しないようにする */
+input[type="email"]:focus {
+  outline: 0;
+}
+input[type="password"]:focus {
+  outline: 0;
+}
 input[type="url"]:focus {
   outline: 0;
 }

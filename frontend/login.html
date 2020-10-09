@@ -5,70 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SignUp</title>
     <link rel="stylesheet" href="../frontend/src/assets/css/reset.css" />
+    <link rel="stylesheet" href="../frontend/src/assets/css/login.css" />
   </head>
   <body>
     <div id="body">
-      <div class="center_objecto" 
-        style="position: absolute; /* body全体を指定 */
-          top: 50%; /* 親要素の半分下にずらす */
-          left: 50%; /* 親要素の半分右にずらす */
-          transform: translateY(-50%) translateX(-50%); /* 要素自体の半分、上と左にずらす */">
+      <div class="center_objecto">
         <!-- ▼▼▼▼▼ authentication ▼▼▼▼▼ -->
         <div id="" class="" >
-          <!-- <img src="../frontend/src/assets/images/logos/logos_Sinapse.png" alt="Sinapselogo" style="width: 300px; position: absolute; /* body全体を指定 */
-  left: 50%; /* 親要素の半分右にずらす */
-  transform: translateY(-120%) translateX(-50%); /* 要素自体の半分左にずらす */
-" />  -->
-          <p class="name_service2" 
-            style="width: 100%;
-            margin-bottom: 60px;
-              font-size: 70px;
-              line-height: 50px;
-              color: #5486b9;
-              text-align: center; text-shadow: 0px 0px 10px #5486b990;">Sinapse</p>
+          <!-- <img class="serviceLogo"
+            src="../frontend/src/assets/images/logos/logos_Sinapse.png"
+            alt="Sinapselogo" />  -->
+          <p class="name_service">Sinapse</p>
         </div>
         <div>
           <!-- ▼▼▼ email login ▼▼▼ -->
           <form action="xxx.php" method="post">
-              <div style="margin: 10px">
-                <input type="email" class="input_login" 
-                  style="width: 400px;
-                    height: 40px;
-                    border-radius: 5px; /* 角丸       */
-                    font-size: 10pt; /* 文字サイズ */
-                    border: solid 1px #B4BDC6; /* 枠の指定 */" placeholder="メールアドレス"/>
+              <div class="box_loginEmail">
+                <input type="email" class="input_loginEmail" placeholder="メールアドレス"/>
               </div>
-              <div style="margin: 10px">
-                <input type="password" class="input_login"
-                  style="width: 400px;
-                    height: 40px;
-                    border-radius: 5px; /* 角丸       */
-                    font-size: 10pt; /* 文字サイズ */
-                    border: solid 1px #B4BDC6; /* 枠の指定 */" placeholder="パスワード"/>
+              <div class="box_loginPassword">
+                <input type="password" class="input_loginPassword" placeholder="パスワード"/>
               </div>
-              <div id="btn" class="login_passInfo" 
-                style="font-size: 14px;
-                  color: #b4bdc6; text-align: center;">パスワードを忘れた方はこちら</div>
+              <div id="btn" class="login_passInfo" >パスワードを忘れた方はこちら</div>
               <!-- <input class="btn_login" type="submit" value="ログイン" /> -->
-              <a class="btn_login"
-                style="width: 100px;
-                  height: 20px;
-                  margin: 40px 150px 15px 150px;
-                  display: inline-block;
-                  border-radius: 5px; /* 角丸       */
-                  font-size: 12pt; /* 文字サイズ */
-                  text-align: center; /* 文字位置   */
-                  cursor: pointer; /* カーソル   */
-                  padding: 10px; /* 余白       */
-                  background: #5486b9; /* 背景色     */
-                  color: #ffffff; /* 文字色     */
-                  line-height: 1em; /* 1行の高さ  */
-                  border: 2px solid #5486b9; /* 枠の指定 */
-                  text-decoration: none; /* テキストアンダーライン */" href="http://localhost:8080/">ログイン</a>
-              <div id="btn" class="login_signupInfo" 
-                style=" font-size: 14px;
-                  color: #b4bdc6;
-                  font-weight: bold; text-align: center;">新規登録</div>
+              <a class="btn_login" href="http://localhost:8080/">ログイン</a>
+              <div id="btn" class="login_signupInfo" >新規登録</div>
             </div>
           </form>
           <!-- ▲▲▲ email login ▲▲▲ -->
