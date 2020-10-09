@@ -1,11 +1,11 @@
 from django.db import models
 # from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
+# from django.contrib.auth.models import AbstractUser
 
 
 
-class User(AbstractUser):
-    pass
+# class User(AbstractUser):
+#     pass
 
 
 
@@ -23,7 +23,7 @@ class Board(models.Model):
     thumbnail = models.CharField(max_length=255)
     url_tail = models.CharField(max_length=255)
     is_published = models.BooleanField(default=True)
-    user = models.ForeignKey(User, related_name='user_boards', on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, related_name='user_boards', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # 多対多のrelated_nameはこちらにつけるべきなのかもしれない
@@ -55,7 +55,7 @@ class Card(models.Model):
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, related_name='user_likes', on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, related_name='user_likes', on_delete=models.CASCADE)
     board = models.ForeignKey(Board, related_name='board_likes', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -65,7 +65,7 @@ class Like(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, related_name='user_comments', on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, related_name='user_comments', on_delete=models.CASCADE)
     board = models.ForeignKey(Board, related_name='board_comments', on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

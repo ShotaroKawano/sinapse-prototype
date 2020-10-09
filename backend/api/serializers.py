@@ -10,14 +10,14 @@ from .models import Arrow
 from .models import Arrow_type
 
 # from django.contrib.auth.models import User
-from .models import User
+# from .models import User
 
 
 #今後dbに合わせて加工必要
-class UserSerializer(serializers.ModelSerializer):
-     class Meta:
-          model = User
-          fields = ('id', 'username',)
+# class UserSerializer(serializers.ModelSerializer):
+#      class Meta:
+#           model = User
+#           fields = ('id', 'username',)
 
 
 
@@ -67,7 +67,7 @@ class CardSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
      # user_comments = UserSerializer(read_only=True)
-     user = UserSerializer(read_only=True)
+     # user = UserSerializer(read_only=True)
 
      class Meta:
           model = Comment
@@ -112,7 +112,7 @@ class BoardSerializer(serializers.ModelSerializer):
      user_id = serializers.IntegerField(write_only=True)
      like_count = serializers.SerializerMethodField()
      comment_count = serializers.SerializerMethodField()
-     user = UserSerializer(read_only=True)
+     # user = UserSerializer(read_only=True)
      board_tags = BoardTagSerializer(many=True, read_only=True)
      board_cards = CardSerializer(many=True, read_only=True)
      board_comments = CommentSerializer(many=True, read_only=True)

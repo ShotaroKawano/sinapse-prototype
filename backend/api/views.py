@@ -31,7 +31,7 @@ from rest_framework.viewsets import ModelViewSet
 from django.views.decorators.csrf import csrf_exempt
 from urllib.request import Request, urlopen
 import urllib.request
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 import json
 from django.http import HttpResponse
 
