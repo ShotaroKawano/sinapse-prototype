@@ -4,10 +4,15 @@
     <router-link to="/" id="btn" class="name_service">Sinapse</router-link>
     <!-- <a id="btn" class="name_service" href="/">Sinapse</a> -->
 
-    <div>
+    <div class="box_inputsearch">
+      <img
+        class="icon_headerSearch"
+        src="@/assets/images/icons/icons_search.png"
+        alt="いいねボタン"
+      />
       <input
         class="input_search"
-        placeholder="🔍キーワード、#ハッシュタグを入力..."
+        placeholder="キーワード、#ハッシュタグを入力..."
         type="search"
         id="q"
         @keypress.enter="onKeypressEnter"
@@ -21,7 +26,7 @@
       <p>{{ post.title }}</p>
     </div> -->
     <div class="headerRightboxPosition">
-      <div id="btn">
+      <div class="box_headerUser">
         <img
           class="btn_headerUser"
           src="@/assets/images/userimages/user00.jpg"
@@ -29,7 +34,7 @@
         />
       </div>
       <div class="btn_create" @click="createBoard()">
-        <p>✏︎ 投稿</p>
+        <p>作成</p>
       </div>
     </div>
   </div>
@@ -141,53 +146,54 @@ export default {
 }
 /* 必要 */
 .btn_create {
-  width: 80px;
-  height: 20px;
+  width: 50px;
+  /* height: 20px; */
   display: inline-block;
-  border-radius: 10px; /* 角丸       */
-  font-size: 18px; /* 文字サイズ */
+  border-radius: 18px; /* 角丸       */
+  font-size: 15px; /* 文字サイズ */
   text-align: center; /* 文字位置   */
   cursor: pointer; /* カーソル   */
   padding: 8px; /* 余白       */
-  margin: 10px;
-  background: #5486b9; /* 背景色     */
+  margin: 8px;
+  background: #6f9fd0; /* 背景色     */
   color: #ffffff; /* 文字色     */
-  line-height: 1em; /* 1行の高さ  */
-  border: 2px solid #5486b9; /* 枠の指定 */
+  line-height: 17px; /* 1行の高さ  */
+  /* border: 2px solid #5486b9;  */
   text-decoration: none; /* テキストアンダーライン */
 }
 .btn_create:hover {
-  color: #5486b9; /* 背景色     */
-  background: #ffffff; /* 文字色     */
+  background: #5486b9; /* 背景色     */
+  color: #ffffff; /* 文字色     */
 }
 
 /* 必要 */
 .btn_headerUser {
-  width: 50px;
-  height: 50px;
-  margin: 5px;
-  border-radius: 25px;
+  width: 35px;
+  height: 35px;
+  margin: 8px 2px 5px 0px;
+  border-radius: 20px;
   background: #ffffff;
 }
 /* ▲▲▲▲▲ ボタン ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ テキスト関係 ▼▼▼▼▼ */
-
 /* 必要 */
 .input_search {
-  width: 500px;
-  height: 40px;
-  border-radius: 20px; /* 角丸       */
+  width: 96%;
+  height: 100%;
+  color: #525e6a;
   font-size: 10pt; /* 文字サイズ */
   /* border: none; */
-  border: solid 1px #b4bdc6;
-  padding: 10px;
-  margin: 10px;
+  /* padding: 10px; */
+  margin: 0px 10px 0px 4px;
+  border: none;
+  border-radius: 20px; /* 角丸       */
 }
 
 /* 必要 */
 .name_service {
-  padding: 10px;
+  padding: 3px 10px 5px 0px;
+  margin-left: 1%;
   font-size: 40px;
   /* color: #525e6a; */
   color: #5486b9;
@@ -206,9 +212,23 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 60px;
+  height: 50px;
   background-color: #ffffff;
   box-shadow: 0px 1px 6px #f0f0f0;
+}
+.box_headerUser {
+  opacity: 0.8; /* 透明度を上げることで、画像の色を薄く見せる。*/
+}
+.box_headerUser:hover {
+  opacity: 1; /* 透明度を上げることで、画像の色を薄く見せる。*/
+}
+.box_inputsearch {
+  width: 500px;
+  height: 36px;
+  border-radius: 20px; /* 角丸       */
+  border: solid 1px #b4bdc6;
+  margin-top: 6px;
+  display: flex;
 }
 /* ▲▲▲▲▲ ボックス ▲▲▲▲▲ */
 
@@ -220,6 +240,11 @@ export default {
 .icon_boardsUser {
   width: 18px;
   height: 18px;
+}
+.icon_headerSearch {
+  width: 14px;
+  height: 14px;
+  padding: 11px 0px 12px 10px;
 }
 /* ▲▲▲▲▲ アイコン ▲▲▲▲▲ */
 </style>

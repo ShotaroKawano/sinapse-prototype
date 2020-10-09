@@ -286,7 +286,7 @@ export default {
   position: absolute; /* body全体を指定 */
   left: 50%; /* 親要素の半分右にずらす */
   transform: translateX(-50%); /* 要素自体の半分左にずらす */
-  margin-top: 60px;
+  margin-top: 30px;
 }
 .boardsWrapper {
   position: absolute;
