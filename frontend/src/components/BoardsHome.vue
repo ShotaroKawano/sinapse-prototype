@@ -290,7 +290,7 @@ export default {
 }
 .boardsWrapper {
   position: absolute;
-  margin-top: 50px;
+  margin-top: 30px;
   background-color: #f0f0f0;
   width: 100%;
 }
