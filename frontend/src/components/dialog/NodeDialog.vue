@@ -8,7 +8,12 @@
         <!-- <input class="form-control" v-model="nodeForm.thumbnail"/> -->
         <label for="url">URL</label>
         <div class="box_urlEdit">
-          <input class="form-urlControl" id="url" v-model="nodeForm.url" />
+          <input
+            type="url"
+            class="form-urlControl"
+            id="url"
+            v-model="nodeForm.url"
+          />
           <button id="btn" class="btn_get" @click="handleClickGetInfo">
             <p class="text_get">Get</p>
           </button>
@@ -63,22 +68,22 @@ export default {
     visible: {
       type: Boolean,
       // default: false,
-      default: true
+      default: true,
     },
     node: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
-  data: function() {
+  data: function () {
     return {
       nodeForm: {
         id: null,
         url: null,
         title: null,
         summary: null,
-        thumbnail: null
-      }
+        thumbnail: null,
+      },
       // nodeForm: {name: null, id: null, type: null, approver: []},
       // approvers: [{id: 1, name: 'Joyce'}, {id: 2, name: 'Allen'}, {id: 3, name: 'Teresa'}],
     };
@@ -87,43 +92,42 @@ export default {
     deleteNode() {
       // TODO: 画面上のカードもdelete
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE = "http://127.0.0.1:8000/api/cards/" + this.node.id + '/';
+      const URL_BASE = "http://127.0.0.1:8000/api/cards/" + this.node.id + "/";
       return axios({
         method: "DELETE",
         url: URL_BASE,
       })
-      .then(res => {
-        console.dir(res.status);
-        // console.log(res.data.board_id);
-        this.$emit('myremove', this.node)
-        console.log('発火');
-        this.$emit("update:visible", false);
-      })
-      .catch(err => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
+        .then((res) => {
+          console.dir(res.status);
+          // console.log(res.data.board_id);
+          this.$emit("myremove", this.node);
+          console.log("発火");
+          this.$emit("update:visible", false);
+        })
+        .catch((err) => {
+          console.log("ERROR!! occurred in Backend.");
+          console.log(err);
+        });
     },
 
     handleClickGetInfo() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE =
-        "http://127.0.0.1:8000/api/scrape/";
+      const URL_BASE = "http://127.0.0.1:8000/api/scrape/";
       console.log(this.nodeForm.url);
       return axios({
         method: "POST",
         url: URL_BASE,
         data: {
-          url: this.nodeForm.url
-        }
+          url: this.nodeForm.url,
+        },
       })
-        .then(res => {
+        .then((res) => {
           console.dir(res.data);
           this.nodeForm.thumbnail = res.data.soup_img;
           this.nodeForm.title = res.data.soup_title;
           this.nodeForm.summary = res.data.soup_desc;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("ERROR!! occurred in Backend.");
           console.log(err);
         });
@@ -137,8 +141,7 @@ export default {
       // console.log(parseInt(this.node.x))
       // console.log(parseInt(this.node.y))
       // console.log(parseInt(this.$route.params.id))
-      const URL_BASE =
-        "http://127.0.0.1:8000/api/cards/" + this.node.id + '/';
+      const URL_BASE = "http://127.0.0.1:8000/api/cards/" + this.node.id + "/";
       axios({
         method: "PUT",
         url: URL_BASE,
@@ -157,13 +160,13 @@ export default {
           position_x: parseInt(this.node.x),
           position_y: parseInt(this.node.y),
           // board_idはread_onlyにして送信しないようにしたい
-          board: parseInt(this.$route.params.id)
-        }
+          board: parseInt(this.$route.params.id),
+        },
       })
-        .then(res => {
+        .then((res) => {
           console.log(res.data);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("ERROR!! occurred in Backend.");
           console.log(err);
         });
@@ -174,7 +177,7 @@ export default {
           url: this.nodeForm.url,
           title: this.nodeForm.title,
           thumbnail: this.nodeForm.thumbnail,
-          summary: this.nodeForm.summary
+          summary: this.nodeForm.summary,
         })
       );
       // console.log(this.nodeForm.url);
@@ -182,7 +185,7 @@ export default {
     },
     handleClickCancelSaveNode() {
       this.$emit("update:visible", false);
-    }
+    },
     // handleChangeApprover(e) {
     //   // this.nodeForm.approver = this.approvers.filter(i => i.id === parseInt(e.target.value))[0];
     //   this.nodeForm.summary = this.approvers.filter(i => i.id === parseInt(e.target.value))[0];
@@ -203,9 +206,9 @@ export default {
         // if (val.approvers && val.approvers.length > 0) {
         //   this.nodeForm.approver = val.approvers[0];
         // }
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 

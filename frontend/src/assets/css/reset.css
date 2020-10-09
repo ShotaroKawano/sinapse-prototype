@@ -128,3 +128,20 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+/* ボタンや入力欄を選択したときに枠が発色しないようにする */
+input[type="url"]:focus {
+  outline: 0;
+}
+input[type="text"]:focus {
+  outline: 0;
+}
+input[type="search"]:focus {
+  outline: 0;
+}
+#btn:focus {
+  outline: 0;
+}
+textarea:focus {
+  outline: 0;
+}
