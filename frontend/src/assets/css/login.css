@@ -1,3 +1,23 @@
+body {
+  /* 画像ファイルの指定 */
+  background-image: url(../images/wallpapers/Irises_1890_VincentVanGogh.jpg);
+
+  /* 画像を常に天地左右の中央に配置 */
+  background-position: center center;
+
+  /* 画像をタイル状に繰り返し表示しない */
+  background-repeat: no-repeat;
+
+  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+  background-attachment: fixed;
+
+  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+  background-size: cover;
+
+  /* 背景画像が読み込まれる前に表示される背景のカラー */
+  background-color: #5486b9;
+}
+
 #btn:hover {
   opacity: 0.8;
   cursor: pointer;
@@ -21,23 +41,25 @@
   width: 100%;
   margin-bottom: 90px;
   line-height: 50px;
-  color: #5486b9;
+  /* color: #5486b9; */
+  color: #ffffff;
   text-align: center;
-  text-shadow: 0px 0px 10px #5486b990;
+  /* text-shadow: 0px 0px 10px #5486b990; */
+  text-shadow: 0px 0px 10px #00000070;
 
   /* ▼ Codystar ▼ */
-  font-size: 100px;
+  /* font-size: 100px;
   font-family: "Codystar", "Batang", serif;
-  letter-spacing: -4px;
+  letter-spacing: -4px; */
 
   /* ▼ Gelasio ▼ */
   /* font-size: 110px;
   font-family: "Gelasio", "Batang", serif; */
 
   /* ▼ Unna ▼ */
-  /* font-size: 130px;
+  font-size: 130px;
   font-family: "Unna", "Batang", serif;
-	letter-spacing: -4px; */
+  letter-spacing: -4px;
 
   /* ▼stix-two-math▼ */
   /* font-size: 120px;
@@ -48,47 +70,65 @@
   width: 400px;
   height: 40px;
   border-radius: 10px; /* 角丸       */
-  border: solid 1px #b4bdc6; /* 枠の指定 */
+  border: solid 1px #ffffff80; /* 枠の指定 */
   margin: 10px;
+  background-color: #ffffff40;
 }
 .box_loginEmail:hover {
-  box-shadow: 0px 0px 6px #5486b9;
-  transition-duration: 0.5s;
+  border: solid 1px #ffffff; /* 枠の指定 */
+  /* box-shadow: 0px 0px 6px #5486b9; */
+  text-shadow: 0px 0px 10px #ffffff;
+  background-color: #a5a39e;
+  transition-duration: 1s;
 }
 .input_loginEmail {
   width: 95%;
-  font-size: 14px;
-  margin: 10px 10px 10px 10px;
+  font-size: 18px;
+  margin: 8px 20px 8px 20px;
   border: none;
-  color: #525e6a;
+  /* color: #525e6a; */
+  color: #ffffff;
   resize: vertical;
   text-overflow: ellipsis;
+  background-color: transparent;
+  letter-spacing: 1px;
 }
 
 .box_loginPassword {
   width: 400px;
   height: 40px;
   border-radius: 10px; /* 角丸       */
-  border: solid 1px #b4bdc6; /* 枠の指定 */
+  border: solid 1px #ffffff80; /* 枠の指定 */
   margin: 10px;
+  background-color: #ffffff40;
 }
 .box_loginPassword:hover {
-  box-shadow: 0px 0px 6px #5486b9;
-  transition-duration: 0.5s;
+  border: solid 1px #ffffff; /* 枠の指定 */
+  /* box-shadow: 0px 0px 6px #5486b9; */
+  text-shadow: 0px 0px 10px #ffffff;
+  background-color: #a5a39e;
+  transition-duration: 1s;
 }
 .input_loginPassword {
   width: 95%;
-  font-size: 14px;
-  margin: 10px 10px 10px 10px;
+  font-size: 18px;
+  margin: 8px 20px 8px 20px;
   border: none;
-  color: #525e6a;
+  /* color: #525e6a; */
+  color: #ffffff;
   resize: vertical;
   text-overflow: ellipsis;
+  background-color: transparent;
+  letter-spacing: 1px;
+}
+
+::placeholder {
+  color: #ffffff90;
 }
 
 .login_passInfo {
   font-size: 14px;
-  color: #b4bdc6;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -115,7 +155,7 @@
 
 .login_signupInfo {
   font-size: 14px;
-  color: #b4bdc6;
+  color: #ffffff;
   font-weight: bold;
   text-align: center;
 }
