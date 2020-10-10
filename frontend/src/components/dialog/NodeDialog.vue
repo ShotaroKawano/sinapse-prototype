@@ -38,7 +38,7 @@
             class="form-summaryControl"
             name="summary"
             id="summary"
-            rows="5"
+            rows="7"
             v-model="nodeForm.summary"
           ></textarea>
         </div>

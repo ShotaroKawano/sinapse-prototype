@@ -5,7 +5,8 @@
       <!-- ▼▼▼ accordion_header ▼▼▼ -->
       <div class="accordion_header open displayFlex" ref="accordion_header">
         <!-- read only のときはv-ifで表示を変えたりしないと -->
-        <textarea class="form_common form_title" v-model="title"> </textarea>
+        <textarea class="form_common form_title" maxlength="38" v-model="title">
+        </textarea>
         <div>
           <div id="btn" class="menu" @click="isVisible = !isVisible">
             <!-- ▼ -->
