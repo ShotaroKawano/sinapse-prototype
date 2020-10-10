@@ -24,6 +24,7 @@ function render(g, node, isSelected) {
     .style("border-top", "1px solid #707070")
     .style("border-left", "1px solid #707070")
     .style("border-bottom", "1px solid #707070")
+    .style("cursor", "pointer")
     // .style("border-bottom", "1px solid #707070")
 
     // ▼▼title text▼▼
@@ -52,6 +53,7 @@ function render(g, node, isSelected) {
     .style("-webkit-line-clamp", "3")
     .style("-webkit-box-orient", "vertical")
     .style("line-height", "30px")
+    .style("cursor", "pointer")
     // ▲▲▲▲以上（3行以降・・・になる）▲▲▲▲
     .text(() => node.title);
 
@@ -70,6 +72,7 @@ function render(g, node, isSelected) {
     .style("background-repeat", "no-repeat")
     .style("border-radius", "0 8px 0 0")
     .style("box-sizing", "border-box")
+    .style("cursor", "pointer")
     // .style("border-top", "1px solid white")
     // .style("border-left", "1px solid white")
     .style("border", "1px solid #707070");
@@ -113,6 +116,7 @@ function render(g, node, isSelected) {
     .style("-webkit-line-clamp", "4")
     .style("-webkit-box-orient", "vertical")
     .style("line-height", "22px")
+    .style("cursor", "pointer")
     // ▲▲▲▲以上（4行以降・・・になる）▲▲▲▲
     .text(() => node.summary);
 
