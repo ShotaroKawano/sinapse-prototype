@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div>
     <Header></Header>
     <router-view></router-view>
     <!-- <BoardHeader></BoardHeader> -->
@@ -14,6 +14,8 @@ import './assets/css/reset.css';
 import Header from "./components/Header"
 
 export default {
+  name: "App",
+
   components: {
     Header,
   }

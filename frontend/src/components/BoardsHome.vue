@@ -45,9 +45,14 @@
         <div class="box_UserAndCreatdate">
           <div id="btn">
             <img
+              v-if="board.user.user_icon"
               class="btn_boardsUser"
-              src="@/assets/images/userimages/user00.jpg"
-              alt="プロフィール画像"
+              :src="board.user.user_icon"
+            />
+            <img
+              v-else
+              class="btn_boardsUser"
+              src="@/assets/images/userimages/default-icon.png"
             />
           </div>
           <div class="box_NameAndCreatdate">
@@ -62,7 +67,11 @@
       </div>
       <div>
         <!-- ▼▼ サムネ画像 ▼▼ -->
-        <div class="thumbnail_indexBoards"></div>
+        <div
+          v-if="board.thunbnail"
+          class="thumbnail_indexBoards"
+          :style="{ backgroundImage: 'url(' + board.thunbnail + ')' }"
+        ></div>
         <!-- ▼▼ SNS ▼▼ -->
         <div class="box_indexSns2">
           <div id="btn" class="box_indexSnscontents">
@@ -127,7 +136,7 @@ export default {
           title: "気候変動の影響による日本の危険性と今できること",
           description:
             "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。",
-          thunbnail: "aa",
+          thunbnail: require("@/assets/images/treediagram.png"),
           // tags: [
           //   { name: "#気候変動" },
           //   { name: "#地球温暖化" },
@@ -144,7 +153,7 @@ export default {
           ],
           user: {
             user_name: "川野 翔太郎",
-            user_icon: "user00",
+            user_icon: require("@/assets/images/userimages/user00.jpg"),
           },
           updated_at: "2020/09/20",
           comment_count: 123,
@@ -411,7 +420,7 @@ p.indexCreatdate {
   margin: 30px 30px 0px 0px;
   border-radius: 10px;
   border: solid 1px #e1e6eb; /* 枠の指定 */
-  background-image: url(../assets/images/treediagram.png);
+  /* background-image: url(../assets/images/treediagram.png); */
   background-size: cover;
 }
 /* ▲▲▲▲▲ サムネイル ▲▲▲▲▲ */
