@@ -150,58 +150,58 @@ export default {
           comment_count: 123,
           like_count: 456,
         },
-        {
-          id: 2,
-          title: "気候変動の影響による日本の危険性と今できること",
-          description:
-            "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
-          thunbnail: "aa",
-          // tags: [
-          //   { name: "#気候変動" },
-          //   { name: "#地球温暖化" },
-          //   { name: "#自然電力" }
-          // ],
-          board_tags: [
-            {
-              tag: { id: 1, name: "気候変動" },
-              tag: { id: 2, name: "地球温暖化" },
-              tag: { id: 3, name: "自然電力" },
-            },
-          ],
-          user: {
-            user_name: "川野 翔太郎",
-            user_icon: "user00",
-          },
-          updated_at: "2020/09/20",
-          comment_count: 123,
-          like_count: 456,
-        },
-        {
-          id: 3,
-          title: "気候変動の影響による日本の危険性と今できること",
-          description:
-            "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
-          board_thunbnail: "aa",
-          // tags: [
-          //   { name: "#気候変動" },
-          //   { name: "#地球温暖化" },
-          //   { name: "#自然電力" }
-          // ],
-          tag_list: [
-            {
-              tag: { id: 1, name: "気候変動" },
-              tag: { id: 2, name: "地球温暖化" },
-              tag: { id: 3, name: "自然電力" },
-            },
-          ],
-          user: {
-            user_name: "川野 翔太郎",
-            user_icon: "user00",
-          },
-          updated_at: "2020/09/20",
-          comment_count: 123,
-          like_count: 456,
-        },
+        // {
+        //   id: 2,
+        //   title: "気候変動の影響による日本の危険性と今できること",
+        //   description:
+        //     "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
+        //   thunbnail: "aa",
+        //   // tags: [
+        //   //   { name: "#気候変動" },
+        //   //   { name: "#地球温暖化" },
+        //   //   { name: "#自然電力" }
+        //   // ],
+        //   board_tags: [
+        //     {
+        //       tag: { id: 1, name: "気候変動" },
+        //       tag: { id: 2, name: "地球温暖化" },
+        //       tag: { id: 3, name: "自然電力" },
+        //     },
+        //   ],
+        //   user: {
+        //     user_name: "川野 翔太郎",
+        //     user_icon: "user00",
+        //   },
+        //   updated_at: "2020/09/20",
+        //   comment_count: 123,
+        //   like_count: 456,
+        // },
+        // {
+        //   id: 3,
+        //   title: "気候変動の影響による日本の危険性と今できること",
+        //   description:
+        //     "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだ。",
+        //   board_thunbnail: "aa",
+        //   // tags: [
+        //   //   { name: "#気候変動" },
+        //   //   { name: "#地球温暖化" },
+        //   //   { name: "#自然電力" }
+        //   // ],
+        //   tag_list: [
+        //     {
+        //       tag: { id: 1, name: "気候変動" },
+        //       tag: { id: 2, name: "地球温暖化" },
+        //       tag: { id: 3, name: "自然電力" },
+        //     },
+        //   ],
+        //   user: {
+        //     user_name: "川野 翔太郎",
+        //     user_icon: "user00",
+        //   },
+        //   updated_at: "2020/09/20",
+        //   comment_count: 123,
+        //   like_count: 456,
+        // },
       ],
     };
   },
@@ -286,13 +286,14 @@ export default {
   position: absolute; /* body全体を指定 */
   left: 50%; /* 親要素の半分右にずらす */
   transform: translateX(-50%); /* 要素自体の半分左にずらす */
-  margin-top: 30px;
 }
 .boardsWrapper {
   position: absolute;
-  margin-top: 30px;
+  /* margin-top: 40px; */
+  padding-top: 50px;
   background-color: #f0f0f0;
   width: 100%;
+  min-height: 100%;
 }
 /* ▲▲▲▲▲ 表示位置 ▲▲▲▲▲ */
 
