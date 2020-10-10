@@ -37,6 +37,7 @@
                 <div class="displayFlex">
                   <textarea
                     class="form_common form_description"
+                    maxlength="125"
                     v-model="description"
                   >
                   </textarea>
@@ -67,8 +68,8 @@
                     >
                       #{{ tagWrapper.tag.name }}
                     </div>
-                    <!-- <div class="">#地球温暖化、</div> -->
-                    <!-- <div class="">#自然電力</div> -->
+                    <!-- <div class="">#地球温暖化、</div>
+                    <div class="">#自然電力</div> -->
                   </div>
                 </div>
               </div>
@@ -158,7 +159,9 @@ export default {
       isVisible: false,
 
       title: null,
+      // title: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８",
       description: null,
+      // description: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５",
       thumbnail: "../assets/images/treediagram.png",
       url_tail: "12345",
       is_published: true,
@@ -331,6 +334,7 @@ export default {
   font-size: 20px;
   line-height: 30px;
   margin: 10px 0px 5px 0px;
+  overflow: hidden;
 }
 
 .form_title {
@@ -340,6 +344,7 @@ export default {
   font-size: 36px;
   line-height: 38px;
   margin: 10px 0px 5px 0px;
+  overflow: hidden;
 }
 
 .form_tagList {
