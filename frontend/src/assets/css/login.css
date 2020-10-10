@@ -19,12 +19,29 @@
 
 .name_service {
   width: 100%;
-  margin-bottom: 66px;
-  font-size: 70px;
+  margin-bottom: 90px;
   line-height: 50px;
   color: #5486b9;
   text-align: center;
   text-shadow: 0px 0px 10px #5486b990;
+
+  /* ▼ Codystar ▼ */
+  font-size: 100px;
+  font-family: "Codystar", "Batang", serif;
+  letter-spacing: -4px;
+
+  /* ▼ Gelasio ▼ */
+  /* font-size: 110px;
+  font-family: "Gelasio", "Batang", serif; */
+
+  /* ▼ Unna ▼ */
+  /* font-size: 130px;
+  font-family: "Unna", "Batang", serif;
+	letter-spacing: -4px; */
+
+  /* ▼stix-two-math▼ */
+  /* font-size: 120px;
+  font-family: stix-two-math, "Batang", serif; */
 }
 
 .box_loginEmail {
