@@ -160,8 +160,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-DEBUG = False
-# DEBUG = True
+# DEBUG = False
+DEBUG = True
 
 try:
     from api.local_settings import *
