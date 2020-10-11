@@ -1,10 +1,10 @@
 <template>
   <!-- ▼▼▼▼▼ header ▼▼▼▼▼ -->
   <div id="header" class="box_header">
-    <router-link to="/" id="btn" class="name_service">Sinapse</router-link>
-    <!-- <router-link to="/"
+    <!-- <router-link to="/" id="btn" class="name_service">Sinapse</router-link> -->
+    <router-link to="/"
       ><img
-        src="@/assets/images/logos/logos_Sinapse.png"
+        src="@/assets/images/logos/logos_Sinapse_blue.png"
         alt="Sinapselogo"
         style="
           margin-left: 1%;
@@ -13,7 +13,7 @@
           left: 50%; /* 親要素の半分右にずらす */
           transform: translateY(-120%) translateX(-50%); /* 要素自体の半分左にずらす */
         "
-    /></router-link> -->
+    /></router-link>
     <!-- <a id="btn" class="name_service" href="/">Sinapse</a> -->
 
     <div class="box_inputsearch">

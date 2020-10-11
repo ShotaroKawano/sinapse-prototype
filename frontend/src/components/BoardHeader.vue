@@ -42,11 +42,11 @@
                   >
                   </textarea>
                   <!-- TODO: thumnailも編集できるようにする -->
-                  <!-- <div class="board_thumbnail">
+                  <div class="board_thumbnail">
                     <div id="" class="btn_edit">
                       <p>Edit</p>
                     </div>
-                  </div> -->
+                  </div>
                 </div>
                 <div class="text_edit">
                   <input
@@ -159,10 +159,10 @@ export default {
       isVisible: false,
 
       title: null,
-      // title: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８",
+      title: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８",
       description: null,
-      // description: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５",
-      thumbnail: "../assets/images/treediagram.png",
+      description: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５",
+      thumbnail: "../assets/images/icons/noimage.jpg",
       url_tail: "12345",
       is_published: true,
 
@@ -314,9 +314,10 @@ export default {
   height: 150px;
   border-radius: 10px;
   border: solid 1px #e1e6eb;
-  background-image: url("../assets/images/treediagram.png");
+  background-image: url("../assets/images/icons/noimage.jpg");
   background-size: cover;
   margin-left: 20px;
+  background-position: center center;
 }
 
 .form_common {
@@ -327,30 +328,41 @@ export default {
   overflow-wrap: break-word;
 }
 
-.form_description {
-  color: #525e6a;
-  height: 160px;
-  width: 500px;
-  font-size: 20px;
-  line-height: 30px;
-  margin: 10px 0px 5px 0px;
-  overflow: hidden;
-}
-
 .form_title {
   color: #525e6a;
   height: 84px;
   width: 684px;
   font-size: 36px;
-  line-height: 38px;
-  margin: 10px 0px 5px 0px;
+  line-height: 44px;
+  margin: 0px 0px 10px 0px;
+  padding-top: 5px;
   overflow: hidden;
+  border-radius: 10px;
+}
+.form_title:hover {
+  background-color: #B4BDC620;
+}
+
+.form_description {
+  color: #87929D;
+  height: 150px;
+  width: 500px;
+  font-size: 20px;
+  line-height: 30px;
+  margin: 0px 0px 5px 0px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.form_description:hover {
+  background-color: #B4BDC620;
 }
 
 .form_tagList {
-  color: #525e6a;
+  height: 16px;
+  color: #B4BDC6;
   width: 70%;
   font-size: 16px;
+  margin: 10px 0px 0px 10px;
 }
 
 .section {
@@ -361,7 +373,7 @@ export default {
 
 .menu {
   width: 70px;
-  margin-top: 50px;
+  margin-top: 56px;
   color: #b4bdc6;
 }
 .displayFlex {
@@ -377,7 +389,7 @@ export default {
 }
 .box_user2 {
   display: flex;
-  margin: 10px;
+  margin: 0px 10px 10px 10px;
 }
 .box_user3 {
   margin-top: 10px;
@@ -422,7 +434,7 @@ export default {
 
 .box_deleteAndsaveButton {
   display: flex;
-  margin: 214px 0px 0px 50px;
+  margin: 210px 0px 0px 50px;
 }
 .btn_delete {
   width: 50px;
