@@ -113,6 +113,7 @@
   border: 0.5px solid #b4bdc6;
   border-radius: 5px;
   resize: vertical;
+  font-size: 12px;
 }
 
 .form-arrowControl {
@@ -152,6 +153,7 @@
 }
 
 label {
+  /* width: 100%; */
   color: #525e6a;
 }
 
@@ -161,7 +163,7 @@ label {
 }
 
 .footer > button {
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 
 .body {
@@ -181,18 +183,20 @@ label {
   width: 50px;
   height: 27px;
   border-radius: 5px;
-  text-align: center;
-  border: 1px solid #525e6a;
+  /* text-align: center; */
+  /* border: 1px solid #525e6a; */
+  border: none;
   background-color: #525e6a;
   line-height: 22px;
-  margin-left: 6px;
+  margin: 2px 0px 0px 5px;
+  padding: 0 auto;
 }
 .text_get {
   font-size: 14px;
   color: #ffffff;
 }
 .btn_delete {
-  width: 50px;
+  width: 60px;
   height: 28px;
   border-radius: 5px;
   text-align: center;
@@ -205,13 +209,13 @@ label {
   color: #525e6a;
 }
 .btn_save {
-  width: 50px;
+  width: 60px;
   height: 28px;
   border-radius: 5px;
   text-align: center;
   background-color: #5486b9;
   line-height: 22px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 .text_save {
   font-size: 14px;
