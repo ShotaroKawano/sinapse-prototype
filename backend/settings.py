@@ -150,6 +150,15 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
+import os
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # 追記
+STATIC_URL = '/static/'
+
+# 追記
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # DEBUG = False
 DEBUG = True
