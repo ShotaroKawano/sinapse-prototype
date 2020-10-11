@@ -411,8 +411,10 @@ p.indexCreatdate {
   margin: 30px 30px 0px 0px;
   border-radius: 10px;
   border: solid 1px #e1e6eb; /* 枠の指定 */
-  background-image: url(../assets/images/treediagram.png);
+  background-image: url(../assets/images/icons/noimage.jpg);
   background-size: cover;
+  background-position: center center;
+  background-color: #E1E6EB;
 }
 /* ▲▲▲▲▲ サムネイル ▲▲▲▲▲ */
 

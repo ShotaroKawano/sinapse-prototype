@@ -1,6 +1,8 @@
 body {
   /* 画像ファイルの指定 */
   background-image: url(../images/wallpapers/Irises_1890_VincentVanGogh.jpg);
+  /* background-image: url(../images/wallpapers/StillLifeWithLemonsOrangesAndaPomegranate_1647_JacobVanHulsdonck.jpg); */
+  /* background-image: url(../images/wallpapers/StillLifeWithOystersAndGrapes_1684_JanDavidszDeHeem.jpg); */
 
   /* 画像を常に天地左右の中央に配置 */
   background-position: center center;

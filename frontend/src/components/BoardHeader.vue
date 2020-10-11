@@ -162,7 +162,7 @@ export default {
       // title: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８",
       description: null,
       // description: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５",
-      thumbnail: "../assets/images/treediagram.png",
+      thumbnail: "../assets/images/icons/noimage.jpg",
       url_tail: "12345",
       is_published: true,
 
