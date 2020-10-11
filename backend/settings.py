@@ -25,7 +25,7 @@ SECRET_KEY = 'w_e4+5oun)=0o(6hialz06*swl!04$u%aqml+v_a6u^^jcr@nq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://sinapse-202010111705.herokuapp.com/']
 
 
 # Application definition
@@ -144,3 +144,19 @@ CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ORIGIN_WHITELIST = [
 #     'http://localhost:8080',
 # ]
+
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
+
+DEBUG = False
+
+try:
+    from api.local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())

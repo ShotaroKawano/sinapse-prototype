@@ -10,3 +10,5 @@ frontend/src/assets/images/
 
 
 source/
+
+backend/local_settings.py
