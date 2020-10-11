@@ -42,11 +42,11 @@
                   >
                   </textarea>
                   <!-- TODO: thumnailも編集できるようにする -->
-                  <!-- <div class="board_thumbnail">
+                  <div class="board_thumbnail">
                     <div id="" class="btn_edit">
                       <p>Edit</p>
                     </div>
-                  </div> -->
+                  </div>
                 </div>
                 <div class="text_edit">
                   <input
@@ -159,9 +159,9 @@ export default {
       isVisible: false,
 
       title: null,
-      // title: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８",
+      title: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８",
       description: null,
-      // description: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５",
+      description: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５",
       thumbnail: "../assets/images/icons/noimage.jpg",
       url_tail: "12345",
       is_published: true,
@@ -314,9 +314,10 @@ export default {
   height: 150px;
   border-radius: 10px;
   border: solid 1px #e1e6eb;
-  background-image: url("../assets/images/treediagram.png");
+  background-image: url("../assets/images/icons/noimage.jpg");
   background-size: cover;
   margin-left: 20px;
+  background-position: center center;
 }
 
 .form_common {
@@ -328,12 +329,12 @@ export default {
 }
 
 .form_description {
-  color: #525e6a;
+  color: #87929D;
   height: 160px;
   width: 500px;
   font-size: 20px;
   line-height: 30px;
-  margin: 10px 0px 5px 0px;
+  margin: 0px 0px 5px 0px;
   overflow: hidden;
 }
 
@@ -348,9 +349,11 @@ export default {
 }
 
 .form_tagList {
-  color: #525e6a;
+  height: 16px;
+  color: #B4BDC6;
   width: 70%;
   font-size: 16px;
+  margin-left: 10px;
 }
 
 .section {
@@ -377,7 +380,7 @@ export default {
 }
 .box_user2 {
   display: flex;
-  margin: 10px;
+  margin: 0px 10px 10px 10px;
 }
 .box_user3 {
   margin-top: 10px;
@@ -422,7 +425,7 @@ export default {
 
 .box_deleteAndsaveButton {
   display: flex;
-  margin: 214px 0px 0px 50px;
+  margin: 210px 0px 0px 50px;
 }
 .btn_delete {
   width: 50px;
