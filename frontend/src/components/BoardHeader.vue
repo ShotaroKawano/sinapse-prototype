@@ -328,24 +328,33 @@ export default {
   overflow-wrap: break-word;
 }
 
-.form_description {
-  color: #87929D;
-  height: 160px;
-  width: 500px;
-  font-size: 20px;
-  line-height: 30px;
-  margin: 0px 0px 5px 0px;
-  overflow: hidden;
-}
-
 .form_title {
   color: #525e6a;
   height: 84px;
   width: 684px;
   font-size: 36px;
-  line-height: 38px;
-  margin: 10px 0px 5px 0px;
+  line-height: 44px;
+  margin: 0px 0px 10px 0px;
+  padding-top: 5px;
   overflow: hidden;
+  border-radius: 10px;
+}
+.form_title:hover {
+  background-color: #B4BDC620;
+}
+
+.form_description {
+  color: #87929D;
+  height: 150px;
+  width: 500px;
+  font-size: 20px;
+  line-height: 30px;
+  margin: 0px 0px 5px 0px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.form_description:hover {
+  background-color: #B4BDC620;
 }
 
 .form_tagList {
@@ -353,7 +362,7 @@ export default {
   color: #B4BDC6;
   width: 70%;
   font-size: 16px;
-  margin-left: 10px;
+  margin: 10px 0px 0px 10px;
 }
 
 .section {
@@ -364,7 +373,7 @@ export default {
 
 .menu {
   width: 70px;
-  margin-top: 50px;
+  margin-top: 56px;
   color: #b4bdc6;
 }
 .displayFlex {
