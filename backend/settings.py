@@ -161,14 +161,15 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-DEBUG = False
-# DEBUG = True
+# DEBUG = False
+DEBUG = True
 
 try:
     from api.local_settings import *
 except ImportError:
     pass
 
-if not DEBUG:
+# if not DEBUG:
+if DEBUG:
     import django_heroku
     django_heroku.settings(locals())
