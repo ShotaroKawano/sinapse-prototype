@@ -23,9 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'w_e4+5oun)=0o(6hialz06*swl!04$u%aqml+v_a6u^^jcr@nq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = ['https://sinapse-202010111705.herokuapp.com/']
+# ALLOWED_HOSTS = ['http://127.0.0.1/', 'https://sinapse-202010111705.herokuapp.com/']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -150,7 +151,8 @@ db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
 
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
 try:
     from api.local_settings import *
