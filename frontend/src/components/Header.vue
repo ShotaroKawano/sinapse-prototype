@@ -2,17 +2,11 @@
   <!-- ▼▼▼▼▼ header ▼▼▼▼▼ -->
   <div id="header" class="box_header">
     <!-- <router-link to="/" id="btn" class="name_service">Sinapse</router-link> -->
-    <router-link to="/"
+    <router-link to="/" class="box_servicelogo"
       ><img
         src="@/assets/images/logos/logos_Sinapse_blue.png"
         alt="Sinapselogo"
-        style="
-          margin-left: 1%;
-          height: 50px;
-          position: absolute; /* body全体を指定 */
-          left: 50%; /* 親要素の半分右にずらす */
-          transform: translateY(-120%) translateX(-50%); /* 要素自体の半分左にずらす */
-        "
+        class="img_servicelogo"
     /></router-link>
     <!-- <a id="btn" class="name_service" href="/">Sinapse</a> -->
 
@@ -228,6 +222,14 @@ export default {
   background-color: #ffffff;
   box-shadow: 0px 1px 6px #f0f0f0;
 }
+.box_servicelogo{
+  margin-left: 1%;
+}
+.img_servicelogo{
+  width: 150px;
+  height: 50px;
+}
+
 .box_headerUser {
   opacity: 0.8; /* 透明度を上げることで、画像の色を薄く見せる。*/
 }
