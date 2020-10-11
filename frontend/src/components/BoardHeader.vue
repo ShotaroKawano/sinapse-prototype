@@ -5,7 +5,11 @@
       <!-- ▼▼▼ accordion_header ▼▼▼ -->
       <div class="accordion_header open displayFlex" ref="accordion_header">
         <!-- read only のときはv-ifで表示を変えたりしないと -->
-        <textarea class="form_common form_title" maxlength="38" v-model="title">
+        <textarea
+          class="form_common form_title"
+          maxlength="38"
+          placeholder="タイトル（最大38文字）"
+          v-model="title">
         </textarea>
         <div>
           <div id="btn" class="menu" @click="isVisible = !isVisible">
@@ -38,6 +42,7 @@
                   <textarea
                     class="form_common form_description"
                     maxlength="125"
+                    placeholder="見出し（最大125文字）"
                     v-model="description"
                   >
                   </textarea>
@@ -159,9 +164,9 @@ export default {
       isVisible: false,
 
       title: null,
-      title: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８",
+      // title: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８",
       description: null,
-      description: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５",
+      // description: "１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０",
       thumbnail: "../assets/images/icons/noimage.jpg",
       url_tail: "12345",
       is_published: true,
@@ -510,7 +515,7 @@ export default {
   text-align: center;
   position: relative;
   z-index: +1;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition-duration: 0.2s;
 }
 
