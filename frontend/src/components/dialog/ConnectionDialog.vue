@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   props: {
@@ -72,8 +71,8 @@ export default {
   },
   methods: {
     async handleClickSaveConnection() {
-      const URL_BASE =
-        "http://127.0.0.1:8000/api/arrows/" + this.connection.id + "/";
+      const tail =
+        "api/arrows/" + this.connection.id + "/";
       console.log(parseInt(this.connection.source.id));
       console.log(this.connection.source.position);
       console.log(parseInt(this.connection.destination.id));
@@ -81,9 +80,9 @@ export default {
       console.log(1);
       console.log(this.connectionForm.name);
       console.log(parseInt(this.$route.params.id));
-      axios({
+      this.$axios({
         method: "PUT",
-        url: URL_BASE,
+        url: tail,
         data: {
           from_card: parseInt(this.connection.source.id),
           from_position: this.connection.source.position,
@@ -120,12 +119,11 @@ export default {
     },
 
     deleteConnection() {
-      // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE =
-        "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/arrow/delete";
-      return axios({
+      // TODO: deleteを実装
+      const tail = "/arrow/delete";
+      this.$axios({
         method: "DELETE",
-        url: URL_BASE,
+        url: tail,
         data: {
           arrow_id: 45
         }

@@ -99,7 +99,6 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   name: "BoardsHome",
@@ -111,21 +110,22 @@ export default {
   methods: {
     search: function () {
       // console.log('koko');
-      const URL_BASE = "http://127.0.0.1:8000/api/boards?title=" + "気候変動";
+      // const URL_BASE = "http://127.0.0.1:8000/api/boards?title=" + "気候変動";
       // console.log("生成されたURL：" + URL_BASE);
-      return axios({
+      this.$axios({
         method: "GET",
-        url: URL_BASE,
+        // TODO: 気候変動を可変に
+        url: "api/boards?title=" + "気候変動",
       })
-        .then((res) => {
-          // console.dir(res.data);
-          // console.log(res.data.board_list);
-          this.boards = res.data.board_list;
-        })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+      .then((res) => {
+        // console.dir(res.data);
+        // console.log(res.data.board_list);
+        this.boards = res.data.board_list;
+      })
+      .catch((err) => {
+        console.log("ERROR!! occurred in Backend.");
+        console.log(err);
+      });
     },
   },
   data: function () {
@@ -224,16 +224,16 @@ export default {
       // console.log('route');
       // console.log(this.$route);
       // console.log(this.$route.query.q);
-      let URL_BASE;
+      let tail;
       if (this.$route.path === "/search") {
-        URL_BASE =
-          "http://127.0.0.1:8000/api/boards?title=" + this.$route.query.q;
+        tail =
+          "api/boards?title=" + this.$route.query.q;
       } else {
-        URL_BASE = "http://127.0.0.1:8000/api/boards";
+        tail = "api/boards";
       }
-      axios({
+      this.$axios({
         method: "GET",
-        url: URL_BASE,
+        url: tail,
       })
         .then((res) => {
           // console.log(res.data);
@@ -246,22 +246,18 @@ export default {
     },
   },
   created: function () {
-    // console.log('route');
-    // console.log(this.$route);
-    // console.log(this.$route.query.q);
-    const URL_BASE = "http://127.0.0.1:8000/api/boards";
-    axios({
+    this.$axios({
       method: "GET",
-      url: URL_BASE,
+      url: 'api/boards',
     })
-      .then((res) => {
-        console.log(res.data);
-        this.boards = res.data;
-      })
-      .catch((err) => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
+    .then((res) => {
+      console.log(res.data);
+      this.boards = res.data;
+    })
+    .catch((err) => {
+      console.log("ERROR!! occurred in Backend.");
+      console.log(err);
+    });
   },
 };
 </script>

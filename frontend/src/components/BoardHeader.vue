@@ -155,7 +155,6 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   name: "BoardHeader",
@@ -189,13 +188,13 @@ export default {
   methods: {
     updateBoard() {
       // console.log(this.title);
-      const URL_BASE =
-        "http://127.0.0.1:8000/api/boards/" + this.$route.params.id + "/";
+      const tail =
+        "api/boards/" + this.$route.params.id + "/";
       // const URL_BASE =
       //   "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/update";
-      axios({
+      this.$axios({
         method: "PUT",
-        url: URL_BASE,
+        url: tail,
         // withCredentials: true,
         data: {
           title: this.title,
@@ -218,11 +217,11 @@ export default {
     },
     deleteBoard() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE =
-        "http://127.0.0.1:8000/api/boards/" + this.$route.params.id;
-      return axios({
+      const tail =
+        "api/boards/" + this.$route.params.id;
+      this.$axios({
         method: "DELETE",
-        url: URL_BASE,
+        url: tail,
       })
         .then((res) => {
           // console.dir(res.data);
@@ -275,11 +274,11 @@ export default {
     // }
   },
   created: function () {
-    const URL_BASE =
-      "http://127.0.0.1:8000/api/boards/" + this.$route.params.id;
-    axios({
+    const tail =
+      "api/boards/" + this.$route.params.id;
+    this.$axios({
       method: "GET",
-      url: URL_BASE,
+      url: tail,
     })
       .then((res) => {
         // console.dir(res.data);

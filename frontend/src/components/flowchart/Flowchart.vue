@@ -33,7 +33,6 @@ import {
   pointRectangleIntersection,
 } from "../../utils/math";
 import { line2, lineTo } from "../../utils/svg";
-import axios from "axios";
 
 export default {
   name: "flowchart",
@@ -147,11 +146,11 @@ export default {
           if (this.connectingInfo.source.id !== this.hoveredConnector.node.id) {
             console.log('こちら1');
             // arrow追加処理
-            const URL_BASE = "http://127.0.0.1:8000/api/arrows/";
+            const tail = "api/arrows/";
             console.log('kokomadekiteru');
-            axios({
+            this.$axios({
               method: "POST",
-              url: URL_BASE,
+              url: tail,
               data: {
                   from_card: parseInt(this.connectingInfo.source.id),
                   from_position: this.connectingInfo.sourcePosition,
@@ -608,11 +607,11 @@ export default {
                 // };
                 // that.internalConnections.push(conn);
                 // arrow追加処理 なぜ２箇所ある？
-                const URL_BASE = "http://127.0.0.1:8000/api/arrows/";
+                const tail = "api/arrows/";
                 console.log('1:' + node.id);
-                axios({
+                that.$axios({
                   method: "POST",
-                  url: URL_BASE,
+                  url: tail,
                   data: {
                       from_card: parseInt(that.connectingInfo.source.id),
                       from_position: that.connectingInfo.sourcePosition,
@@ -733,10 +732,10 @@ export default {
       // 削除API
       // TODO: 画面上のアローもdelete
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE = "http://127.0.0.1:8000/api/arrows/" + conn.id + '/';
-      return axios({
+      const tail = "api/arrows/" + conn.id + '/';
+      this.$axios({
         method: "DELETE",
-        url: URL_BASE,
+        url: tail,
       })
       .then(res => {
         console.dir(res.status);

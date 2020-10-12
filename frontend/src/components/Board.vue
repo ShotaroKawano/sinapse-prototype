@@ -77,7 +77,6 @@ import Flowchart from "./flowchart/Flowchart";
 // scriptタグでないと機能しないのか？
 import "@/assets/css/reset.css";
 import BoardHeader from "./BoardHeader";
-import axios from "axios";
 
 export default {
   name: "Board",
@@ -261,10 +260,10 @@ export default {
   },
   methods: {
     handleDblClick(position) {
-      const URL_BASE = "http://127.0.0.1:8000/api/cards/";
-      axios({
+      const tail = "api/cards/";
+      this.$axios({
         method: "POST",
-        url: URL_BASE,
+        url: tail,
         data: {
           url: "nanika",
           title: "Title",
@@ -400,11 +399,11 @@ export default {
     // },
   },
   created: function () {
-    const URL_BASE =
-      "http://127.0.0.1:8000/api/cards/?board_id=" + this.$route.params.id;
-    axios({
+    const tail =
+      "api/cards/?board_id=" + this.$route.params.id;
+    this.$axios({
       method: "GET",
-      url: URL_BASE,
+      url: tail,
     })
       .then((res) => {
         console.log("koko1");
@@ -440,11 +439,11 @@ export default {
         console.log("ERROR!! occurred in Backend.");
         console.log(err);
       });
-    const URL_BASE2 =
-      "http://127.0.0.1:8000/api/arrows/?board_id=" + this.$route.params.id;
-    axios({
+    const tail2 =
+      "api/arrows/?board_id=" + this.$route.params.id;
+    this.$axios({
       method: "GET",
-      url: URL_BASE2,
+      url: tail2,
     })
       .then((res) => {
         console.log("koko_arrow");

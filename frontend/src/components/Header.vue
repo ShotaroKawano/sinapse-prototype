@@ -51,7 +51,6 @@
 // import axios from "axios";
 // import Vue from "vue";
 // import App from './App'
-import axios from "axios";
 
 export default {
   name: "Header",
@@ -72,12 +71,10 @@ export default {
       }
     },
     createBoard: function () {
-      const URL_BASE = "http://127.0.0.1:8000/api/boards/";
-      // const URL_BASE = "http://127.0.0.1:8000/admin/api/board/add/"
-      axios({
+      const tail = "api/boards/";
+      this.$axios({
         method: "POST",
-        url: URL_BASE,
-        // withCredentials: true,
+        url: tail,
         data: {
           title: "タイトル",
           description: "ディスクリプション",

@@ -59,9 +59,6 @@
 </template>
 
 <script>
-// import '../assets/modal.css';
-// Ajax通信ライブラリ
-import axios from "axios";
 
 export default {
   props: {
@@ -91,11 +88,10 @@ export default {
   methods: {
     deleteNode() {
       // TODO: 画面上のカードもdelete
-      // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE = "http://127.0.0.1:8000/api/cards/" + this.node.id + "/";
-      return axios({
+      const tail = "api/cards/" + this.node.id + "/";
+      this.$axios({
         method: "DELETE",
-        url: URL_BASE,
+        url: tail,
       })
         .then((res) => {
           console.dir(res.status);
@@ -112,25 +108,25 @@ export default {
 
     handleClickGetInfo() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const URL_BASE = "http://127.0.0.1:8000/api/scrape/";
+      const tail = "api/scrape/";
       console.log(this.nodeForm.url);
-      return axios({
+      this.$axios({
         method: "POST",
-        url: URL_BASE,
+        url: tail,
         data: {
           url: this.nodeForm.url,
         },
       })
-        .then((res) => {
-          console.dir(res.data);
-          this.nodeForm.thumbnail = res.data.soup_img;
-          this.nodeForm.title = res.data.soup_title;
-          this.nodeForm.summary = res.data.soup_desc;
-        })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+      .then((res) => {
+        console.dir(res.data);
+        this.nodeForm.thumbnail = res.data.soup_img;
+        this.nodeForm.title = res.data.soup_title;
+        this.nodeForm.summary = res.data.soup_desc;
+      })
+      .catch((err) => {
+        console.log("ERROR!! occurred in Backend.");
+        console.log(err);
+      });
     },
     // save押下時に実行される
     handleClickSaveNode() {
@@ -141,10 +137,10 @@ export default {
       // console.log(parseInt(this.node.x))
       // console.log(parseInt(this.node.y))
       // console.log(parseInt(this.$route.params.id))
-      const URL_BASE = "http://127.0.0.1:8000/api/cards/" + this.node.id + "/";
-      axios({
+      const tail = "api/cards/" + this.node.id + "/";
+      this.$axios({
         method: "PUT",
-        url: URL_BASE,
+        url: tail,
         data: {
           // url: this.nodeForm.url,
           // title: this.nodeForm.title,
