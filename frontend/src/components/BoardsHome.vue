@@ -52,7 +52,7 @@
             <img
               v-else
               class="btn_boardsUser"
-              src="@/assets/images/userimages/default-icon.png"
+              src="@/assets/images/userimages/user_default.jpg"
             />
           </div>
           <div class="box_NameAndCreatdate">

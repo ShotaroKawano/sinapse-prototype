@@ -87,7 +87,7 @@
                         <div id="btn">
                           <img
                             class="btn_boardsUser"
-                            src="@/assets/images/userimages/user00.jpg"
+                            src="@/assets/images/userimages/user_default.jpg"
                             alt="プロフィール画像"
                           />
                         </div>

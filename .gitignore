@@ -4,7 +4,7 @@
 
 venv/
 
-frontend/src/assets/images/
+# frontend/src/assets/images/
 
 .DS_Store
 

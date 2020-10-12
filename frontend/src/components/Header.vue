@@ -35,7 +35,7 @@
       <div class="box_headerUser">
         <img
           class="btn_headerUser"
-          src="@/assets/images/userimages/user00.jpg"
+          src="@/assets/images/userimages/user_default.jpg"
           alt="プロフィール画像"
         />
       </div>
@@ -182,13 +182,13 @@ export default {
 /* ▼▼▼▼▼ テキスト関係 ▼▼▼▼▼ */
 /* 必要 */
 .input_search {
-  width: 96%;
+  width: 92%;
   height: 100%;
   color: #525e6a;
   font-size: 10pt; /* 文字サイズ */
   /* border: none; */
   /* padding: 10px; */
-  margin: 0px 0px 0px 4px;
+  margin: 0px 5px 0px 4px;
   border: none;
   border-radius: 20px; /* 角丸       */
 }
