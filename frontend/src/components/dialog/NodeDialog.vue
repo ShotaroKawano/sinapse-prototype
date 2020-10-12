@@ -86,24 +86,18 @@ export default {
     };
   },
   methods: {
+
     deleteNode() {
-      // TODO: 画面上のカードもdelete
-      const tail = "api/cards/" + this.node.id + "/";
-      this.$axios({
-        method: "DELETE",
-        url: tail,
-      })
-        .then((res) => {
-          console.dir(res.status);
-          // console.log(res.data.board_id);
-          this.$emit("myremove", this.node);
-          console.log("発火");
-          this.$emit("update:visible", false);
-        })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+      // const tail = "api/cards/" + this.node.id + "/";
+      // this.$axios({
+      //   method: "DELETE",
+      //   url: tail,
+      // })
+      // .then((res) => {
+        this.$emit("handle-delete-node", this.node);
+        this.$emit("update:visible", false);
+      // })
+      // .catch(() => {});
     },
 
     handleClickGetInfo() {
@@ -118,15 +112,11 @@ export default {
         },
       })
       .then((res) => {
-        console.dir(res.data);
         this.nodeForm.thumbnail = res.data.soup_img;
         this.nodeForm.title = res.data.soup_title;
         this.nodeForm.summary = res.data.soup_desc;
       })
-      .catch((err) => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
+      .catch(() => {});
     },
     // save押下時に実行される
     handleClickSaveNode() {
@@ -159,13 +149,8 @@ export default {
           board: parseInt(this.$route.params.id),
         },
       })
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+        .then(() => {})
+        .catch(() => {});
 
       this.$emit(
         "update:node",

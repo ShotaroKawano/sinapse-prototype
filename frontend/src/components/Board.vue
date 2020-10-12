@@ -56,12 +56,13 @@
       <node-dialog
         :visible.sync="nodeDialogVisible"
         :node.sync="nodeForm.target"
-        @myremove="$refs.chart.removeNode($event)"
+        @handle-delete-node="$refs.chart.removeNode($event)"
       ></node-dialog>
       <connection-dialog
         :visible.sync="connectionDialogVisible"
         :connection.sync="connectionForm.target"
         :operation="connectionForm.operation"
+        @handle-delete-connection="$refs.chart.removeConnection($event)"
       >
       </connection-dialog>
     </div>
@@ -276,8 +277,6 @@ export default {
         },
       })
         .then((res) => {
-          console.log("成功");
-          console.log(res.data);
           this.$refs.chart.add({
             // id: +new Date(),
             // id: (new Date()).getTime(),
@@ -290,10 +289,7 @@ export default {
             summary: "Summary",
           });
         })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+        .catch(() => {});
     },
     async handleChartSave(nodes, connections) {
       // axios.post(url, {nodes, connection}).then(resp => {
@@ -406,8 +402,6 @@ export default {
       url: tail,
     })
       .then((res) => {
-        console.log("koko1");
-        console.log(res.data);
         // this.nodes = [];
         let nodes2 = [];
         for (let i in res.data) {
@@ -435,10 +429,7 @@ export default {
           // )
         }
       })
-      .catch((err) => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
+      .catch(() => {});
     const tail2 =
       "api/arrows/?board_id=" + this.$route.params.id;
     this.$axios({
@@ -446,8 +437,6 @@ export default {
       url: tail2,
     })
       .then((res) => {
-        console.log("koko_arrow");
-        console.log(res.data);
         // this.nodes = [];
         let connections2 = [];
         for (let i in res.data) {
@@ -475,10 +464,7 @@ export default {
           this.connections = connections2;
         }
       })
-      .catch((err) => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
+      .catch(() => {});
   },
 };
 </script>

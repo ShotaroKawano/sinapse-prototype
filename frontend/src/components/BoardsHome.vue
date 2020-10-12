@@ -117,14 +117,9 @@ export default {
         url: "api/boards?title=" + "気候変動",
       })
       .then((res) => {
-        // console.dir(res.data);
-        // console.log(res.data.board_list);
         this.boards = res.data.board_list;
       })
-      .catch((err) => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
+      .catch(() => {});
     },
   },
   data: function () {
@@ -235,13 +230,9 @@ export default {
         url: tail,
       })
         .then((res) => {
-          // console.log(res.data);
           this.boards = res.data;
         })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+        .catch(() => {});
     },
   },
   created: function () {
@@ -250,13 +241,9 @@ export default {
       url: 'api/boards',
     })
     .then((res) => {
-      console.log(res.data);
       this.boards = res.data;
     })
-    .catch((err) => {
-      console.log("ERROR!! occurred in Backend.");
-      console.log(err);
-    });
+    .catch(() => {});
   },
 };
 </script>

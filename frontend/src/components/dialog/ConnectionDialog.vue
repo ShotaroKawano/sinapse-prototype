@@ -97,15 +97,8 @@ export default {
           board_id: parseInt(this.$route.params.id)
         }
       })
-        .then(res => {
-          console.log('PUT成功');
-          console.dir(res.data);
-          console.log(res.data.arrow_id);
-        })
-        .catch(err => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+        .then(() => {})
+        .catch(() => {});
 
       this.$emit("update:visible", false);
       this.$emit(
@@ -120,22 +113,8 @@ export default {
 
     deleteConnection() {
       // TODO: deleteを実装
-      const tail = "/arrow/delete";
-      this.$axios({
-        method: "DELETE",
-        url: tail,
-        data: {
-          arrow_id: 45
-        }
-      })
-        .then(res => {
-          console.dir(res.status);
-          // console.log(res.data.board_id);
-        })
-        .catch(err => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+      this.$emit("handle-delete-connection", this.connection);
+      this.$emit("update:visible", false);
     },
 
     async handleClickCancelSaveConnection() {

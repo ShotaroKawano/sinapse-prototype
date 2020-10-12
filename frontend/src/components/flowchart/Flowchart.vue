@@ -147,8 +147,7 @@ export default {
             console.log('こちら1');
             // arrow追加処理
             const tail = "api/arrows/";
-            console.log('kokomadekiteru');
-            this.$axios({
+            await this.$axios({
               method: "POST",
               url: tail,
               data: {
@@ -157,17 +156,11 @@ export default {
                   to_card: parseInt(this.hoveredConnector.node.id),
                   to_position: this.hoveredConnector.position,
                   arrow_type: 1,
-                  // arrow_type: {
-                  //   id: 1,
-                  //   type: "片方向矢印"
-                  // },
                   label: "Pass",
                   board_id: parseInt(this.$route.params.id)
               }
             })
             .then(res => {
-              console.log('connector 成功');
-              console.log(res.data);
               // then句の外にあったコード ↓
               // Node can't connect to itself
               // let tempId = +new Date();
@@ -188,10 +181,7 @@ export default {
               this.internalConnections.push(conn);
               // then句の外にあったコード ↑
             })
-            .catch((err) => {
-              console.log("ERROR!! occurred in Backend.");
-              console.log(err);
-            });
+            .catch(() => {});
             // ここまで
           }
         }
@@ -627,8 +617,6 @@ export default {
                   }
                 })
                 .then(res => {
-                  console.log('connector 成功');
-                  console.log(res.data);
                   // then句の外にあったコード ↓
                   // Node can't connect to itself
                   // let tempId = +new Date();
@@ -652,9 +640,7 @@ export default {
                   that.connectingInfo.sourcePosition = null;
                   // then句の外にあったコード ↑
                 })
-                .catch((err) => {
-                  console.log("ERROR!! occurred in Backend.");
-                  console.log(err);
+                .catch(() => {
                   that.connectingInfo.source = null;
                   that.connectingInfo.sourcePosition = null;
                   // then句の外にあったコード ↑
@@ -715,6 +701,14 @@ export default {
       }
     },
     removeNode(node) {
+      const tail = "api/cards/" + node.id + "/";
+      this.$axios({
+        method: "DELETE",
+        url: tail,
+      })
+      .then(() => {})
+      .catch(() => {})
+      // TODO: axios deleteの処理はこちらに移す removeConnectionと同じにすべき
       let connections = this.internalConnections.filter(
         (item) => item.source.id === node.id || item.destination.id === node.id
       );
@@ -729,22 +723,13 @@ export default {
     removeConnection(conn) {
       let index = this.internalConnections.indexOf(conn);
       this.internalConnections.splice(index, 1);
-      // 削除API
-      // TODO: 画面上のアローもdelete
-      // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
       const tail = "api/arrows/" + conn.id + '/';
       this.$axios({
         method: "DELETE",
         url: tail,
       })
-      .then(res => {
-        console.dir(res.status);
-        // console.log(res.data.board_id);
-      })
-      .catch(err => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      })
+      .then(() => {})
+      .catch(() => {})
     },
     moveCurrentNode(x, y) {
       if (this.currentNodes.length > 0 && !this.readonly) {

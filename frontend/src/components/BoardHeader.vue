@@ -207,13 +207,8 @@ export default {
           // tagList: this.convertTaglistToTags
         },
       })
-        .then((res) => {
-          // console.dir(res.data);
-        })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+        .then(() => {})
+        .catch(() => {})
     },
     deleteBoard() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
@@ -224,14 +219,9 @@ export default {
         url: tail,
       })
         .then((res) => {
-          // console.dir(res.data);
           this.$router.push("/");
-          // console.log(res.data.board_id);
         })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+        .catch(() => {});
     },
     // convertTagsToTaglist: function() {
     //   this.tagList =
@@ -281,19 +271,11 @@ export default {
       url: tail,
     })
       .then((res) => {
-        // console.dir(res.data);
-        // console.dir(res);
-        // this.board_id = res.data.board_info.board_id
-        // console.log((typeof res.data));
-        // console.log(res.data);
         this.title = res.data.title;
         this.description = res.data.description;
         this.boardTags = res.data.board_tags;
       })
-      .catch((err) => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
+      .catch(() => {});
   },
   // mounted: function () {
   //       $('.s_01 .accordion_one .accordion_header').click(function () {
