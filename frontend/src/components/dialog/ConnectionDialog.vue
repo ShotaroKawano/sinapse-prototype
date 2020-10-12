@@ -81,20 +81,20 @@ export default {
       console.log(this.connectionForm.name);
       console.log(parseInt(this.$route.params.id));
       this.$axios({
-        method: "PUT",
+        method: "PATCH",
         url: tail,
         data: {
-          from_card: parseInt(this.connection.source.id),
-          from_position: this.connection.source.position,
-          to_card: parseInt(this.connection.destination.id),
-          to_position: this.connection.destination.position,
+          // from_card: parseInt(this.connection.source.id),
+          // from_position: this.connection.source.position,
+          // to_card: parseInt(this.connection.destination.id),
+          // to_position: this.connection.destination.position,
           arrow_type: 1,
           // arrow_type: {
           //   id: 1,
           //   type: "片方向矢印"
           // },
           label: this.connectionForm.name,
-          board_id: parseInt(this.$route.params.id)
+          // board_id: parseInt(this.$route.params.id)
         }
       })
         .then(() => {})

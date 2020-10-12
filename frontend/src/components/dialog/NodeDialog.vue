@@ -61,6 +61,7 @@
 <script>
 
 export default {
+
   props: {
     visible: {
       type: Boolean,
@@ -72,6 +73,7 @@ export default {
       default: null,
     },
   },
+
   data: function () {
     return {
       nodeForm: {
@@ -85,19 +87,12 @@ export default {
       // approvers: [{id: 1, name: 'Joyce'}, {id: 2, name: 'Allen'}, {id: 3, name: 'Teresa'}],
     };
   },
+
   methods: {
 
     deleteNode() {
-      // const tail = "api/cards/" + this.node.id + "/";
-      // this.$axios({
-      //   method: "DELETE",
-      //   url: tail,
-      // })
-      // .then((res) => {
-        this.$emit("handle-delete-node", this.node);
-        this.$emit("update:visible", false);
-      // })
-      // .catch(() => {});
+      this.$emit("handle-delete-node", this.node);
+      this.$emit("update:visible", false);
     },
 
     handleClickGetInfo() {
@@ -118,27 +113,14 @@ export default {
       })
       .catch(() => {});
     },
+
     // save押下時に実行される
     handleClickSaveNode() {
-      // console.log(this.nodeForm.url)
-      // console.log(this.nodeForm.title)
-      // console.log(this.nodeForm.summary)
-      // console.log(this.nodeForm.thumbnail)
-      // console.log(parseInt(this.node.x))
-      // console.log(parseInt(this.node.y))
-      // console.log(parseInt(this.$route.params.id))
       const tail = "api/cards/" + this.node.id + "/";
       this.$axios({
-        method: "PUT",
+        method: "PATCH",
         url: tail,
         data: {
-          // url: this.nodeForm.url,
-          // title: this.nodeForm.title,
-          // summary: this.nodeForm.summary,
-          // thumbnail: this.nodeForm.thumbnail,
-          // position_x: 1,
-          // position_y: 1,
-          // board: 2
           url: this.nodeForm.url,
           title: this.nodeForm.title,
           summary: this.nodeForm.summary,
@@ -146,12 +128,11 @@ export default {
           position_x: parseInt(this.node.x),
           position_y: parseInt(this.node.y),
           // board_idはread_onlyにして送信しないようにしたい
-          board: parseInt(this.$route.params.id),
+          // board: parseInt(this.$route.params.id),
         },
       })
-        .then(() => {})
-        .catch(() => {});
-
+      .then(() => {})
+      .catch(() => {});
       this.$emit(
         "update:node",
         Object.assign(this.node, {
@@ -161,18 +142,21 @@ export default {
           summary: this.nodeForm.summary,
         })
       );
-      // console.log(this.nodeForm.url);
       this.$emit("update:visible", false);
     },
+
     handleClickCancelSaveNode() {
       this.$emit("update:visible", false);
     },
+
     // handleChangeApprover(e) {
     //   // this.nodeForm.approver = this.approvers.filter(i => i.id === parseInt(e.target.value))[0];
     //   this.nodeForm.summary = this.approvers.filter(i => i.id === parseInt(e.target.value))[0];
     // },
   },
+
   watch: {
+
     node: {
       immediate: true,
       handler(val) {
@@ -189,6 +173,7 @@ export default {
         // }
       },
     },
+
   },
 };
 </script>

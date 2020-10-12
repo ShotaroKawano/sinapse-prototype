@@ -195,12 +195,33 @@ export default {
     },
     async handleChartMouseMove(event) {
       // calc offset of cursor to chart
+      // TODO: zoomしたときに矢印の出どころがずれる
+      let zoom = parseFloat(document.getElementById("svg").style.zoom || 1);
+      // for (let currentNode of that.currentNodes) {
+        // 拡大(+)なら右下、縮小(-)なら左上にずれていく
+        // currentNode.x += event.dx / zoom;
+        // currentNode.y += event.dy / zoom;
+      // }
+
       let boundingClientRect = event.currentTarget.getBoundingClientRect();
-      // actualX = ページの左上からの座標 - チャートの左側までの座標 - windowを正の方向にスクロースしている座標;
-      let actualX = event.pageX - boundingClientRect.left - window.scrollX;
+      // actualX = SVG領域左上からの座標 - ブラウザの表示領域左側からチャートの左側までの座標 - windowを正の方向にスクロースしていた分の座標;
+      // let actualX = event.pageX - boundingClientRect.left - window.scrollX;
+      let actualX = (event.pageX - boundingClientRect.left - window.scrollX) / zoom
       this.cursorToChartOffset.x = Math.trunc(actualX);
-      let actualY = event.pageY - boundingClientRect.top - window.scrollY;
+      // console.log('event.pageX: ' + event.pageX);
+      // console.log('boundingClientRect.left: ' + boundingClientRect.left);
+      // console.log('window.scrollX: ' + window.scrollX);
+
+      // actualY = SVG領域左上からの座標 - ブラウザの表示領域上端からチャートの上端までの座標 - windowを正の方向にスクロースしていた分の座標;
+      // let actualY = event.pageY - boundingClientRect.top - window.scrollY;
+      let actualY = (event.pageY - boundingClientRect.top - window.scrollY) / zoom
       this.cursorToChartOffset.y = Math.trunc(actualY);
+      // console.log('event.pageY: ' + event.pageY);
+      // console.log('boundingClientRect.top: ' + boundingClientRect.top);
+      // console.log('window.scrollY: ' + window.scrollY);
+      //
+      // console.log('cursorToChartOffset.x: ' + this.cursorToChartOffset.x);
+      // console.log('cursorToChartOffset.y: ' + this.cursorToChartOffset.y);
 
       // connectionを接続中ならば
       if (this.connectingInfo.source) {
@@ -215,6 +236,7 @@ export default {
         let destinationPosition = this.hoveredConnector
           ? this.hoveredConnector.position
           : null;
+        // arrowの線を引いているところ
         this.arrowTo(
           sourceOffset.x,
           sourceOffset.y,
@@ -403,12 +425,15 @@ export default {
       g.classed("guideline", true);
       lineTo(g, x1, y1, x2, y2, 1, "#a3a3a3", [5, 3]);
     },
+    // TODO: positionで場合分けしよう
     arrowTo(x1, y1, x2, y2, startPosition, endPosition, color, connName) {
       let g = this.append("g");
-      g.append('text')
+      let temp = g.append('text')
         // .attr("fill", "#7CF8FD")
         .attr("fill", "#5486b9")
-        .attr("x", x2 + 10)
+
+      temp
+        .attr("x", x2)
         .attr("y", y2 - 40)
         .style("width", 10 + "px")
         .style("height", 10 + "px")
@@ -539,6 +564,26 @@ export default {
           for (let currentNode of that.currentNodes) {
             currentNode.x = Math.round(Math.round(currentNode.x) / 10) * 10;
             currentNode.y = Math.round(Math.round(currentNode.y) / 10) * 10;
+            // positionの更新処理
+            const tail = "api/cards/" + currentNode.id + "/";
+            that.$axios({
+              method: "PATCH",
+              url: tail,
+              data: {
+                // url: this.nodeForm.url,
+                // title: this.nodeForm.title,
+                // summary: this.nodeForm.summary,
+                // thumbnail: this.nodeForm.thumbnail,
+                // position_x: parseInt(this.node.x),
+                // position_y: parseInt(this.node.y),
+                position_x: parseInt(currentNode.x),
+                position_y: parseInt(currentNode.y),
+                // board_idはread_onlyにして送信しないようにしたい
+                // board: parseInt(this.$route.params.id),
+              },
+            })
+            .then(() => {})
+            .catch(() => {});
           }
         });
       // ドラッグ操作を適用

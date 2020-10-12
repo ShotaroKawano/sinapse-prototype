@@ -23,7 +23,7 @@ Vue.prototype.$axios.interceptors.response.use(
     return response
   },
   error => {
-    window.alert(error)
+    window.alert('処理に失敗しました')
     console.log(error)
     return Promise.reject(error)
   }

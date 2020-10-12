@@ -193,16 +193,17 @@ export default {
       // const URL_BASE =
       //   "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/update";
       this.$axios({
-        method: "PUT",
+        method: "PATCH",
+        // method: "PUT",
         url: tail,
         // withCredentials: true,
         data: {
           title: this.title,
           description: this.description,
           thumbnail: this.thumbnail,
-          url_tail: this.url_tail,
+          // url_tail: this.url_tail,
           is_published: this.is_published,
-          user_id: 1,
+          // user_id: 1,
           // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
           // tagList: this.convertTaglistToTags
         },
