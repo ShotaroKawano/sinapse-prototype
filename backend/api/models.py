@@ -19,9 +19,9 @@ class Tag(models.Model):
 
 class Board(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField()
-    thumbnail = models.CharField(max_length=255)
-    url_tail = models.CharField(max_length=255)
+    description = models.TextField(blank=True,null=True)
+    thumbnail = models.CharField(blank=True,null=True,max_length=255)
+    url_tail = models.CharField(blank=True,null=True,max_length=255)
     is_published = models.BooleanField(default=True)
     user = models.ForeignKey(User, related_name='user_boards', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -40,8 +40,8 @@ class Board(models.Model):
 class Card(models.Model):
     url = models.CharField(max_length=2083)
     title = models.CharField(max_length=255)
-    summary = models.TextField()
-    thumbnail = models.CharField(max_length=2083)
+    summary = models.TextField(blank=True,null=True)
+    thumbnail = models.CharField(blank=True,null=True,max_length=2083)
     position_x = models.IntegerField()
     position_y = models.IntegerField()
     board = models.ForeignKey(Board, related_name='board_cards', on_delete=models.CASCADE)
@@ -98,7 +98,7 @@ class Arrow(models.Model):
     from_position = models.CharField(max_length=255)
     to_card = models.ForeignKey('Card', related_name='board_to_cards', on_delete=models.CASCADE)
     to_position = models.CharField(max_length=255)
-    label = models.CharField(max_length=255)
+    label = models.CharField(blank=True,null=True,max_length=255)
     arrow_type = models.ForeignKey('Arrow_type', on_delete=models.CASCADE)
     board = models.ForeignKey(Board, related_name='board_arrows', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
