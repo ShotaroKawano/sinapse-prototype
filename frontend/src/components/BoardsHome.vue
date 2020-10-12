@@ -68,7 +68,6 @@
       <div>
         <!-- ▼▼ サムネ画像 ▼▼ -->
         <div
-          v-if="board.thunbnail"
           class="thumbnail_indexBoards"
           :style="{ backgroundImage: 'url(' + board.thunbnail + ')' }"
         ></div>
