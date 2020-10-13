@@ -433,7 +433,7 @@ export default {
         .attr("fill", "#5486b9")
 
       temp
-        .attr("x", x2)
+        .attr("x", x2 + 10)
         .attr("y", y2 - 40)
         .style("width", 10 + "px")
         .style("height", 10 + "px")
