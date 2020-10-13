@@ -7,7 +7,7 @@
           v-if="!isEditting"
           @click="isEditting = !isEditting"
           :src="nodeForm.thumbnail"
-          alt=""
+          alt="No image"
           class="box_thumbnail"
         />
         <input

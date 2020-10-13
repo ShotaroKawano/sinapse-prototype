@@ -164,7 +164,7 @@ def getInfo(request):
             soup_img = url + '/' + soup.find('img')['src']
             print(soup_img)
         else:
-            soup_img = 'no image'
+            soup_img = 'https://placehold.jp/150x100.png'
         if soup.find('description'):
             soup_desc = soup.find('description').getText()
         else:
