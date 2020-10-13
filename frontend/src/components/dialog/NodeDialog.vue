@@ -2,7 +2,22 @@
   <div>
     <div class="modal" v-if="visible">
       <div class="thumbnail">
-        <img :src="nodeForm.thumbnail" alt="" class="box_thumbnail" />
+        <!-- <img :src="nodeForm.thumbnail" alt="" class="box_thumbnail" /> -->
+        <img
+          v-if="!isEditting"
+          @click="isEditting = !isEditting"
+          :src="nodeForm.thumbnail"
+          alt=""
+          class="box_thumbnail"
+        />
+        <input
+            v-if="isEditting"
+            @focusout="isEditting = !isEditting"
+            type="url"
+            class="form-urlControl"
+            id="thumbnail"
+            v-model="nodeForm.thumbnail"
+        />
       </div>
       <div class="body">
         <!-- <input class="form-control" v-model="nodeForm.thumbnail"/> -->
@@ -83,6 +98,7 @@ export default {
         summary: null,
         thumbnail: null,
       },
+      isEditting: false
       // nodeForm: {name: null, id: null, type: null, approver: []},
       // approvers: [{id: 1, name: 'Joyce'}, {id: 2, name: 'Allen'}, {id: 3, name: 'Teresa'}],
     };
