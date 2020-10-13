@@ -23,5 +23,3 @@ admin.site.register(Tag)
 admin.site.register(Board_Tag)
 admin.site.register(Arrow)
 admin.site.register(Arrow_type)
-
-admin.site.register(User, UserAdmin)
