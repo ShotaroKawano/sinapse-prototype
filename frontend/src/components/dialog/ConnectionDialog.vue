@@ -8,6 +8,7 @@
             id="name"
             class="form-control form-arrowNameControl"
             v-model="connectionForm.name"
+            placeholder="Name"
           />
         </div>
         <div class="form-arrowControl">
@@ -29,16 +30,19 @@
             </option>
           </select>
         </div>
+              <div class="box_footerButton">
+        <div class="footerButton">
+          <button @click="handleClickCancelSaveConnection">Cancel</button>
+          <div id="btn" class="btn_delete" @click="deleteConnection()">
+            <p class="text_delete">Delete</p>
+          </div>
+          <div id="btn" class="btn_save" @click="handleClickSaveConnection">
+            <p class="text_save">Save</p>
+          </div>
+        </div>
       </div>
-      <div class="footer">
-        <button @click="handleClickCancelSaveConnection">Cancel</button>
-        <button id="btn" class="btn_delete" @click="deleteConnection()">
-          <p class="text_delete">Delete</p>
-        </button>
-        <button id="btn" class="btn_save" @click="handleClickSaveConnection">
-          <p class="text_save">Save</p>
-        </button>
       </div>
+
     </div>
   </div>
 </template>

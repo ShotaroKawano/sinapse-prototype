@@ -75,7 +75,7 @@
   height: 26px;
   padding: 0px 4px 0px 4px;
   /* max-height: 200px; */
-  margin: 2px 0px 10px 0px;
+  margin: 0px 0px 10px 0px;
   /* background-color: #707070; */
   background-color: white;
   color: #525e6a;
@@ -91,7 +91,7 @@
   height: 100%;
   display: block;
   padding: 8px 4px 0px 4px;
-  margin: 2px 0px 10px 0px;
+  margin: 0px 0px 10px 0px;
   background-color: white;
   color: #525e6a;
   /* appearance: none; */
@@ -106,7 +106,7 @@
   width: 100%;
   padding: 8px 4px 8px 4px;
   /* max-height: 200px; */
-  margin: 2px 0px 10px 0px;
+  margin: 0px 0px 10px 0px;
   /* background-color: #707070; */
   background-color: white;
   color: #525e6a;
@@ -118,7 +118,7 @@
 }
 
 .form-arrowControl {
-  padding-right: 2px;
+  /* padding-right: 2px; */
 }
 .form-arrowNameControl {
   display: block;
@@ -126,7 +126,7 @@
   height: 26px;
   padding: 0px 4px 0px 4px;
   /* max-height: 200px; */
-  margin: 2px 0px 10px 0px;
+  margin: 0px 0px 10px 0px;
   /* background-color: #707070; */
   background-color: white;
   color: #525e6a;
@@ -142,7 +142,7 @@
   height: 26px;
   padding: 0px 4px 0px 4px;
   /* max-height: 200px; */
-  margin: 2px 0px 10px 0px;
+  margin: 0px 0px 10px 0px;
   /* background-color: #707070; */
   background-color: white;
   color: #525e6a;
@@ -158,13 +158,14 @@ label {
   color: #525e6a;
 }
 
-.footer {
-  padding: 10px;
-  text-align: right;
+.box_footerButton {
+  width: 100%;
+  padding: 10px 0px 10px 0px;
+  display: flex;
 }
-
-.footer > button {
-  /* margin-left: 10px; */
+.footerButton {
+  display: flex;
+  margin: 0 0 0 auto; /* 右寄せ */
 }
 
 .body {
@@ -189,7 +190,7 @@ label {
   border: none;
   background-color: #525e6a;
   line-height: 22px;
-  margin: 2px 0px 0px 5px;
+  margin: 0px 0px 0px 5px;
   padding: 0 auto;
 }
 .text_get {
@@ -197,26 +198,27 @@ label {
   color: #ffffff;
 }
 .btn_delete {
-  width: 60px;
+  width: 50px;
   height: 28px;
   border-radius: 5px;
   text-align: center;
   border: 1px solid #525e6a;
   background-color: #ffffff;
-  line-height: 22px;
+  line-height: 28px;
+  margin-left: 10px;
 }
 .text_delete {
   font-size: 14px;
   color: #525e6a;
 }
 .btn_save {
-  width: 60px;
+  width: 50px;
   height: 28px;
   border-radius: 5px;
   text-align: center;
   background-color: #5486b9;
-  line-height: 22px;
-  /* margin-left: 10px; */
+  line-height: 28px;
+  margin-left: 10px;
 }
 .text_save {
   font-size: 14px;

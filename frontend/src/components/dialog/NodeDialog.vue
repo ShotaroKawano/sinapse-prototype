@@ -28,6 +28,7 @@
             class="form-urlControl"
             id="url"
             v-model="nodeForm.url"
+            placeholder="URL"
           />
           <button id="btn" class="btn_get" @click="handleClickGetInfo">
             <p class="text_get">Get</p>
@@ -43,6 +44,7 @@
             id="title"
             rows="3"
             v-model="nodeForm.title"
+            placeholder="Title"
           ></textarea>
         </div>
 
@@ -55,19 +57,22 @@
             id="summary"
             rows="9"
             v-model="nodeForm.summary"
+            placeholder="Summary"
           ></textarea>
         </div>
-      </div>
-      <div class="footer">
-        <button id="btn" @click="handleClickCancelSaveNode">
-          <p>Cancel</p>
-        </button>
-        <button id="btn" class="btn_delete" @click="deleteNode">
-          <p class="text_delete">Delete</p>
-        </button>
-        <button id="btn" class="btn_save" @click="handleClickSaveNode">
-          <p class="text_save">Save</p>
-        </button>
+        <div class="box_footerButton">
+          <div class="footerButton">
+            <button id="btn" style="width: 50px;" @click="handleClickCancelSaveNode">
+              <p>Cancel</p>
+            </button>
+            <div id="btn" class="btn_delete" @click="deleteNode">
+              <p class="text_delete">Delete</p>
+            </div>
+            <div id="btn" class="btn_save" @click="handleClickSaveNode">
+              <p class="text_save">Save</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
