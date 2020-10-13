@@ -60,7 +60,7 @@
               <p class="indexUsername">{{ board.user.username }}</p>
             </div>
             <div>
-              <p class="indexCreatdate">{{ board.updated_at }}</p>
+              <p class="indexCreatdate">{{ getNowDateWithString(board.updated_at) }}</p>
             </div>
           </div>
         </div>
@@ -117,47 +117,42 @@ export default {
         url: "api/boards?title=" + "気候変動",
       })
       .then((res) => {
-        // console.dir(res.data);
-        // console.log(res.data.board_list);
         this.boards = res.data.board_list;
       })
-      .catch((err) => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
+      .catch(() => {});
     },
   },
   data: function () {
     return {
       boards: [
-        {
-          id: 1,
-          title: "気候変動の影響による日本の危険性と今できること",
-          description:
-            "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。",
-          thunbnail: require("@/assets/images/treediagram.png"),
-          // tags: [
-          //   { name: "#気候変動" },
-          //   { name: "#地球温暖化" },
-          //   { name: "#自然電力" }
-          // ],
-          board_tags: [
-            {
-              tag: { id: 1, name: "気候変動" },
-              tag: { id: 2, name: "地球温暖化" },
-              tag: { id: 3, name: "自然電力" },
-            },
-            // { id: 2, name: "地球温暖化" },
-            // { id: 3, name: "自然電力" }
-          ],
-          user: {
-            user_name: "川野 翔太郎",
-            user_icon: require("@/assets/images/userimages/user00.jpg"),
-          },
-          updated_at: "2020/09/20",
-          comment_count: 123,
-          like_count: 456,
-        },
+      //   {
+      //     id: 1,
+      //     title: "気候変動の影響による日本の危険性と今できること",
+      //     description:
+      //       "気候変動により人命にもっとも危機が及ぶ可能性が高い国は日本である。気候変動を抑える対策として、我々がもっとも手軽で効果的なことは電気会社を切り替えることだあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。",
+      //     thunbnail: require("@/assets/images/treediagram.png"),
+      //     // tags: [
+      //     //   { name: "#気候変動" },
+      //     //   { name: "#地球温暖化" },
+      //     //   { name: "#自然電力" }
+      //     // ],
+      //     board_tags: [
+      //       {
+      //         tag: { id: 1, name: "気候変動" },
+      //         tag: { id: 2, name: "地球温暖化" },
+      //         tag: { id: 3, name: "自然電力" },
+      //       },
+      //       // { id: 2, name: "地球温暖化" },
+      //       // { id: 3, name: "自然電力" }
+      //     ],
+      //     user: {
+      //       user_name: "川野 翔太郎",
+      //       user_icon: require("@/assets/images/userimages/user00.jpg"),
+      //     },
+      //     updated_at: "2020/09/20",
+      //     comment_count: 123,
+      //     like_count: 456,
+      //   },
         // {
         //   id: 2,
         //   title: "気候変動の影響による日本の危険性と今できること",
@@ -214,9 +209,19 @@ export default {
     };
   },
   computed: {
-    limitCount() {
-      return this.tags.slice(0, 3);
-    },
+    // limitCount() {
+    //   return this.tags.slice(0, 3);
+    // },
+    getNowDateWithString() {
+      return function(date) {
+        var dt = new Date(date);
+        var y = dt.getFullYear();
+        var m = ("00" + (dt.getMonth() + 1)).slice(-2);
+        var d = ("00" + dt.getDate()).slice(-2);
+        var result = y + "/" + m + "/" + d;
+        return result;
+      }
+    }
   },
   watch: {
     $route() {
@@ -235,13 +240,9 @@ export default {
         url: tail,
       })
         .then((res) => {
-          // console.log(res.data);
           this.boards = res.data;
         })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+        .catch(() => {});
     },
   },
   created: function () {
@@ -250,13 +251,9 @@ export default {
       url: 'api/boards',
     })
     .then((res) => {
-      console.log(res.data);
       this.boards = res.data;
     })
-    .catch((err) => {
-      console.log("ERROR!! occurred in Backend.");
-      console.log(err);
-    });
+    .catch(() => {});
   },
 };
 </script>

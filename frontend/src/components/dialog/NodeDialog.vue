@@ -61,6 +61,7 @@
 <script>
 
 export default {
+
   props: {
     visible: {
       type: Boolean,
@@ -72,6 +73,7 @@ export default {
       default: null,
     },
   },
+
   data: function () {
     return {
       nodeForm: {
@@ -85,25 +87,12 @@ export default {
       // approvers: [{id: 1, name: 'Joyce'}, {id: 2, name: 'Allen'}, {id: 3, name: 'Teresa'}],
     };
   },
+
   methods: {
+
     deleteNode() {
-      // TODO: 画面上のカードもdelete
-      const tail = "api/cards/" + this.node.id + "/";
-      this.$axios({
-        method: "DELETE",
-        url: tail,
-      })
-        .then((res) => {
-          console.dir(res.status);
-          // console.log(res.data.board_id);
-          this.$emit("myremove", this.node);
-          console.log("発火");
-          this.$emit("update:visible", false);
-        })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+      this.$emit("handle-delete-node", this.node);
+      this.$emit("update:visible", false);
     },
 
     handleClickGetInfo() {
@@ -118,37 +107,20 @@ export default {
         },
       })
       .then((res) => {
-        console.dir(res.data);
         this.nodeForm.thumbnail = res.data.soup_img;
         this.nodeForm.title = res.data.soup_title;
         this.nodeForm.summary = res.data.soup_desc;
       })
-      .catch((err) => {
-        console.log("ERROR!! occurred in Backend.");
-        console.log(err);
-      });
+      .catch(() => {});
     },
+
     // save押下時に実行される
     handleClickSaveNode() {
-      // console.log(this.nodeForm.url)
-      // console.log(this.nodeForm.title)
-      // console.log(this.nodeForm.summary)
-      // console.log(this.nodeForm.thumbnail)
-      // console.log(parseInt(this.node.x))
-      // console.log(parseInt(this.node.y))
-      // console.log(parseInt(this.$route.params.id))
       const tail = "api/cards/" + this.node.id + "/";
       this.$axios({
-        method: "PUT",
+        method: "PATCH",
         url: tail,
         data: {
-          // url: this.nodeForm.url,
-          // title: this.nodeForm.title,
-          // summary: this.nodeForm.summary,
-          // thumbnail: this.nodeForm.thumbnail,
-          // position_x: 1,
-          // position_y: 1,
-          // board: 2
           url: this.nodeForm.url,
           title: this.nodeForm.title,
           summary: this.nodeForm.summary,
@@ -156,17 +128,11 @@ export default {
           position_x: parseInt(this.node.x),
           position_y: parseInt(this.node.y),
           // board_idはread_onlyにして送信しないようにしたい
-          board: parseInt(this.$route.params.id),
+          // board: parseInt(this.$route.params.id),
         },
       })
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
-
+      .then(() => {})
+      .catch(() => {});
       this.$emit(
         "update:node",
         Object.assign(this.node, {
@@ -176,18 +142,21 @@ export default {
           summary: this.nodeForm.summary,
         })
       );
-      // console.log(this.nodeForm.url);
       this.$emit("update:visible", false);
     },
+
     handleClickCancelSaveNode() {
       this.$emit("update:visible", false);
     },
+
     // handleChangeApprover(e) {
     //   // this.nodeForm.approver = this.approvers.filter(i => i.id === parseInt(e.target.value))[0];
     //   this.nodeForm.summary = this.approvers.filter(i => i.id === parseInt(e.target.value))[0];
     // },
   },
+
   watch: {
+
     node: {
       immediate: true,
       handler(val) {
@@ -204,6 +173,7 @@ export default {
         // }
       },
     },
+
   },
 };
 </script>

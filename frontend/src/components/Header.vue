@@ -87,14 +87,9 @@ export default {
         },
       })
         .then((res) => {
-          console.log("koko");
-          console.dir(res.data);
           this.$router.push("/boards/" + res.data.id);
         })
-        .catch((err) => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+        .catch(() => {});
     },
   },
 };

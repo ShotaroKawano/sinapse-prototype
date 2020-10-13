@@ -130,7 +130,7 @@ class ArrowViewSets(ModelViewSet):
         return queryset
 
 
-
+# TODO: csrf外す
 @csrf_exempt
 def getInfo(request):
     json_str = request.body
@@ -147,12 +147,33 @@ def getInfo(request):
     html = urlopen(req, timeout=10).read()
     soup = BeautifulSoup(html, "html.parser")
 
-    head_info = soup.find('head')
-    meta_img = head_info.find('meta', {'property' : 'og:image'})
-    soup_img = meta_img['content']
-    meta_description = head_info.find('meta', {'property' : 'og:description'})
-    soup_desc = meta_description['content']
-    soup_title = head_info.find('title').getText()
+    # head_info = soup.find('head')
+
+    if soup.find('meta', {'property' : 'og:image'}):
+        # meta_img = head_info.find('meta', {'property' : 'og:image'})
+        meta_img = soup.find('meta', {'property' : 'og:image'})
+        soup_img = meta_img['content']
+        # meta_description = head_info.find('meta', {'property' : 'og:description'})
+        meta_description = soup.find('meta', {'property' : 'og:description'})
+        # soup_desc = meta_description['content']
+        soup_desc = meta_description['content']
+        soup_title = soup.find('title').getText()
+        print('///////////////////')
+    else:
+        if soup.find('img'):
+            soup_img = url + '/' + soup.find('img')['src']
+            print(soup_img)
+        else:
+            soup_img = 'no image'
+        if soup.find('description'):
+            soup_desc = soup.find('description').getText()
+        else:
+            soup_desc = 'no description'
+        if soup.find('title'):
+            soup_title = soup.find('title').getText()
+        else:
+            soup_title = 'no title'
+        print('---------------------')
 
     # list.append([soup_title, soup_desc, soup_img])
     dict.update({'soup_title': soup_title})

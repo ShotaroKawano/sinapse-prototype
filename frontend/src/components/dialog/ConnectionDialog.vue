@@ -81,31 +81,24 @@ export default {
       console.log(this.connectionForm.name);
       console.log(parseInt(this.$route.params.id));
       this.$axios({
-        method: "PUT",
+        method: "PATCH",
         url: tail,
         data: {
-          from_card: parseInt(this.connection.source.id),
-          from_position: this.connection.source.position,
-          to_card: parseInt(this.connection.destination.id),
-          to_position: this.connection.destination.position,
+          // from_card: parseInt(this.connection.source.id),
+          // from_position: this.connection.source.position,
+          // to_card: parseInt(this.connection.destination.id),
+          // to_position: this.connection.destination.position,
           arrow_type: 1,
           // arrow_type: {
           //   id: 1,
           //   type: "片方向矢印"
           // },
           label: this.connectionForm.name,
-          board_id: parseInt(this.$route.params.id)
+          // board_id: parseInt(this.$route.params.id)
         }
       })
-        .then(res => {
-          console.log('PUT成功');
-          console.dir(res.data);
-          console.log(res.data.arrow_id);
-        })
-        .catch(err => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+        .then(() => {})
+        .catch(() => {});
 
       this.$emit("update:visible", false);
       this.$emit(
@@ -120,22 +113,8 @@ export default {
 
     deleteConnection() {
       // TODO: deleteを実装
-      const tail = "/arrow/delete";
-      this.$axios({
-        method: "DELETE",
-        url: tail,
-        data: {
-          arrow_id: 45
-        }
-      })
-        .then(res => {
-          console.dir(res.status);
-          // console.log(res.data.board_id);
-        })
-        .catch(err => {
-          console.log("ERROR!! occurred in Backend.");
-          console.log(err);
-        });
+      this.$emit("handle-delete-connection", this.connection);
+      this.$emit("update:visible", false);
     },
 
     async handleClickCancelSaveConnection() {

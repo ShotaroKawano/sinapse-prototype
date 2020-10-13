@@ -12,9 +12,22 @@ Vue.config.productionTip = false
 Vue.prototype.$axios = axios.create({
   // baseURL: 'http://127.0.0.1:8000/',
   baseURL: 'https://sinapse-202010111705.herokuapp.com/',
-  // timeout: 2000,
-  // headers: { 'X-Custom-Header': 'CustomHeader2' }
-});
+})
+
+Vue.prototype.$axios.interceptors.response.use(
+  response => {
+    console.log(response.status)
+    if (response.data) {
+      console.log(response.data)
+    }
+    return response
+  },
+  error => {
+    window.alert('処理に失敗しました')
+    console.log(error)
+    return Promise.reject(error)
+  }
+)
 
 /* eslint-disable no-new */
 new Vue({
