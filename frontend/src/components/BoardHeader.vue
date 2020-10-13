@@ -6,9 +6,9 @@
       <div class="accordion_header open displayFlex" ref="accordion_header">
         <!-- read only のときはv-ifで表示を変えたりしないと -->
         <textarea
+          id="scrollbar"
           class="form_common form_title"
-          maxlength="38"
-          placeholder="タイトル（最大38文字）"
+          placeholder="Title"
           v-model="title">
         </textarea>
         <div>
@@ -40,9 +40,9 @@
               <div class="box_accordion1">
                 <div class="displayFlex">
                   <textarea
+                    id="scrollbar"
                     class="form_common form_description"
-                    maxlength="125"
-                    placeholder="見出し（最大125文字）"
+                    placeholder="Description"
                     v-model="description"
                   >
                   </textarea>
@@ -332,14 +332,20 @@ export default {
 
 .form_title {
   color: #525e6a;
-  height: 84px;
+  height: 88px;
   width: 684px;
   font-size: 36px;
   line-height: 44px;
   margin: 0px 0px 10px 0px;
   padding-top: 5px;
-  overflow: hidden;
   border-radius: 10px;
+  /* overflow: hidden; */
+  overflow-wrap:break-word; 
+  display: -webkit-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .form_title:hover {
   background-color: #B4BDC620;
@@ -352,11 +358,27 @@ export default {
   font-size: 20px;
   line-height: 30px;
   margin: 0px 0px 5px 0px;
-  overflow: hidden;
   border-radius: 10px;
+  /* overflow: hidden; */
+  overflow-wrap:break-word; 
+  display: -webkit-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 .form_description:hover {
   background-color: #B4BDC620;
+}
+
+#scrollbar::-webkit-scrollbar
+{
+width:4px;
+}
+#scrollbar::-webkit-scrollbar-thumb
+{
+background:#b4bdc6;
+-webkit-border-radius: 2px;
 }
 
 .form_tagList {

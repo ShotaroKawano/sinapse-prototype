@@ -325,6 +325,11 @@ h2.indexTitle {
   padding-bottom: 4px;
   color: #525e6a;
   font-weight: bold;
+  overflow-wrap:break-word; 
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 p.indexSubheading {
   /* 必要 */
@@ -333,6 +338,7 @@ p.indexSubheading {
   font-size: 14px;
   line-height: 20px;
   color: #87929d;
+  overflow-wrap:break-word; 
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 4;
