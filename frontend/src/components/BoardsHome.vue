@@ -361,7 +361,7 @@ p.indexCreatdate {
 .box_boards1set {
   /* 必要 */
   width: 745px;
-  height: 290px;
+  /* height: 290px; */
   background: #ffffff;
   display: flex;
   border-radius: 10px;
@@ -392,7 +392,7 @@ p.indexCreatdate {
 .box_indexHashtag {
   display: flex;
   flex-wrap: wrap;
-  height: 16px;
+  /* height: 16px; */
   margin: 14px 10px 12px 10px;
 }
 .box_UserAndCreatdate {
