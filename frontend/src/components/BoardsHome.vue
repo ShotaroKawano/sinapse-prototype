@@ -69,7 +69,7 @@
         <!-- ▼▼ サムネ画像 ▼▼ -->
         <div
           class="thumbnail_indexBoards"
-          :style="{ backgroundImage: 'url(' + board.thunbnail + ')' }"
+          :style="{ backgroundImage: 'url(' + board.thumbnail + ')' }"
         ></div>
         <!-- ▼▼ SNS ▼▼ -->
         <div class="box_indexSns2">

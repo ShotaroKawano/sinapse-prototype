@@ -47,11 +47,24 @@
                   >
                   </textarea>
                   <!-- TODO: thumnailも編集できるようにする -->
-                  <div class="board_thumbnail">
+                  <div
+                    v-if="!isEditting2"
+                    @click="isEditting2 = !isEditting2"
+                    class="board_thumbnail"
+                    :style="{ backgroundImage: 'url(' + thumbnail + ')' }"
+                  >
                     <div id="" class="btn_edit">
                       <p>Edit</p>
                     </div>
                   </div>
+                  <input
+                    v-if="isEditting2"
+                    @focusout="isEditting2 = !isEditting2"
+                    type="url"
+                    class="form-urlControl"
+                    id="thumbnail"
+                    v-model="thumbnail"
+                  />
                 </div>
                 <div class="text_edit">
                   <input
@@ -183,6 +196,7 @@ export default {
       comments: "14",
       shares: "56",
       isEditting: false,
+      isEditting2: false,
     };
   },
   methods: {
@@ -275,6 +289,7 @@ export default {
         this.title = res.data.title;
         this.description = res.data.description;
         this.boardTags = res.data.board_tags;
+        this.thumbnail = res.data.thumbnail;
       })
       .catch(() => {});
   },
@@ -301,7 +316,7 @@ export default {
   height: 150px;
   border-radius: 10px;
   border: solid 1px #e1e6eb;
-  background-image: url("../assets/images/icons/noimage.jpg");
+  /* background-image: url("../assets/images/icons/noimage.jpg"); */
   background-size: cover;
   margin-left: 20px;
   background-position: center center;
