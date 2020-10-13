@@ -72,10 +72,30 @@ function render(g, node, isSelected) {
     .style("background-repeat", "no-repeat")
     .style("border-radius", "0 8px 0 0")
     .style("box-sizing", "border-box")
-    .style("cursor", "pointer")
+    .style("cursor", "default")
     // .style("border-top", "1px solid white")
     // .style("border-left", "1px solid white")
     .style("border", "1px solid #707070");
+
+      // ▼▼tabOpen▼▼
+  g.append("foreignObject")
+    .attr("x", node.x + (node.width * 7) / 8 - 5 + "px")
+    .attr("y", node.y + 5 + "px")
+    .style("width", 50 + "px")
+    .style("height", 50 + "px")
+    .append("xhtml:div")
+    .style("width", 50 + "px")
+    .style("height", 50 + "px")
+    .style("background-image", `url(https://cdn1.iconfinder.com/data/icons/media-icons-23/100/new_window-512.png)`) // icons_tabopen.png に変更したい
+    .style("background-color", "#00000010")
+    .style("opacity", "0.4")
+    .style("background-position", "center center")
+    .style("background-size", "cover")
+    .style("background-repeat", "no-repeat")
+    .style("border-radius", "5px")
+    // .style("box-sizing", "border-box")
+    .style("cursor", "pointer")
+    // .style:hover("opacity", "0.4")
 
   // ▼▼summary background▼▼
   g.append("foreignObject")
@@ -119,7 +139,7 @@ function render(g, node, isSelected) {
     .style("cursor", "pointer")
     // ▲▲▲▲以上（4行以降・・・になる）▲▲▲▲
     .text(() => node.summary);
-
+  
   // ここから元々あったrender
   // node.width = node.width || 120;
   // node.height = node.height || 60;
