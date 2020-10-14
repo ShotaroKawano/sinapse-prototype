@@ -115,6 +115,9 @@ export default {
         method: "GET",
         // TODO: 気候変動を可変に
         url: "api/boards?title=" + "気候変動",
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
       })
       .then((res) => {
         this.boards = res.data.board_list;
@@ -209,6 +212,9 @@ export default {
     };
   },
   computed: {
+    token() {
+      return this.$store.getters.token
+    },
     // limitCount() {
     //   return this.tags.slice(0, 3);
     // },
@@ -238,6 +244,9 @@ export default {
       this.$axios({
         method: "GET",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
       })
         .then((res) => {
           this.boards = res.data;
@@ -249,6 +258,9 @@ export default {
     this.$axios({
       method: "GET",
       url: 'api/boards',
+      headers: {
+        Authorization: `JWT ${this.token}`
+      },
     })
     .then((res) => {
       this.boards = res.data;

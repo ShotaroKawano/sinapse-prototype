@@ -28,8 +28,10 @@
               </div>
               <div id="btn" class="login_passInfo" >パスワードを忘れた方はこちら</div>
               <!-- <input class="btn_login" type="submit" value="ログイン" /> -->
-              <div class="btn_login" @click="submit">ログイン</div>
-              <div id="btn" class="login_signupInfo" >新規登録</div>
+              <div class="btn_login" @click="login">ログイン</div>
+              <router-link to="/register" class="link">
+                <div id="btn" class="login_signupInfo" >新規登録</div>
+              </router-link>
           </form>
           <!-- ▲▲▲ email login ▲▲▲ -->
         </div>
@@ -48,21 +50,13 @@ export default {
     }
   },
   methods: {
-    submit() {
-      this.$axiosAuth({
-        method: "POST",
-        url: 'login/',
-        data: {
-          email: this.email,
-          password: this.password
-        },
+    login() {
+      this.$store.dispatch('login', {
+        email: this.email,
+        password: this.password
       })
-      .then((res) => {
-        console.log(res.data)
-        this.$axios.defaults.headers.common['Authorization'] = `JWT ${res.data.token}`
-        this.$router.push('/')
-      })
-      .catch(() => {})
+      this.email = ''
+      this.password = ''
     }
   }
 }

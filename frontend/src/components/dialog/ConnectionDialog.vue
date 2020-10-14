@@ -69,6 +69,11 @@ export default {
       }
     };
   },
+  computed: {
+    token() {
+      return this.$store.getters.token
+    },
+  },
   methods: {
     async handleClickSaveConnection() {
       const tail =
@@ -83,6 +88,9 @@ export default {
       this.$axios({
         method: "PATCH",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
         data: {
           // from_card: parseInt(this.connection.source.id),
           // from_position: this.connection.source.position,

@@ -259,12 +259,20 @@ export default {
       connectionDialogVisible: false,
     };
   },
+  computed: {
+    token() {
+      return this.$store.getters.token
+    },
+  },
   methods: {
     handleDblClick(position) {
       const tail = "api/cards/";
       this.$axios({
         method: "POST",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
         data: {
           url: "nanika",
           title: "Title",
@@ -400,6 +408,9 @@ export default {
     this.$axios({
       method: "GET",
       url: tail,
+      headers: {
+        Authorization: `JWT ${this.token}`
+      },
     })
       .then((res) => {
         // this.nodes = [];
@@ -435,6 +446,9 @@ export default {
     this.$axios({
       method: "GET",
       url: tail2,
+      headers: {
+        Authorization: `JWT ${this.token}`
+      },
     })
       .then((res) => {
         // this.nodes = [];

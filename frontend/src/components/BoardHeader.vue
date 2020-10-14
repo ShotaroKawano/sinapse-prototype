@@ -199,6 +199,27 @@ export default {
       isEditting2: false,
     };
   },
+  computed: {
+    token() {
+      return this.$store.getters.token
+    },
+    convertBoardTagsToTagList: function () {
+      // console.log('kokodesu');
+      var tagList = "";
+      this.boardTags.forEach((tagWrapper, index) => {
+        // console.log(tagWrapper)
+        if (index === 0) {
+          tagList += tagWrapper.tag.name;
+        } else {
+          tagList += "," + tagWrapper.tag.name;
+        }
+      });
+      return tagList;
+    },
+    // convertTagsToTaglist: function() {
+    //   return this.tags.join(" #");
+    // }
+  },
   methods: {
     updateBoard() {
       // console.log(this.title);
@@ -210,7 +231,9 @@ export default {
         method: "PATCH",
         // method: "PUT",
         url: tail,
-        // withCredentials: true,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
         data: {
           title: this.title,
           description: this.description,
@@ -232,6 +255,9 @@ export default {
       this.$axios({
         method: "DELETE",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
       })
         .then((res) => {
           this.$router.push("/");
@@ -260,38 +286,23 @@ export default {
     //   return tagList
     // }
   },
-  computed: {
-    convertBoardTagsToTagList: function () {
-      // console.log('kokodesu');
-      var tagList = "";
-      this.boardTags.forEach((tagWrapper, index) => {
-        // console.log(tagWrapper)
-        if (index === 0) {
-          tagList += tagWrapper.tag.name;
-        } else {
-          tagList += "," + tagWrapper.tag.name;
-        }
-      });
-      return tagList;
-    },
-    // convertTagsToTaglist: function() {
-    //   return this.tags.join(" #");
-    // }
-  },
   created: function () {
     const tail =
       "api/boards/" + this.$route.params.id;
     this.$axios({
       method: "GET",
       url: tail,
+      headers: {
+        Authorization: `JWT ${this.token}`
+      },
     })
-      .then((res) => {
-        this.title = res.data.title;
-        this.description = res.data.description;
-        this.boardTags = res.data.board_tags;
-        this.thumbnail = res.data.thumbnail;
-      })
-      .catch(() => {});
+    .then((res) => {
+      this.title = res.data.title;
+      this.description = res.data.description;
+      this.boardTags = res.data.board_tags;
+      this.thumbnail = res.data.thumbnail;
+    })
+    .catch(() => {});
   },
   // mounted: function () {
   //       $('.s_01 .accordion_one .accordion_header').click(function () {

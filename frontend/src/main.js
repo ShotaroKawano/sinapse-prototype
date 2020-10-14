@@ -15,11 +15,6 @@ Vue.prototype.$axios = axios.create({
   // baseURL: 'https://sinapse-202010111705.herokuapp.com/',
 })
 
-Vue.prototype.$axiosAuth = axios.create({
-  baseURL: 'http://127.0.0.1:8000/',
-  // baseURL: 'https://sinapse-202010111705.herokuapp.com/',
-})
-
 Vue.prototype.$axios.interceptors.response.use(
   res => {
     console.log(res.status)
@@ -34,6 +29,8 @@ Vue.prototype.$axios.interceptors.response.use(
     return Promise.reject(err)
   }
 )
+
+store.dispatch('autoLogin')
 
 /* eslint-disable no-new */
 new Vue({

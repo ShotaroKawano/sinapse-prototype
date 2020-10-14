@@ -98,6 +98,11 @@ export default {
       lines: [],
     };
   },
+  computed: {
+    token() {
+      return this.$store.getters.token
+    },
+  },
   methods: {
     add(node) {
       if (this.readonly) {
@@ -150,6 +155,9 @@ export default {
             await this.$axios({
               method: "POST",
               url: tail,
+              headers: {
+                Authorization: `JWT ${this.token}`
+              },
               data: {
                   from_card: parseInt(this.connectingInfo.source.id),
                   from_position: this.connectingInfo.sourcePosition,
@@ -569,6 +577,9 @@ export default {
             that.$axios({
               method: "PATCH",
               url: tail,
+              headers: {
+                Authorization: `JWT ${this.token}`
+              },
               data: {
                 // url: this.nodeForm.url,
                 // title: this.nodeForm.title,
@@ -647,6 +658,9 @@ export default {
                 that.$axios({
                   method: "POST",
                   url: tail,
+                  headers: {
+                    Authorization: `JWT ${this.token}`
+                  },
                   data: {
                       from_card: parseInt(that.connectingInfo.source.id),
                       from_position: that.connectingInfo.sourcePosition,
@@ -750,6 +764,9 @@ export default {
       this.$axios({
         method: "DELETE",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
       })
       .then(() => {})
       .catch(() => {})
@@ -772,6 +789,9 @@ export default {
       this.$axios({
         method: "DELETE",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
       })
       .then(() => {})
       .catch(() => {})
