@@ -26,20 +26,20 @@
           </p>
         </div>
         <!-- ▼ ハッシュタグ ▼ -->
-        <div id="tags" class="box_indexHashtag">
+        <!-- <div id="tags" class="box_indexHashtag"> -->
           <!-- <ul v-for="tag of limitCount" :key="tag.name">
             <li>
               <p id="btn" class="indexHashtag">{{ tag.name }}</p>
             </li>
           </ul> -->
-          <div
+          <!-- <div
             id="btn"
             v-for="tagWrapper in board.board_tags"
             :key="tagWrapper.tag.id"
           >
             <p class="indexHashtag">#{{ tagWrapper.tag.name }}</p>
           </div>
-        </div>
+        </div> -->
 
         <!-- ▼▼ プロフボタン ▼▼ -->
         <div class="box_UserAndCreatdate">
@@ -340,7 +340,7 @@ h2.indexTitle {
 }
 p.indexSubheading {
   /* 必要 */
-  margin: 10px 0px 0px 0px;
+  margin: 10px 0px 20px 0px;
   max-height: 80px;
   font-size: 14px;
   line-height: 20px;
