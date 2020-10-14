@@ -12,14 +12,23 @@
           <!-- ▼▼▼ email login ▼▼▼ -->
           <form action="xxx.php" method="post">
               <div class="box_loginEmail">
-                <input type="email" class="input_loginEmail" placeholder="Email"/>
+                <input
+                  v-model="email"
+                  type="email"
+                  class="input_loginEmail"
+                  placeholder="Email"/>
               </div>
               <div class="box_loginPassword">
-                <input type="password" class="input_loginPassword" placeholder="Password"/>
+                <input
+                  v-model="password"
+                  type="password"
+                  class="input_loginPassword"
+                  placeholder="Password"
+                />
               </div>
               <div id="btn" class="login_passInfo" >パスワードを忘れた方はこちら</div>
               <!-- <input class="btn_login" type="submit" value="ログイン" /> -->
-              <a class="btn_login" href="http://localhost:8080/">ログイン</a>
+              <div class="btn_login" @click="submit">ログイン</div>
               <div id="btn" class="login_signupInfo" >新規登録</div>
           </form>
           <!-- ▲▲▲ email login ▲▲▲ -->
@@ -32,15 +41,28 @@
 <script>
 export default {
   name: 'Login',
-  data() {
+  data: function () {
     return {
-      username: null,
+      email: null,
       password: null,
     }
   },
   methods: {
     submit() {
-      alert('login!')
+      this.$axiosAuth({
+        method: "POST",
+        url: 'login/',
+        data: {
+          email: this.email,
+          password: this.password
+        },
+      })
+      .then((res) => {
+        console.log(res.data)
+        this.$axios.defaults.headers.common['Authorization'] = `JWT ${res.data.token}`
+        this.$router.push('/')
+      })
+      .catch(() => {})
     }
   }
 }
