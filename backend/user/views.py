@@ -17,7 +17,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import UserSerializer
 
-
+from rest_framework.authentication import BasicAuthentication
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 # def index(request):
 #     contexts = {}
@@ -38,19 +39,21 @@ class AuthRegister(generics.CreateAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
 
 # ユーザ情報取得のView(GET)
 class AuthInfoGetView(generics.RetrieveAPIView):
+    authentication_classes = (JSONWebTokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
     def get(self, request, format=None):
         return Response(data={
+            'id': request.user.id,
             'username': request.user.username,
             'email': request.user.email,
-            'profile': request.user.profile,
+            # 'profile': request.user.profile,
             },
             status=status.HTTP_200_OK)
 

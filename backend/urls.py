@@ -19,6 +19,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # url('api/', include(ROUTER.urls)),
     path('api/', include(api_url)),
-    url('login/', obtain_jwt_token),
-    url('log/', include('backend.user.urls')),
+    url('auth/', obtain_jwt_token),
+    url('user/', include('backend.user.urls')),
 ]
