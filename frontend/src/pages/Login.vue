@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SignUp</title>
-    <link rel="stylesheet" href="../frontend/src/assets/css/reset.css" />
-    <link rel="stylesheet" href="../frontend/src/assets/css/login.css" />
-    <!-- WEBフォントURL -->
-    <link href="https://fonts.googleapis.com/css2?family=Codystar&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Gelasio&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Unna&display=swap" rel="stylesheet">
-    <link href="https://use.typekit.net/tfs1bhu.css" rel="stylesheet">
-  </head>
-  <body>
+<template>
     <div id="body">
       <div class="center_objecto">
         <!-- ▼▼▼▼▼ authentication ▼▼▼▼▼ -->
@@ -35,12 +21,29 @@
               <!-- <input class="btn_login" type="submit" value="ログイン" /> -->
               <a class="btn_login" href="http://localhost:8080/">ログイン</a>
               <div id="btn" class="login_signupInfo" >新規登録</div>
-            </div>
           </form>
           <!-- ▲▲▲ email login ▲▲▲ -->
         </div>
         <!-- ▲▲▲▲▲ authentication ▲▲▲▲▲ -->
       </div>
     </div>
-  </body>
-</html>
+</template>
+
+<script>
+export default {
+  name: 'Login',
+  data() {
+    return {
+      username: null,
+      password: null,
+    }
+  },
+  methods: {
+    submit() {
+      alert('login!')
+    }
+  }
+}
+</script>
+
+<style src="@/assets/css/login.css"></style>
