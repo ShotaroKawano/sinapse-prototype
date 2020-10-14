@@ -17,10 +17,10 @@ Vue.prototype.$axios = axios.create({
 
 Vue.prototype.$axios.interceptors.response.use(
   res => {
-    console.log(res.status)
-    if (res.data) {
-      console.log(res.data)
-    }
+    console.log(res)
+    // if (res.data) {
+    //   console.log(res.data)
+    // }
     return res
   },
   err => {
@@ -31,6 +31,7 @@ Vue.prototype.$axios.interceptors.response.use(
 )
 
 store.dispatch('autoLogin')
+// store.dispatch('getUserInfo')
 
 /* eslint-disable no-new */
 new Vue({

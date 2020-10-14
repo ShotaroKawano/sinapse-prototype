@@ -111,6 +111,9 @@ export default {
       .catch(() => {});
     },
   },
+  created: function () {
+    this.$store.dispatch('getUserInfo')
+  }
 };
 </script>
 
