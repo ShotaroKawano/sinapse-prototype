@@ -86,7 +86,7 @@
           </div>
         </div>
       </div>
-      <div class="box_thumbnail">
+      <div class="box_indexThumbnail">
         <!-- ▼▼ サムネ画像 ▼▼ -->
         <!-- <div
           class="thumbnail_indexBoards"
@@ -425,14 +425,14 @@ p.indexCreatdate {
   padding-left: 12px;
 }
 
-.box_thumbnail{
+.box_indexThumbnail{
   /* max-width: 150px;
   max-height: 150px; */
   /* width: 150px;
   height: 150px; */
   border-radius: 10px;
 }
-.box_thumbnail img {
+.box_indexThumbnail img {
   object-fit: cover;
 }
 /* ▲▲▲▲▲ ボックス ▲▲▲▲▲ */
