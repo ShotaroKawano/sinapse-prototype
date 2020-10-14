@@ -63,33 +63,41 @@
               <p class="indexCreatdate">{{ getNowDateWithString(board.updated_at) }}</p>
             </div>
           </div>
+          <!-- ▼▼ SNS ▼▼ -->
+          <div class="box_indexSns">
+            <div id="btn2" class="box_indexSnscontents">
+              <img
+                class="icon_indexBoards"
+                src="@/assets/images/icons/icons_like.png"
+                alt="いいねボタン"
+              />
+              <!-- <div>{{ board.comments }}</div> -->
+              <div>777</div>
+            </div>
+            <div id="btn2" class="box_indexSnscontents">
+              <img
+                class="icon_indexBoards"
+                src="@/assets/images/icons/icons_comment.png"
+                alt="コメントボタン"
+              />
+              <!-- <div>{{ board.likes }}</div> -->
+              <div>777</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
+      <div class="box_thumbnail">
         <!-- ▼▼ サムネ画像 ▼▼ -->
-        <div
+        <!-- <div
           class="thumbnail_indexBoards"
           :style="{ backgroundImage: 'url(' + board.thumbnail + ')' }"
-        ></div>
-        <!-- ▼▼ SNS ▼▼ -->
-        <div class="box_indexSns2">
-          <div id="btn" class="box_indexSnscontents">
-            <img
-              class="icon_indexBoards"
-              src="@/assets/images/icons/icons_like.png"
-              alt="いいねボタン"
-            />
-            <div>{{ board.comments }}</div>
-          </div>
-          <div id="btn" class="box_indexSnscontents">
-            <img
-              class="icon_indexBoards"
-              src="@/assets/images/icons/icons_comment.png"
-              alt="コメントボタン"
-            />
-            <div>{{ board.likes }}</div>
-          </div>
-        </div>
+        ></div> -->
+        <img
+          class="thumbnail_indexBoards"
+          :src=" board.thumbnail "
+          alt
+          onerror="this.onerror = null; this.src='';"
+        >
       </div>
     </router-link>
   </div>
@@ -310,8 +318,8 @@ export default {
 }
 .btn_boardsUser {
   /* 必要 */
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   border-radius: 25px;
 }
 /* ▲▲▲▲▲ ボタン ▲▲▲▲▲ */
@@ -319,10 +327,9 @@ export default {
 /* ▼▼▼▼▼ テキスト関係 ▼▼▼▼▼ */
 h2.indexTitle {
   /* 必要 */
-  margin: 10px;
+  margin: 0px 0px 14px 0px;
   font-size: 24px;
   line-height: 32px;
-  padding-bottom: 4px;
   color: #525e6a;
   font-weight: bold;
   overflow-wrap:break-word; 
@@ -333,11 +340,11 @@ h2.indexTitle {
 }
 p.indexSubheading {
   /* 必要 */
-  margin: 10px 10px 0px 10px;
-  height: 80px;
+  margin: 10px 0px 0px 0px;
+  max-height: 80px;
   font-size: 14px;
   line-height: 20px;
-  color: #87929d;
+  color: #525e6a;
   overflow-wrap:break-word; 
   display: -webkit-box;
   overflow: hidden;
@@ -351,13 +358,12 @@ p.indexHashtag {
 }
 p.indexUsername {
   /* 必要 */
-  padding-top: 4px;
   font-size: 18px;
   color: #87929d;
 }
 p.indexCreatdate {
   /* 必要 */
-  padding-top: 6px;
+  padding-top: 4px;
   font-size: 14px;
   color: #b4bdc6;
 }
@@ -367,33 +373,42 @@ p.indexCreatdate {
 .box_boards1set {
   /* 必要 */
   width: 745px;
+  margin: 30px auto 10px auto;
+  padding: 20px 0px 20px 30px;
   /* height: 290px; */
   background: #ffffff;
   display: flex;
   border-radius: 10px;
-  margin: 30px auto 10px auto;
   text-decoration: none;
 }
 .box_boards1set:hover {
   /* 必要 */
   box-shadow: 0px 0px 10px #5486b990;
 }
-.box_indexSns2 {
+.box_indexSns {
   /* 必要 */
-  margin: 16px 30px 0px 0px;
-  height: 50px;
+  /* padding-right: 30px; */
+  margin: 0px 0px 0px auto;
+  height: 30px;
   display: flex;
   justify-content: space-around;
 }
 .box_indexSnscontents {
   /* 必要 */
-  margin: 10px;
+  margin: 0px 0px 0px 16px;
   text-align: center;
   color: #b4bdc6;
+  flood-color: #b4bdc6;
+  font-size: 14px;
+  opacity: 0.6; 
 }
+.box_indexSnscontents:hover{
+  opacity: 1; 
+}
+
 .box_indexBoards {
-  margin: 20px 20px 30px 30px;
-  width: 505px;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
 }
 .box_indexHashtag {
   display: flex;
@@ -403,25 +418,48 @@ p.indexCreatdate {
 }
 .box_UserAndCreatdate {
   display: flex;
-  margin: 0px 0px 0px 10px;
+  padding: 0px 0px 0px 10px;
+  margin: auto 0 0 0;
 }
 .box_NameAndCreatdate {
   padding-left: 12px;
+}
+
+.box_thumbnail{
+  /* max-width: 150px;
+  max-height: 150px; */
+  /* width: 150px;
+  height: 150px; */
+  border-radius: 10px;
+}
+.box_thumbnail img {
+  object-fit: cover;
 }
 /* ▲▲▲▲▲ ボックス ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ サムネイル ▼▼▼▼▼ */
 .thumbnail_indexBoards {
   /* 必要 */
+  /* max-width: 150px;
+  max-height: 150px; */
   width: 150px;
   height: 150px;
-  margin: 30px 30px 0px 0px;
   border-radius: 10px;
-  border: solid 1px #e1e6eb; /* 枠の指定 */
-  background-image: url(../assets/images/icons/noimage.jpg);
-  background-size: cover;
+  margin: 0px 20px 0px 20px;
+  /* border: solid 1px #e1e6eb; */
+  /* background-image: url(../assets/images/icons/noimage.jpg); */
+  /* 画像を常に天地左右の中央に配置 */
   background-position: center center;
-  background-color: #E1E6EB;
+
+  /* 画像をタイル状に繰り返し表示しない */
+  background-repeat: no-repeat;
+
+  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+  background-attachment: fixed;
+
+  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+  background-size: cover;
+  background-color: #f8f8f8;
 }
 /* ▲▲▲▲▲ サムネイル ▲▲▲▲▲ */
 
