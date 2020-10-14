@@ -1,6 +1,8 @@
 body {
   /* 画像ファイルの指定 */
-  background-image: url(../images/wallpapers/Irises_1890_VincentVanGogh.jpg);
+  /* background-image: url(../images/wallpapers/Irises_1890_VincentVanGogh.jpg); */
+  /* background-image: url(../images/wallpapers/login_bgimage.jpg); */
+  background-image: url(../images/wallpapers/login_bgimage.png);
   /* background-image: url(../images/wallpapers/StillLifeWithLemonsOrangesAndaPomegranate_1647_JacobVanHulsdonck.jpg); */
   /* background-image: url(../images/wallpapers/StillLifeWithOystersAndGrapes_1684_JanDavidszDeHeem.jpg); */
 
@@ -17,7 +19,7 @@ body {
   background-size: cover;
 
   /* 背景画像が読み込まれる前に表示される背景のカラー */
-  background-color: #5486b9;
+  background-color: #151a21;
 }
 
 #btn:hover {
@@ -27,13 +29,20 @@ body {
 
 .center_objecto {
   position: absolute; /* body全体を指定 */
-  top: 50%; /* 親要素の半分下にずらす */
+  top: 40%; /* 親要素の半分下にずらす */
   left: 50%; /* 親要素の半分右にずらす */
   transform: translateY(-50%) translateX(-50%); /* 要素自体の半分、上と左にずらす */
+
+  width: 430px;
+  height: 500px;
+  margin: 50px auto;
+  background-color: #ffffff60;
+  border-radius: 10px;
+  border: solid 2px #ffffff90; /* 枠の指定 */
 }
 
 .serviceLogo {
-  width: 300px;
+  width: 600px;
   position: absolute; /* body全体を指定 */
   left: 50%; /* 親要素の半分右にずらす */
   transform: translateY(-120%) translateX(-50%); /* 要素自体の半分左にずらす */
@@ -41,7 +50,7 @@ body {
 
 .name_service {
   width: 100%;
-  margin-bottom: 90px;
+  margin: 90px auto;
   line-height: 50px;
   /* color: #5486b9; */
   color: #ffffff;
@@ -59,7 +68,7 @@ body {
   font-family: "Gelasio", "Batang", serif; */
 
   /* ▼ Unna ▼ */
-  font-size: 130px;
+  font-size: 100px;
   font-family: "Unna", "Batang", serif;
   letter-spacing: -4px;
 
@@ -69,18 +78,18 @@ body {
 }
 
 .box_loginEmail {
-  width: 400px;
+  width: 380px;
   height: 40px;
   border-radius: 10px; /* 角丸       */
   border: solid 1px #ffffff80; /* 枠の指定 */
-  margin: 10px;
-  background-color: #ffffff40;
+  margin: 10px auto;
+  background-color: #525e6a90;
 }
 .box_loginEmail:hover {
   border: solid 1px #ffffff; /* 枠の指定 */
   /* box-shadow: 0px 0px 6px #5486b9; */
   text-shadow: 0px 0px 10px #ffffff;
-  background-color: #a5a39e;
+  background-color: #525e6a;
   transition-duration: 1s;
 }
 .input_loginEmail {
@@ -97,18 +106,18 @@ body {
 }
 
 .box_loginPassword {
-  width: 400px;
+  width: 380px;
   height: 40px;
   border-radius: 10px; /* 角丸       */
   border: solid 1px #ffffff80; /* 枠の指定 */
-  margin: 10px;
-  background-color: #ffffff40;
+  margin: 20px auto;
+  background-color: #525e6a90;
 }
 .box_loginPassword:hover {
   border: solid 1px #ffffff; /* 枠の指定 */
   /* box-shadow: 0px 0px 6px #5486b9; */
   text-shadow: 0px 0px 10px #ffffff;
-  background-color: #a5a39e;
+  background-color: #525e6a;
   transition-duration: 1s;
 }
 .input_loginPassword {
