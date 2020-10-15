@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 // new Vue の前に読み込まないとundefindになる
 Vue.prototype.$axios = axios.create({
   // baseURL: 'http://127.0.0.1:8000/',
-  baseURL: 'https://sinapse-202010111705.herokuapp.com/',
+  baseURL: 'https://sinapse-20201015.herokuapp.com/',
 })
 
 Vue.prototype.$axios.interceptors.response.use(
