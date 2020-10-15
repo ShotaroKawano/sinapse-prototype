@@ -124,11 +124,10 @@ export default {
     },
     handleClickGetInfo() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const tail = "api/scrape/";
-      console.log(this.nodeForm.url);
+      // console.log(this.nodeForm.url);
       this.$axios({
         method: "POST",
-        url: tail,
+        url: "api/scrape/",
         headers: {
           Authorization: `JWT ${this.token}`
         },

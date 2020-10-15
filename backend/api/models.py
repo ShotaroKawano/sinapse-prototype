@@ -14,7 +14,7 @@ class Tag(models.Model):
 
 
 class Board(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(blank=True,null=True,max_length=255)
     description = models.TextField(blank=True,null=True)
     thumbnail = models.CharField(blank=True,null=True,max_length=255)
     url_tail = models.CharField(blank=True,null=True,max_length=255)
@@ -34,8 +34,8 @@ class Board(models.Model):
 
 
 class Card(models.Model):
-    url = models.CharField(max_length=2083)
-    title = models.CharField(max_length=255)
+    url = models.CharField(blank=True,null=True,max_length=2083)
+    title = models.CharField(blank=True,null=True,max_length=255)
     summary = models.TextField(blank=True,null=True)
     thumbnail = models.CharField(blank=True,null=True,max_length=2083)
     position_x = models.IntegerField()

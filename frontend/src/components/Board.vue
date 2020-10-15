@@ -283,17 +283,16 @@ export default {
       this.isAuthor = isAuthor
     },
     handleDblClick(position) {
-      const tail = "api/cards/";
       this.$axios({
         method: "POST",
-        url: tail,
+        url: "api/cards/",
         headers: {
           Authorization: `JWT ${this.token}`
         },
         data: {
-          url: "nanika",
-          title: "Title",
-          summary: "Summary",
+          url: "",
+          title: "",
+          summary: "",
           thumbnail: "https://placehold.jp/150x100.png",
           position_x: parseInt(position.x),
           position_y: parseInt(position.y),
@@ -309,9 +308,9 @@ export default {
           x: position.x,
           y: position.y,
           thumbnail: "https://placehold.jp/150x100.png",
-          url: "dummyurl",
-          title: "Title",
-          summary: "Summary",
+          url: "",
+          title: "",
+          summary: "",
         });
       })
       .catch(() => {});

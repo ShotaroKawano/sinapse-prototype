@@ -153,12 +153,10 @@ export default {
       if (this.connectingInfo.source) {
         if (this.hoveredConnector) {
           if (this.connectingInfo.source.id !== this.hoveredConnector.node.id) {
-            console.log('こちら1');
             // arrow追加処理
-            const tail = "api/arrows/";
             await this.$axios({
               method: "POST",
-              url: tail,
+              url: "api/arrows/",
               headers: {
                 Authorization: `JWT ${this.token}`
               },
@@ -168,7 +166,7 @@ export default {
                   to_card: parseInt(this.hoveredConnector.node.id),
                   to_position: this.hoveredConnector.position,
                   arrow_type: 1,
-                  label: "Pass",
+                  label: "",
                   board_id: parseInt(this.$route.params.id)
               }
             })
@@ -656,11 +654,10 @@ export default {
                 // };
                 // that.internalConnections.push(conn);
                 // arrow追加処理 なぜ２箇所ある？
-                const tail = "api/arrows/";
-                console.log('1:' + node.id);
+                // console.log('1:' + node.id);
                 that.$axios({
                   method: "POST",
-                  url: tail,
+                  url: "api/arrows/",
                   headers: {
                     Authorization: `JWT ${this.token}`
                   },
@@ -674,7 +671,7 @@ export default {
                       //   id: 1,
                       //   type: "片方向矢印"
                       // },
-                      label: "Pass",
+                      label: "",
                       board_id: parseInt(that.$route.params.id)
                   }
                 })
@@ -788,10 +785,9 @@ export default {
     removeConnection(conn) {
       let index = this.internalConnections.indexOf(conn);
       this.internalConnections.splice(index, 1);
-      const tail = "api/arrows/" + conn.id + '/';
       this.$axios({
         method: "DELETE",
-        url: tail,
+        url: "api/arrows/" + conn.id + '/',
         headers: {
           Authorization: `JWT ${this.token}`
         },

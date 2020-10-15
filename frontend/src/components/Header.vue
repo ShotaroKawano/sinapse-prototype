@@ -87,18 +87,17 @@ export default {
       }
     },
     createBoard: function () {
-      const tail = "api/boards/";
       this.$axios({
         method: "POST",
-        url: tail,
+        url: "api/boards/",
         headers: {
           Authorization: `JWT ${this.token}`
         },
         data: {
-          title: "タイトル",
-          description: "ディスクリプション",
-          thumbnail: "12345",
-          url_tail: "12345",
+          title: "",
+          description: "",
+          thumbnail: "",
+          url_tail: "",
           is_published: true,
           user_id: this.$store.getters.userId,
           // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
