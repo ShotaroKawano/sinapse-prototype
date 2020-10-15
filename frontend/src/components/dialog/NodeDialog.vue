@@ -1,23 +1,30 @@
 <template>
   <div>
     <div class="modal" v-if="visible">
-      <div class="thumbnail">
-        <!-- <img :src="nodeForm.thumbnail" alt="" class="box_thumbnail" /> -->
-        <img
-          v-if="!isEditting"
-          @click="isEditting = !isEditting"
-          :src="nodeForm.thumbnail"
-          alt="No image"
-          class="box_thumbnail"
-        />
-        <input
+      <div>
+        <div class="thumbnail">
+          <div class="box_tool">
+            <div class="btn_tabOpen">
+              <img class="img_tabOpen" src="@/assets/images/icons/icons_tabopen.png"
+          alt="URLを開く"></div>
+          </div>
+          <!-- <img :src="nodeForm.thumbnail" alt="" class="box_thumbnail" /> -->
+          <img
+            v-if="!isEditting"
+            @click="isEditting = !isEditting"
+            :src="nodeForm.thumbnail"
+            alt="No image"
+            class="box_thumbnail"
+          />
+          <input
             v-if="isEditting"
             @focusout="isEditting = !isEditting"
             type="url"
             class="form-urlControl"
             id="thumbnail"
             v-model="nodeForm.thumbnail"
-        />
+          />
+        </div>
       </div>
       <div class="body">
         <!-- <input class="form-control" v-model="nodeForm.thumbnail"/> -->
