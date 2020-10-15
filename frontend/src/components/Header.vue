@@ -100,7 +100,7 @@ export default {
           thumbnail: "12345",
           url_tail: "12345",
           is_published: true,
-          user_id: 1,
+          user_id: this.$store.getters.userId,
           // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
           // tagList: this.convertTaglistToTags
         },

@@ -265,7 +265,7 @@ export default {
       connectionForm: { target: null, operation: null },
       nodeDialogVisible: false,
       connectionDialogVisible: false,
-      isAuthor: false
+      isAuthor: false,
     };
   },
   computed: {

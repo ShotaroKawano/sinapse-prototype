@@ -105,7 +105,7 @@
                           />
                         </div>
                         <div class="box_NameAndCreatdate">
-                          <div class="indexUsername">内藤迅</div>
+                          <div class="indexUsername">{{ user.username }}</div>
                           <div class="indexCreatdate">
                             {{ createdAt }}
                           </div>
@@ -203,7 +203,8 @@ export default {
       shares: "56",
       isEditting: false,
       isEditting2: false,
-      userId: null,
+      // userId: null,
+      user: null,
     };
   },
   computed: {
@@ -309,12 +310,13 @@ export default {
       },
     })
     .then((res) => {
-      this.userId = res.data.user.id
+      // this.userId = res.data.user.id
+      this.user = res.data.user
       // console.log('user');
       // console.log(this.$store.state.userId);
       // console.log(parseInt(this.userId));
       // console.log(this.$store.state.userId === parseInt(this.userId));
-      const isAuthor = this.$store.state.userId === parseInt(this.userId)
+      const isAuthor = this.$store.getters.userId === parseInt(this.user.id)
       console.log(isAuthor);
       this.$emit('update-is-author', isAuthor)
       this.title = res.data.title;
