@@ -424,8 +424,9 @@ background:#b4bdc6;
 
 .section {
   width: 100%;
-  margin-top: 70px;
+  padding-top: 70px;
   font-size: 30px;
+  background-color: #ffffff;
 }
 
 .menu {
