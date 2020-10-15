@@ -82,16 +82,16 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'sinapseprototype',
-#         'USER': 'root',
-#         'PASSWORD': 'pass',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sinapseprototype',
+        'USER': 'root',
+        'PASSWORD': 'pass',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
 
 
 # Password validation
@@ -153,16 +153,16 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# DEBUG = False
-DEBUG = True
+DEBUG = False
+# DEBUG = True
 
 # try:
 #     from api.local_settings import *
 # except ImportError:
 #     pass
 
-# if not DEBUG:
-if DEBUG:
+if not DEBUG:
+# if DEBUG:
     import django_heroku
     django_heroku.settings(locals())
 
