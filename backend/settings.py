@@ -140,9 +140,9 @@ CORS_ORIGIN_ALLOW_ALL = True
 #     'http://localhost:8080',
 # ]
 
-# import dj_database_url
-# db_from_env = dj_database_url.config()
-# DATABASES['default'].update(db_from_env)
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # 追記
