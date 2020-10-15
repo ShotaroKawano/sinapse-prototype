@@ -141,7 +141,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 # ]
 
 import dj_database_url
-db_from_env = dj_database_url.config()
+db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 
@@ -156,10 +156,10 @@ STATICFILES_DIRS = (
 # DEBUG = False
 DEBUG = True
 
-try:
-    from api.local_settings import *
-except ImportError:
-    pass
+# try:
+#     from api.local_settings import *
+# except ImportError:
+#     pass
 
 # if not DEBUG:
 if DEBUG:
