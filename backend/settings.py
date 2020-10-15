@@ -25,7 +25,7 @@ SECRET_KEY = 'w_e4+5oun)=0o(6hialz06*swl!04$u%aqml+v_a6u^^jcr@nq'
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'sinapse-202010111705.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'sinapse-20201015.herokuapp.com']
 # ALLOWED_HOSTS = ['sinapse-202010111705.herokuapp.com']
 # ALLOWED_HOSTS = []
 
@@ -174,13 +174,15 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL='user.User'
 
 
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
 try:
     from .local_settings import *
 except ImportError:
     pass
 
-if not DEBUG:
+# if not DEBUG:
+if DEBUG:
     import django_heroku
     django_heroku.settings(locals())
