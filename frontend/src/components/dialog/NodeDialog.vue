@@ -29,7 +29,7 @@
             id="url"
             v-model="nodeForm.url"
           />
-          <button id="btn" class="btn_get" @click="handleClickGetInfo">
+          <button v-if="isAuthor" id="btn" class="btn_get" @click="handleClickGetInfo">
             <p class="text_get">Get</p>
           </button>
         </div>
@@ -62,10 +62,10 @@
         <button id="btn" @click="handleClickCancelSaveNode">
           <p>Cancel</p>
         </button>
-        <button id="btn" class="btn_delete" @click="deleteNode">
+        <button v-if="isAuthor" id="btn" class="btn_delete" @click="deleteNode">
           <p class="text_delete">Delete</p>
         </button>
-        <button id="btn" class="btn_save" @click="handleClickSaveNode">
+        <button v-if="isAuthor" id="btn" class="btn_save" @click="handleClickSaveNode">
           <p class="text_save">Save</p>
         </button>
       </div>
@@ -87,6 +87,10 @@ export default {
       type: Object,
       default: null,
     },
+    isAuthor: {
+      type: Boolean,
+      defult: false
+    }
   },
 
   data: function () {

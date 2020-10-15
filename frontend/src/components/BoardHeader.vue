@@ -152,10 +152,10 @@
               </div>
             </div>
             <div class="box_deleteAndsaveButton">
-              <div id="btn" class="btn_delete">
+              <div v-if="isAuthor" id="btn" class="btn_delete">
                 <p @click="deleteBoard()" class="text_delete">Delete</p>
               </div>
-              <div id="btn" class="btn_save">
+              <div v-if="isAuthor" id="btn" class="btn_save">
                 <p @click="updateBoard()" class="text_save">Save</p>
               </div>
             </div>
@@ -171,6 +171,12 @@
 
 export default {
   name: "BoardHeader",
+  props: {
+    isAuthor: {
+      type: Boolean,
+      defult: false
+    }
+  },
   data: function () {
     return {
       isVisible: false,
@@ -197,6 +203,7 @@ export default {
       shares: "56",
       isEditting: false,
       isEditting2: false,
+      userId: null,
     };
   },
   computed: {
@@ -220,6 +227,11 @@ export default {
     //   return this.tags.join(" #");
     // }
   },
+  // computed: {
+  //   isAuthor () {
+  //     return this.$store.state.userId === parseInt(this.userId)
+  //   }
+  // },
   methods: {
     updateBoard() {
       // console.log(this.title);
@@ -245,8 +257,8 @@ export default {
           // tagList: this.convertTaglistToTags
         },
       })
-        .then(() => {})
-        .catch(() => {})
+      .then(() => {})
+      .catch(() => {})
     },
     deleteBoard() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
@@ -259,10 +271,10 @@ export default {
           Authorization: `JWT ${this.token}`
         },
       })
-        .then((res) => {
-          this.$router.push("/");
-        })
-        .catch(() => {});
+      .then((res) => {
+        this.$router.push("/");
+      })
+      .catch(() => {});
     },
     // convertTagsToTaglist: function() {
     //   this.tagList =
@@ -297,6 +309,14 @@ export default {
       },
     })
     .then((res) => {
+      this.userId = res.data.user.id
+      // console.log('user');
+      // console.log(this.$store.state.userId);
+      // console.log(parseInt(this.userId));
+      // console.log(this.$store.state.userId === parseInt(this.userId));
+      const isAuthor = this.$store.state.userId === parseInt(this.userId)
+      console.log(isAuthor);
+      this.$emit('update-is-author', isAuthor)
       this.title = res.data.title;
       this.description = res.data.description;
       this.boardTags = res.data.board_tags;

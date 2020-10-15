@@ -32,10 +32,10 @@
       </div>
       <div class="footer">
         <button @click="handleClickCancelSaveConnection">Cancel</button>
-        <button id="btn" class="btn_delete" @click="deleteConnection()">
+        <button v-if="isAuthor"  id="btn" class="btn_delete" @click="deleteConnection()">
           <p class="text_delete">Delete</p>
         </button>
-        <button id="btn" class="btn_save" @click="handleClickSaveConnection">
+        <button v-if="isAuthor"  id="btn" class="btn_save" @click="handleClickSaveConnection">
           <p class="text_save">Save</p>
         </button>
       </div>
@@ -54,6 +54,10 @@ export default {
     connection: {
       type: Object,
       default: null
+    },
+    isAuthor: {
+      type: Boolean,
+      defult: false
     }
   },
   data() {

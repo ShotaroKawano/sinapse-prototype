@@ -74,6 +74,10 @@ export default {
       type: Function,
       default: render,
     },
+    isAuthor: {
+      type: Boolean,
+      defult: false
+    }
   },
   data() {
     return {
@@ -256,10 +260,9 @@ export default {
       }
     },
     handleChartDblClick(event) {
-      if (this.readonly) {
-        return;
+      if (this.isAuthor) {
+        this.$emit("dblclick", { x: event.offsetX, y: event.offsetY });
       }
-      this.$emit("dblclick", { x: event.offsetX, y: event.offsetY });
     },
     handleChartMouseDown(event) {
       if (event.ctrlKey) {

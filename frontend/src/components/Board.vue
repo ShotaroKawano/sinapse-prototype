@@ -1,6 +1,10 @@
 <template>
   <div>
-    <BoardHeader></BoardHeader>
+    <BoardHeader
+      @update-is-author="handleUpdateAuthor"
+      :isAuthor="isAuthor"
+    >
+    </BoardHeader>
     <div class="container">
       <!-- <div id="toolbar"> -->
       <!-- positionを渡さないaddだったのか -->
@@ -50,6 +54,7 @@
           @editconnection="handleEditConnection"
           @save="handleChartSave"
           ref="chart"
+          :isAuthor="isAuthor"
         >
         </flowchart>
       </div>
@@ -57,12 +62,15 @@
         :visible.sync="nodeDialogVisible"
         :node.sync="nodeForm.target"
         @handle-delete-node="$refs.chart.removeNode($event)"
-      ></node-dialog>
+        :isAuthor="isAuthor"
+        >
+        </node-dialog>
       <connection-dialog
         :visible.sync="connectionDialogVisible"
         :connection.sync="connectionForm.target"
         :operation="connectionForm.operation"
         @handle-delete-connection="$refs.chart.removeConnection($event)"
+        :isAuthor="isAuthor"
       >
       </connection-dialog>
     </div>
@@ -257,14 +265,23 @@ export default {
       connectionForm: { target: null, operation: null },
       nodeDialogVisible: false,
       connectionDialogVisible: false,
+      isAuthor: false
     };
   },
   computed: {
     token() {
       return this.$store.getters.token
     },
+    // isAuthor() {
+    //   return this.$store.userId === this.userId
+    // }
   },
   methods: {
+    handleUpdateAuthor(isAuthor) {
+      console.log('koko');
+      console.log(isAuthor);
+      this.isAuthor = isAuthor
+    },
     handleDblClick(position) {
       const tail = "api/cards/";
       this.$axios({
@@ -284,20 +301,20 @@ export default {
           board: parseInt(this.$route.params.id),
         },
       })
-        .then((res) => {
-          this.$refs.chart.add({
-            // id: +new Date(),
-            // id: (new Date()).getTime(),
-            id: res.data.id,
-            x: position.x,
-            y: position.y,
-            thumbnail: "https://placehold.jp/150x100.png",
-            url: "dummyurl",
-            title: "Title",
-            summary: "Summary",
-          });
-        })
-        .catch(() => {});
+      .then((res) => {
+        this.$refs.chart.add({
+          // id: +new Date(),
+          // id: (new Date()).getTime(),
+          id: res.data.id,
+          x: position.x,
+          y: position.y,
+          thumbnail: "https://placehold.jp/150x100.png",
+          url: "dummyurl",
+          title: "Title",
+          summary: "Summary",
+        });
+      })
+      .catch(() => {});
     },
     async handleChartSave(nodes, connections) {
       // axios.post(url, {nodes, connection}).then(resp => {
@@ -412,35 +429,35 @@ export default {
         Authorization: `JWT ${this.token}`
       },
     })
-      .then((res) => {
-        // this.nodes = [];
-        let nodes2 = [];
-        for (let i in res.data) {
-          console.log(i);
-          nodes2.push({
-            id: res.data[i]["id"],
-            x: res.data[i]["position_x"],
-            y: res.data[i]["position_y"],
-            thumbnail: res.data[i]["thumbnail"],
-            url: res.data[i]["url"],
-            title: res.data[i]["title"],
-            summary: res.data[i]["summary"],
-          });
-          this.nodes = nodes2;
-          // this.$refs.chart.add(
-          //   {
-          //     id: res.data[i]['id'],
-          //     x: res.data[i]['position_x'],
-          //     y: res.data[i]['position_y'],
-          //     thumbnail: res.data[i]['thumbnail'],
-          //     url: res.data[i]['url'],
-          //     title: res.data[i]['title'],
-          //     summary: res.data[i]['summary'],
-          //   }
-          // )
-        }
-      })
-      .catch(() => {});
+    .then((res) => {
+      // this.nodes = [];
+      let nodes2 = [];
+      for (let i in res.data) {
+        console.log(i);
+        nodes2.push({
+          id: res.data[i]["id"],
+          x: res.data[i]["position_x"],
+          y: res.data[i]["position_y"],
+          thumbnail: res.data[i]["thumbnail"],
+          url: res.data[i]["url"],
+          title: res.data[i]["title"],
+          summary: res.data[i]["summary"],
+        });
+        this.nodes = nodes2;
+        // this.$refs.chart.add(
+        //   {
+        //     id: res.data[i]['id'],
+        //     x: res.data[i]['position_x'],
+        //     y: res.data[i]['position_y'],
+        //     thumbnail: res.data[i]['thumbnail'],
+        //     url: res.data[i]['url'],
+        //     title: res.data[i]['title'],
+        //     summary: res.data[i]['summary'],
+        //   }
+        // )
+      }
+    })
+    .catch(() => {});
     const tail2 =
       "api/arrows/?board_id=" + this.$route.params.id;
     this.$axios({
@@ -450,35 +467,35 @@ export default {
         Authorization: `JWT ${this.token}`
       },
     })
-      .then((res) => {
-        // this.nodes = [];
-        let connections2 = [];
-        for (let i in res.data) {
-          console.log(i);
-          connections2.push({
-            source: {
-              id: res.data[i]["from_card"],
-              position: res.data[i]["from_position"],
-            },
-            destination: {
-              id: res.data[i]["to_card"],
-              position: res.data[i]["to_position"],
-            },
-            id: res.data[i]["id"],
-            type: res.data[i]["arrow_type"]["type"],
-            name: res.data[i]["label"],
-            // {
-            //   source: { id: 11, position: "left" },
-            //   destination: { id: 21, position: "top" },
-            //   id: 1,
-            //   type: "pass",
-            //   name: "CO2の異常な濃度上昇",
-            // },
-          });
-          this.connections = connections2;
-        }
-      })
-      .catch(() => {});
+    .then((res) => {
+      // this.nodes = [];
+      let connections2 = [];
+      for (let i in res.data) {
+        console.log(i);
+        connections2.push({
+          source: {
+            id: res.data[i]["from_card"],
+            position: res.data[i]["from_position"],
+          },
+          destination: {
+            id: res.data[i]["to_card"],
+            position: res.data[i]["to_position"],
+          },
+          id: res.data[i]["id"],
+          type: res.data[i]["arrow_type"]["type"],
+          name: res.data[i]["label"],
+          // {
+          //   source: { id: 11, position: "left" },
+          //   destination: { id: 21, position: "top" },
+          //   id: 1,
+          //   type: "pass",
+          //   name: "CO2の異常な濃度上昇",
+          // },
+        });
+        this.connections = connections2;
+      }
+    })
+    .catch(() => {});
   },
 };
 </script>
