@@ -140,9 +140,9 @@ CORS_ORIGIN_ALLOW_ALL = True
 #     'http://localhost:8080',
 # ]
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# import dj_database_url
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # 追記
@@ -153,18 +153,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-DEBUG = False
-# DEBUG = True
-
-# try:
-#     from api.local_settings import *
-# except ImportError:
-#     pass
-
-if not DEBUG:
-# if DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
 
 #jwt関連
 JWT_AUTH = {
@@ -184,3 +172,15 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL='user.User'
+
+
+DEBUG = False
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
