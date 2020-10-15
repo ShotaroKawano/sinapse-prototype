@@ -78,24 +78,22 @@ function render(g, node, isSelected) {
     .style("border", "1px solid #707070");
 
       // ▼▼tabOpen▼▼
-  g.append("foreignObject")
-    .attr("x", node.x + (node.width * 7) / 8 - 5 + "px")
-    .attr("y", node.y + 5 + "px")
-    .style("width", 50 + "px")
-    .style("height", 50 + "px")
-    .append("xhtml:div")
-    .style("width", 50 + "px")
-    .style("height", 50 + "px")
-    .style("background-image", `url(https://cdn1.iconfinder.com/data/icons/media-icons-23/100/new_window-512.png)`) // icons_tabopen.png に変更したい
-    .style("background-color", "#00000010")
-    .style("opacity", "0.4")
-    .style("background-position", "center center")
-    .style("background-size", "cover")
-    .style("background-repeat", "no-repeat")
-    .style("border-radius", "5px")
-    // .style("box-sizing", "border-box")
-    .style("cursor", "pointer")
-    // .style:hover("opacity", "0.4")
+  // g.append("foreignObject")
+  //   .attr("x", node.x + (node.width * 7.5) / 8 - 5 + "px")
+  //   .attr("y", node.y + 5 + "px")
+  //   .style("width", 25 + "px")
+  //   .style("height", 25 + "px")
+  //   .append("xhtml:div")
+  //   .style("width", 25 + "px")
+  //   .style("height", 25 + "px")
+  //   .style("background-image", `url(https://cdn1.iconfinder.com/data/icons/media-icons-23/100/new_window-512.png)`) // icons_tabopen.png に変更したい
+  //   .style("background-color", "#00000010")
+  //   .style("opacity", "0.5")
+  //   .style("background-position", "center center")
+  //   .style("background-size", "cover")
+  //   .style("background-repeat", "no-repeat")
+  //   .style("border-radius", "5px")
+  //   .style("cursor", "pointer")
 
   // ▼▼summary background▼▼
   g.append("foreignObject")
