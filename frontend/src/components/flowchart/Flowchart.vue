@@ -74,6 +74,10 @@ export default {
       type: Function,
       default: render,
     },
+    isAuthor: {
+      type: Boolean,
+      defult: false
+    }
   },
   data() {
     return {
@@ -97,6 +101,11 @@ export default {
        */
       lines: [],
     };
+  },
+  computed: {
+    token() {
+      return this.$store.getters.token
+    },
   },
   methods: {
     add(node) {
@@ -150,6 +159,9 @@ export default {
             await this.$axios({
               method: "POST",
               url: tail,
+              headers: {
+                Authorization: `JWT ${this.token}`
+              },
               data: {
                   from_card: parseInt(this.connectingInfo.source.id),
                   from_position: this.connectingInfo.sourcePosition,
@@ -248,10 +260,9 @@ export default {
       }
     },
     handleChartDblClick(event) {
-      if (this.readonly) {
-        return;
+      if (this.isAuthor) {
+        this.$emit("dblclick", { x: event.offsetX, y: event.offsetY });
       }
-      this.$emit("dblclick", { x: event.offsetX, y: event.offsetY });
     },
     handleChartMouseDown(event) {
       if (event.ctrlKey) {
@@ -569,6 +580,9 @@ export default {
             that.$axios({
               method: "PATCH",
               url: tail,
+              headers: {
+                Authorization: `JWT ${this.token}`
+              },
               data: {
                 // url: this.nodeForm.url,
                 // title: this.nodeForm.title,
@@ -647,6 +661,9 @@ export default {
                 that.$axios({
                   method: "POST",
                   url: tail,
+                  headers: {
+                    Authorization: `JWT ${this.token}`
+                  },
                   data: {
                       from_card: parseInt(that.connectingInfo.source.id),
                       from_position: that.connectingInfo.sourcePosition,
@@ -750,6 +767,9 @@ export default {
       this.$axios({
         method: "DELETE",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
       })
       .then(() => {})
       .catch(() => {})
@@ -772,6 +792,9 @@ export default {
       this.$axios({
         method: "DELETE",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
       })
       .then(() => {})
       .catch(() => {})

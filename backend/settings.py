@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +26,7 @@ SECRET_KEY = 'w_e4+5oun)=0o(6hialz06*swl!04$u%aqml+v_a6u^^jcr@nq'
 # DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'sinapse-202010111705.herokuapp.com']
-ALLOWED_HOSTS = ['sinapse-202010111705.herokuapp.com']
+# ALLOWED_HOSTS = ['sinapse-202010111705.herokuapp.com']
 # ALLOWED_HOSTS = []
 
 
@@ -41,20 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'backend.api',
-    # 'django_filters',
-    'corsheaders',
+    'backend.user',
+    # 'user',
+    # 'corsheaders',
 ]
-
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
-}
-
 
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -93,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sinapseprototype',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'pass',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -139,7 +133,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-AUTH_USER_MODEL = 'api.User'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -147,11 +140,10 @@ CORS_ORIGIN_ALLOW_ALL = True
 #     'http://localhost:8080',
 # ]
 
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+# import dj_database_url
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
 
-import os
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # 追記
 STATIC_URL = '/static/'
@@ -170,6 +162,26 @@ except ImportError:
     pass
 
 # if not DEBUG:
-if DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
+
+# if DEBUG:
+#     import django_heroku
+#     django_heroku.settings(locals())
+
+#jwt関連
+JWT_AUTH = {
+    'JWT_VERIFY_EXPIRATION': False,
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+    'NON_FIELD_ERRORS_KEY': 'detail',
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
+
+AUTH_USER_MODEL='user.User'

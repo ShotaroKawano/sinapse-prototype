@@ -170,3 +170,7 @@ body {
   font-weight: bold;
   text-align: center;
 }
+
+.link {
+  text-decoration: none;
+}

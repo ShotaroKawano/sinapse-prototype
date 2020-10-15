@@ -30,7 +30,7 @@
             v-model="nodeForm.url"
             placeholder="URL"
           />
-          <button id="btn" class="btn_get" @click="handleClickGetInfo">
+          <button v-if="isAuthor" id="btn" class="btn_get" @click="handleClickGetInfo">
             <p class="text_get">Get</p>
           </button>
         </div>
@@ -65,10 +65,10 @@
             <button id="btn" style="width: 50px;" @click="handleClickCancelSaveNode">
               <p>Cancel</p>
             </button>
-            <div id="btn" class="btn_delete" @click="deleteNode">
+            <div  v-if="isAuthor" id="btn" class="btn_delete" @click="deleteNode">
               <p class="text_delete">Delete</p>
             </div>
-            <div id="btn" class="btn_save" @click="handleClickSaveNode">
+            <div  v-if="isAuthor" id="btn" class="btn_save" @click="handleClickSaveNode">
               <p class="text_save">Save</p>
             </div>
           </div>
@@ -92,6 +92,10 @@ export default {
       type: Object,
       default: null,
     },
+    isAuthor: {
+      type: Boolean,
+      defult: false
+    }
   },
 
   data: function () {
@@ -108,14 +112,16 @@ export default {
       // approvers: [{id: 1, name: 'Joyce'}, {id: 2, name: 'Allen'}, {id: 3, name: 'Teresa'}],
     };
   },
-
+  computed: {
+    token() {
+      return this.$store.getters.token
+    },
+  },
   methods: {
-
     deleteNode() {
       this.$emit("handle-delete-node", this.node);
       this.$emit("update:visible", false);
     },
-
     handleClickGetInfo() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
       const tail = "api/scrape/";
@@ -123,6 +129,9 @@ export default {
       this.$axios({
         method: "POST",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
         data: {
           url: this.nodeForm.url,
         },
@@ -134,13 +143,15 @@ export default {
       })
       .catch(() => {});
     },
-
     // save押下時に実行される
     handleClickSaveNode() {
       const tail = "api/cards/" + this.node.id + "/";
       this.$axios({
         method: "PATCH",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
         data: {
           url: this.nodeForm.url,
           title: this.nodeForm.title,
@@ -165,19 +176,15 @@ export default {
       );
       this.$emit("update:visible", false);
     },
-
     handleClickCancelSaveNode() {
       this.$emit("update:visible", false);
     },
-
     // handleChangeApprover(e) {
     //   // this.nodeForm.approver = this.approvers.filter(i => i.id === parseInt(e.target.value))[0];
     //   this.nodeForm.summary = this.approvers.filter(i => i.id === parseInt(e.target.value))[0];
     // },
   },
-
   watch: {
-
     node: {
       immediate: true,
       handler(val) {
@@ -194,9 +201,8 @@ export default {
         // }
       },
     },
-
   },
-};
+}
 </script>
 
 <style src="./dialog.css"></style>

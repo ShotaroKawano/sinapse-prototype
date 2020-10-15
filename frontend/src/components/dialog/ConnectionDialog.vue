@@ -30,19 +30,16 @@
             </option>
           </select>
         </div>
-              <div class="box_footerButton">
         <div class="footerButton">
           <button @click="handleClickCancelSaveConnection">Cancel</button>
-          <div id="btn" class="btn_delete" @click="deleteConnection()">
+          <div v-if="isAuthor" id="btn" class="btn_delete" @click="deleteConnection()">
             <p class="text_delete">Delete</p>
           </div>
-          <div id="btn" class="btn_save" @click="handleClickSaveConnection">
+          <div v-if="isAuthor" id="btn" class="btn_save" @click="handleClickSaveConnection">
             <p class="text_save">Save</p>
           </div>
         </div>
       </div>
-      </div>
-
     </div>
   </div>
 </template>
@@ -58,6 +55,10 @@ export default {
     connection: {
       type: Object,
       default: null
+    },
+    isAuthor: {
+      type: Boolean,
+      defult: false
     }
   },
   data() {
@@ -73,6 +74,11 @@ export default {
       }
     };
   },
+  computed: {
+    token() {
+      return this.$store.getters.token
+    },
+  },
   methods: {
     async handleClickSaveConnection() {
       const tail =
@@ -87,6 +93,9 @@ export default {
       this.$axios({
         method: "PATCH",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
         data: {
           // from_card: parseInt(this.connection.source.id),
           // from_position: this.connection.source.position,

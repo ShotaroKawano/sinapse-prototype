@@ -32,14 +32,19 @@
       <p>{{ post.title }}</p>
     </div> -->
     <div class="headerRightboxPosition">
-      <div class="box_headerUser">
+      <div
+        class="box_headerUser"
+        @click="logout">
         <img
           class="btn_headerUser"
           src="@/assets/images/userimages/user_default.jpg"
           alt="プロフィール画像"
         />
       </div>
-      <div class="btn_create" @click="createBoard()">
+      <div v-if="!isAthenticated" class="btn_create" to="/login">
+        <p>login</p>
+      </div>
+      <div v-if="isAthenticated" class="btn_create" @click="createBoard()">
         <p>作成</p>
       </div>
     </div>
@@ -54,7 +59,18 @@
 
 export default {
   name: "Header",
+  computed: {
+    token() {
+      return this.$store.getters.token
+    },
+    isAthenticated() {
+      return this.$store.getters.token != null
+    }
+  },
   methods: {
+    logout: function () {
+      this.$store.dispatch('logout')
+    },
     onKeypressEnter: function () {
       // ↓↓↓検索ワード=qを取得
       var q = document.getElementById("q").value;
@@ -75,23 +91,29 @@ export default {
       this.$axios({
         method: "POST",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
         data: {
           title: "タイトル",
           description: "ディスクリプション",
           thumbnail: "12345",
           url_tail: "12345",
           is_published: true,
-          user_id: 1,
+          user_id: this.$store.getters.userId,
           // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
           // tagList: this.convertTaglistToTags
         },
       })
-        .then((res) => {
-          this.$router.push("/boards/" + res.data.id);
-        })
-        .catch(() => {});
+      .then((res) => {
+        this.$router.push("/boards/" + res.data.id);
+      })
+      .catch(() => {});
     },
   },
+  created: function () {
+    this.$store.dispatch('getUserInfo')
+  }
 };
 </script>
 

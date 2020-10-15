@@ -105,7 +105,7 @@
                           />
                         </div>
                         <div class="box_NameAndCreatdate">
-                          <div class="indexUsername">内藤迅</div>
+                          <div class="indexUsername">{{ user.username }}</div>
                           <div class="indexCreatdate">
                             {{ createdAt }}
                           </div>
@@ -152,10 +152,10 @@
               </div>
             </div>
             <div class="box_deleteAndsaveButton">
-              <div id="btn" class="btn_delete">
+              <div v-if="isAuthor" id="btn" class="btn_delete">
                 <p @click="deleteBoard()" class="text_delete">Delete</p>
               </div>
-              <div id="btn" class="btn_save">
+              <div v-if="isAuthor" id="btn" class="btn_save">
                 <p @click="updateBoard()" class="text_save">Save</p>
               </div>
             </div>
@@ -171,6 +171,12 @@
 
 export default {
   name: "BoardHeader",
+  props: {
+    isAuthor: {
+      type: Boolean,
+      defult: false
+    }
+  },
   data: function () {
     return {
       isVisible: false,
@@ -197,8 +203,36 @@ export default {
       shares: "56",
       isEditting: false,
       isEditting2: false,
+      // userId: null,
+      user: null,
     };
   },
+  computed: {
+    token() {
+      return this.$store.getters.token
+    },
+    convertBoardTagsToTagList: function () {
+      // console.log('kokodesu');
+      var tagList = "";
+      this.boardTags.forEach((tagWrapper, index) => {
+        // console.log(tagWrapper)
+        if (index === 0) {
+          tagList += tagWrapper.tag.name;
+        } else {
+          tagList += "," + tagWrapper.tag.name;
+        }
+      });
+      return tagList;
+    },
+    // convertTagsToTaglist: function() {
+    //   return this.tags.join(" #");
+    // }
+  },
+  // computed: {
+  //   isAuthor () {
+  //     return this.$store.state.userId === parseInt(this.userId)
+  //   }
+  // },
   methods: {
     updateBoard() {
       // console.log(this.title);
@@ -210,7 +244,9 @@ export default {
         method: "PATCH",
         // method: "PUT",
         url: tail,
-        // withCredentials: true,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
         data: {
           title: this.title,
           description: this.description,
@@ -222,8 +258,8 @@ export default {
           // tagList: this.convertTaglistToTags
         },
       })
-        .then(() => {})
-        .catch(() => {})
+      .then(() => {})
+      .catch(() => {})
     },
     deleteBoard() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
@@ -232,11 +268,14 @@ export default {
       this.$axios({
         method: "DELETE",
         url: tail,
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
       })
-        .then((res) => {
-          this.$router.push("/");
-        })
-        .catch(() => {});
+      .then((res) => {
+        this.$router.push("/");
+      })
+      .catch(() => {});
     },
     // convertTagsToTaglist: function() {
     //   this.tagList =
@@ -260,38 +299,32 @@ export default {
     //   return tagList
     // }
   },
-  computed: {
-    convertBoardTagsToTagList: function () {
-      // console.log('kokodesu');
-      var tagList = "";
-      this.boardTags.forEach((tagWrapper, index) => {
-        // console.log(tagWrapper)
-        if (index === 0) {
-          tagList += tagWrapper.tag.name;
-        } else {
-          tagList += "," + tagWrapper.tag.name;
-        }
-      });
-      return tagList;
-    },
-    // convertTagsToTaglist: function() {
-    //   return this.tags.join(" #");
-    // }
-  },
   created: function () {
     const tail =
       "api/boards/" + this.$route.params.id;
     this.$axios({
       method: "GET",
       url: tail,
+      headers: {
+        Authorization: `JWT ${this.token}`
+      },
     })
-      .then((res) => {
-        this.title = res.data.title;
-        this.description = res.data.description;
-        this.boardTags = res.data.board_tags;
-        this.thumbnail = res.data.thumbnail;
-      })
-      .catch(() => {});
+    .then((res) => {
+      // this.userId = res.data.user.id
+      this.user = res.data.user
+      // console.log('user');
+      // console.log(this.$store.state.userId);
+      // console.log(parseInt(this.userId));
+      // console.log(this.$store.state.userId === parseInt(this.userId));
+      const isAuthor = this.$store.getters.userId === parseInt(this.user.id)
+      console.log(isAuthor);
+      this.$emit('update-is-author', isAuthor)
+      this.title = res.data.title;
+      this.description = res.data.description;
+      this.boardTags = res.data.board_tags;
+      this.thumbnail = res.data.thumbnail;
+    })
+    .catch(() => {});
   },
   // mounted: function () {
   //       $('.s_01 .accordion_one .accordion_header').click(function () {

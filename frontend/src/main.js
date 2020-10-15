@@ -4,35 +4,40 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+import store from './store'
 
 Vue.config.productionTip = false
 
 // var api = axios.defaults.baseURL = "http://127.0.0.1:8000/api"
 // new Vue の前に読み込まないとundefindになる
 Vue.prototype.$axios = axios.create({
-  // baseURL: 'http://127.0.0.1:8000/',
-  baseURL: 'https://sinapse-202010111705.herokuapp.com/',
+  baseURL: 'http://127.0.0.1:8000/',
+  // baseURL: 'https://sinapse-202010111705.herokuapp.com/',
 })
 
 Vue.prototype.$axios.interceptors.response.use(
-  response => {
-    console.log(response.status)
-    if (response.data) {
-      console.log(response.data)
-    }
-    return response
+  res => {
+    console.log(res)
+    // if (res.data) {
+    //   console.log(res.data)
+    // }
+    return res
   },
-  error => {
+  err => {
     window.alert('処理に失敗しました')
-    console.log(error)
-    return Promise.reject(error)
+    console.log(err)
+    return Promise.reject(err)
   }
 )
+
+store.dispatch('autoLogin')
+// store.dispatch('getUserInfo')
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
