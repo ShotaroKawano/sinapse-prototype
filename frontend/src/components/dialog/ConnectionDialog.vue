@@ -21,8 +21,8 @@
             <option
               :key="'connection-type-' + item.id"
               v-for="item in [
-                { name: 'Pass', id: 'pass' },
-                { name: 'Reject', id: 'reject' }
+                { name: 'direction', id: 1 },
+                { name: 'opposition', id: 2 }
               ]"
               :value="item.id"
             >
@@ -81,18 +81,16 @@ export default {
   },
   methods: {
     async handleClickSaveConnection() {
-      const tail =
-        "api/arrows/" + this.connection.id + "/";
-      console.log(parseInt(this.connection.source.id));
-      console.log(this.connection.source.position);
-      console.log(parseInt(this.connection.destination.id));
-      console.log(this.connection.destination.position);
-      console.log(1);
-      console.log(this.connectionForm.name);
-      console.log(parseInt(this.$route.params.id));
+      // console.log(parseInt(this.connection.source.id));
+      // console.log(this.connection.source.position);
+      // console.log(parseInt(this.connection.destination.id));
+      // console.log(this.connection.destination.position);
+      // console.log(1);
+      // console.log(this.connectionForm.name);
+      // console.log(parseInt(this.$route.params.id));
       this.$axios({
         method: "PATCH",
-        url: tail,
+        url: "api/arrows/" + this.connection.id + "/",
         headers: {
           Authorization: `JWT ${this.token}`
         },
