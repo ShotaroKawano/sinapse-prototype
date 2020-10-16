@@ -3,11 +3,12 @@
     <div class="modal" v-if="visible">
       <div>
         <div class="thumbnail">
-          <div class="box_tool">
+          <!-- <div class="box_tool">
             <div class="btn_tabOpen">
               <img class="img_tabOpen" src="@/assets/images/icons/icons_tabopen.png"
-          alt="URLを開く"></div>
-          </div>
+          alt="URLを開く">
+            </div>
+          </div> -->
           <!-- <img :src="nodeForm.thumbnail" alt="" class="box_thumbnail" /> -->
           <img
             v-if="!isEditting"
@@ -40,6 +41,11 @@
           <button v-if="isAuthor" id="btn" class="btn_get" @click="handleClickGetInfo">
             <p class="text_get">Get</p>
           </button>
+          <div v-else id="btn" class="btn_tabOpen" @click="handleClickGetInfo">
+            <!-- <p class="text_get">Open</p> -->
+            <img class="img_tabOpen" src="@/assets/images/icons/icons_tabopen.png"
+          alt="URLを開く">
+          </div>
         </div>
 
         <div class="form-allControl">

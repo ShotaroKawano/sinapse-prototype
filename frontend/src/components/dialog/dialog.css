@@ -223,16 +223,16 @@ label {
   color: #ffffff;
 }
 
-.box_tool {
+/* .box_tool {
   z-index: 1;
   position: absolute;
   width: 100%;
   margin: auto 0px 0px 0px;
-}
+} */
 .btn_tabOpen {
-  width: 25px;
+  width: 27px;
   height: 25px;
-  margin: 5px 5px 0px auto;
+  margin: 2px 0px 2px 10px;
   /* background-image: url(../src/assets/images/icons/icons_tabopen.png); */
   /* background-color: #00000010; */
   background-position: center center;
@@ -242,10 +242,26 @@ label {
   cursor: pointer;
 }
 .img_tabOpen {
-  width: 25px;
+  width: 23px;
   opacity: 0.5;
 }
 .img_tabOpen:hover {
   /* width: 25px; */
   opacity: 1;
+}
+
+#title::-webkit-scrollbar {
+  width: 4px;
+}
+#title::-webkit-scrollbar-thumb {
+  background: #b4bdc6;
+  -webkit-border-radius: 2px;
+}
+
+#summary::-webkit-scrollbar {
+  width: 4px;
+}
+#summary::-webkit-scrollbar-thumb {
+  background: #b4bdc6;
+  -webkit-border-radius: 2px;
 }
