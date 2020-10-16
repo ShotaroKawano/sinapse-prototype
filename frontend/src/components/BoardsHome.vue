@@ -1,111 +1,115 @@
 <template>
-  <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
-  <div class="center_lar boardsWrapper">
-    <!-- <div>
-      <h1>q = {{ this.$route.query.q }}</h1>
-    </div> -->
-    <!-- ▼▼▼ board1set ▼▼▼ -->
-    <router-link
-      v-for="board in boards"
-      :key="board.id"
-      v-bind:to="`boards/${board.id}`"
-      class="box_boards1set"
-    >
-      <!-- ▼▼ 概要 ▼▼ -->
-      <div class="box_indexBoards">
-        <!-- ▼ タイトル ▼ -->
-        <div>
-          <h2 class="indexTitle">
-            {{ board.title }}
-          </h2>
-        </div>
-        <!-- ▼ 見出し ▼ -->
-        <div>
-          <p class="indexSubheading">
-            {{ board.description }}
-          </p>
-        </div>
-        <!-- ▼ ハッシュタグ ▼ -->
-        <!-- <div id="tags" class="box_indexHashtag"> -->
-          <!-- <ul v-for="tag of limitCount" :key="tag.name">
-            <li>
-              <p id="btn" class="indexHashtag">{{ tag.name }}</p>
-            </li>
-          </ul> -->
-          <!-- <div
-            id="btn"
-            v-for="tagWrapper in board.board_tags"
-            :key="tagWrapper.tag.id"
-          >
-            <p class="indexHashtag">#{{ tagWrapper.tag.name }}</p>
+  <div>
+    <Header></Header>
+    <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
+    <div class="center_lar boardsWrapper">
+      <!-- <div>
+        <h1>q = {{ this.$route.query.q }}</h1>
+      </div> -->
+      <!-- ▼▼▼ board1set ▼▼▼ -->
+      <router-link
+        v-for="board in boards"
+        :key="board.id"
+        v-bind:to="`boards/${board.id}`"
+        class="box_boards1set"
+      >
+        <!-- ▼▼ 概要 ▼▼ -->
+        <div class="box_indexBoards">
+          <!-- ▼ タイトル ▼ -->
+          <div>
+            <h2 class="indexTitle">
+              {{ board.title }}
+            </h2>
           </div>
-        </div> -->
+          <!-- ▼ 見出し ▼ -->
+          <div>
+            <p class="indexSubheading">
+              {{ board.description }}
+            </p>
+          </div>
+          <!-- ▼ ハッシュタグ ▼ -->
+          <!-- <div id="tags" class="box_indexHashtag"> -->
+            <!-- <ul v-for="tag of limitCount" :key="tag.name">
+              <li>
+                <p id="btn" class="indexHashtag">{{ tag.name }}</p>
+              </li>
+            </ul> -->
+            <!-- <div
+              id="btn"
+              v-for="tagWrapper in board.board_tags"
+              :key="tagWrapper.tag.id"
+            >
+              <p class="indexHashtag">#{{ tagWrapper.tag.name }}</p>
+            </div>
+          </div> -->
 
-        <!-- ▼▼ プロフボタン ▼▼ -->
-        <div class="box_UserAndCreatdate">
-          <div id="btn">
-            <img
-              v-if="board.user.user_icon"
-              class="btn_boardsUser"
-              :src="board.user.user_icon"
-            />
-            <img
-              v-else
-              class="btn_boardsUser"
-              src="@/assets/images/userimages/user_default.jpg"
-            />
-          </div>
-          <div class="box_NameAndCreatdate">
-            <div>
-              <p class="indexUsername">{{ board.user.username }}</p>
-            </div>
-            <div>
-              <p class="indexCreatdate">{{ getNowDateWithString(board.updated_at) }}</p>
-            </div>
-          </div>
-          <!-- ▼▼ SNS ▼▼ -->
-          <div class="box_indexSns">
-            <div id="btn2" class="box_indexSnscontents">
+          <!-- ▼▼ プロフボタン ▼▼ -->
+          <div class="box_UserAndCreatdate">
+            <div id="btn">
               <img
-                class="icon_indexBoards"
-                src="@/assets/images/icons/icons_like.png"
-                alt="いいねボタン"
+                v-if="board.user.user_icon"
+                class="btn_boardsUser"
+                :src="board.user.user_icon"
               />
-              <!-- <div>{{ board.comments }}</div> -->
-              <div>777</div>
-            </div>
-            <div id="btn2" class="box_indexSnscontents">
               <img
-                class="icon_indexBoards"
-                src="@/assets/images/icons/icons_comment.png"
-                alt="コメントボタン"
+                v-else
+                class="btn_boardsUser"
+                src="@/assets/images/userimages/user_default.jpg"
               />
-              <!-- <div>{{ board.likes }}</div> -->
-              <div>777</div>
+            </div>
+            <div class="box_NameAndCreatdate">
+              <div>
+                <p class="indexUsername">{{ board.user.username }}</p>
+              </div>
+              <div>
+                <p class="indexCreatdate">{{ getNowDateWithString(board.updated_at) }}</p>
+              </div>
+            </div>
+            <!-- ▼▼ SNS ▼▼ -->
+            <div class="box_indexSns">
+              <div id="btn2" class="box_indexSnscontents">
+                <img
+                  class="icon_indexBoards"
+                  src="@/assets/images/icons/icons_like.png"
+                  alt="いいねボタン"
+                />
+                <!-- <div>{{ board.comments }}</div> -->
+                <div>777</div>
+              </div>
+              <div id="btn2" class="box_indexSnscontents">
+                <img
+                  class="icon_indexBoards"
+                  src="@/assets/images/icons/icons_comment.png"
+                  alt="コメントボタン"
+                />
+                <!-- <div>{{ board.likes }}</div> -->
+                <div>777</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="box_indexThumbnail">
-        <!-- ▼▼ サムネ画像 ▼▼ -->
-        <!-- <div
-          class="thumbnail_indexBoards"
-          :style="{ backgroundImage: 'url(' + board.thumbnail + ')' }"
-        ></div> -->
-        <img
-          class="thumbnail_indexBoards"
-          :src=" board.thumbnail "
-          alt
-          onerror="this.onerror = null; this.src='';"
-        >
-      </div>
-    </router-link>
+        <div class="box_indexThumbnail">
+          <!-- ▼▼ サムネ画像 ▼▼ -->
+          <!-- <div
+            class="thumbnail_indexBoards"
+            :style="{ backgroundImage: 'url(' + board.thumbnail + ')' }"
+          ></div> -->
+          <img
+            class="thumbnail_indexBoards"
+            :src=" board.thumbnail "
+            alt
+            onerror="this.onerror = null; this.src='';"
+          >
+        </div>
+      </router-link>
+    </div>
+    <!-- ▲▲▲ boards1set ▲▲▲ -->
+    <!-- ▲▲▲▲▲ 新boards ▲▲▲▲▲ -->
   </div>
-  <!-- ▲▲▲ boards1set ▲▲▲ -->
-  <!-- ▲▲▲▲▲ 新boards ▲▲▲▲▲ -->
 </template>
 
 <script>
+import Header from "./Header"
 
 export default {
   name: "BoardsHome",
@@ -114,6 +118,9 @@ export default {
   //     console.log("ページ遷移");
   //   }
   // },
+  components: {
+    Header,
+  },
   methods: {
     search: function () {
       // console.log('koko');
@@ -344,7 +351,7 @@ h2.indexTitle {
   line-height: 32px;
   color: #525e6a;
   font-weight: bold;
-  overflow-wrap:break-word; 
+  overflow-wrap:break-word;
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 2;
@@ -357,7 +364,7 @@ p.indexSubheading {
   font-size: 14px;
   line-height: 20px;
   color: #525e6a;
-  overflow-wrap:break-word; 
+  overflow-wrap:break-word;
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 4;
@@ -412,10 +419,10 @@ p.indexCreatdate {
   color: #b4bdc6;
   flood-color: #b4bdc6;
   font-size: 14px;
-  opacity: 0.6; 
+  opacity: 0.6;
 }
 .box_indexSnscontents:hover{
-  opacity: 1; 
+  opacity: 1;
 }
 
 .box_indexBoards {

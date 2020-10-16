@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header></Header>
     <BoardHeader
       @update-is-author="handleUpdateAuthor"
       :isAuthor="isAuthor"
@@ -86,6 +87,7 @@ import Flowchart from "./flowchart/Flowchart";
 // scriptタグでないと機能しないのか？
 import "@/assets/css/reset.css";
 import BoardHeader from "./BoardHeader";
+import Header from "./Header"
 
 export default {
   name: "Board",
@@ -94,6 +96,7 @@ export default {
     NodeDialog,
     Flowchart,
     BoardHeader,
+    Header,
   },
   data: function () {
     return {
