@@ -115,6 +115,8 @@ export default {
       this.internalNodes.push(node);
     },
     editCurrent() {
+      // 呼び元がなくなっている どこからも呼ばれていないかも
+      console.log('editCurrent');
       if (this.currentNodes.length === 1) {
         this.editNode(this.currentNodes[0]);
       } else if (this.currentConnections.length === 1) {
@@ -122,6 +124,7 @@ export default {
       }
     },
     editNode(node) {
+      console.log('editNode');
       if (this.readonly) {
         return;
       }
@@ -495,11 +498,17 @@ export default {
             that.currentNodes.splice(0, that.currentNodes.length);
             that.currentNodes.push(node);
           }
-          // VueComponentにclickが記録されている場合
+          // VueComponentにclickが記録されている場合 editNodeでNodeDialogを開く
           if (that.clickedOnce) {
-            that.currentNodes.splice(0, that.currentNodes.length);
-            that.editNode(node);
+            console.log(that.isAuthor);
+            if (that.isAuthor) {
+              that.currentNodes.splice(0, that.currentNodes.length);
+              that.editNode(node);
+            } else {
+              window.open(node.url, '_blank');
+            }
           } else {
+            // 0.3秒後にclickedOnceをfalseにする
             let timer = setTimeout(function () {
               that.clickedOnce = false;
               clearTimeout(timer);
