@@ -8,9 +8,11 @@ function lineTo(g, x1, y1, x2, y2, lineWidth, strokeStyle, dash) {
   let path = g.append('path').
       // attr('stroke', strokeStyle).
       // attr('stroke', '#7CF8FD').
-    attr('stroke', '#5486b9').
+      // attr('stroke', '#5486b9').
+    attr('stroke', strokeStyle).
       // attr('stroke', 'red').
-      attr('stroke-width', 4).
+      // attr('stroke-width', 5).
+    attr('stroke-width', lineWidth).
       // attr('fill', 'none').
     // attr('fill', '#D1FDFF').
       attr('d', lineGenerator([sta, end]));

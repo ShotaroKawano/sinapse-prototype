@@ -450,6 +450,7 @@ export default {
         .style("width", 10 + "px")
         .style("height", 10 + "px")
         .text(connName)
+
       g.classed("connection", true);
       line2(
         g,
@@ -459,8 +460,8 @@ export default {
         y2,
         startPosition,
         endPosition,
-        1,
-        color || "#a3a3a3",
+        4,
+        color || "#5486b9",
         true
       );
       // a 5px cover to make mouse operation conveniently
