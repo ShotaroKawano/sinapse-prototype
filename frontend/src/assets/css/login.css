@@ -30,8 +30,9 @@ body {
   transform: translateY(-50%) translateX(-50%); /* 要素自体の半分、上と左にずらす */
 
   width: 430px;
-  height: 500px;
+  /* height: 500px; */
   margin: 50px auto;
+  padding-bottom: 40px;
   background-color: #ffffff60;
   border-radius: 10px;
   border: solid 2px #ffffff90; /* 枠の指定 */
