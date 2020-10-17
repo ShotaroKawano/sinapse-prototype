@@ -67,14 +67,18 @@
             </div>
             <!-- ▼▼ SNS ▼▼ -->
             <div class="box_indexSns">
-              <div id="btn2" class="box_indexSnscontents">
+              <div
+                @click.stop.prevent="addLike(board.id)"
+                id="btn2"
+                class="box_indexSnscontents"
+              >
                 <img
                   class="icon_indexBoards"
                   src="@/assets/images/icons/icons_like.png"
                   alt="いいねボタン"
                 />
                 <!-- <div>{{ board.comments }}</div> -->
-                <div class="box_indexBoardsText">777</div>
+                <div class="box_indexBoardsText">{{ board.like_count }}</div>
               </div>
               <!-- <div id="btn2" class="box_indexSnscontents">
                 <img
@@ -121,23 +125,45 @@ export default {
     Header,
   },
   methods: {
-    search: function () {
-      // console.log('koko');
-      // const URL_BASE = "http://127.0.0.1:8000/api/boards?title=" + "気候変動";
-      // console.log("生成されたURL：" + URL_BASE);
+    // いいねを外した場合も要実装
+    addLike(boardId) {
       this.$axios({
-        method: "GET",
-        // TODO: 気候変動を可変に
-        url: "api/boards?title=" + "気候変動",
-        headers: {
-          Authorization: `JWT ${this.token}`
-        },
+        method: "POST",
+        url: "api/likes/",
+        // headers: {
+        //   Authorization: `JWT ${this.token}`
+        // },
+        data: {
+          board: boardId,
+          user: this.$store.getters.userId
+        }
       })
       .then((res) => {
-        this.boards = res.data.board_list;
+        this.boards.forEach(board => {
+          if (res.data.board === board.id) {
+            board.like_count++
+          }
+        });
       })
       .catch(() => {});
-    },
+    }
+    // search: function () {
+    //   // console.log('koko');
+    //   // const URL_BASE = "http://127.0.0.1:8000/api/boards?title=" + "気候変動";
+    //   // console.log("生成されたURL：" + URL_BASE);
+    //   this.$axios({
+    //     method: "GET",
+    //     // TODO: 気候変動を可変に
+    //     url: "api/boards?title=" + "気候変動",
+    //     headers: {
+    //       Authorization: `JWT ${this.token}`
+    //     },
+    //   })
+    //   .then((res) => {
+    //     this.boards = res.data.board_list;
+    //   })
+    //   .catch(() => {});
+    // },
   },
   data: function () {
     return {
