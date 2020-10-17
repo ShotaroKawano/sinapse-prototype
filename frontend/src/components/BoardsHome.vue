@@ -74,17 +74,16 @@
                   alt="いいねボタン"
                 />
                 <!-- <div>{{ board.comments }}</div> -->
-                <div>777</div>
+                <div class="box_indexBoardsText">777</div>
               </div>
-              <div id="btn2" class="box_indexSnscontents">
+              <!-- <div id="btn2" class="box_indexSnscontents">
                 <img
                   class="icon_indexBoards"
                   src="@/assets/images/icons/icons_comment.png"
                   alt="コメントボタン"
                 />
-                <!-- <div>{{ board.likes }}</div> -->
                 <div>777</div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -414,12 +413,11 @@ p.indexCreatdate {
 }
 .box_indexSnscontents {
   /* 必要 */
-  margin: 0px 0px 0px 16px;
-  text-align: center;
-  color: #b4bdc6;
+  /* margin: 0px 0px 0px 16px; */
   flood-color: #b4bdc6;
-  font-size: 14px;
   opacity: 0.6;
+  display: flex;
+  margin: auto 0;
 }
 .box_indexSnscontents:hover{
   opacity: 1;
@@ -429,6 +427,14 @@ p.indexCreatdate {
   margin: 0px 0px 0px 0px;
   width: 100%;
 }
+.box_indexBoardsText{
+  text-align: center;
+  color: #b4bdc6;
+  font-size: 16px;
+  margin-left: 4px;
+  padding-top: 4px;
+}
+
 .box_indexHashtag {
   display: flex;
   flex-wrap: wrap;
