@@ -2,7 +2,8 @@ body {
   /* 画像ファイルの指定 */
   /* background-image: url(../images/wallpapers/Irises_1890_VincentVanGogh.jpg); */
   /* background-image: url(../images/wallpapers/login_bgimage.jpg); */
-  background-image: url(../images/wallpapers/login_bgimage.png);
+  /* background-image: url(../images/wallpapers/login_bgimage.png); */
+  background-image: url(/static/img/login_bgimage.png);
   /* background-image: url(../images/wallpapers/StillLifeWithLemonsOrangesAndaPomegranate_1647_JacobVanHulsdonck.jpg); */
   /* background-image: url(../images/wallpapers/StillLifeWithOystersAndGrapes_1684_JanDavidszDeHeem.jpg); */
 
