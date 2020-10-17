@@ -4,7 +4,7 @@
     <!-- <router-link to="/" id="btn" class="name_service">Sinapse</router-link> -->
     <router-link to="/" class="box_servicelogo"
       ><img
-        src="@/assets/images/logos/logos_Sinapse_blue.png"
+        src='/static/img/logos_Sinapse_blue.png'
         alt="Sinapselogo"
         class="img_servicelogo"
     /></router-link>
