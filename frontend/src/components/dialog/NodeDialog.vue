@@ -41,7 +41,7 @@
           <button v-if="isAuthor" id="btn" class="btn_get" @click="handleClickGetInfo">
             <p class="text_get">Get</p>
           </button>
-          <div v-else id="btn" class="btn_tabOpen" @click="handleClickGetInfo">
+          <div v-else id="btn" class="btn_tabOpen" @click="newTabOpen" target="_blank">
             <!-- <p class="text_get">Open</p> -->
             <img class="img_tabOpen" src="@/assets/images/icons/icons_tabopen.png"
           alt="URLを開く">
@@ -131,6 +131,11 @@ export default {
     },
   },
   methods: {
+    newTabOpen () {
+      console.log(this.nodeForm.url);
+      // this.$router.go(this.nodeForm.url, '_blank')
+      window.open(this.nodeForm.url, '_blank')
+    },
     deleteNode() {
       this.$emit("handle-delete-node", this.node);
       this.$emit("update:visible", false);
