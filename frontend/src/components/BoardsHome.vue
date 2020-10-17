@@ -98,10 +98,9 @@
             :style="{ backgroundImage: 'url(' + board.thumbnail + ')' }"
           ></div> -->
           <img
+            v-if="board.thumbnail"
             class="thumbnail_indexBoards"
-            :src=" board.thumbnail "
-            alt
-            onerror="this.onerror = null; this.src='';"
+            :src=" board.thumbnail"
           >
         </div>
       </router-link>
