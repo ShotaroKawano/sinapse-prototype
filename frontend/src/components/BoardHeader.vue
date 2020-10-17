@@ -262,20 +262,22 @@ export default {
       .catch(() => {})
     },
     deleteBoard() {
-      // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      const tail =
-        "api/boards/" + this.$route.params.id;
-      this.$axios({
-        method: "DELETE",
-        url: tail,
-        headers: {
-          Authorization: `JWT ${this.token}`
-        },
-      })
-      .then((res) => {
-        this.$router.push("/");
-      })
-      .catch(() => {});
+      let result = confirm('削除した場合、元には戻せません。本当に削除しますか？');
+      if (result) {
+        this.$axios({
+          method: "DELETE",
+          url: "api/boards/" + this.$route.params.id,
+          headers: {
+            Authorization: `JWT ${this.token}`
+          },
+        })
+        .then((res) => {
+          this.$router.push("/");
+        })
+        .catch(() => {});
+      } else {
+        // 何もしない
+      }
     },
     // convertTagsToTaglist: function() {
     //   this.tagList =
@@ -373,7 +375,7 @@ export default {
   padding-top: 5px;
   border-radius: 10px;
   /* overflow: hidden; */
-  overflow-wrap:break-word; 
+  overflow-wrap:break-word;
   display: -webkit-box;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -393,7 +395,7 @@ export default {
   margin: 0px 0px 5px 0px;
   border-radius: 10px;
   /* overflow: hidden; */
-  overflow-wrap:break-word; 
+  overflow-wrap:break-word;
   display: -webkit-box;
   overflow-x: hidden;
   overflow-y: scroll;

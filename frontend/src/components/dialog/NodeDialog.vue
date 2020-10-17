@@ -137,8 +137,13 @@ export default {
       window.open(this.nodeForm.url, '_blank')
     },
     deleteNode() {
-      this.$emit("handle-delete-node", this.node);
-      this.$emit("update:visible", false);
+      let result = confirm('削除した場合、元には戻せません。本当に削除しますか？');
+      if (result) {
+        this.$emit("handle-delete-node", this.node);
+        this.$emit("update:visible", false);
+      } else {
+        // 何もしない
+      }
     },
     handleClickGetInfo() {
       // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';

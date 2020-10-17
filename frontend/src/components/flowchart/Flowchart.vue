@@ -770,10 +770,9 @@ export default {
       }
     },
     removeNode(node) {
-      const tail = "api/cards/" + node.id + "/";
       this.$axios({
         method: "DELETE",
-        url: tail,
+        url: "api/cards/" + node.id + "/",
         headers: {
           Authorization: `JWT ${this.token}`
         },
