@@ -40,19 +40,19 @@
 }
 
 .thumbnail {
+  z-index: 0;
   width: 100%;
   max-height: 230px;
   text-align: center;
 }
 
 .thumbnail > img {
-  max-width: 500px;
-  max-height: 200px;
   object-fit: cover;
 }
 
 .box_thumbnail {
   width: 100%;
+  max-height: 200px;
   border-radius: 10px 10px 0px 0px;
 }
 
@@ -83,8 +83,6 @@
   border: 0.5px solid #b4bdc6;
   border-radius: 5px;
   resize: vertical;
-  text-overflow: ellipsis;
-  box-sizing: border-box;
 }
 .form-titleControl {
   width: 100%;
@@ -223,4 +221,47 @@ label {
 .text_save {
   font-size: 14px;
   color: #ffffff;
+}
+
+/* .box_tool {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  margin: auto 0px 0px 0px;
+} */
+.btn_tabOpen {
+  width: 27px;
+  height: 25px;
+  margin: 2px 0px 2px 10px;
+  /* background-image: url(../src/assets/images/icons/icons_tabopen.png); */
+  /* background-color: #00000010; */
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.img_tabOpen {
+  width: 23px;
+  opacity: 0.5;
+}
+.img_tabOpen:hover {
+  /* width: 25px; */
+  opacity: 1;
+}
+
+#title::-webkit-scrollbar {
+  width: 4px;
+}
+#title::-webkit-scrollbar-thumb {
+  background: #b4bdc6;
+  -webkit-border-radius: 2px;
+}
+
+#summary::-webkit-scrollbar {
+  width: 4px;
+}
+#summary::-webkit-scrollbar-thumb {
+  background: #b4bdc6;
+  -webkit-border-radius: 2px;
 }
