@@ -30,13 +30,20 @@
             </option>
           </select>
         </div>
-        <div class="footerButton">
-          <button @click="handleClickCancelSaveConnection">Cancel</button>
-          <div v-if="isAuthor" id="btn" class="btn_delete" @click="deleteConnection()">
-            <p class="text_delete">Delete</p>
+        <div class="box_footerButton">
+          <div id="" style="width: 50px;" @click="handleClickSaveConnection">
+            <!-- <p>Cancel</p> -->
+            <div class="btn_cancel">
+              <img class="img_cancel" src="@/assets/images/icons/icons_cancel.png" alt="閉じる">
+            </div>
           </div>
-          <div v-if="isAuthor" id="btn" class="btn_save" @click="handleClickSaveConnection">
-            <p class="text_save">Save</p>
+          <div class="footerButton">
+            <div v-if="isAuthor" id="btn" class="btn_delete" @click="deleteConnection()">
+              <p class="text_delete">Delete</p>
+            </div>
+            <div v-if="isAuthor" id="btn" class="btn_save" @click="handleClickSaveConnection">
+              <p class="text_save">Save</p>
+            </div>
           </div>
         </div>
       </div>
@@ -123,9 +130,14 @@ export default {
     },
 
     deleteConnection() {
+      let result = confirm('削除した場合、元には戻せません。本当に削除しますか？');
       // TODO: deleteを実装
-      this.$emit("handle-delete-connection", this.connection);
-      this.$emit("update:visible", false);
+      if (result) {
+        this.$emit("handle-delete-connection", this.connection);
+        this.$emit("update:visible", false);
+      } else {
+        // 何もしない
+      }
     },
 
     async handleClickCancelSaveConnection() {

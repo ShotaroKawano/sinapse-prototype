@@ -61,7 +61,7 @@
                     v-if="isEditting2"
                     @focusout="isEditting2 = !isEditting2"
                     type="url"
-                    class="form-urlControl"
+                    class="box_thumbnailUrl"
                     id="thumbnail"
                     v-model="thumbnail"
                   />
@@ -356,6 +356,13 @@ export default {
   margin-left: 20px;
   background-position: center center;
 }
+.box_thumbnailUrl{
+  width: 260px;
+  height: 26px;
+  border-radius: 5px;
+  border: 0.5px solid #b4bdc6;
+  margin: 0px 0px 0px 10px;
+}
 
 .form_common {
   /* appearance: none; が効かない*/
@@ -408,12 +415,12 @@ export default {
 
 #scrollbar::-webkit-scrollbar
 {
-width:4px;
+  width:4px;
 }
 #scrollbar::-webkit-scrollbar-thumb
 {
-background:#b4bdc6;
--webkit-border-radius: 2px;
+  background:#b4bdc6;
+  -webkit-border-radius: 2px;
 }
 
 .form_tagList {

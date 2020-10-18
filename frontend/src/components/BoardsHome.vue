@@ -15,17 +15,19 @@
       >
         <!-- ▼▼ 概要 ▼▼ -->
         <div class="box_indexBoards">
-          <!-- ▼ タイトル ▼ -->
-          <div>
-            <h2 class="indexTitle">
-              {{ board.title }}
-            </h2>
-          </div>
-          <!-- ▼ 見出し ▼ -->
-          <div>
-            <p class="indexSubheading">
-              {{ board.description }}
-            </p>
+          <div class="box_indexBoardTitleSubheading">
+            <!-- ▼ タイトル ▼ -->
+            <div>
+              <h2 class="indexTitle">
+                {{ board.title }}
+              </h2>
+            </div>
+            <!-- ▼ 見出し ▼ -->
+            <div>
+              <p class="indexSubheading">
+                {{ board.description }}
+              </p>
+            </div>
           </div>
           <!-- ▼ ハッシュタグ ▼ -->
           <!-- <div id="tags" class="box_indexHashtag"> -->
@@ -100,7 +102,8 @@
           <img
             v-if="board.thumbnail"
             class="thumbnail_indexBoards"
-            :src=" board.thumbnail"
+            :src=" board.thumbnail "
+            onerror="this.onerror = null; this.src='';"
           >
         </div>
       </router-link>
@@ -383,7 +386,7 @@ h2.indexTitle {
 }
 p.indexSubheading {
   /* 必要 */
-  margin: 10px 0px 20px 0px;
+  margin: 10px 0px 0px 0px;
   max-height: 80px;
   font-size: 14px;
   line-height: 20px;
@@ -428,28 +431,34 @@ p.indexCreatdate {
   /* 必要 */
   box-shadow: 0px 0px 10px #5486b990;
 }
+
+.box_indexBoardTitleSubheading{
+  min-height: 88px;
+  padding-bottom: 20px;
+}
+
 .box_indexSns {
   /* 必要 */
   /* padding-right: 30px; */
-  margin: 0px 0px 0px auto;
-  height: 30px;
+  margin: 0px 10px 0px auto;
+  height: 38px;
   display: flex;
   justify-content: space-around;
 }
 .box_indexSnscontents {
   /* 必要 */
-  /* margin: 0px 0px 0px 16px; */
+  /* margin: auto 0; */
+  margin: auto 0;
   flood-color: #b4bdc6;
   opacity: 0.6;
   display: flex;
-  margin: auto 0;
 }
 .box_indexSnscontents:hover{
   opacity: 1;
 }
 
 .box_indexBoards {
-  margin: 0px 0px 0px 0px;
+  margin: 0px 20px 0px 0px;
   width: 100%;
 }
 .box_indexBoardsText{
@@ -492,10 +501,10 @@ p.indexCreatdate {
   /* 必要 */
   /* max-width: 150px;
   max-height: 150px; */
-  width: 150px;
-  height: 150px;
+  /* width: 150px;
+  height: 150px; */
   border-radius: 10px;
-  margin: 0px 20px 0px 20px;
+  margin: 0px 20px 0px 0px;
   /* border: solid 1px #e1e6eb; */
   /* background-image: url(../assets/images/icons/noimage.jpg); */
   /* 画像を常に天地左右の中央に配置 */
@@ -510,6 +519,10 @@ p.indexCreatdate {
   /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
   background-size: cover;
   background-color: #f8f8f8;
+}
+.box_indexThumbnail > img {
+  width: 150px;
+  height: 150px;
 }
 /* ▲▲▲▲▲ サムネイル ▲▲▲▲▲ */
 

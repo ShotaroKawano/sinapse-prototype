@@ -17,14 +17,16 @@
             alt="No image"
             class="box_thumbnail"
           />
-          <input
-            v-if="isEditting"
-            @focusout="isEditting = !isEditting"
-            type="url"
-            class="form-urlControl"
-            id="thumbnail"
-            v-model="nodeForm.thumbnail"
-          />
+          <div class="box_img-urlControl">
+            <input
+              v-if="isEditting"
+              @focusout="isEditting = !isEditting"
+              type="url"
+              class="img-urlControl"
+              id="thumbnail"
+              v-model="nodeForm.thumbnail"
+            />
+          </div>
         </div>
       </div>
       <div class="body">
@@ -74,10 +76,16 @@
           ></textarea>
         </div>
         <div class="box_footerButton">
+          <div id="" style="width: 50px;" @click="handleClickCancelSaveNode">
+            <!-- <p>Cancel</p> -->
+            <div class="btn_cancel">
+              <img
+              class="img_cancel"
+              src="@/assets/images/icons/icons_cancel.png"
+              alt="閉じる">
+            </div>
+          </div>
           <div class="footerButton">
-            <button id="btn" style="width: 50px;" @click="handleClickCancelSaveNode">
-              <p>Cancel</p>
-            </button>
             <div  v-if="isAuthor" id="btn" class="btn_delete" @click="deleteNode">
               <p class="text_delete">Delete</p>
             </div>
@@ -119,6 +127,7 @@ export default {
         title: null,
         summary: null,
         thumbnail: null,
+        // thumbnail: require('@/assets/images/icons/noimage.jpg'),
       },
       isEditting: false
       // nodeForm: {name: null, id: null, type: null, approver: []},
