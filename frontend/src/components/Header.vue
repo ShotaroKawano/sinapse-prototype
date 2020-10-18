@@ -8,13 +8,13 @@
         alt="Sinapselogo"
         class="img_servicelogo"
     /></router-link>
-    <!-- <a id="btn" class="name_service" href="/">Sinapse</a> -->
+    <!-- <a id="btn" class="name_service" href="/">Sinapse</a> -->    
 
     <div class="box_inputsearch">
       <img
         class="icon_headerSearch"
         src="@/assets/images/icons/icons_search.png"
-        alt="いいねボタン"
+        alt="検索アイコン"
       />
       <input
         class="input_search"

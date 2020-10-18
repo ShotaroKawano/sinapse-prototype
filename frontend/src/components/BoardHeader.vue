@@ -408,12 +408,12 @@ export default {
 
 #scrollbar::-webkit-scrollbar
 {
-width:4px;
+  width:4px;
 }
 #scrollbar::-webkit-scrollbar-thumb
 {
-background:#b4bdc6;
--webkit-border-radius: 2px;
+  background:#b4bdc6;
+  -webkit-border-radius: 2px;
 }
 
 .form_tagList {

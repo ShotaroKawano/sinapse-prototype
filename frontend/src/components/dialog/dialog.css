@@ -40,13 +40,17 @@
 }
 
 .thumbnail {
+  /* z-index: 0;
+  width: 100%;
+  max-height: 230px;
+  text-align: center; */
+}
+
+.thumbnail > img {
   z-index: 0;
   width: 100%;
   max-height: 230px;
   text-align: center;
-}
-
-.thumbnail > img {
   object-fit: cover;
 }
 
@@ -54,6 +58,7 @@
   width: 100%;
   max-height: 200px;
   border-radius: 10px 10px 0px 0px;
+  color: #525e6a;
 }
 
 .box_urlEdit {
@@ -246,6 +251,22 @@ label {
   opacity: 0.5;
 }
 .img_tabOpen:hover {
+  /* width: 25px; */
+  opacity: 1;
+}
+
+.btn_cancel {
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.img_cancel {
+  height: 16px;
+  opacity: 0.5;
+  margin: 6px;
+}
+.img_cancel:hover {
   /* width: 25px; */
   opacity: 1;
 }

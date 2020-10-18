@@ -440,7 +440,7 @@ p.indexCreatdate {
 .box_indexSns {
   /* 必要 */
   /* padding-right: 30px; */
-  margin: 0px 0px 0px auto;
+  margin: 0px 10px 0px auto;
   height: 38px;
   display: flex;
   justify-content: space-around;
