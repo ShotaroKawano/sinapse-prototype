@@ -188,8 +188,8 @@ export default {
                 },
                 // id: tempId,
                 id: res.data.id,
-                type: "pass",
-                name: "Pass",
+                type: "",
+                name: "",
               };
               this.internalConnections.push(conn);
               // then句の外にあったコード ↑
@@ -701,8 +701,8 @@ export default {
                     },
                     // id: tempId,
                     id: res.data.id,
-                    type: "pass",
-                    name: "Pass",
+                    type: "",
+                    name: "",
                   };
                   that.internalConnections.push(conn);
                   that.connectingInfo.source = null;
