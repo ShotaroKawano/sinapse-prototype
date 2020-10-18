@@ -107,6 +107,7 @@ class BoardTagSerializer(serializers.ModelSerializer):
 
 
 
+
 class BoardSerializer(serializers.ModelSerializer):
      # user_id = UserSerializer(read_only=True)
      user_id = serializers.IntegerField(write_only=True)
@@ -118,6 +119,7 @@ class BoardSerializer(serializers.ModelSerializer):
      board_comments = CommentSerializer(many=True, read_only=True)
      # board_cards = serializers.StringRelatedField()
      # cards = 'neko'
+
 
      class Meta:
           model = Board

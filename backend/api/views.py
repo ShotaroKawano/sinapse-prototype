@@ -37,13 +37,20 @@ from django.http import HttpResponse
 
 
 # Create your views here.
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+
 class BoardViewSets(ModelViewSet):
 # class BoardViewSets(generics.ListCreateAPIView):
     # queryset = Board.objects.all()
     # なんで降順にならないの
-    queryset = Board.objects.all().order_by('-id')
+    queryset = Board.objects.all()
     serializer_class = BoardSerializer
-    # APIのフィルタで使えるフィールドを指定
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+    filter_fields = ('id',)
+    search_fields = ('id', '^title')
+    ordering_fields = ('id', 'title')
+    ordering = ('-id', 'title',)
 
     def get_queryset(self):
         queryset = Board.objects.all()
