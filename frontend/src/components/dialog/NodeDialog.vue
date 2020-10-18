@@ -17,14 +17,16 @@
             alt="No image"
             class="box_thumbnail"
           />
-          <input
-            v-if="isEditting"
-            @focusout="isEditting = !isEditting"
-            type="url"
-            class="form-urlControl"
-            id="thumbnail"
-            v-model="nodeForm.thumbnail"
-          />
+          <div class="box_img-urlControl">
+            <input
+              v-if="isEditting"
+              @focusout="isEditting = !isEditting"
+              type="url"
+              class="img-urlControl"
+              id="thumbnail"
+              v-model="nodeForm.thumbnail"
+            />
+          </div>
         </div>
       </div>
       <div class="body">
