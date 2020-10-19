@@ -9,7 +9,9 @@
           id="scrollbar"
           class="form_common form_title"
           placeholder="Title"
-          v-model="title">
+          v-model="title"
+          @focusout="updateBoard()"
+          >
         </textarea>
         <div>
           <div id="btn" class="menu" @click="isVisible = !isVisible">
@@ -44,6 +46,7 @@
                     class="form_common form_description"
                     placeholder="Description"
                     v-model="description"
+                    @focusout="updateBoard()"
                   >
                   </textarea>
                   <!-- TODO: thumnailも編集できるようにする -->
@@ -59,7 +62,7 @@
                   </div>
                   <input
                     v-if="isEditting2"
-                    @focusout="isEditting2 = !isEditting2"
+                    @focusout="updateBoard()"
                     type="url"
                     class="box_thumbnailUrl"
                     id="thumbnail"
@@ -71,7 +74,7 @@
                     v-if="isEditting"
                     class="form_common form_tagList"
                     v-model="convertBoardTagsToTagList"
-                    @focusout="isEditting = !isEditting"
+                    @focusout="updateBoard()"
                     ref="form_tags"
                     id="form_tags"
                   />
@@ -155,9 +158,9 @@
               <div v-if="isAuthor" id="btn" class="btn_delete">
                 <p @click="deleteBoard()" class="text_delete">Delete</p>
               </div>
-              <div v-if="isAuthor" id="btn" class="btn_save">
+              <!-- <div v-if="isAuthor" id="btn" class="btn_save">
                 <p @click="updateBoard()" class="text_save">Save</p>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -235,15 +238,12 @@ export default {
   // },
   methods: {
     updateBoard() {
-      // console.log(this.title);
-      const tail =
-        "api/boards/" + this.$route.params.id + "/";
-      // const URL_BASE =
-      //   "https://131994d0-4681-4385-92ea-5a73eeb84363.mock.pstmn.io/board/update";
+      this.isEditting = false
+      this.isEditting2 = false
       this.$axios({
         method: "PATCH",
         // method: "PUT",
-        url: tail,
+        url: "api/boards/" + this.$route.params.id + "/",
         headers: {
           Authorization: `JWT ${this.token}`
         },
