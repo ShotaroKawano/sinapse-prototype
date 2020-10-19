@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-allControl">
-          <label for="summary">Summary</label>
+          <label for="summary">Note</label>
           <!-- <input class="form-control" id="summary" v-model="nodeForm.summary" /> -->
           <textarea
             class="form-summaryControl"
