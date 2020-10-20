@@ -427,9 +427,12 @@ export default {
 .form_tagList {
   height: 16px;
   color: #B4BDC6;
-  width: 70%;
+  width: 100%;
   font-size: 16px;
-  margin: 10px 0px 0px 10px;
+  /* margin: 10px 0px 0px 10px; */
+  border-radius: 5px;
+  /* border: solid 1px #e1e6eb; */
+  border: none;
 }
 
 .section {
@@ -501,13 +504,13 @@ export default {
   opacity: 1;
 }
 .text_edit {
-  width: 684px;
+  width: 690px;
   color: #b4bdc6;
 }
 
 .box_deleteAndsaveButton {
   display: flex;
-  margin: 210px 0px 0px 50px;
+  margin: 210px 0px 0px 10px;
 }
 .btn_delete {
   width: 50px;
