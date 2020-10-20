@@ -96,7 +96,7 @@
               </div>
 
               <div class="box_user1">
-                <div class="">
+                <div class="box_user1">
                   <div class="box_user2">
                     <div class="box_user3">
                       <div class="displayFlex">
@@ -116,7 +116,7 @@
                       </div>
                     </div>
 
-                    <div class="displayFlex">
+                    <div class="box_user1">
                       <div class="box_user4">
                         <div id="btn" class="box_indexSns3">
                           <img
@@ -128,7 +128,7 @@
                             {{ likes }}
                           </div>
                         </div>
-                        <div id="btn" class="box_indexSns3">
+                        <!-- <div id="btn" class="box_indexSns3">
                           <img
                             class="icon_indexBoards"
                             src="@/assets/images/icons/icons_comment.png"
@@ -137,8 +137,8 @@
                           <div class="text_indexSns">
                             {{ comments }}
                           </div>
-                        </div>
-                        <div id="btn" class="box_indexSns3">
+                        </div> -->
+                        <!-- <div id="btn" class="box_indexSns3">
                           <img
                             class="icon_indexBoards"
                             src="@/assets/images/icons/icons_share.png"
@@ -147,7 +147,7 @@
                           <div class="text_indexSns">
                             {{ shares }}
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -366,7 +366,8 @@ export default {
 
 .form_common {
   /* appearance: none; が効かない*/
-  border: none;
+  /* border: none; */
+  border: solid 1px #e1e6eb;
   resize: none;
   /* outline: none; */
   overflow-wrap: break-word;
@@ -396,7 +397,7 @@ export default {
 .form_description {
   color: #87929D;
   height: 150px;
-  width: 500px;
+  width: 520px;
   font-size: 20px;
   line-height: 30px;
   margin: 0px 0px 5px 0px;
@@ -448,14 +449,16 @@ export default {
 }
 
 .box_accordion1 {
-  width: 684px;
+  width: 690px;
 }
 .box_user1 {
   display: flex;
-  width: 684px;
+  /* width: 684px; */
+  width: 100%;
 }
 .box_user2 {
   display: flex;
+  width: 100%;
   margin: 0px 10px 10px 10px;
 }
 .box_user3 {
@@ -463,21 +466,24 @@ export default {
 }
 .box_user4 {
   display: flex;
-  margin-left: 364px;
+  margin: 0 0 0 auto;
 }
 
 .box_indexSns3 {
-  margin: 0px 14px;
+  display: flex;
+  margin: 0 0 0 auto;
 }
 .text_indexSns {
   color: #b4bdc6;
   font-size: 16px;
+  margin: auto 0;
+  padding-left: 5px;
 }
 
 .btn_edit {
   width: 50px;
   height: 28px;
-  margin: 117px 0px 0px 97px;
+  margin: 117px 0px 0px 93px;
   display: inline-block;
   border-radius: 5px; /* 角丸       */
   font-size: 14px; /* 文字サイズ */
@@ -549,8 +555,10 @@ export default {
 .icon_indexBoards {
   width: 20px;
   height: 20px;
-  padding-left: 5px;
-  margin: 5px 0px 5px 0px;
+  /* padding-left: 5px;
+  margin: 5px 0px 5px 0px; */
+  padding-bottom: 5px;
+  margin: auto 0;
 }
 .icon_headerUpDown {
   width: 30px;
@@ -645,7 +653,6 @@ export default {
 }
 .s_01 .accordion_one .accordion_inner {
   /* display: none; */
-  padding: 5px;
   box-sizing: border-box;
 }
 
