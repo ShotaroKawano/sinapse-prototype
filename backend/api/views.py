@@ -46,20 +46,39 @@ class BoardViewSets(ModelViewSet):
     # なんで降順にならないの
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
+    #降順
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
-    filter_fields = ('id',)
-    search_fields = ('id', '^title')
+
+#description & title 検索ロジック
+    filter_fields = ('id','description','title')
+    # search_fields = ('id', '^title') | ('id', '^description')
+    search_fields = ('id', '^description','title')
+    # search_fields = ('id', '^card')
+
+
+    #降順
     ordering_fields = ('id', 'title')
+    #降順
     ordering = ('-id', 'title',)
 
-    def get_queryset(self):
-        queryset = Board.objects.all()
-        title = self.request.query_params.get("title", None)
-        if title is not None:
-            #部分一致検索ロジック
-            queryset = queryset.filter(title__icontains=title)
-        return queryset
+    # def get_queryset(self):
+    #     queryset = Board.objects.all()
+    #     title = self.request.query_params.get("title")
 
+    #     if title is not None:
+    #         #部分一致検索ロジック
+    #         queryset = queryset.filter(title__icontains=title) | Q(description__icontains=description)
+    #         queryset = queryset.filter(title__icontains=title)
+    #     return queryset
+
+    # def get_queryset(self):
+    #     queryset = Board.objects.all()
+    #     description = self.request.query_params.get("description", None)
+
+    #     if description is not None:
+    #         #部分一致検索ロジック
+    #         queryset = queryset.filter(description__icontains=description)
+    #     return queryset
 
 
 class CardViewSets(ModelViewSet):
@@ -67,6 +86,12 @@ class CardViewSets(ModelViewSet):
     serializer_class = CardSerializer
     # APIのフィルタで使えるフィールドを指定
     # filter_fields = ('id','url','title','summary','thumbnail','positionX','PositionY','created_at','updated_at')
+
+    filter_fields = ('id',)
+    search_fields = ('^description','^title',)
+
+
+
     def get_queryset(self):
         queryset = Card.objects.all()
         board_id = self.request.query_params.get("board_id", None)

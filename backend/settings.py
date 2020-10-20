@@ -185,6 +185,6 @@ except ImportError:
     pass
 
 # if not DEBUG:
-if DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
+# if DEBUG:
+#     import django_heroku
+#     django_heroku.settings(locals())
