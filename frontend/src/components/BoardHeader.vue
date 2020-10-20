@@ -66,6 +66,7 @@
                     type="url"
                     class="box_thumbnailUrl"
                     id="thumbnail"
+                    placeholder="thumbnail URL"
                     v-model="thumbnail"
                   />
                 </div>
@@ -360,7 +361,7 @@ export default {
   width: 260px;
   height: 26px;
   border-radius: 5px;
-  border: 0.5px solid #b4bdc6;
+  border: 1px solid #e1e6eb;
   margin: 0px 0px 0px 10px;
 }
 
