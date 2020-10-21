@@ -9,6 +9,7 @@
             class="form-control form-arrowNameControl"
             v-model="connectionForm.name"
             placeholder="Name"
+            @focusout="handleClickSaveConnection"
           />
         </div>
         <div class="form-arrowControl">
@@ -31,7 +32,7 @@
           </select>
         </div>
         <div class="box_footerButton">
-          <div id="" style="width: 50px;" @click="handleClickSaveConnection">
+          <div id="" style="width: 50px;" @click="handleClickCancelSaveConnection">
             <!-- <p>Cancel</p> -->
             <div class="btn_cancel">
               <img class="img_cancel" src="@/assets/images/icons/icons_cancel.png" alt="閉じる">
@@ -41,9 +42,9 @@
             <div v-if="isAuthor" id="btn" class="btn_delete" @click="deleteConnection()">
               <p class="text_delete">Delete</p>
             </div>
-            <div v-if="isAuthor" id="btn" class="btn_save" @click="handleClickSaveConnection">
+            <!-- <div v-if="isAuthor" id="btn" class="btn_save" @click="handleClickSaveConnection">
               <p class="text_save">Save</p>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -118,7 +119,7 @@ export default {
         .then(() => {})
         .catch(() => {});
 
-      this.$emit("update:visible", false);
+      // this.$emit("update:visible", false);
       this.$emit(
         "update:connection",
         Object.assign(this.connection, {

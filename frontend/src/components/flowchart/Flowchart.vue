@@ -632,7 +632,7 @@ export default {
           .append("circle")
           .attr("cx", positionElement.x)
           .attr("cy", positionElement.y)
-          .attr("r", 4)
+          .attr("r", 7)
           .attr("class", "connector");
         connector
           .on("mousedown", function (event) {

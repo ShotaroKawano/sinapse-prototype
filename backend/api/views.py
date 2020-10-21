@@ -163,9 +163,13 @@ class ArrowViewSets(ModelViewSet):
         return queryset
 
 
+import time
+
 # TODO: csrf外す
 @csrf_exempt
 def getInfo(request):
+    #  スクレイピング間隔を1秒あける
+    time.sleep(2)
     json_str = request.body
     print(json_str)
     json_data = json.loads(json_str)
