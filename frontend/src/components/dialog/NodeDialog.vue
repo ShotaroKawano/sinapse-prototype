@@ -20,7 +20,7 @@
           <div class="box_img-urlControl">
             <input
               v-if="isEditting"
-              @focusout="isEditting = !isEditting"
+              @focusout="handleClickSaveNode"
               type="url"
               class="img-urlControl"
               id="thumbnail"
@@ -60,6 +60,7 @@
             rows="3"
             v-model="nodeForm.title"
             placeholder="Title"
+            @focusout="handleClickSaveNode"
           ></textarea>
         </div>
 
@@ -73,6 +74,7 @@
             rows="9"
             v-model="nodeForm.summary"
             placeholder="Summary"
+            @focusout="handleClickSaveNode"
           ></textarea>
         </div>
         <div class="box_footerButton">
@@ -89,9 +91,9 @@
             <div  v-if="isAuthor" id="btn" class="btn_delete" @click="deleteNode">
               <p class="text_delete">Delete</p>
             </div>
-            <div  v-if="isAuthor" id="btn" class="btn_save" @click="handleClickSaveNode">
+            <!-- <div  v-if="isAuthor" id="btn" class="btn_save" @click="handleClickSaveNode">
               <p class="text_save">Save</p>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -155,8 +157,6 @@ export default {
       }
     },
     handleClickGetInfo() {
-      // const URL_BASE = 'http://127.0.0.1:8000/newsapp/get';
-      // console.log(this.nodeForm.url);
       this.$axios({
         method: "POST",
         url: "api/scrape/",
@@ -171,15 +171,16 @@ export default {
         this.nodeForm.thumbnail = res.data.soup_img;
         this.nodeForm.title = res.data.soup_title;
         this.nodeForm.summary = res.data.soup_desc;
+        this.handleClickSaveNode()
       })
       .catch(() => {});
     },
     // save押下時に実行される
     handleClickSaveNode() {
-      const tail = "api/cards/" + this.node.id + "/";
+      this.isEditting = false
       this.$axios({
         method: "PATCH",
-        url: tail,
+        url: "api/cards/" + this.node.id + "/",
         headers: {
           Authorization: `JWT ${this.token}`
         },
@@ -205,7 +206,7 @@ export default {
           summary: this.nodeForm.summary,
         })
       );
-      this.$emit("update:visible", false);
+      // this.$emit("update:visible", false);
     },
     handleClickCancelSaveNode() {
       this.$emit("update:visible", false);
