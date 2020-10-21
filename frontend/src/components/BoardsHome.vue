@@ -2,111 +2,147 @@
   <div>
     <Header></Header>
     <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
-    <div class="center_lar boardsWrapper">
-      <!-- <div>
-        <h1>q = {{ this.$route.query.q }}</h1>
-      </div> -->
-      <!-- ▼▼▼ board1set ▼▼▼ -->
-      <router-link
-        v-for="board in boards"
-        :key="board.id"
-        v-bind:to="`boards/${board.id}`"
-        class="box_boards1set"
+    <div class="boardsWrapper">
+      <div
+      class="sideMenu"
+      style="
+        position: absolute;
+        width: 20%;
+        height: 300px;
+        margin: 30px 0px 0px 10px;
+        "
       >
-        <!-- ▼▼ 概要 ▼▼ -->
-        <div class="box_indexBoards">
-          <div class="box_indexBoardTitleSubheading">
-            <!-- ▼ タイトル ▼ -->
-            <div>
-              <h2 class="indexTitle">
-                {{ board.title }}
-              </h2>
-            </div>
-            <!-- ▼ 見出し ▼ -->
-            <div>
-              <p class="indexSubheading">
-                {{ board.description }}
-              </p>
-            </div>
-          </div>
-          <!-- ▼ ハッシュタグ ▼ -->
-          <!-- <div id="tags" class="box_indexHashtag"> -->
-            <!-- <ul v-for="tag of limitCount" :key="tag.name">
-              <li>
-                <p id="btn" class="indexHashtag">{{ tag.name }}</p>
-              </li>
-            </ul> -->
-            <!-- <div
-              id="btn"
-              v-for="tagWrapper in board.board_tags"
-              :key="tagWrapper.tag.id"
-            >
-              <p class="indexHashtag">#{{ tagWrapper.tag.name }}</p>
-            </div>
-          </div> -->
-
-          <!-- ▼▼ プロフボタン ▼▼ -->
-          <div class="box_UserAndCreatdate">
-            <div id="btn">
-              <img
-                v-if="board.user.user_icon"
-                class="btn_boardsUser"
-                :src="board.user.user_icon"
-              />
-              <img
-                v-else
-                class="btn_boardsUser"
-                src="@/assets/images/userimages/user_default.jpg"
-              />
-            </div>
-            <div class="box_NameAndCreatdate">
-              <div>
-                <p class="indexUsername">{{ board.user.username }}</p>
-              </div>
-              <div>
-                <p class="indexCreatdate">{{ getNowDateWithString(board.updated_at) }}</p>
-              </div>
-            </div>
-            <!-- ▼▼ SNS ▼▼ -->
-            <div class="box_indexSns">
-              <div
-                @click.stop.prevent="addLike(board.id)"
-                id="btn2"
-                class="box_indexSnscontents"
-              >
-                <img
-                  class="icon_indexBoards"
-                  src="@/assets/images/icons/icons_like.png"
-                  alt="いいねボタン"
-                />
-                <!-- <div>{{ board.comments }}</div> -->
-                <div class="box_indexBoardsText">{{ board.like_count }}</div>
-              </div>
-              <!-- <div id="btn2" class="box_indexSnscontents">
-                <img
-                  class="icon_indexBoards"
-                  src="@/assets/images/icons/icons_comment.png"
-                  alt="コメントボタン"
-                />
-                <div>777</div>
-              </div> -->
-            </div>
-          </div>
-        </div>
-        <div class="box_indexThumbnail">
-          <!-- ▼▼ サムネ画像 ▼▼ -->
-          <!-- <div
-            class="thumbnail_indexBoards"
-            :style="{ backgroundImage: 'url(' + board.thumbnail + ')' }"
-          ></div> -->
+        <div class="btn_sideMenu">
           <img
-            v-if="board.thumbnail"
-            class="thumbnail_indexBoards"
-            :src=" board.thumbnail "
-            onerror="this.onerror = null; this.src='';"
-          >
+            class="icon_sideMenu"
+            src="@/assets/images/icons/icons_home.png"
+            alt="ホームボタン"
+          />
+          <p>ホーム</p>
         </div>
-      </router-link>
+        <div class="btn_sideMenu">
+          <img
+            class="icon_sideMenu"
+            src="@/assets/images/icons/icons_bookmark.png"
+            alt="ブックマークボタン"
+          />
+          <p>いいねしたボード</p>
+        </div>
+        <div class="btn_sideMenu">
+          <img
+            class="icon_sideMenu"
+            src="@/assets/images/icons/icons_myboards.png"
+            alt="ホームボタン"
+          />
+          <p>自分の投稿</p>
+        </div>
+      </div>
+      <div>
+        <!-- <div>
+          <h1>q = {{ this.$route.query.q }}</h1>
+        </div> -->
+        <!-- ▼▼▼ board1set ▼▼▼ -->
+        <router-link
+          v-for="board in boards"
+          :key="board.id"
+          v-bind:to="`boards/${board.id}`"
+          class="box_boards1set"
+        >
+          <!-- ▼▼ 概要 ▼▼ -->
+          <div class="box_indexBoards">
+            <div class="box_indexBoardTitleSubheading">
+              <!-- ▼ タイトル ▼ -->
+              <div>
+                <h2 class="indexTitle">
+                  {{ board.title }}
+                </h2>
+              </div>
+              <!-- ▼ 見出し ▼ -->
+              <div>
+                <p class="indexSubheading">
+                  {{ board.description }}
+                </p>
+              </div>
+            </div>
+            <!-- ▼ ハッシュタグ ▼ -->
+            <!-- <div id="tags" class="box_indexHashtag"> -->
+              <!-- <ul v-for="tag of limitCount" :key="tag.name">
+                <li>
+                  <p id="btn" class="indexHashtag">{{ tag.name }}</p>
+                </li>
+              </ul> -->
+              <!-- <div
+                id="btn"
+                v-for="tagWrapper in board.board_tags"
+                :key="tagWrapper.tag.id"
+              >
+                <p class="indexHashtag">#{{ tagWrapper.tag.name }}</p>
+              </div>
+            </div> -->
+
+            <!-- ▼▼ プロフボタン ▼▼ -->
+            <div class="box_UserAndCreatdate">
+              <div id="btn">
+                <img
+                  v-if="board.user.user_icon"
+                  class="btn_boardsUser"
+                  :src="board.user.user_icon"
+                />
+                <img
+                  v-else
+                  class="btn_boardsUser"
+                  src="@/assets/images/userimages/user_default.jpg"
+                />
+              </div>
+              <div class="box_NameAndCreatdate">
+                <div>
+                  <p class="indexUsername">{{ board.user.username }}</p>
+                </div>
+                <div>
+                  <p class="indexCreatdate">{{ getNowDateWithString(board.updated_at) }}</p>
+                </div>
+              </div>
+              <!-- ▼▼ SNS ▼▼ -->
+              <div class="box_indexSns">
+                <div
+                  @click.stop.prevent="addLike(board.id)"
+                  id="btn2"
+                  class="box_indexSnscontents"
+                >
+                  <img
+                    class="icon_indexBoards"
+                    src="@/assets/images/icons/icons_like.png"
+                    alt="いいねボタン"
+                  />
+                  <!-- <div>{{ board.comments }}</div> -->
+                  <div class="box_indexBoardsText">{{ board.like_count }}</div>
+                </div>
+                <!-- <div id="btn2" class="box_indexSnscontents">
+                  <img
+                    class="icon_indexBoards"
+                    src="@/assets/images/icons/icons_comment.png"
+                    alt="コメントボタン"
+                  />
+                  <div>777</div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="box_indexThumbnail">
+            <!-- ▼▼ サムネ画像 ▼▼ -->
+            <!-- <div
+              class="thumbnail_indexBoards"
+              :style="{ backgroundImage: 'url(' + board.thumbnail + ')' }"
+            ></div> -->
+            <img
+              v-if="board.thumbnail"
+              class="thumbnail_indexBoards"
+              :src=" board.thumbnail "
+              onerror="this.onerror = null; this.src='';"
+            >
+          </div>
+        </router-link>
+      </div>
     </div>
     <!-- ▲▲▲ boards1set ▲▲▲ -->
     <!-- ▲▲▲▲▲ 新boards ▲▲▲▲▲ -->
@@ -368,6 +404,25 @@ export default {
   height: 38px;
   border-radius: 25px;
 }
+.btn_sideMenu{
+  display: flex;
+  width: 100％;
+  /* font-weight: bold; */
+  /* background-color: #ffffff50; */
+  padding: 10px;
+  margin: 10px;
+  border-radius: 25px;
+}
+.btn_sideMenu:hover {
+  /* width: 25px; */
+  background-color: #ffffff70;
+}
+.btn_sideMenu > p{
+  color: #525e6a;
+  font-size: 18px;
+  margin: auto 0;
+}
+
 /* ▲▲▲▲▲ ボタン ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ テキスト関係 ▼▼▼▼▼ */
@@ -531,6 +586,10 @@ p.indexCreatdate {
   /* 必要 */
   width: 20px;
   height: 20px;
+}
+.icon_sideMenu{
+  width: 30px;
+  margin-right: 10px;
 }
 /* ▲▲▲▲▲ アイコン ▲▲▲▲▲ */
 </style>
