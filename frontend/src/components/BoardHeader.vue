@@ -239,28 +239,30 @@ export default {
   // },
   methods: {
     updateBoard() {
-      this.isEditting = false
-      this.isEditting2 = false
-      this.$axios({
-        method: "PATCH",
-        // method: "PUT",
-        url: "api/boards/" + this.$route.params.id + "/",
-        headers: {
-          Authorization: `JWT ${this.token}`
-        },
-        data: {
-          title: this.title,
-          description: this.description,
-          thumbnail: this.thumbnail,
-          // url_tail: this.url_tail,
-          is_published: this.is_published,
-          // user_id: 1,
-          // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
-          // tagList: this.convertTaglistToTags
-        },
-      })
-      .then(() => {})
-      .catch(() => {})
+      if (this.isAuthor) {
+        this.isEditting = false
+        this.isEditting2 = false
+        this.$axios({
+          method: "PATCH",
+          // method: "PUT",
+          url: "api/boards/" + this.$route.params.id + "/",
+          headers: {
+            Authorization: `JWT ${this.token}`
+          },
+          data: {
+            title: this.title,
+            description: this.description,
+            thumbnail: this.thumbnail,
+            // url_tail: this.url_tail,
+            is_published: this.is_published,
+            // user_id: 1,
+            // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
+            // tagList: this.convertTaglistToTags
+          },
+        })
+        .then(() => {})
+        .catch(() => {})
+      }
     },
     deleteBoard() {
       let result = confirm('削除した場合、元には戻せません。本当に削除しますか？');
