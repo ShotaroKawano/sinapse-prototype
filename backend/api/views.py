@@ -50,12 +50,13 @@ class BoardViewSets(ModelViewSet):
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
 
 #description & title 検索ロジック
-    filter_fields = ('id','description','title')
+
+    filter_fields = ('id','description','title','board_cards__title','board_cards__summary')
     # search_fields = ('id', '^title') | ('id', '^description')
-    search_fields = ('id', '^description','title')
+    search_fields = ('id', '^description','^title','^board_cards__title','board_cards__summary')
     # search_fields = ('id', '^card')
-
-
+ 
+    # lookup_field = 'board_cards'
     #降順
     ordering_fields = ('id', 'title')
     #降順
