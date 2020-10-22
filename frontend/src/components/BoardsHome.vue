@@ -375,6 +375,7 @@ export default {
   transform: translateX(-50%); /* 要素自体の半分左にずらす */
 }
 .boardsHomeWrapper {
+  /* position: absolute; */
   display: flex;
   /* position: absolute; */
   /* margin-top: 40px; */
@@ -479,7 +480,7 @@ p.indexCreatdate {
 /* ▼▼▼▼▼ ボックス ▼▼▼▼▼ */
 .box_sideMenu{
   z-index: 1;
-  position: relative;
+  position: absolute;
   width: 16%;
   max-width: 240px;
   margin-top: 30px;
@@ -602,8 +603,8 @@ p.indexCreatdate {
   height: 20px;
 }
 .icon_sideMenu{
-  width: 30px;
-  max-height: 30px;
+  max-width: 30px;
+  max-height: 28px;
   margin-right: 10px;
 }
 /* ▲▲▲▲▲ アイコン ▲▲▲▲▲ */
