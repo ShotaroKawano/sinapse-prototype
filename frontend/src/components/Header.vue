@@ -8,7 +8,7 @@
         alt="Sinapselogo"
         class="img_servicelogo"
     /></router-link>
-    <!-- <a id="btn" class="name_service" href="/">Sinapse</a> -->    
+    <!-- <a id="btn" class="name_service" href="/">Sinapse</a> -->
 
     <div class="box_inputsearch">
       <img
@@ -33,8 +33,7 @@
     </div> -->
     <div class="headerRightboxPosition">
       <div
-        class="box_headerUser"
-        @click="logout">
+        class="box_headerUser">
         <img
           class="btn_headerUser"
           src="@/assets/images/userimages/user_default.jpg"
