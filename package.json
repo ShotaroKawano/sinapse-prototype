@@ -1,0 +1,24 @@
+{
+  "name": "sinapse-prototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShotaroKawano/sinapse-prototype.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShotaroKawano/sinapse-prototype/issues"
+  },
+  "homepage": "https://github.com/ShotaroKawano/sinapse-prototype#readme",
+  "dependencies": {
+    "bitcore-lib-cash": "^8.22.2"
+  },
+  "devDependencies": {}
+}

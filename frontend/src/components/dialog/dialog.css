@@ -41,6 +41,7 @@
 
 .thumbnail {
   border-radius: 10px 10px 0px 0px;
+  background-color: #f8f8f8;
 }
 
 .thumbnail > img {

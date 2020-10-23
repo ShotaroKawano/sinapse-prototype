@@ -12,3 +12,5 @@ venv/
 source/
 
 backend/local_settings.py
+
+node_modules/

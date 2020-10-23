@@ -2,16 +2,10 @@
   <div>
     <Header></Header>
     <!-- ▼▼▼▼▼ 新boards ▼▼▼▼▼ -->
-    <div class="boardsWrapper">
-      <div
-      class="sideMenu"
-      style="
-        position: absolute;
-        width: 20%;
-        height: 300px;
-        margin: 30px 0px 0px 10px;
-        "
-      >
+    <div class="boardsHomeWrapper">
+
+      <!-- ▼▼▼ sideMenu ▼▼▼ -->
+      <div class="box_sideMenu">
         <div class="btn_sideMenu">
           <img
             class="icon_sideMenu"
@@ -37,7 +31,9 @@
           <p>自分の投稿</p>
         </div>
       </div>
-      <div>
+      <!-- ▲▲▲ sideMenu ▲▲▲ -->
+
+      <div class="boardsWrapper">
         <!-- <div>
           <h1>q = {{ this.$route.query.q }}</h1>
         </div> -->
@@ -378,13 +374,20 @@ export default {
   left: 50%; /* 親要素の半分右にずらす */
   transform: translateX(-50%); /* 要素自体の半分左にずらす */
 }
-.boardsWrapper {
-  position: absolute;
+.boardsHomeWrapper {
+  /* position: absolute; */
+  display: flex;
+  /* position: absolute; */
   /* margin-top: 40px; */
   padding-top: 50px;
+}
+.boardsWrapper{
+  z-index: 0;
+  position: absolute;
   background-color: #f0f0f0;
   width: 100%;
   min-height: 100%;
+  margin: 0 auto;
 }
 /* ▲▲▲▲▲ 表示位置 ▲▲▲▲▲ */
 
@@ -406,16 +409,20 @@ export default {
 }
 .btn_sideMenu{
   display: flex;
-  width: 100％;
+  /* width: 100％; */
   /* font-weight: bold; */
   /* background-color: #ffffff50; */
-  padding: 10px;
-  margin: 10px;
-  border-radius: 25px;
+  padding: 14px 0px 14px 14px;
+  margin-bottom: 20px;
+  margin-left: 10%;
+  border-radius: 30px;
+  /* opacity: 0.8; */
+  cursor: pointer;
 }
 .btn_sideMenu:hover {
   /* width: 25px; */
   background-color: #ffffff70;
+  /* opacity: 1; */
 }
 .btn_sideMenu > p{
   color: #525e6a;
@@ -471,6 +478,14 @@ p.indexCreatdate {
 /* ▲▲▲▲▲ テキスト関係 ▲▲▲▲▲ */
 
 /* ▼▼▼▼▼ ボックス ▼▼▼▼▼ */
+.box_sideMenu{
+  z-index: 1;
+  position: absolute;
+  width: 16%;
+  max-width: 240px;
+  margin-top: 30px;
+  margin-left: 0%;
+}
 .box_boards1set {
   /* 必要 */
   width: 745px;
@@ -588,7 +603,8 @@ p.indexCreatdate {
   height: 20px;
 }
 .icon_sideMenu{
-  width: 30px;
+  max-width: 30px;
+  max-height: 28px;
   margin-right: 10px;
 }
 /* ▲▲▲▲▲ アイコン ▲▲▲▲▲ */
