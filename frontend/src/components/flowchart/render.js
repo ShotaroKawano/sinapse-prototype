@@ -68,6 +68,7 @@ function render(g, node, isSelected) {
     .style("height", node.height / 2 + "px")
     .style("background-image", `url(${node.thumbnail})`)
     .style("background-position", "center center")
+    .style("background-color", "#d8d8d8")
     .style("background-size", "cover")
     .style("background-repeat", "no-repeat")
     .style("border-radius", "0 8px 0 0")
