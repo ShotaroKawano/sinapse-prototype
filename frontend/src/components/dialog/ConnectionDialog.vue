@@ -3,12 +3,11 @@
     <div class="modal_arrow" v-if="visible">
       <div class="body">
         <div class="form-allControl">
-          <label for="name">Name</label>
+          <label for="name">Label</label>
           <input
             id="name"
             class="form-control form-arrowNameControl"
             v-model="connectionForm.name"
-            placeholder="Name"
             @focusout="handleClickSaveConnection"
           />
         </div>

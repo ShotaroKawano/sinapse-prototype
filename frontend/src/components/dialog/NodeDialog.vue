@@ -38,7 +38,6 @@
             class="form-urlControl"
             id="url"
             v-model="nodeForm.url"
-            placeholder="URL"
           />
           <button v-if="isAuthor" id="btn" class="btn_get" @click="handleClickGetInfo">
             <p class="text_get">Get</p>
@@ -59,7 +58,6 @@
             id="title"
             rows="3"
             v-model="nodeForm.title"
-            placeholder="Title"
             @focusout="handleClickSaveNode"
           ></textarea>
         </div>
@@ -73,7 +71,6 @@
             id="summary"
             rows="9"
             v-model="nodeForm.summary"
-            placeholder="Summary"
             @focusout="handleClickSaveNode"
           ></textarea>
         </div>
