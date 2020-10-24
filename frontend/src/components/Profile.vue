@@ -20,6 +20,9 @@
           </div> 
         </div> 
       </div>
+      <div class="box_Profile0">
+        <div class="btn_logout" @click="logout">LOGOUT</div>
+      </div>
     </div>
     <!-- ▲▲▲▲▲ 新boards ▲▲▲▲▲ -->
   </div>
@@ -36,6 +39,9 @@ export default {
   },
 
   methods: {
+    logout: function () {
+      this.$store.dispatch('logout')
+    },
   },
   
   computed: {
@@ -97,11 +103,24 @@ export default {
   /* 必要 */
   cursor: pointer; /* リンクをホバーしたときのカーソルにする。*/
 }
-.btn_boardsUser {
-  /* 必要 */
-  width: 38px;
-  height: 38px;
-  border-radius: 25px;
+.btn_logout{
+  width: auto;
+  margin: 0 0 0 auto;
+  display: inline-block;
+  border-radius: 18px; /* 角丸       */
+  font-size: 12px; /* 文字サイズ */
+  font-weight: bold;
+  text-align: center; /* 文字位置   */
+  padding: 10px; /* 余白       */
+  background: #ffffff; /* 背景色     */
+  color: #b4bdc6; /* 文字色     */
+  line-height: 17px; /* 1行の高さ  */
+  opacity: .8; /* 透明度を上げることで、画像の色を薄く見せる。*/
+}
+.btn_logout:hover {
+  background: #f8f8f8; /* 背景色     */
+  opacity: 1; /* 透明度を上げることで、画像の色を薄く見せる。*/
+  cursor: pointer; /* リンクをホバーしたときのカーソルにする。*/
 }
 /* ▲▲▲▲▲ ボタン ▲▲▲▲▲ */
 

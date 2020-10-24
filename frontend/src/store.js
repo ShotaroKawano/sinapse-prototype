@@ -107,6 +107,9 @@ export default new Vuex.Store({
         })
         .catch(() => { });
       }
-    }
+    },
+    profile({ commit }) {
+      router.push('/profile')
+    },
   }
 });
