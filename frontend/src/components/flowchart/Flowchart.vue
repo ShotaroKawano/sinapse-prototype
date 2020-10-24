@@ -81,6 +81,7 @@ export default {
   },
   data() {
     return {
+      // 表示されているすべてのNode
       internalNodes: [],
       internalConnections: [],
       connectingInfo: {
@@ -88,6 +89,7 @@ export default {
         sourcePosition: null,
       },
       selectionInfo: null,
+      // 選択されているすべてのNode
       currentNodes: [],
       currentConnections: [],
       /**
@@ -100,6 +102,7 @@ export default {
        *  of all internalConnections
        */
       lines: [],
+      zoom: 1
     };
   },
   computed: {
@@ -116,7 +119,6 @@ export default {
     },
     editCurrent() {
       // 呼び元がなくなっている どこからも呼ばれていないかも
-      console.log('editCurrent');
       if (this.currentNodes.length === 1) {
         this.editNode(this.currentNodes[0]);
       } else if (this.currentConnections.length === 1) {
@@ -124,7 +126,6 @@ export default {
       }
     },
     editNode(node) {
-      console.log('editNode');
       if (this.readonly) {
         return;
       }
@@ -144,12 +145,13 @@ export default {
       // event.preventDefault();
       if (event.ctrlKey) {
         let svg = document.getElementById("svg");
-        let zoom = parseFloat(svg.style.zoom || 1);
-        if (event.deltaY > 0 && zoom === 0.1) {
+        // let zoom = parseFloat(svg.style.zoom || 1);
+        this.zoom = parseFloat(svg.style.zoom || 1);
+        if (event.deltaY > 0 && this.zoom === 0.1) {
           return;
         }
-        zoom -= event.deltaY / 100 / 10;
-        svg.style.zoom = zoom;
+        this.zoom -= event.deltaY / 100 / 10;
+        svg.style.zoom = this.zoom;
       }
     },
     async handleChartMouseUp() {
@@ -262,14 +264,16 @@ export default {
     },
     handleChartDblClick(event) {
       if (this.isAuthor) {
-        this.$emit("dblclick", { x: event.offsetX, y: event.offsetY });
+        this.$emit("dblclick", { x: event.offsetX / this.zoom - 200, y: event.offsetY / this.zoom - 100 });
       }
     },
     handleChartMouseDown(event) {
       if (event.ctrlKey) {
         return;
       }
-      this.selectionInfo = { x: event.offsetX, y: event.offsetY };
+      let zoom = parseFloat(document.getElementById("svg").style.zoom || 1);
+      // console.log(zoom);
+      this.selectionInfo = { x: event.offsetX / zoom, y: event.offsetY / zoom };
     },
     // ここでコネクターの位置を調整できる
     getConnectorPosition(node) {
