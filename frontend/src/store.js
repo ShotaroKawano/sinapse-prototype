@@ -58,7 +58,11 @@ export default new Vuex.Store({
         // this.$axios.defaults.headers.common['Authorization'] = `JWT ${res.data.token}`
         // this.$router.push('/')
       })
-      .catch(() => { })
+      .catch(() => {
+        // 本当はalerではない形で出したい
+        // vuetifyをつかべきかも
+        alert('ユーザー名かパスワードが間違っています')
+      })
     },
     register({ commit }, authDate) {
       axiosAuth({
