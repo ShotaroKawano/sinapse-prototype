@@ -42,11 +42,10 @@
           <button v-if="isAuthor" id="btn" class="btn_get" @click="handleClickGetInfo">
             <p class="text_get">Get</p>
           </button>
-          <div v-else id="btn" class="btn_tabOpen" @click="newTabOpen" target="_blank">
+          <!-- <div v-else id="btn" class="btn_tabOpen" @click="newTabOpen" target="_blank"> -->
             <!-- <p class="text_get">Open</p> -->
-            <img class="img_tabOpen" src="@/assets/images/icons/icons_tabopen.png"
-          alt="URLを開く">
-          </div>
+            <!-- <img class="img_tabOpen" src="@/assets/images/icons/icons_tabopen.png" alt="URLを開く"> -->
+          <!-- </div> -->
         </div>
 
         <div class="form-allControl">
@@ -142,7 +141,7 @@ export default {
     newTabOpen () {
       console.log(this.nodeForm.url);
       // this.$router.go(this.nodeForm.url, '_blank')
-      window.open(this.nodeForm.url, '_blank')
+      window.open(this.nodeForm.url, '_blank,noopener')
     },
     deleteNode() {
       let result = confirm('削除した場合、元には戻せません。本当に削除しますか？');

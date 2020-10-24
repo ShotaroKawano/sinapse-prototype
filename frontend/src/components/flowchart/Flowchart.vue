@@ -485,10 +485,19 @@ export default {
       node.render = that.render;
       node.render(g, node, isSelected);
 
+      g.on('click', function() {
+        if (!that.isAuthor) {
+          window.open(node.url, '_blank,noopener')
+        }
+      })
+
       // ドラッグ操作時のイベントを定義
       let drag = d3
         .drag()
         .on("start", function () {
+          if (!that.isAuthor) {
+            return
+          }
           // handle mousedown
           let isNotCurrentNode =
             that.currentNodes.filter((item) => item === node).length === 0;
@@ -506,7 +515,7 @@ export default {
               that.currentNodes.splice(0, that.currentNodes.length);
               that.editNode(node);
             } else {
-              window.open(node.url, '_blank');
+              window.open(node.url, '_blank,noopener')
             }
           } else {
             // 0.3秒後にclickedOnceをfalseにする
@@ -518,6 +527,9 @@ export default {
           }
         })
         .on("drag", async function (event) {
+          if (!that.isAuthor) {
+            return
+          }
           if (that.readonly) {
             return;
           }
@@ -579,6 +591,9 @@ export default {
           });
         })
         .on("end", function () {
+          if (!that.isAuthor) {
+            return
+          }
           d3.selectAll("#svg > g.guideline").remove();
           for (let currentNode of that.currentNodes) {
             currentNode.x = Math.round(Math.round(currentNode.x) / 10) * 10;
