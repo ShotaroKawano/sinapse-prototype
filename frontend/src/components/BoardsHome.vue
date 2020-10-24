@@ -311,7 +311,7 @@ export default {
       let tail;
       if (this.$route.path === "/search") {
         tail =
-          "api/boards?title=" + this.$route.query.q;
+          "api/boards?search=" + this.$route.query.q;
       } else {
         tail = "api/boards";
       }
