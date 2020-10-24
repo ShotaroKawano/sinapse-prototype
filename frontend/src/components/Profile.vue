@@ -13,12 +13,12 @@
         </div>
         <div class="box_UserProfile">
           <div class="box_UserName">
-          内藤迅
-          </div> 
+          {{ username }}
+          </div>
           <div class="box_UserEmail">
-          jin@jin.com
-          </div> 
-        </div> 
+          {{ email }}
+          </div>
+        </div>
       </div>
       <div class="box_Profile0">
         <div class="btn_logout" @click="logout">LOGOUT</div>
@@ -34,6 +34,14 @@ import Header from "./Header"
 export default {
   name: "Profile",
 
+  data: function () {
+    return {
+      username: null,
+      email: null,
+      icon: null,
+    }
+  },
+
   components: {
     Header,
   },
@@ -43,13 +51,20 @@ export default {
       this.$store.dispatch('logout')
     },
   },
-  
+
   computed: {
   },
 
   watch: {
   },
-  
+
+  created: function () {
+    console.log('koko');
+    this.username = this.$store.getters.userName
+    this.email = this.$store.getters.userEmail
+    // this.icon = this.$store.getters.userIcon
+  }
+
 };
 </script>
 
