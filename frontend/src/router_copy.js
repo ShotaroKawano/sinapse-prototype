@@ -5,6 +5,7 @@ import Board from "./components/Board";
 import Login from "./views/Login";
 import Register from "./views/Register";
 // import store from '../store'
+import Profile from "./components/Profile";
 
 Vue.use(Router);
 
@@ -55,6 +56,10 @@ export default new Router({
       //     next()
       //   }
       // }
+    },
+    {
+      path: "/profile",
+      component: Profile,
     },
   ]
 });

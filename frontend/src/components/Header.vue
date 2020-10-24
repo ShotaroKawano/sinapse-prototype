@@ -38,6 +38,7 @@
           class="btn_headerUser"
           src="@/assets/images/userimages/user_default.jpg"
           alt="プロフィール画像"
+          @click="profile"
         />
       </div>
       <div v-if="!isAthenticated" class="btn_create" to="/login">
@@ -69,6 +70,9 @@ export default {
   methods: {
     logout: function () {
       this.$store.dispatch('logout')
+    },
+    profile: function () {
+      this.$store.dispatch('profile')
     },
     onKeypressEnter: function () {
       // ↓↓↓検索ワード=qを取得
