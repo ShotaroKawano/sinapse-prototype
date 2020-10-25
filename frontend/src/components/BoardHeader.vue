@@ -409,7 +409,7 @@ export default {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-.form_title ::placeholder {
+.form_title::placeholder {
   color: #525e6a;
 }
 .form_title:hover {
@@ -432,7 +432,7 @@ export default {
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
-.form_description ::placeholder{
+.form_description::placeholder {
   color: #87929D;
 }
 .form_description:hover {
