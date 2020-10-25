@@ -409,6 +409,9 @@ export default {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+.form_title ::placeholder {
+  color: #525e6a;
+}
 .form_title:hover {
   background-color: #B4BDC620;
 }
@@ -428,6 +431,9 @@ export default {
   overflow-y: scroll;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
+}
+.form_description ::placeholder{
+  color: #87929D;
 }
 .form_description:hover {
   background-color: #B4BDC620;
