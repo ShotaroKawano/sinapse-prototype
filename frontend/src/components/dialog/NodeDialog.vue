@@ -141,7 +141,7 @@ export default {
     newTabOpen () {
       console.log(this.nodeForm.url);
       // this.$router.go(this.nodeForm.url, '_blank')
-      window.open(this.nodeForm.url, '_blank,noopener')
+      window.open(this.nodeForm.url, '_blank,noopener,noreferrer')
     },
     deleteNode() {
       let result = confirm('削除した場合、元には戻せません。本当に削除しますか？');
