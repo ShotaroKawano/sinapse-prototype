@@ -61,5 +61,8 @@ export default new Router({
       path: "/profile",
       component: Profile,
     },
-  ]
+  ],
+  scrollBehavior() {
+    return { x: 0, y: 0 }
+  }
 });

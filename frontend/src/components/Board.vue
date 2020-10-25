@@ -65,7 +65,7 @@
         @handle-delete-node="$refs.chart.removeNode($event)"
         :isAuthor="isAuthor"
         >
-        </node-dialog>
+      </node-dialog>
       <connection-dialog
         :visible.sync="connectionDialogVisible"
         :connection.sync="connectionForm.target"

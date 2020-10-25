@@ -15,7 +15,12 @@
   >
     <span id="position" class="unselectable">
       <!-- 右上の座標 -->
-      {{ cursorToChartOffset.x + ", " + cursorToChartOffset.y }}
+      {{ 'zoom: ' + zoom + ', ' + cursorToChartOffset.x + ", " + cursorToChartOffset.y }}
+    </span>
+    <span v-if="isAuthor" class="instruction">
+      <p>グレーのところでダブルクリックでカード追加</p>
+      <p>カードの上でダブルクリックでカード編集</p>
+      <p>矢印の上でダブルクリックで矢印編集</p>
     </span>
     <svg id="svg">
       <rect class="selection" height="0" width="0"></rect>
@@ -448,11 +453,46 @@ export default {
         // .attr("fill", "#7CF8FD")
         .attr("fill", "#5486b9")
 
+      // temp
+      //   .attr("x", x2 + 10)
+      //   .attr("y", y2 - 40)
+      //   .style("width", 10 + "px")
+      //   .style("height", 10 + "px")
+      //   .text(connName)
+
+      let textX
+      let textY
+
+      // TODO:本当はもっと丁寧に場合わけすべし
+      switch (endPosition) {
+        case 'top':
+          textX = x2 + 20
+          textY = y2 - 40
+          break;
+        case 'right':
+          textX = x2 + 20
+          textY = y2 - 20
+          break;
+        case 'bottom':
+          textX = x2 + 20
+          textY = y2 + 40
+          break;
+        case 'left':
+          textX = x2 - 80
+          textY = y2 - 20
+          break;
+
+        default:
+          break;
+      }
+
       temp
-        .attr("x", x2 + 10)
-        .attr("y", y2 - 40)
-        .style("width", 10 + "px")
-        .style("height", 10 + "px")
+        .attr("x", textX)
+        .attr("y", textY)
+        // .attr("text-anchor", "middle")
+        // .style("width", 10 + "px")
+        // .style("height", 10 + "px")
+        // .style("background-color", "#eee")
         .text(connName)
 
       g.classed("connection", true);
@@ -652,7 +692,9 @@ export default {
           .attr("cx", positionElement.x)
           .attr("cy", positionElement.y)
           .attr("r", 7)
-          .attr("class", "connector");
+          .attr("class", "connector")
+          // .style("position", "absolute")
+          // .style("z-index", "20")
         connector
           .on("mousedown", function (event) {
             event.stopPropagation();

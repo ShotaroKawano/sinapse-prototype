@@ -29,6 +29,19 @@ body {
   box-sizing: border-box;
 }
 
+.instruction {
+  position: absolute;
+  left: 8px;
+  /* z-index: 2; */
+  user-select:none
+}
+
+.instruction p {
+  padding: 1px;
+  color: #777;
+}
+
+
 #position {
   position: absolute;
   right: 4px;

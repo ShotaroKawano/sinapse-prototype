@@ -79,7 +79,7 @@
             <div class="btn_cancel">
               <img
               class="img_cancel"
-              src="@/assets/images/icons/icons_cancel.png"
+              src="/static/img/icons_cancel.png"
               alt="閉じる">
             </div>
           </div>

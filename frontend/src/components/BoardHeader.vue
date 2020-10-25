@@ -6,6 +6,7 @@
       <div class="accordion_header open displayFlex" ref="accordion_header">
         <!-- read only のときはv-ifで表示を変えたりしないと -->
         <textarea
+          v-if="isAuthor"
           id="scrollbar"
           class="form_common form_title"
           placeholder="Title"
@@ -13,6 +14,9 @@
           @focusout="updateBoard()"
           >
         </textarea>
+        <p class="form_common form_title" v-else>
+          {{ title }}
+        </p>
         <div>
           <div id="btn" class="menu" @click="isVisible = !isVisible">
             <!-- ▼ -->
@@ -111,7 +115,7 @@
                         <div class="box_NameAndCreatdate">
                           <div class="indexUsername">{{ user.username }}</div>
                           <div class="indexCreatdate">
-                            {{ createdAt }}
+                            {{ getNowDateWithString(updatedAt) }}
                           </div>
                         </div>
                       </div>
@@ -200,9 +204,9 @@ export default {
       //   { id: 2, value: '地球温暖化' },
       //   { id: 3, value: '自然電力' },
       // ],
-      createdAt: "2020/09/20",
-      updatedAt: "",
-      likes: "162",
+      createdAt: null,
+      updatedAt: null,
+      likes: null,
       comments: "14",
       shares: "56",
       isEditting: false,
@@ -214,6 +218,17 @@ export default {
   computed: {
     token() {
       return this.$store.getters.token
+    },
+    // TODO:重複してる
+    getNowDateWithString() {
+      return function(date) {
+        var dt = new Date(date);
+        var y = dt.getFullYear();
+        var m = ("00" + (dt.getMonth() + 1)).slice(-2);
+        var d = ("00" + dt.getDate()).slice(-2);
+        var result = y + "/" + m + "/" + d;
+        return result;
+      }
     },
     convertBoardTagsToTagList: function () {
       // console.log('kokodesu');
@@ -305,11 +320,9 @@ export default {
     // }
   },
   created: function () {
-    const tail =
-      "api/boards/" + this.$route.params.id;
     this.$axios({
       method: "GET",
-      url: tail,
+      url: "api/boards/" + this.$route.params.id,
       headers: {
         Authorization: `JWT ${this.token}`
       },
@@ -324,10 +337,13 @@ export default {
       const isAuthor = this.$store.getters.userId === parseInt(this.user.id)
       console.log(isAuthor);
       this.$emit('update-is-author', isAuthor)
-      this.title = res.data.title;
-      this.description = res.data.description;
-      this.boardTags = res.data.board_tags;
-      this.thumbnail = res.data.thumbnail;
+      this.title = res.data.title
+      this.description = res.data.description
+      this.boardTags = res.data.board_tags
+      this.thumbnail = res.data.thumbnail
+      this.createdAt = res.data.created_at
+      this.updatedAt = res.data.updated_at
+      this.likes = res.data.like_count
     })
     .catch(() => {});
   },

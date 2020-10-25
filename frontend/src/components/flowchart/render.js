@@ -25,6 +25,8 @@ function render(g, node, isSelected) {
     .style("border-left", "1px solid #707070")
     .style("border-bottom", "1px solid #707070")
     .style("cursor", "pointer")
+    // .style("position", "absolute")
+    // .style("z-index", "10")
     // .style("border-bottom", "1px solid #707070")
 
     // ▼▼title text▼▼
@@ -76,7 +78,9 @@ function render(g, node, isSelected) {
     .style("cursor", "default")
     // .style("border-top", "1px solid white")
     // .style("border-left", "1px solid white")
-    .style("border", "1px solid #707070");
+    .style("border", "1px solid #707070")
+    // .style("position", "absolute")
+    // .style("z-index", "10")
 
       // ▼▼tabOpen▼▼
   // g.append("foreignObject")
@@ -112,6 +116,8 @@ function render(g, node, isSelected) {
     .style("border-bottom", "1px solid #707070")
     .style("border-right", "1px solid #707070")
     .style("border-left", "1px solid #707070")
+    // .style("position", "absolute")
+    // .style("z-index", "10")
 
     // ▼▼summary text▼▼
     // g.append('foreignObject')
@@ -138,7 +144,7 @@ function render(g, node, isSelected) {
     .style("cursor", "pointer")
     // ▲▲▲▲以上（4行以降・・・になる）▲▲▲▲
     .text(() => node.summary);
-  
+
   // ここから元々あったrender
   // node.width = node.width || 120;
   // node.height = node.height || 60;
