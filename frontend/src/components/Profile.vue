@@ -123,18 +123,18 @@ export default {
   margin: 0 0 0 auto;
   display: inline-block;
   border-radius: 18px; /* 角丸       */
-  font-size: 12px; /* 文字サイズ */
+  font-size: 14px; /* 文字サイズ */
   font-weight: bold;
   text-align: center; /* 文字位置   */
   padding: 10px; /* 余白       */
-  background: #ffffff; /* 背景色     */
-  color: #b4bdc6; /* 文字色     */
+  background: #f8f8f8; /* 背景色     */
+  color: #525e6a; /* 文字色     */
   line-height: 17px; /* 1行の高さ  */
-  opacity: .8; /* 透明度を上げることで、画像の色を薄く見せる。*/
+  opacity: .6; /* 透明度を上げることで、画像の色を薄く見せる。*/
 }
 .btn_logout:hover {
   background: #f8f8f8; /* 背景色     */
-  opacity: 1; /* 透明度を上げることで、画像の色を薄く見せる。*/
+  opacity: .8; /* 透明度を上げることで、画像の色を薄く見せる。*/
   cursor: pointer; /* リンクをホバーしたときのカーソルにする。*/
 }
 /* ▲▲▲▲▲ ボタン ▲▲▲▲▲ */
