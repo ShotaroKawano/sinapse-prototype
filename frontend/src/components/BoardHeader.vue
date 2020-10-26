@@ -8,13 +8,13 @@
         <textarea
           v-if="isAuthor"
           id="scrollbar"
-          class="form_common form_title"
+          class="form_common form_titleAuthor"
           placeholder="Title"
           v-model="title"
           @focusout="updateBoard()"
           >
         </textarea>
-        <p class="form_common form_title" v-else>
+        <p id="scrollbar" class="form_common form_titleReader" v-else>
           {{ title }}
         </p>
         <div>
@@ -46,13 +46,17 @@
               <div class="box_accordion1">
                 <div class="displayFlex">
                   <textarea
+                    v-if="isAuthor"
                     id="scrollbar"
-                    class="form_common form_description"
+                    class="form_common form_descriptionAuthor"
                     placeholder="Description"
                     v-model="description"
                     @focusout="updateBoard()"
                   >
                   </textarea>
+                  <p id="scrollbar" class="form_common form_descriptionReader" v-else>
+                    {{ description }}
+                  </p>
                   <!-- TODO: thumnailも編集できるようにする -->
                   <div
                     v-if="!isEditting2"
@@ -60,7 +64,7 @@
                     class="board_thumbnail"
                     :style="{ backgroundImage: 'url(' + thumbnail + ')' }"
                   >
-                    <div id="" class="btn_edit">
+                    <div id="" class="btn_edit" v-if="isAuthor">
                       <p>Edit</p>
                     </div>
                   </div>
@@ -392,7 +396,7 @@ export default {
   overflow-wrap: break-word;
 }
 
-.form_title {
+.form_titleAuthor {
   color: #525e6a;
   height: 88px;
   width: 684px;
@@ -409,14 +413,33 @@ export default {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-.form_title::placeholder {
+.form_titleAuthor::placeholder {
   color: #525e6a;
 }
-.form_title:hover {
+.form_titleAuthor:hover {
   background-color: #B4BDC620;
 }
 
-.form_description {
+.form_titleReader {
+  color: #525e6a;
+  height: 88px;
+  width: 684px;
+  font-size: 36px;
+  line-height: 44px;
+  margin: 0px 0px 10px 0px;
+  padding-top: 5px;
+  border-radius: 10px;
+  /* overflow: hidden; */
+  overflow-wrap:break-word;
+  display: -webkit-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-line-clamp: 2;
+  /* -webkit-box-orient: vertical; */
+  cursor: default;
+}
+
+.form_descriptionAuthor {
   color: #87929D;
   height: 150px;
   width: 520px;
@@ -432,11 +455,29 @@ export default {
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
-.form_description::placeholder {
+.form_descriptionAuthor::placeholder {
   color: #87929D;
 }
-.form_description:hover {
+.form_descriptionAuthor:hover {
   background-color: #B4BDC620;
+}
+
+.form_descriptionReader {
+  color: #87929D;
+  height: 150px;
+  width: 520px;
+  font-size: 20px;
+  line-height: 30px;
+  margin: 0px 0px 5px 0px;
+  border-radius: 10px;
+  /* overflow: hidden; */
+  overflow-wrap:break-word;
+  display: -webkit-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  cursor: default;
 }
 
 #scrollbar::-webkit-scrollbar
