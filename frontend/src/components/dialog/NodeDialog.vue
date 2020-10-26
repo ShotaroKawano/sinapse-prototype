@@ -77,8 +77,8 @@
           <div id="" style="width: 50px;" @click="handleClickCancelSaveNode">
             <!-- <p>Cancel</p> -->
             <div class="btn_cancel">
-              <!-- <img class="img_cancel" src="/static/img/icons_cancel.png" alt="閉じる"> -->
-              <img class="img_cancel" src="@/assets/images/icons/icons_cancel.png" alt="閉じる">
+              <img class="img_cancel" src="/static/img/icons_cancel.png" alt="閉じる">
+              <!-- <img class="img_cancel" src="@/assets/images/icons/icons_cancel.png" alt="閉じる"> -->
             </div>
           </div>
           <div class="footerButton">
