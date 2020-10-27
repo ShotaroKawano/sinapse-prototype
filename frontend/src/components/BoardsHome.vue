@@ -6,7 +6,7 @@
 
       <!-- ▼▼▼ sideMenu ▼▼▼ -->
       <div class="box_sideMenu">
-        <div class="btn_sideMenu">
+        <div class="btn_sideMenu" @click="getBoards">
           <img
             class="icon_sideMenu"
             src="@/assets/images/icons/icons_home.png"
@@ -22,7 +22,7 @@
           />
           <p>いいねしたボード</p>
         </div>
-        <div class="btn_sideMenu">
+        <div class="btn_sideMenu" @click="getCreatedBoards">
           <img
             class="icon_sideMenu"
             src="@/assets/images/icons/icons_myboards.png"
@@ -160,6 +160,32 @@ export default {
     Header,
   },
   methods: {
+    getBoards () {
+      this.$axios({
+        method: "GET",
+        url: 'api/boards',
+        headers: {
+          Authorization: `JWT ${this.token}`
+        },
+      })
+      .then((res) => {
+        this.boards = res.data;
+      })
+      .catch(() => {});
+    },
+    getCreatedBoards() {
+      this.$axios({
+        method: "GET",
+        url: "api/boards/?user__id=" + this.$store.getters.userId,
+        // headers: {
+        //   Authorization: `JWT ${this.token}`
+        // },
+      })
+      .then((res) => {
+        this.boards = res.data;
+      })
+      .catch(() => {});
+    },
     // いいねを外した場合も要実装
     addLike(boardId) {
       this.$axios({

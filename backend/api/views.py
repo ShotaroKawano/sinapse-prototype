@@ -51,16 +51,16 @@ class BoardViewSets(ModelViewSet):
 
 #description & title 検索ロジック
 
-    filter_fields = ('id','description','title','board_cards__title','board_cards__summary')
+    filter_fields = ('id','description','title','board_cards__title','board_cards__summary','user__id', 'updated_at')
     # search_fields = ('id', '^title') | ('id', '^description')
-    search_fields = ('id', '^description','^title','^board_cards__title','board_cards__summary')
+    search_fields = ('id', '^description','^title','^board_cards__title','board_cards__summary', 'user__id')
     # search_fields = ('id', '^card')
- 
+
     # lookup_field = 'board_cards'
     #降順
-    ordering_fields = ('id', 'title')
+    ordering_fields = ('updated_at')
     #降順
-    ordering = ('-id', 'title',)
+    ordering = ('-updated_at')
 
     # def get_queryset(self):
     #     queryset = Board.objects.all()
