@@ -168,7 +168,7 @@ import time
 @csrf_exempt
 def getInfo(request):
     #  スクレイピング間隔を1秒あける
-    time.sleep(2)
+    time.sleep(1)
     json_str = request.body
     print(json_str)
     json_data = json.loads(json_str)
