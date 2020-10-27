@@ -57,7 +57,6 @@ class BoardViewSets(ModelViewSet):
     # search_fields = ('id', '^card')
 
     # lookup_field = 'board_cards'
-    #降順
     ordering_fields = ('updated_at')
     #降順
     ordering = ('-updated_at')
