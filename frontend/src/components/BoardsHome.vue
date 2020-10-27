@@ -135,6 +135,7 @@
               class="thumbnail_indexBoards"
               :src=" board.thumbnail "
               onerror="this.onerror = null; this.src='';"
+              border="0"
             >
           </div>
         </router-link>
@@ -617,8 +618,9 @@ p.indexCreatdate {
   background-color: #f8f8f8;
 }
 .box_indexThumbnail > img {
-  width: 150px;
-  height: 150px;
+  max-width: 170px;
+  max-height: 150px;
+  /* object-fit: contain; */
 }
 /* ▲▲▲▲▲ サムネイル ▲▲▲▲▲ */
 
