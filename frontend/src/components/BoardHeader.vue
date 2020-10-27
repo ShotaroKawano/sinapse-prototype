@@ -274,7 +274,7 @@ export default {
             thumbnail: this.thumbnail,
             // url_tail: this.url_tail,
             is_published: this.is_published,
-            // user_id: 1,
+            // user_id: this.$store.getters.userId,
             // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
             // tagList: this.convertTaglistToTags
           },

@@ -25,6 +25,7 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 #     return render(request,'user/index.html',contexts)
 
 
+# from rest_framework_jwt.views import obtain_jwt_token
 
 # ユーザ作成のView(POST)
 class AuthRegister(generics.CreateAPIView):
