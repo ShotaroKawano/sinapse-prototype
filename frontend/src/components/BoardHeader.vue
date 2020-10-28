@@ -8,13 +8,13 @@
         <textarea
           v-if="isAuthor"
           id="scrollbar"
-          class="form_common form_titleAuthor"
+          class="form_titleAuthor"
           placeholder="Title"
           v-model="title"
           @focusout="updateBoard()"
           >
         </textarea>
-        <p id="scrollbar" class="form_common form_titleReader" v-else>
+        <p id="scrollbar" class="form_titleReader" v-else>
           {{ title }}
         </p>
         <div>
@@ -48,13 +48,13 @@
                   <textarea
                     v-if="isAuthor"
                     id="scrollbar"
-                    class="form_common form_descriptionAuthor"
+                    class="form_descriptionAuthor"
                     placeholder="Description"
                     v-model="description"
                     @focusout="updateBoard()"
                   >
                   </textarea>
-                  <p id="scrollbar" class="form_common form_descriptionReader" v-else>
+                  <p id="scrollbar" class="form_descriptionReader" v-else>
                     {{ description }}
                   </p>
                   <!-- TODO: thumnailも編集できるようにする -->
@@ -370,13 +370,13 @@ export default {
 
 <style scoped>
 .board_thumbnail {
-  width: 150px;
-  height: 150px;
+  width: 114px;
+  height: 100px;
   border-radius: 10px;
   border: solid 1px #e1e6eb;
   /* background-image: url("../assets/images/icons/noimage.jpg"); */
   background-size: cover;
-  margin-left: 20px;
+  margin-left: 10px;
   background-position: center center;
 }
 .box_thumbnailUrl{
@@ -398,20 +398,28 @@ export default {
 
 .form_titleAuthor {
   color: #525e6a;
-  height: 88px;
+  max-height: 66px;
   width: 684px;
-  font-size: 36px;
-  line-height: 44px;
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: bold;
   margin: 0px 0px 10px 0px;
-  padding-top: 5px;
+  /* padding-top: 5px; */
   border-radius: 10px;
   /* overflow: hidden; */
   overflow-wrap:break-word;
   display: -webkit-box;
   overflow-x: hidden;
   overflow-y: scroll;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  /* -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; */
+
+  /* appearance: none; が効かない*/
+  /* border: none; */
+  border: solid 1px #e1e6eb;
+  resize: none;
+  /* outline: none; */
+  overflow-wrap: break-word;
 }
 .form_titleAuthor::placeholder {
   color: #525e6a;
@@ -419,32 +427,39 @@ export default {
 .form_titleAuthor:hover {
   background-color: #B4BDC620;
 }
-
 .form_titleReader {
   color: #525e6a;
-  height: 88px;
+  max-height: 66px;
   width: 684px;
-  font-size: 36px;
-  line-height: 44px;
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: bold;
   margin: 0px 0px 10px 0px;
-  padding-top: 5px;
-  border-radius: 10px;
+  /* padding-top: 5px; */
+  /* border-radius: 10px; */
   /* overflow: hidden; */
   overflow-wrap:break-word;
   display: -webkit-box;
   overflow-x: hidden;
   overflow-y: scroll;
-  -webkit-line-clamp: 2;
-  /* -webkit-box-orient: vertical; */
+  /* -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; */
   cursor: default;
+
+  /* appearance: none; が効かない*/
+  /* border: none; */
+  /* border: solid 1px #e1e6eb; */
+  resize: none;
+  /* outline: none; */
+  overflow-wrap: break-word;
 }
 
 .form_descriptionAuthor {
-  color: #87929D;
-  height: 150px;
-  width: 520px;
-  font-size: 20px;
-  line-height: 30px;
+  color: #525e6a;
+  height: 96px;
+  width: 543px;
+  font-size: 16px;
+  line-height: 24px;
   margin: 0px 0px 5px 0px;
   border-radius: 10px;
   /* overflow: hidden; */
@@ -452,8 +467,15 @@ export default {
   display: -webkit-box;
   overflow-x: hidden;
   overflow-y: scroll;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
+  /* -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical; */
+
+  /* appearance: none; が効かない*/
+  /* border: none; */
+  border: solid 1px #e1e6eb;
+  resize: none;
+  /* outline: none; */
+  overflow-wrap: break-word;
 }
 .form_descriptionAuthor::placeholder {
   color: #87929D;
@@ -461,23 +483,29 @@ export default {
 .form_descriptionAuthor:hover {
   background-color: #B4BDC620;
 }
-
 .form_descriptionReader {
-  color: #87929D;
-  height: 150px;
-  width: 520px;
-  font-size: 20px;
-  line-height: 30px;
+  color: #525e6a;
+  height: 96px;
+  width: 543px;
+  font-size: 16px;
+  line-height: 24px;
   margin: 0px 0px 5px 0px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   /* overflow: hidden; */
   overflow-wrap:break-word;
   display: -webkit-box;
   overflow-x: hidden;
   overflow-y: scroll;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
+  /* -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical; */
   cursor: default;
+
+  /* appearance: none; が効かない*/
+  /* border: none; */
+  /* border: solid 1px #e1e6eb; */
+  resize: none;
+  /* outline: none; */
+  overflow-wrap: break-word;
 }
 
 #scrollbar::-webkit-scrollbar
@@ -509,8 +537,11 @@ export default {
 }
 
 .menu {
-  width: 70px;
-  margin-top: 56px;
+  /* width: 70px; */
+  /* margin-top: 36px; */
+  /* margin-bottom: 0px; */
+  margin-left: 20px;
+  height: 100%;
   color: #b4bdc6;
 }
 .displayFlex {
@@ -631,6 +662,7 @@ export default {
 }
 .icon_headerUpDown {
   width: 30px;
+  /* margin-top: 100%; */
 }
 
 .btn_boardsUser {
@@ -651,7 +683,7 @@ export default {
   /* font-size: 26px; */
   /* font-weight: bold; */
   /* padding: 20px 11%; */
-  text-align: center;
+  /* text-align: center; */
   position: relative;
   z-index: +1;
   /* cursor: pointer; */
