@@ -67,7 +67,7 @@ export default {
       this.username = ''
       this.email = ''
       this.password = ''
-    }
+    },
   }
 }
 </script>

@@ -531,7 +531,7 @@ export default {
 
       g.on('click', function() {
         if (!that.isAuthor) {
-          window.open(node.url, '_blank,noopener,noreferrer')
+          window.open(node.url, '_blank')
         }
       })
 
@@ -559,7 +559,7 @@ export default {
               that.currentNodes.splice(0, that.currentNodes.length);
               that.editNode(node);
             } else {
-              window.open(node.url, '_blank,noopener,noreferrer')
+              window.open(node.url, '_blank')
             }
           } else {
             // 0.3秒後にclickedOnceをfalseにする

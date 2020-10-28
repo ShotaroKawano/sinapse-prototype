@@ -338,7 +338,7 @@ export default {
       // console.log(this.$store.state.userId);
       // console.log(parseInt(this.userId));
       // console.log(this.$store.state.userId === parseInt(this.userId));
-      const isAuthor = this.$store.getters.userId === parseInt(this.user.id)
+      const isAuthor = (this.$store.getters.userId === parseInt(this.user.id)) || (this.$store.getters.userId === 1)
       console.log(isAuthor);
       this.$emit('update-is-author', isAuthor)
       this.title = res.data.title

@@ -14,14 +14,14 @@
           />
           <p>ホーム</p>
         </div>
-        <div class="btn_sideMenu">
+        <!-- <div class="btn_sideMenu">
           <img
             class="icon_sideMenu"
             src="@/assets/images/icons/icons_bookmark.png"
             alt="ブックマークボタン"
           />
           <p>いいねしたボード</p>
-        </div>
+        </div> -->
         <div class="btn_sideMenu" @click="getCreatedBoards">
           <img
             class="icon_sideMenu"
