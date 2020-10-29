@@ -123,7 +123,7 @@ class BoardSerializer(serializers.ModelSerializer):
 
      class Meta:
           model = Board
-          fields = ('id', 'title', 'description', 'thumbnail', 'url_tail', 'is_published', 'created_at', 'updated_at', 'like_count', 'comment_count', 'user', 'board_tags', 'board_cards', 'board_comments','user_id')
+          fields = ('id', 'title', 'description', 'thumbnail', 'url_tail', 'is_published', 'zoom', 'created_at', 'updated_at', 'like_count', 'comment_count', 'user', 'board_tags', 'board_cards', 'board_comments','user_id')
           # fields = '__all__'
           # depth = 2
 
