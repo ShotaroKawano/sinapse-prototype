@@ -147,6 +147,9 @@ export default {
     handleChartMouseWheel(event) {
       console.log('wheel')
       console.log(event)
+      if (event.ctrlKey) {
+        event.preventDefault();
+      }
       // 副作用があるか継続的に見ていこう
       event.stopPropagation();
       // event.preventDefault();
