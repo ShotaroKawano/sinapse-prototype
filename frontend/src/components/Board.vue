@@ -4,6 +4,8 @@
     <BoardHeader
       @update-is-author="handleUpdateAuthor"
       :isAuthor="isAuthor"
+      @change-zoom="changeZoom($event)"
+      :zoom="Number(zoom)"
     >
     </BoardHeader>
     <div class="container">
@@ -56,6 +58,8 @@
           @save="handleChartSave"
           ref="chart"
           :isAuthor="isAuthor"
+          @change-zoom="changeZoom($event)"
+          :zoom="Number(zoom)"
         >
         </flowchart>
       </div>
@@ -269,6 +273,7 @@ export default {
       nodeDialogVisible: false,
       connectionDialogVisible: false,
       isAuthor: false,
+      zoom: 1
     };
   },
   computed: {
@@ -280,6 +285,9 @@ export default {
     // }
   },
   methods: {
+    changeZoom(newZoom) {
+      this.zoom = newZoom
+    },
     handleUpdateAuthor(isAuthor) {
       console.log('koko');
       console.log(isAuthor);
@@ -424,11 +432,9 @@ export default {
     // },
   },
   created: function () {
-    const tail =
-      "api/cards/?board_id=" + this.$route.params.id;
     this.$axios({
       method: "GET",
-      url: tail,
+      url: "api/cards/?board_id=" + this.$route.params.id,
       headers: {
         Authorization: `JWT ${this.token}`
       },
@@ -462,11 +468,9 @@ export default {
       }
     })
     .catch(() => {});
-    const tail2 =
-      "api/arrows/?board_id=" + this.$route.params.id;
     this.$axios({
       method: "GET",
-      url: tail2,
+      url: "api/arrows/?board_id=" + this.$route.params.id,
       headers: {
         Authorization: `JWT ${this.token}`
       },

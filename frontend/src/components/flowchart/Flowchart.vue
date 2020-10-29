@@ -83,6 +83,10 @@ export default {
     isAuthor: {
       type: Boolean,
       defult: false
+    },
+    zoom: {
+      type: Number,
+      defult: 1
     }
   },
   data() {
@@ -108,7 +112,6 @@ export default {
        *  of all internalConnections
        */
       lines: [],
-      zoom: 1
     };
   },
   computed: {
@@ -145,8 +148,8 @@ export default {
       this.$emit("editconnection", connection);
     },
     handleChartMouseWheel(event) {
-      console.log('wheel')
-      console.log(event)
+      // console.log('wheel')
+      // console.log(event)
       if (event.ctrlKey) {
         event.preventDefault();
       }
@@ -156,11 +159,13 @@ export default {
       if (event.ctrlKey) {
         let svg = document.getElementById("svg");
         // let zoom = parseFloat(svg.style.zoom || 1);
-        this.zoom = parseFloat(svg.style.zoom || 1);
+        // this.zoom = parseFloat(svg.style.zoom || 1);
+        this.$emit('change-zoom', parseFloat(svg.style.zoom || 1))
         if (event.deltaY > 0 && this.zoom === 0.1) {
           return;
         }
-        this.zoom -= event.deltaY / 100 / 10;
+        // this.zoom -= event.deltaY / 100 / 10;
+        this.$emit('change-zoom', (this.zoom - event.deltaY / 100 / 10))
         svg.style.zoom = this.zoom;
       }
     },
@@ -1058,6 +1063,34 @@ export default {
       deep: true,
       handler() {
         this.init();
+      },
+    },
+    zoom: {
+      immediate: true,
+      // deep: true,
+      handler() {
+        let svg = document.getElementById("svg");
+        if (!svg) {
+          return
+        }
+        // console.log('koko:' + this.zoom);
+        svg.style.zoom = this.zoom;
+
+        if (this.isAuthor) {
+          this.$axios({
+            method: "PATCH",
+            // method: "PUT",
+            url: "api/boards/" + this.$route.params.id + "/",
+            headers: {
+              Authorization: `JWT ${this.token}`
+            },
+            data: {
+              zoom: this.zoom,
+            },
+          })
+          .then(() => {})
+          .catch(() => {})
+        }
       },
     },
   },

@@ -19,6 +19,7 @@ class Board(models.Model):
     thumbnail = models.CharField(blank=True,null=True,max_length=255)
     url_tail = models.CharField(blank=True,null=True,max_length=255)
     is_published = models.BooleanField(default=True)
+    zoom = models.FloatField(default=1.0)
     user = models.ForeignKey(User, related_name='user_boards', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
