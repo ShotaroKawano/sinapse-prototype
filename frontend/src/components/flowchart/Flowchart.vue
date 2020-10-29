@@ -1065,6 +1065,34 @@ export default {
         this.init();
       },
     },
+    zoom: {
+      immediate: true,
+      // deep: true,
+      handler() {
+        let svg = document.getElementById("svg");
+        if (!svg) {
+          return
+        }
+        // console.log('koko:' + this.zoom);
+        svg.style.zoom = this.zoom;
+
+        if (this.isAuthor) {
+          this.$axios({
+            method: "PATCH",
+            // method: "PUT",
+            url: "api/boards/" + this.$route.params.id + "/",
+            headers: {
+              Authorization: `JWT ${this.token}`
+            },
+            data: {
+              zoom: this.zoom,
+            },
+          })
+          .then(() => {})
+          .catch(() => {})
+        }
+      },
+    },
   },
 }
 </script>

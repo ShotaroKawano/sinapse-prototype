@@ -4,6 +4,8 @@
     <BoardHeader
       @update-is-author="handleUpdateAuthor"
       :isAuthor="isAuthor"
+      @change-zoom="changeZoom($event)"
+      :zoom="Number(zoom)"
     >
     </BoardHeader>
     <div class="container">
@@ -57,7 +59,7 @@
           ref="chart"
           :isAuthor="isAuthor"
           @change-zoom="changeZoom($event)"
-          :zoom="zoom"
+          :zoom="Number(zoom)"
         >
         </flowchart>
       </div>

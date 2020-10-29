@@ -11,8 +11,8 @@ Vue.config.productionTip = false
 // var api = axios.defaults.baseURL = "http://127.0.0.1:8000/api"
 // new Vue の前に読み込まないとundefindになる
 Vue.prototype.$axios = axios.create({
-  baseURL: 'http://127.0.0.1:8000/',
-  // baseURL: 'https://sinapse-20201015.herokuapp.com/',
+  // baseURL: 'http://127.0.0.1:8000/',
+  baseURL: 'https://sinapse-20201015.herokuapp.com/',
 })
 
 Vue.prototype.$axios.interceptors.response.use(

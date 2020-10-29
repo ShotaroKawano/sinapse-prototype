@@ -187,6 +187,10 @@ export default {
     isAuthor: {
       type: Boolean,
       defult: false
+    },
+    zoom: {
+      type: Number,
+      defult: 1
     }
   },
   data: function () {
@@ -274,6 +278,7 @@ export default {
             thumbnail: this.thumbnail,
             // url_tail: this.url_tail,
             is_published: this.is_published,
+            // zoom: this.zoom,
             // user_id: this.$store.getters.userId,
             // "tagList": [ "気候変動", "地球温暖化", "自然電力" ]
             // tagList: this.convertTaglistToTags
@@ -341,6 +346,7 @@ export default {
       const isAuthor = (this.$store.getters.userId === parseInt(this.user.id)) || (this.$store.getters.userId === 1)
       console.log(isAuthor);
       this.$emit('update-is-author', isAuthor)
+      this.$emit('change-zoom', res.data.zoom)
       this.title = res.data.title
       this.description = res.data.description
       this.boardTags = res.data.board_tags
