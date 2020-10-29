@@ -18,8 +18,9 @@
       {{ 'zoom: ' + zoom + ', ' + cursorToChartOffset.x + ", " + cursorToChartOffset.y }}
     </span>
     <span v-if="isAuthor" class="instruction">
-      <p>グレーのところでダブルクリックでカード追加</p>
+      <p>グレーの領域でダブルクリックでカード追加</p>
       <p>カードの上でダブルクリックでカード編集</p>
+      <p>URLを入力してGetボタンを押下でスクレイピング</p>
       <p>矢印の上でダブルクリックで矢印編集</p>
     </span>
     <svg id="svg">
@@ -144,7 +145,8 @@ export default {
       this.$emit("editconnection", connection);
     },
     handleChartMouseWheel(event) {
-      // console.log('wheel')
+      console.log('wheel')
+      console.log(event)
       // 副作用があるか継続的に見ていこう
       event.stopPropagation();
       // event.preventDefault();
