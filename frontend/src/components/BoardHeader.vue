@@ -1,25 +1,15 @@
 <template>
   <!-- ▼▼▼▼▼ board_title ▼▼▼▼▼ -->
-  <div class="section s_01">
-    <div class="accordion_one">
+  <!-- <div class="section s_01"> -->
+  <div class="section">
+    <!-- <div class="accordion_one"> -->
+    <div class="box_BoardHeader">
       <!-- ▼▼▼ accordion_header ▼▼▼ -->
-      <div class="accordion_header open displayFlex" ref="accordion_header">
+      <!-- <div class="accordion_header open displayFlex" ref="accordion_header"> -->
+      <!-- <div class="displayFlex"> -->
         <!-- read only のときはv-ifで表示を変えたりしないと -->
-        <textarea
-          v-if="isAuthor"
-          id="scrollbar"
-          class="form_titleAuthor"
-          placeholder="Title"
-          v-model="title"
-          @focusout="updateBoard()"
-          >
-        </textarea>
-        <p id="scrollbar" class="form_titleReader" v-else>
-          {{ title }}
-        </p>
-        <div>
+        <!-- <div>
           <div id="btn" class="menu" @click="isVisible = !isVisible">
-            <!-- ▼ -->
             <span v-if="isVisible">
               <img
                 class="icon_headerUpDown"
@@ -35,13 +25,26 @@
               />
             </span>
           </div>
-        </div>
-      </div>
-      <transition name="toggle">
+        </div> -->
+      <!-- </div> -->
+      <!-- <transition name="toggle"> -->
         <!-- ▼▼▼ accordion_inner ▼▼▼ -->
-        <div v-if="isVisible" class="accordion_inner" ref="accordion_inner">
+        <!-- <div v-if="isVisible" class="accordion_inner" ref="accordion_inner"> -->
+        <div>
           <!-- <div class="accordion_inner" ref="accordion_inner"> -->
-          <div class="displayFlex">
+          <div class="">
+            <textarea
+              v-if="isAuthor"
+              id="scrollbar"
+              class="form_titleAuthor"
+              placeholder="Title"
+              v-model="title"
+              @focusout="updateBoard()"
+            >
+            </textarea>
+            <p id="scrollbar" class="form_titleReader" v-else>
+              {{ title }}
+            </p>
             <div class="">
               <div class="box_accordion1">
                 <div class="displayFlex">
@@ -57,8 +60,7 @@
                   <p id="scrollbar" class="form_descriptionReader" v-else>
                     {{ description }}
                   </p>
-                  <!-- TODO: thumnailも編集できるようにする -->
-                  <div
+                  <!-- <div
                     v-if="!isEditting2"
                     @click="isEditting2 = !isEditting2"
                     class="board_thumbnail"
@@ -76,7 +78,7 @@
                     id="thumbnail"
                     placeholder="thumbnail URL"
                     v-model="thumbnail"
-                  />
+                  /> -->
                 </div>
                 <div class="text_edit">
                   <input
@@ -173,7 +175,29 @@
             </div>
           </div>
         </div>
-      </transition>
+      <!-- </transition> -->
+
+            <div
+              v-if="!isEditting2"
+              @click="isEditting2 = !isEditting2"
+              class="board_thumbnail"
+              :style="{ backgroundImage: 'url(' + thumbnail + ')' }"
+            >
+              <div id="" class="btn_edit" v-if="isAuthor">
+                <p>Edit</p>
+              </div>
+            </div>
+            <input
+              v-if="isEditting2"
+              @focusout="updateBoard()"
+              type="url"
+              class="box_thumbnailUrl"
+              id="thumbnail"
+              placeholder="thumbnail URL"
+              v-model="thumbnail"
+            />
+
+
     </div>
   </div>
   <!-- ▲▲▲▲▲ board_title ▲▲▲▲▲ -->
@@ -375,14 +399,24 @@ export default {
 </script>
 
 <style scoped>
+.box_BoardHeader{
+  display: flex;
+  max-width: 900px;
+  max-height: 240px;
+  margin: 0 auto;
+}
+
 .board_thumbnail {
-  width: 114px;
-  height: 100px;
+  /* width: 114px;
+  height: 100px; */
+  min-width: 200px;
+  max-height: 222px;
   border-radius: 10px;
   border: solid 1px #e1e6eb;
   /* background-image: url("../assets/images/icons/noimage.jpg"); */
   background-size: cover;
   margin-left: 10px;
+  margin-bottom: 10px;
   background-position: center center;
 }
 .box_thumbnailUrl{
@@ -391,6 +425,23 @@ export default {
   border-radius: 5px;
   border: 1px solid #e1e6eb;
   margin: 0px 0px 0px 10px;
+}
+.board_thumbnail > img {
+  object-fit: cover;
+  min-width: 200px;
+  max-height: 222px;
+  /* object-fit: contain; */
+    /* 画像を常に天地左右の中央に配置 */
+  background-position: center center;
+
+  /* 画像をタイル状に繰り返し表示しない */
+  background-repeat: no-repeat;
+
+  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+  background-attachment: fixed;
+
+  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+  background-size: cover;
 }
 
 .form_common {
@@ -462,8 +513,9 @@ export default {
 
 .form_descriptionAuthor {
   color: #525e6a;
-  height: 96px;
-  width: 543px;
+  max-height: 74px;
+  /* width: 543px; */
+  width: 684px;
   font-size: 16px;
   line-height: 24px;
   margin: 0px 0px 5px 0px;
@@ -491,8 +543,9 @@ export default {
 }
 .form_descriptionReader {
   color: #525e6a;
-  height: 96px;
-  width: 543px;
+  max-height: 74px;
+  /* width: 543px; */
+  width: 684px;
   font-size: 16px;
   line-height: 24px;
   margin: 0px 0px 5px 0px;
@@ -547,7 +600,7 @@ export default {
   /* margin-top: 36px; */
   /* margin-bottom: 0px; */
   margin-left: 20px;
-  height: 100%;
+  /* height: 100%; */
   color: #b4bdc6;
 }
 .displayFlex {
@@ -611,10 +664,10 @@ export default {
   color: #b4bdc6;
 }
 
-.box_deleteAndsaveButton {
+/* .box_deleteAndsaveButton {
   display: flex;
   margin: 210px 0px 0px 10px;
-}
+} */
 .btn_delete {
   width: 50px;
   height: 28px;
@@ -681,7 +734,7 @@ export default {
 .s_01 .accordion_one
 ====================================================================*/
 .s_01 .accordion_one {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 .s_01 .accordion_one .accordion_header {
