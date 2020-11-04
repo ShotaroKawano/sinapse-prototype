@@ -177,26 +177,28 @@
         </div>
       <!-- </transition> -->
 
-            <div
-              v-if="!isEditting2"
-              @click="isEditting2 = !isEditting2"
-              class="board_thumbnail"
-              :style="{ backgroundImage: 'url(' + thumbnail + ')' }"
-            >
-              <div id="" class="btn_edit" v-if="isAuthor">
-                <p>Edit</p>
+            <div>
+              <div class="box_Thumbnail">
+                <img
+                  v-if="!isEditting2"
+                  @click="isEditting2 = !isEditting2"
+                  class="board_thumbnail"
+                  :src=" thumbnail "
+                >
               </div>
+              <div class="btn_edit" v-if="isAuthor">
+                  <p>Edit</p>
+                </div>
+              <input
+                v-if="isEditting2"
+                @focusout="updateBoard()"
+                type="url"
+                class="box_thumbnailUrl"
+                id="thumbnail"
+                placeholder="thumbnail URL"
+                v-model="thumbnail"
+              />
             </div>
-            <input
-              v-if="isEditting2"
-              @focusout="updateBoard()"
-              type="url"
-              class="box_thumbnailUrl"
-              id="thumbnail"
-              placeholder="thumbnail URL"
-              v-model="thumbnail"
-            />
-
 
     </div>
   </div>
@@ -407,12 +409,14 @@ export default {
 }
 
 .board_thumbnail {
+  z-index: 0;
   /* width: 114px;
   height: 100px; */
   min-width: 200px;
   max-height: 222px;
   border-radius: 10px;
-  border: solid 1px #e1e6eb;
+  /* border: solid 1px #e1e6eb; */
+  border: none;
   /* background-image: url("../assets/images/icons/noimage.jpg"); */
   background-size: cover;
   margin-left: 10px;
@@ -424,12 +428,15 @@ export default {
   height: 26px;
   border-radius: 5px;
   border: 1px solid #e1e6eb;
+
   margin: 0px 0px 0px 10px;
 }
 .board_thumbnail > img {
+  z-index: 0;
   object-fit: cover;
   min-width: 200px;
   max-height: 222px;
+  border: none;
   /* object-fit: contain; */
     /* 画像を常に天地左右の中央に配置 */
   background-position: center center;
@@ -442,6 +449,25 @@ export default {
 
   /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
   background-size: cover;
+}
+
+.box_Thumbnail{
+  z-index: 0;
+  /* max-width: 150px;
+  max-height: 150px; */
+  /* width: 150px;
+  height: 150px; */
+  border-radius: 10px;
+}
+.box_Thumbnail img {
+  z-index: 0;
+  object-fit: cover;
+}
+.box_Thumbnail > img {
+  z-index: 0;
+  max-width: 200px;
+  max-height: 170px;
+  /* object-fit: contain; */
 }
 
 .form_common {
@@ -640,9 +666,11 @@ export default {
 }
 
 .btn_edit {
+  z-index: 1;
   width: 50px;
   height: 28px;
-  margin: 117px 0px 0px 93px;
+  /* margin: 117px 0px 0px 93px; */
+  position: relative;
   display: inline-block;
   border-radius: 5px; /* 角丸       */
   font-size: 14px; /* 文字サイズ */
@@ -676,6 +704,8 @@ export default {
   border: 1px solid #525e6a;
   background-color: #ffffff;
   line-height: 28px;
+  margin-top: -44px;
+  margin-left: -64px;
 }
 .text_delete {
   font-size: 14px;
