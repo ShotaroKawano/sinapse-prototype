@@ -37,7 +37,7 @@
               v-if="isAuthor"
               id="scrollbar"
               class="form_titleAuthor"
-              placeholder="Title"
+              placeholder="Title..."
               v-model="title"
               @focusout="updateBoard()"
             >
@@ -52,7 +52,7 @@
                     v-if="isAuthor"
                     id="scrollbar"
                     class="form_descriptionAuthor"
-                    placeholder="Description"
+                    placeholder="Description..."
                     v-model="description"
                     @focusout="updateBoard()"
                   >
@@ -505,7 +505,7 @@ export default {
   overflow-wrap: break-word;
 }
 .form_titleAuthor::placeholder {
-  color: #525e6a;
+  color: #525e6a50;
 }
 .form_titleAuthor:hover {
   background-color: #B4BDC620;
@@ -562,7 +562,7 @@ export default {
   overflow-wrap: break-word;
 }
 .form_descriptionAuthor::placeholder {
-  color: #87929D;
+  color: #87929D50;
 }
 .form_descriptionAuthor:hover {
   background-color: #B4BDC620;
@@ -670,7 +670,7 @@ export default {
   width: 50px;
   height: 28px;
   /* margin: 117px 0px 0px 93px; */
-  position: relative;
+  /* position: relative; */
   display: inline-block;
   border-radius: 5px; /* 角丸       */
   font-size: 14px; /* 文字サイズ */
@@ -681,6 +681,9 @@ export default {
   line-height: 28px; /* 1行の高さ  */
   text-decoration: none; /* テキストアンダーライン */
   opacity: 0.6;
+  margin-top: -174px;
+    position: absolute;
+    margin-left: 20px;
 }
 .btn_edit:hover {
   color: #ffffff; /* 文字色     */
