@@ -165,19 +165,20 @@
                 </div>
               </div>
             </div>
-            <div class="box_deleteAndsaveButton">
-              <div v-if="isAuthor" id="btn" class="btn_delete">
-                <p @click="deleteBoard()" class="text_delete">Delete</p>
-              </div>
-              <!-- <div v-if="isAuthor" id="btn" class="btn_save">
-                <p @click="updateBoard()" class="text_save">Save</p>
-              </div> -->
-            </div>
           </div>
         </div>
       <!-- </transition> -->
 
             <div>
+              <div class="box_deleteAndsaveButton">
+                <div v-if="isAuthor" id="btn" class="btn_delete">
+                  <p @click="deleteBoard()" class="text_delete">Delete</p>
+                </div>
+                <!-- <div v-if="isAuthor" id="btn" class="btn_save">
+                  <p @click="updateBoard()" class="text_save">Save</p>
+                </div> -->
+              </div>
+
               <div class="box_Thumbnail">
                 <div class="btn_edit" v-if="isAuthor">
                   <p @click="isEditting2 = !isEditting2">Edit</p>
@@ -696,10 +697,13 @@ export default {
   color: #b4bdc6;
 }
 
-/* .box_deleteAndsaveButton {
-  display: flex;
-  margin: 210px 0px 0px 10px;
-} */
+.box_deleteAndsaveButton {
+  /* display: flex;
+  margin: 210px 0px 0px 10px; */
+  position: absolute;
+  margin-top: 180px;
+  /* margin-left: 138px; */
+}
 .btn_delete {
   width: 50px;
   height: 28px;
@@ -708,9 +712,7 @@ export default {
   border: 1px solid #525e6a;
   background-color: #ffffff;
   line-height: 28px;
-  margin-top: -44px;
-  margin-left: -64px;
-  position: fixed;
+  /* margin: 72% 0 0 auto; */
 }
 .text_delete {
   font-size: 14px;
