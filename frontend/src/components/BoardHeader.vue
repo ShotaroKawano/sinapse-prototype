@@ -180,11 +180,10 @@
             <div>
               <div class="box_Thumbnail">
                 <div class="btn_edit" v-if="isAuthor">
-                  <p>Edit</p>
+                  <p @click="isEditting2 = !isEditting2">Edit</p>
                 </div>
                 <img
                   v-if="!isEditting2"
-                  @click="isEditting2 = !isEditting2"
                   class="board_thumbnail"
                   :src=" thumbnail "
                 >
@@ -424,12 +423,14 @@ export default {
   background-position: center center;
 }
 .box_thumbnailUrl{
+  z-index: 2;
   width: 260px;
   height: 26px;
   border-radius: 5px;
   border: 1px solid #e1e6eb;
-
-  margin: 0px 0px 0px 10px;
+  background: #ffffff;
+  margin: 10px 0px 0px 10px;
+  position: absolute;
 }
 .board_thumbnail > img {
   z-index: 0;
