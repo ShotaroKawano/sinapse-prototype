@@ -179,6 +179,9 @@
 
             <div>
               <div class="box_Thumbnail">
+                <div class="btn_edit" v-if="isAuthor">
+                  <p>Edit</p>
+                </div>
                 <img
                   v-if="!isEditting2"
                   @click="isEditting2 = !isEditting2"
@@ -186,9 +189,6 @@
                   :src=" thumbnail "
                 >
               </div>
-              <div class="btn_edit" v-if="isAuthor">
-                  <p>Edit</p>
-                </div>
               <input
                 v-if="isEditting2"
                 @focusout="updateBoard()"
@@ -681,9 +681,9 @@ export default {
   line-height: 28px; /* 1行の高さ  */
   text-decoration: none; /* テキストアンダーライン */
   opacity: 0.6;
-  margin-top: -174px;
-    position: absolute;
-    margin-left: 20px;
+  margin-top: 10px;
+  position: absolute;
+  margin-left: 150px;
 }
 .btn_edit:hover {
   color: #ffffff; /* 文字色     */
@@ -709,6 +709,7 @@ export default {
   line-height: 28px;
   margin-top: -44px;
   margin-left: -64px;
+  position: fixed;
 }
 .text_delete {
   font-size: 14px;
