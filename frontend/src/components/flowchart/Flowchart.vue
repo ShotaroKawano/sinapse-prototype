@@ -18,10 +18,10 @@
       {{ 'zoom: ' + zoom + ', ' + cursorToChartOffset.x + ", " + cursorToChartOffset.y }}
     </span>
     <span v-if="isAuthor" class="instruction">
-      <!-- <p>グレーの領域でダブルクリックでカード追加</p>
+      <p>グレーの領域でダブルクリックでカード追加</p>
       <p>カードの上でダブルクリックでカード編集</p>
       <p>URLを入力してGetボタンを押下でスクレイピング</p>
-      <p>矢印の上でダブルクリックで矢印編集</p> -->
+      <p>矢印の上でダブルクリックで矢印編集</p>
     </span>
     <svg id="svg">
       <rect class="selection" height="0" width="0"></rect>
